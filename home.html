@@ -1464,7 +1464,7 @@
                     const filter = this.getAttribute('data-filter');
 
                     // Pozovi API sa filterom
-                    fetchAndDisplayArticles(filter === '*' ? '*' : this.textContent.trim());
+                    fetchAndDisplayArticles(filter === '*' ? '*' : filter);
                 });
             });
         });
