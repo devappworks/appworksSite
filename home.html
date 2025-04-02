@@ -1431,6 +1431,7 @@
             // Dodaj event listener na dugmiće filtera
             filterButtons.forEach(button => {
                 button.addEventListener('click', function(event) {
+                    console.log('kliknuto');
                     event.preventDefault();
 
                     // Ukloni klasu "active" sa svih dugmića
