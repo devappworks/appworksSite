@@ -1318,53 +1318,133 @@
         <!-- end blog posts section -->
     </body>
 
+<!--    <script>-->
+<!--        document.addEventListener('DOMContentLoaded', function() {-->
+<!--            fetch('https://app-works.app/api/webV2/getArticles?articleLimit=3', {-->
+<!--                headers: {-->
+<!--                    'Authorization': 'kmNTuI8dRmRX'-->
+<!--                }-->
+<!--            })-->
+<!--                .then(response => response.json())-->
+<!--                .then(data => {-->
+<!--                    if (data.success && data.result.articles) {-->
+<!--                        const articlesContainer = document.getElementById('articlesContainer');-->
+<!--                        articlesContainer.innerHTML = ''; // Očisti postojeće članke-->
+
+<!--                        data.result.articles.forEach(article => {-->
+<!--                            const articleHtml = `-->
+<!--                            <div class="col-lg-4 mb-4">-->
+<!--                                <div class="blog-card h-100">-->
+<!--                                    <div class="blog-container">-->
+<!--                                        <div class="blog-overlay">-->
+<!--                                            <div class="blog-content">-->
+<!--                                                <div class="arrow-container">-->
+<!--                                                    <i class="bi bi-arrow-right"></i>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="blog-image">-->
+<!--                                            <img src="${article.media['medium-full']}"-->
+<!--                                                 onerror="this.src='https://source.unsplash.com/random/800x600/?article'"-->
+<!--                                                 alt="${article.title}"-->
+<!--                                                 class="w-100">-->
+<!--                                        </div>-->
+<!--                                        <div class="blog-text">-->
+<!--                                            <h3 class="text-dark-gray fs-24 fw-600 mb-3">${article.title}</h3>-->
+<!--                                            <p class="text-dark-gray opacity-6">${article.intro}</p>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        `;-->
+<!--                            articlesContainer.innerHTML += articleHtml;-->
+<!--                        });-->
+<!--                    }-->
+<!--                })-->
+<!--                .catch(error => {-->
+<!--                    console.error('Greška pri dohvatanju članaka:', error);-->
+<!--                });-->
+<!--        });-->
+<!--    </script>-->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            fetch('https://app-works.app/api/webV2/getArticles?articleLimit=3', {
-                headers: {
-                    'Authorization': 'kmNTuI8dRmRX'
-                }
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success && data.result.articles) {
-                        const articlesContainer = document.getElementById('articlesContainer');
-                        articlesContainer.innerHTML = ''; // Očisti postojeće članke
+            const filterButtons = document.querySelectorAll('.portfolio-filter a');
 
-                        data.result.articles.forEach(article => {
-                            const articleHtml = `
-                            <div class="col-lg-4 mb-4">
-                                <div class="blog-card h-100">
-                                    <div class="blog-container">
-                                        <div class="blog-overlay">
-                                            <div class="blog-content">
-                                                <div class="arrow-container">
-                                                    <i class="bi bi-arrow-right"></i>
-                                                </div>
+            function fetchAndDisplayArticles(filter = '*') {
+                fetch('https://app-works.app/api/webV2/getArticles?aticleLimit=3', {
+                    headers: {
+                        'Authorization': 'kmNTuI8dRmRX'
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success && data.result.articles) {
+                            const articlesContainer = document.getElementById('articlesContainer');
+                            articlesContainer.innerHTML = ''; // Očisti postojeće članke
+
+                            data.result.articles.forEach(article => {
+                                // Filtriranje članaka na osnovu kategorije
+                                if (filter !== '*' && !article.categories.includes(filter)) {
+                                    return; // Preskoči članke koji ne pripadaju filteru
+                                }
+
+                                const articleHtml = `
+                        <div class="col-lg-4 mb-4 ${article.categories.join(' ')}">
+                            <div class="blog-card h-100">
+                                <div class="blog-container">
+                                    <div class="blog-overlay">
+                                        <div class="blog-content">
+                                            <div class="arrow-container">
+                                                <i class="bi bi-arrow-right"></i>
                                             </div>
                                         </div>
-                                        <div class="blog-image">
-                                            <img src="${article.media['medium-full']}"
-                                                 onerror="this.src='https://source.unsplash.com/random/800x600/?article'"
-                                                 alt="${article.title}"
-                                                 class="w-100">
-                                        </div>
-                                        <div class="blog-text">
-                                            <h3 class="text-dark-gray fs-24 fw-600 mb-3">${article.title}</h3>
-                                            <p class="text-dark-gray opacity-6">${article.intro}</p>
-                                        </div>
+                                    </div>
+                                    <div class="blog-image">
+                                        <img src="${article.media['medium-full']}"
+                                             onerror="this.src='https://source.unsplash.com/random/800x600/?article'"
+                                             alt="${article.title}"
+                                             class="w-100">
+                                    </div>
+                                    <div class="blog-text">
+                                        <h3 class="text-dark-gray fs-24 fw-600 mb-3">${article.title}</h3>
+                                        <p class="text-dark-gray opacity-6">${article.intro}</p>
                                     </div>
                                 </div>
                             </div>
-                        `;
-                            articlesContainer.innerHTML += articleHtml;
-                        });
-                    }
-                })
-                .catch(error => {
-                    console.error('Greška pri dohvatanju članaka:', error);
+                        </div>
+                    `;
+                                articlesContainer.innerHTML += articleHtml;
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Greška pri dohvatanju članaka:', error);
+                    });
+            }
+
+            // Pozovi na učitavanje stranice
+            fetchAndDisplayArticles();
+
+            // Dodaj event listener na dugmiće filtera
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+
+                    // Ukloni klasu "active" sa svih dugmića
+                    filterButtons.forEach(btn => btn.parentElement.classList.remove('active'));
+
+                    // Dodaj klasu "active" na kliknuto dugme
+                    this.parentElement.classList.add('active');
+
+                    // Uzmi filter iz data-filter atributa
+                    const filter = this.getAttribute('data-filter');
+
+                    // Pozovi funkciju za dohvat članaka sa odabranim filterom
+                    fetchAndDisplayArticles(filter);
                 });
+            });
         });
     </script>
+
 </html>
 </html>
