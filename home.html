@@ -650,7 +650,7 @@
                         <!-- end filter navigation -->
                     </div>
                 </div>
-                <div class="row" data-anime='{  "opacity": [0,1], "duration": 600, "delay":0, "staggervalue": 300, "easing": "easeOutQuad" }'>
+                <div class="row" id="articlesContainer" data-anime='{  "opacity": [0,1], "duration": 600, "delay":0, "staggervalue": 300, "easing": "easeOutQuad" }'>
                 </div>
             </div>
         </section>
@@ -1328,7 +1328,7 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success && data.result.articles) {
-                        const articlesContainer = document.querySelector('.row .col-12 .row');
+                        const articlesContainer = document.getElementById('articlesContainer');
                         articlesContainer.innerHTML = ''; // Očisti postojeće članke
 
                         data.result.articles.forEach(article => {
