@@ -1376,7 +1376,7 @@
                 if (filter === '*') {
                     apiUrl += '?articleLimit=3';
                 } else {
-                    apiUrl += `?Category[]=${encodeURIComponent(filter)}&articleLimit=50`;
+                    apiUrl += `?Category[]=${encodeURIComponent(filter)}&articleLimit=3`;
                 }
 
                 console.log('Poziv API-ja:', apiUrl); // PROVERI URL
