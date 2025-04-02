@@ -2411,7 +2411,7 @@
         </script>
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
-                    fetch('https://app-works.app/api/webV2/?category[]=4&articleLimit=3', {
+                    fetch('https://app-works.app/api/webV2/getArticles?category[]=4&articleLimit=3', {
                         headers: {
                             'Authorization': 'kmNTuI8dRmRX'
                         }
@@ -2421,7 +2421,6 @@
                             if (data.success && data.result.articles) {
                                 const articlesContainer = document.getElementById('articlesContainer');
                                 articlesContainer.innerHTML = '';
-                                console.log(data)
                                 data.result.articles.forEach(article => {
                                     const articleHtml = `
                                     <div class="col-lg-4 mb-4">
