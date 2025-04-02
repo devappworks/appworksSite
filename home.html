@@ -1371,7 +1371,15 @@
             const filterButtons = document.querySelectorAll('.portfolio-filter a');
 
             function fetchAndDisplayArticles(filter = '*') {
-                fetch('https://app-works.app/api/webV2/getArticles?aticleLimit=3', {
+                let apiUrl = 'https://app-works.app/api/webV2/getArticles';
+
+                if (filter === '*') {
+                    apiUrl += '?articleLimit=3';
+                } else {
+                    apiUrl += `?Category[]=${encodeURIComponent(filter)}&articleLimit=50`;
+                }
+
+                fetch(apiUrl, {
                     headers: {
                         'Authorization': 'kmNTuI8dRmRX'
                     }
@@ -1379,17 +1387,12 @@
                     .then(response => response.json())
                     .then(data => {
                         if (data.success && data.result.articles) {
-                            const articlesContainer = document.getElementById('articlesContainer');
+                            const articlesContainer = document.querySelector('.row .col-12 .row');
                             articlesContainer.innerHTML = ''; // Očisti postojeće članke
 
                             data.result.articles.forEach(article => {
-                                // Filtriranje članaka na osnovu kategorije
-                                if (filter !== '*' && !article.categories.includes(filter)) {
-                                    return; // Preskoči članke koji ne pripadaju filteru
-                                }
-
                                 const articleHtml = `
-                        <div class="col-lg-4 mb-4 ${article.categories.join(' ')}">
+                        <div class="col-lg-4 mb-4">
                             <div class="blog-card h-100">
                                 <div class="blog-container">
                                     <div class="blog-overlay">
@@ -1422,7 +1425,7 @@
                     });
             }
 
-            // Pozovi na učitavanje stranice
+            // Pozovi API na učitavanje stranice (prikazuje sve članke)
             fetchAndDisplayArticles();
 
             // Dodaj event listener na dugmiće filtera
@@ -1440,11 +1443,12 @@
                     const filter = this.getAttribute('data-filter');
 
                     // Pozovi funkciju za dohvat članaka sa odabranim filterom
-                    fetchAndDisplayArticles(filter);
+                    fetchAndDisplayArticles(filter === '*' ? '*' : this.textContent.trim());
                 });
             });
         });
     </script>
+
 
 </html>
 </html>
