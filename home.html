@@ -1376,10 +1376,10 @@
                 if (filter === '*') {
                     apiUrl += '?articleLimit=3';
                 } else {
-                    apiUrl += `?Category[]=${encodeURIComponent(filter)}&articleLimit=3`;
+                    apiUrl += `?Category[]=${encodeURIComponent(filter)}&articleLimit=50`;
                 }
 
-                console.log('Poziv API-ja:', apiUrl); // PROVERI URL
+                console.log('Poziv API-ja:', apiUrl);
 
                 fetch(apiUrl, {
                     headers: {
@@ -1388,56 +1388,63 @@
                 })
                     .then(response => response.json())
                     .then(data => {
-                        console.log('Podaci sa API-ja:', data); // PROVERI PODATKE
+                        console.log('Podaci sa API-ja:', data);
 
                         if (!data.success || !data.result || !data.result.articles || data.result.articles.length === 0) {
                             console.warn('Nema članaka za prikaz');
                             return;
                         }
 
-                        const articlesContainer = document.getElementById('articlesContainer');
+                        const articlesContainer = document.getElementById('articlesContainer') || document.querySelector('.row .col-12 .row');
+                        console.log('articlesContainer:', articlesContainer);
+
                         if (!articlesContainer) {
                             console.error('Element articlesContainer ne postoji u DOM-u!');
                             return;
                         }
 
-                        articlesContainer.innerHTML = ''; // Očisti postojeće članke
+                        articlesContainer.innerHTML = ''; // Očisti stare članke
 
                         data.result.articles.forEach(article => {
                             const articleHtml = `
-                    <div class="col-lg-4 mb-4">
-                        <div class="blog-card h-100">
-                            <div class="blog-container">
-                                <div class="blog-overlay">
-                                    <div class="blog-content">
-                                        <div class="arrow-container">
-                                            <i class="bi bi-arrow-right"></i>
-                                        </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="blog-card h-100">
+                        <div class="blog-container">
+                            <div class="blog-overlay">
+                                <div class="blog-content">
+                                    <div class="arrow-container">
+                                        <i class="bi bi-arrow-right"></i>
                                     </div>
                                 </div>
-                                <div class="blog-image">
-                                    <img src="${article.media['medium-full']}"
-                                         onerror="this.src='https://source.unsplash.com/random/800x600/?article'"
-                                         alt="${article.title}"
-                                         class="w-100">
-                                </div>
-                                <div class="blog-text">
-                                    <h3 class="text-dark-gray fs-24 fw-600 mb-3">${article.title}</h3>
-                                    <p class="text-dark-gray opacity-6">${article.intro}</p>
-                                </div>
+                            </div>
+                            <div class="blog-image">
+                                <img src="${article.media['medium-full']}"
+                                     onerror="this.src='https://source.unsplash.com/random/800x600/?article'"
+                                     alt="${article.title}"
+                                     class="w-100">
+                            </div>
+                            <div class="blog-text">
+                                <h3 class="text-dark-gray fs-24 fw-600 mb-3">${article.title}</h3>
+                                <p class="text-dark-gray opacity-6">${article.intro}</p>
                             </div>
                         </div>
                     </div>
-                `;
-                            articlesContainer.innerHTML += articleHtml;
+                </div>
+            `;
+                            articlesContainer.insertAdjacentHTML('beforeend', articleHtml);
                         });
+
+                        // PROVERI DA LI SE HTML PROMENIO
+                        setTimeout(() => {
+                            console.log('Novi HTML sadržaj:', articlesContainer.innerHTML);
+                        }, 1000);
                     })
                     .catch(error => {
                         console.error('Greška pri dohvatanju članaka:', error);
                     });
             }
 
-            // Pozovi API na učitavanje stranice (prikazuje sve članke)
+            // Pozovi API na učitavanje stranice
             fetchAndDisplayArticles();
 
             // Dodaj event listener na dugmiće filtera
@@ -1447,20 +1454,21 @@
 
                     console.log('Kliknuto na filter:', this.textContent.trim());
 
-                    // Ukloni klasu "active" sa svih dugmića
+                    // Ukloni "active" sa svih
                     filterButtons.forEach(btn => btn.parentElement.classList.remove('active'));
 
-                    // Dodaj klasu "active" na kliknuto dugme
+                    // Dodaj "active" na kliknuto dugme
                     this.parentElement.classList.add('active');
 
                     // Uzmi filter iz data-filter atributa
                     const filter = this.getAttribute('data-filter');
 
-                    // Pozovi funkciju za dohvat članaka sa odabranim filterom
+                    // Pozovi API sa filterom
                     fetchAndDisplayArticles(filter === '*' ? '*' : this.textContent.trim());
                 });
             });
         });
+
     </script>
 
 
