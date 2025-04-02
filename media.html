@@ -2421,7 +2421,7 @@
                             if (data.success && data.result.articles) {
                                 const articlesContainer = document.getElementById('articlesContainer');
                                 articlesContainer.innerHTML = '';
-
+                                console.log(data)
                                 data.result.articles.forEach(article => {
                                     const articleHtml = `
                                     <div class="col-lg-4 mb-4">
