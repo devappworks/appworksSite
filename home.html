@@ -1379,6 +1379,8 @@
                     apiUrl += `?Category[]=${encodeURIComponent(filter)}&articleLimit=50`;
                 }
 
+                console.log('Poziv API-ja:', apiUrl); // PROVERI URL
+
                 fetch(apiUrl, {
                     headers: {
                         'Authorization': 'kmNTuI8dRmRX'
@@ -1386,39 +1388,49 @@
                 })
                     .then(response => response.json())
                     .then(data => {
-                        if (data.success && data.result.articles) {
-                            const articlesContainer = document.getElementById('articlesContainer');
-                            articlesContainer.innerHTML = ''; // Očisti postojeće članke
+                        console.log('Podaci sa API-ja:', data); // PROVERI PODATKE
 
-                            data.result.articles.forEach(article => {
-                                const articleHtml = `
-                        <div class="col-lg-4 mb-4">
-                            <div class="blog-card h-100">
-                                <div class="blog-container">
-                                    <div class="blog-overlay">
-                                        <div class="blog-content">
-                                            <div class="arrow-container">
-                                                <i class="bi bi-arrow-right"></i>
-                                            </div>
+                        if (!data.success || !data.result || !data.result.articles || data.result.articles.length === 0) {
+                            console.warn('Nema članaka za prikaz');
+                            return;
+                        }
+
+                        const articlesContainer = document.getElementById('articlesContainer');
+                        if (!articlesContainer) {
+                            console.error('Element articlesContainer ne postoji u DOM-u!');
+                            return;
+                        }
+
+                        articlesContainer.innerHTML = ''; // Očisti postojeće članke
+
+                        data.result.articles.forEach(article => {
+                            const articleHtml = `
+                    <div class="col-lg-4 mb-4">
+                        <div class="blog-card h-100">
+                            <div class="blog-container">
+                                <div class="blog-overlay">
+                                    <div class="blog-content">
+                                        <div class="arrow-container">
+                                            <i class="bi bi-arrow-right"></i>
                                         </div>
                                     </div>
-                                    <div class="blog-image">
-                                        <img src="${article.media['medium-full']}"
-                                             onerror="this.src='https://source.unsplash.com/random/800x600/?article'"
-                                             alt="${article.title}"
-                                             class="w-100">
-                                    </div>
-                                    <div class="blog-text">
-                                        <h3 class="text-dark-gray fs-24 fw-600 mb-3">${article.title}</h3>
-                                        <p class="text-dark-gray opacity-6">${article.intro}</p>
-                                    </div>
+                                </div>
+                                <div class="blog-image">
+                                    <img src="${article.media['medium-full']}"
+                                         onerror="this.src='https://source.unsplash.com/random/800x600/?article'"
+                                         alt="${article.title}"
+                                         class="w-100">
+                                </div>
+                                <div class="blog-text">
+                                    <h3 class="text-dark-gray fs-24 fw-600 mb-3">${article.title}</h3>
+                                    <p class="text-dark-gray opacity-6">${article.intro}</p>
                                 </div>
                             </div>
                         </div>
-                    `;
-                                articlesContainer.innerHTML += articleHtml;
-                            });
-                        }
+                    </div>
+                `;
+                            articlesContainer.innerHTML += articleHtml;
+                        });
                     })
                     .catch(error => {
                         console.error('Greška pri dohvatanju članaka:', error);
@@ -1431,8 +1443,9 @@
             // Dodaj event listener na dugmiće filtera
             filterButtons.forEach(button => {
                 button.addEventListener('click', function(event) {
-                    console.log('kliknuto');
                     event.preventDefault();
+
+                    console.log('Kliknuto na filter:', this.textContent.trim());
 
                     // Ukloni klasu "active" sa svih dugmića
                     filterButtons.forEach(btn => btn.parentElement.classList.remove('active'));
@@ -1449,6 +1462,7 @@
             });
         });
     </script>
+
 
 
 </html>
