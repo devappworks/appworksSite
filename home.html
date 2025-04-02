@@ -1387,7 +1387,7 @@
                     .then(response => response.json())
                     .then(data => {
                         if (data.success && data.result.articles) {
-                            const articlesContainer = document.querySelector('.row .col-12 .row');
+                            const articlesContainer = document.getElementById('articlesContainer');
                             articlesContainer.innerHTML = ''; // Očisti postojeće članke
 
                             data.result.articles.forEach(article => {
