@@ -642,10 +642,10 @@
                         <!-- filter navigation -->
                         <ul class="portfolio-filter nav nav-tabs justify-content-center justify-content-xl-end border-0 fw-500">
                             <li class="nav active"><a data-filter="*" href="#">All</a></li>
-                            <li class="nav"><a data-filter="Media" href="#">Media</a></li>
-                            <li class="nav"><a data-filter="Sport" href="#">Sports</a></li>
-                            <li class="nav"><a data-filter="AI" href="#">AI</a></li>
-                            <li class="nav"><a data-filter="Grant projects" href="#">Grant Projects</a></li>
+                            <li class="nav"><a data-filter="4" href="#">Media</a></li>
+                            <li class="nav"><a data-filter="3" href="#">Sports</a></li>
+                            <li class="nav"><a data-filter="9" href="#">AI</a></li>
+                            <li class="nav"><a data-filter="10" href="#">Grant Projects</a></li>
                         </ul>
                         <!-- end filter navigation -->
                     </div>
@@ -1376,7 +1376,7 @@
                 if (filter === '*') {
                     apiUrl += '?articleLimit=3';
                 } else {
-                    apiUrl += `?Category[]=${encodeURIComponent(filter)}&articleLimit=3`;
+                    apiUrl += `?category[]=${encodeURIComponent(filter)}&articleLimit=3`;
                 }
 
                 console.log('Poziv API-ja:', apiUrl);
