@@ -1735,79 +1735,8 @@
                         <h2 class="text-white fw-600 ls-minus-2px mb-4">Recent blog posts</h2>
                     </div>
                 </div>
-                <div class="row">
-                    <!-- New AI Features Blog Post -->
-                    <div class="col-lg-4 mb-4">
-                        <div class="blog-card h-100">
-                            <div class="blog-container">
-                                <div class="blog-overlay">
-                                    <div class="blog-content">
-                                        <div class="arrow-container">
-                                            <i class="bi bi-arrow-right"></i>
-                        </div>
-                    </div>
-                </div>
-                                <div class="blog-image">
-                                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&auto=format&fit=crop&q=80" 
-                                         onerror="this.src='https://source.unsplash.com/random/800x600/?artificial,intelligence'"
-                                         alt="AI Features" 
-                                         class="w-100">
-            </div>
-                                <div class="blog-text">
-                                    <h3 class="text-white fs-24 fw-600 mb-3">New AI Features Released</h3>
-                                    <p class="text-white opacity-6">Discover our latest AI-powered content management features.</p>
-                    </div>
-                </div>
-                        </div>
-                    </div>
-                    <!-- Enhanced User Experience Blog Post -->
-                    <div class="col-lg-4 mb-4">
-                        <div class="blog-card h-100">
-                            <div class="blog-container">
-                                <div class="blog-overlay">
-                                    <div class="blog-content">
-                                        <div class="arrow-container">
-                                            <i class="bi bi-arrow-right"></i>
-                        </div>
-                    </div>
-                        </div>
-                                <div class="blog-image">
-                                    <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&auto=format&fit=crop&q=80" 
-                                         onerror="this.src='https://source.unsplash.com/random/800x600/?user,interface'"
-                                         alt="User Experience" 
-                                         class="w-100">
-                    </div>
-                                <div class="blog-text">
-                                    <h3 class="text-white fs-24 fw-600 mb-3">Enhanced User Experience</h3>
-                                    <p class="text-white opacity-6">Improvements to our CMS interface and workflow.</p>
-                </div>
-            </div>
-                    </div>
-                </div>
-                    <!-- Mobile App Updates Blog Post -->
-                    <div class="col-lg-4 mb-4">
-                        <div class="blog-card h-100">
-                            <div class="blog-container">
-                                <div class="blog-overlay">
-                                    <div class="blog-content">
-                                        <div class="arrow-container">
-                                            <i class="bi bi-arrow-right"></i>
-                        </div>
-                    </div>
-                        </div>
-                                <div class="blog-image">
-                                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&auto=format&fit=crop&q=80" 
-                                         onerror="this.src='https://source.unsplash.com/random/800x600/?mobile,development'"
-                                         alt="Mobile App" 
-                                         class="w-100">
-                    </div>
-                                <div class="blog-text">
-                                    <h3 class="text-white fs-24 fw-600 mb-3">Mobile App Updates</h3>
-                                    <p class="text-white opacity-6">New features for our mobile app platform.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                <div class="row" id="articlesContainer">
+
                 </div>
             </div>
             <style>
@@ -2356,6 +2285,53 @@
                         }
                     });
                 }
+            });
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                fetch('https://app-works.app/api/webV2/getArticles?category[]=3&articleLimit=3', {
+                    headers: {
+                        'Authorization': 'kmNTuI8dRmRX'
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success && data.result.articles) {
+                            const articlesContainer = document.getElementById('articlesContainer');
+                            articlesContainer.innerHTML = '';
+                            data.result.articles.forEach(article => {
+                                const articleHtml = `
+                                    <div class="col-lg-4 mb-4">
+                                        <div class="blog-card h-100">
+                                            <div class="blog-container">
+                                                <div class="blog-overlay">
+                                                    <div class="blog-content">
+                                                        <div class="arrow-container">
+                                                            <i class="bi bi-arrow-right"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="blog-image">
+                                                    <img src="${article.media['medium-full']}"
+                                                         onerror="this.src='https://source.unsplash.com/random/800x600/?article'"
+                                                         alt="${article.title}"
+                                                         class="w-100">
+                                                </div>
+                                                <div class="blog-text">
+                                                    <h3 class="text-white fs-24 fw-600 mb-3">${article.title}</h3>
+                                                    <p class="text-white opacity-6">${article.intro}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+                                articlesContainer.innerHTML += articleHtml;
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Greška pri dohvatanju članaka:', error);
+                    });
             });
         </script>
     </body>
