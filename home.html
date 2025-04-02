@@ -1379,7 +1379,6 @@
                     apiUrl += `?category[]=${encodeURIComponent(filter)}&articleLimit=3`;
                 }
 
-                console.log('Poziv API-ja:', apiUrl);
 
                 fetch(apiUrl, {
                     headers: {
@@ -1388,18 +1387,13 @@
                 })
                     .then(response => response.json())
                     .then(data => {
-                        console.log('Podaci sa API-ja:', data);
-
+                        const articlesContainer = document.getElementById('articlesContainer') || document.querySelector('.row .col-12 .row');
+                        articlesContainer.innerHTML = '';
                         if (!data.success || !data.result || !data.result.articles || data.result.articles.length === 0) {
-                            console.warn('Nema članaka za prikaz');
                             return;
                         }
 
-                        const articlesContainer = document.getElementById('articlesContainer') || document.querySelector('.row .col-12 .row');
-                        console.log('articlesContainer:', articlesContainer);
-
                         if (!articlesContainer) {
-                            console.error('Element articlesContainer ne postoji u DOM-u!');
                             return;
                         }
 
@@ -1433,14 +1427,9 @@
             `;
                             articlesContainer.insertAdjacentHTML('beforeend', articleHtml);
                         });
-
-                        // PROVERI DA LI SE HTML PROMENIO
-                        setTimeout(() => {
-                            console.log('Novi HTML sadržaj:', articlesContainer.innerHTML);
-                        }, 1000);
                     })
                     .catch(error => {
-                        console.error('Greška pri dohvatanju članaka:', error);
+
                     });
             }
 
@@ -1451,8 +1440,6 @@
             filterButtons.forEach(button => {
                 button.addEventListener('click', function(event) {
                     event.preventDefault();
-
-                    console.log('Kliknuto na filter:', this.textContent.trim());
 
                     // Ukloni "active" sa svih
                     filterButtons.forEach(btn => btn.parentElement.classList.remove('active'));
