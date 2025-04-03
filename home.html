@@ -105,17 +105,13 @@
                 cursor: pointer;
                 transition: all 0.3s ease;
                 box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Added shadow for better visibility */
-            }
-            .blog-slider-next:hover,
-            .blog-slider-prev:hover {
-                background: #200A24;
-                transform: translateY(-50%) scale(1.1); /* Added scale effect on hover */
+                opacity: 1 !important;
             }
             .blog-slider-next {
-                right: 0;
+                right: -30px;
             }
             .blog-slider-prev {
-                left: 0;
+                left: -30px;
             }
             .blog-slider-next::after,
             .blog-slider-prev::after {
@@ -161,6 +157,8 @@
                 .blog-image {
                     height: 350px;    /* Adjusted height for tablets */
                 }
+                .blog-slider-next { right: -20px; }
+                .blog-slider-prev { left: -20px; }
             }
             @media (max-width: 767px) {
                 .blog-posts-slider {
@@ -170,11 +168,8 @@
                 .blog-image {
                     height: 300px;    /* Adjusted height for mobile */
                 }
-                .blog-slider-next,
-                .blog-slider-prev {
-                    width: 50px;      /* Slightly smaller arrows on mobile */
-                    height: 50px;
-                }
+                .blog-slider-next { right: -15px; }
+                .blog-slider-prev { left: -15px; }
             }
             
             /* Blog Card Styles */
@@ -1496,7 +1491,7 @@
                             const articleHtml = `
                                 <div class="swiper-slide">
                                     <div class="blog-card h-100">
-                                        <div class="blog-container">
+                                        <a href="article.html?id=${article.id}" class="blog-container">
                                             <div class="blog-overlay">
                                                 <div class="blog-content">
                                                     <div class="arrow-container">
@@ -1505,7 +1500,8 @@
                                                 </div>
                                             </div>
                                             <div class="blog-image">
-                                                <img src="${article.media['medium-full'] || 'https://source.unsplash.com/random/800x600/?article'}"
+                                                <img src="${article.media['medium-full']}"
+                                                     onerror="this.src='https://source.unsplash.com/random/800x600/?article'"
                                                      alt="${article.title}"
                                                      class="w-100">
                                             </div>
@@ -1513,7 +1509,7 @@
                                                 <h3 class="text-dark-gray fs-24 fw-600 mb-3">${article.title}</h3>
                                                 <p class="text-dark-gray opacity-6">${article.intro}</p>
                                             </div>
-                                        </div>
+                                        </a>
                                     </div>
                                 </div>
                             `;
