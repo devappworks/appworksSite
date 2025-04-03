@@ -634,12 +634,11 @@
         <!-- start section -->
         <section class="position-relative">
             <div class="container">
-                <div class="row align-items-center mb-4" data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay":0, "staggervalue": 300, "easing": "easeOutQuad" }'>
+                <div class="row align-items-center mb-4">
                     <div class="col-xl-5 lg-mb-30px text-center text-xl-start">
                         <h3 class="text-dark-gray fw-700 mb-0 ls-minus-2px">Recent blog posts</h3>
                     </div>
                     <div class="col-xl-7 tab-style-04 text-center text-xl-end">
-                        <!-- filter navigation -->
                         <ul class="portfolio-filter nav nav-tabs justify-content-center justify-content-xl-end border-0 fw-500">
                             <li class="nav active"><a data-filter="*" href="#">All</a></li>
                             <li class="nav"><a data-filter="4" href="#">Media</a></li>
@@ -647,21 +646,192 @@
                             <li class="nav"><a data-filter="9" href="#">AI</a></li>
                             <li class="nav"><a data-filter="10" href="#">Grant Projects</a></li>
                         </ul>
-                        <!-- end filter navigation -->
                     </div>
                 </div>
-                <div class="row" id="articlesContainer" data-anime='{  "opacity": [0,1], "duration": 600, "delay":0, "staggervalue": 300, "easing": "easeOutQuad" }'>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="swiper-container blog-posts-slider">
+                            <div class="swiper-wrapper" id="articlesContainer">
+                                <!-- Articles will be loaded here -->
+                            </div>
+                            <!-- Add Navigation -->
+                            <div class="swiper-button-next blog-slider-next"></div>
+                            <div class="swiper-button-prev blog-slider-prev"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
+
+        <style>
+            /* Blog Posts Slider Styles */
+            .blog-posts-slider {
+                position: relative;
+                overflow: hidden;
+                padding: 20px 0;
+            }
+            .blog-slider-next,
+            .blog-slider-prev {
+                width: 40px;
+                height: 40px;
+                background: #FF4B36;
+                border-radius: 50%;
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 10;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            .blog-slider-next:hover,
+            .blog-slider-prev:hover {
+                background: #200A24;
+            }
+            .blog-slider-next {
+                right: -20px;
+            }
+            .blog-slider-prev {
+                left: -20px;
+            }
+            .blog-slider-next::after,
+            .blog-slider-prev::after {
+                font-size: 16px;
+                color: white;
+            }
+            .blog-card {
+                height: 100%;
+            }
+        </style>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const filterButtons = document.querySelectorAll('.portfolio-filter a');
+                let blogSlider;
+
+                function initializeSlider() {
+                    if (blogSlider) {
+                        blogSlider.destroy();
+                    }
+                    
+                    blogSlider = new Swiper('.blog-posts-slider', {
+                        slidesPerView: 3,
+                        spaceBetween: 30,
+                        loop: true,
+                        navigation: {
+                            nextEl: '.blog-slider-next',
+                            prevEl: '.blog-slider-prev',
+                        },
+                        autoplay: {
+                            delay: 5000,
+                            disableOnInteraction: false,
+                        },
+                        keyboard: {
+                            enabled: true,
+                        },
+                        breakpoints: {
+                            1200: {
+                                slidesPerView: 3,
+                                spaceBetween: 30,
+                            },
+                            992: {
+                                slidesPerView: 2,
+                                spaceBetween: 30,
+                            },
+                            768: {
+                                slidesPerView: 2,
+                                spaceBetween: 20,
+                            },
+                            576: {
+                                slidesPerView: 1,
+                                spaceBetween: 20,
+                            }
+                        }
+                    });
+                }
+
+                function fetchAndDisplayArticles(filter = '*') {
+                    let apiUrl = 'https://app-works.app/api/webV2/getArticles';
+                    apiUrl += filter === '*' ? '?articleLimit=10' : `?category[]=${encodeURIComponent(filter)}&articleLimit=10`;
+
+                    fetch(apiUrl, {
+                        headers: {
+                            'Authorization': 'kmNTuI8dRmRX'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        const articlesContainer = document.getElementById('articlesContainer');
+                        articlesContainer.innerHTML = '';
+                        
+                        if (!data.success || !data.result || !data.result.articles || data.result.articles.length === 0) {
+                            articlesContainer.innerHTML = '<div class="swiper-slide"><div class="blog-card"><div class="blog-text"><h3>No articles found</h3></div></div></div>';
+                            return;
+                        }
+
+                        data.result.articles.forEach(article => {
+                            const articleHtml = `
+                                <div class="swiper-slide">
+                                    <div class="blog-card h-100">
+                                        <div class="blog-container">
+                                            <div class="blog-overlay">
+                                                <div class="blog-content">
+                                                    <div class="arrow-container">
+                                                        <i class="bi bi-arrow-right"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="blog-image">
+                                                <img src="${article.media['medium-full'] || 'https://source.unsplash.com/random/800x600/?article'}"
+                                                     alt="${article.title}"
+                                                     class="w-100">
+                                            </div>
+                                            <div class="blog-text">
+                                                <h3 class="text-dark-gray fs-24 fw-600 mb-3">${article.title}</h3>
+                                                <p class="text-dark-gray opacity-6">${article.intro}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                            articlesContainer.insertAdjacentHTML('beforeend', articleHtml);
+                        });
+
+                        setTimeout(initializeSlider, 100);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching articles:', error);
+                        const articlesContainer = document.getElementById('articlesContainer');
+                        articlesContainer.innerHTML = '<div class="swiper-slide"><div class="blog-card"><div class="blog-text"><h3>Error loading articles</h3></div></div></div>';
+                        initializeSlider();
+                    });
+                }
+
+                // Initial load
+                fetchAndDisplayArticles();
+
+                // Filter button click handlers
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        filterButtons.forEach(btn => btn.parentElement.classList.remove('active'));
+                        this.parentElement.classList.add('active');
+                        const filter = this.getAttribute('data-filter');
+                        fetchAndDisplayArticles(filter);
+                    });
+                });
+            });
+        </script>
         <!-- end section -->
-        <!-- start section -->
-        <section style="background: white; padding-top: 0;">
-            <div class="container py-5">
+        <!-- start testimonials section -->
+        <section class="bg-white">
+            <div class="container">
                 <div class="row justify-content-center text-center mb-5">
-                    <div class="col-xl-8 col-lg-10" data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay":0, "staggervalue": 300, "easing": "easeOutQuad" }'>
+                    <div class="col-xl-8 col-lg-10">
                         <h2 class="text-dark-gray fw-600 ls-minus-2px mb-4">What Our Partners Say</h2>
-                        <p class="fw-300 fs-18 text-dark-gray opacity-6">What it's like working with us, in their own words.</p>
                     </div>
                 </div>
                 <div class="row">
