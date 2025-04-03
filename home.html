@@ -84,13 +84,14 @@
             /* Blog Posts Slider Styles */
             .blog-posts-slider {
                 position: relative;
-                overflow: hidden;
-                padding: 20px 0;
+                overflow: visible;
+                padding: 20px 60px;  /* Increased padding for arrows */
+                margin: 0 -60px;     /* Adjusted margin to match padding */
             }
             .blog-slider-next,
             .blog-slider-prev {
-                width: 40px;
-                height: 40px;
+                width: 60px;          /* Increased arrow size */
+                height: 60px;
                 background: #FF4B36;
                 border-radius: 50%;
                 color: white;
@@ -100,27 +101,80 @@
                 position: absolute;
                 top: 50%;
                 transform: translateY(-50%);
-                z-index: 10;
+                z-index: 100;         /* Increased z-index */
                 cursor: pointer;
                 transition: all 0.3s ease;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Added shadow for better visibility */
             }
             .blog-slider-next:hover,
             .blog-slider-prev:hover {
                 background: #200A24;
+                transform: translateY(-50%) scale(1.1); /* Added scale effect on hover */
             }
             .blog-slider-next {
-                right: -20px;
+                right: 0;
             }
             .blog-slider-prev {
-                left: -20px;
+                left: 0;
             }
             .blog-slider-next::after,
             .blog-slider-prev::after {
-                font-size: 16px;
+                font-size: 24px;      /* Increased icon size */
                 color: white;
+                font-weight: bold;    /* Made icons bolder */
             }
             .blog-card {
                 height: 100%;
+                background: white;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            }
+            .blog-image {
+                position: relative;
+                overflow: hidden;
+                height: 400px;        /* Increased image height */
+            }
+            .blog-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+            }
+            .blog-text {
+                padding: 2rem;
+            }
+            .blog-text h3 {
+                font-size: 1.5rem;
+                line-height: 1.4;
+                margin-bottom: 1rem;
+            }
+            .blog-text p {
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+            @media (max-width: 991px) {
+                .blog-posts-slider {
+                    padding: 20px 50px;
+                    margin: 0 -50px;
+                }
+                .blog-image {
+                    height: 350px;    /* Adjusted height for tablets */
+                }
+            }
+            @media (max-width: 767px) {
+                .blog-posts-slider {
+                    padding: 20px 40px;
+                    margin: 0 -40px;
+                }
+                .blog-image {
+                    height: 300px;    /* Adjusted height for mobile */
+                }
+                .blog-slider-next,
+                .blog-slider-prev {
+                    width: 50px;      /* Slightly smaller arrows on mobile */
+                    height: 50px;
+                }
             }
             
             /* Blog Card Styles */
@@ -1377,6 +1431,9 @@
                         slidesPerView: 3,
                         spaceBetween: 30,
                         loop: true,
+                        speed: 800,
+                        grabCursor: true,
+                        watchOverflow: true,
                         navigation: {
                             nextEl: '.blog-slider-next',
                             prevEl: '.blog-slider-prev',
@@ -1404,6 +1461,13 @@
                             576: {
                                 slidesPerView: 1,
                                 spaceBetween: 20,
+                            }
+                        },
+                        on: {
+                            init: function() {
+                                setTimeout(() => {
+                                    this.update();
+                                }, 100);
                             }
                         }
                     });
