@@ -85,27 +85,31 @@
             .blog-posts-slider {
                 position: relative;
                 overflow: visible;
-                padding: 20px 60px;  /* Increased padding for arrows */
-                margin: 0 -60px;     /* Adjusted margin to match padding */
+                padding: 20px 60px;
+                margin: 0 -60px;
             }
             .blog-slider-next,
             .blog-slider-prev {
-                width: 60px;          /* Increased arrow size */
+                width: 60px;
                 height: 60px;
-                background: #FF4B36;
+                background: #FF4B36 !important;  /* Force orange background */
                 border-radius: 50%;
-                color: white;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 position: absolute;
                 top: 50%;
-                transform: translateY(-50%);
-                z-index: 100;         /* Increased z-index */
+                transform: translateY(-50%) scale(1) !important;  /* Force normal scale */
+                z-index: 100;
                 cursor: pointer;
                 transition: all 0.3s ease;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Added shadow for better visibility */
-                opacity: 1 !important;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                opacity: 1 !important;  /* Force visibility */
+            }
+            .blog-slider-next:hover,
+            .blog-slider-prev:hover {
+                background: #200A24 !important;  /* Darker on hover */
+                transform: translateY(-50%) scale(1.1) !important;
             }
             .blog-slider-next {
                 right: -30px;
@@ -115,9 +119,9 @@
             }
             .blog-slider-next::after,
             .blog-slider-prev::after {
-                font-size: 24px;      /* Increased icon size */
-                color: white;
-                font-weight: bold;    /* Made icons bolder */
+                font-size: 24px;
+                color: white !important;  /* Force white arrows */
+                font-weight: bold;
             }
             .blog-card {
                 height: 100%;
@@ -818,17 +822,61 @@
                         <a href="article.html?id=${article.id}" class="text-decoration-none">
                             <div class="blog-card">
                                 <div class="blog-image">
-                                    <img src="${article.image}" alt="${article.title}" onerror="this.src='images/placeholder.jpg'">
+                                    <img src="${article.image || ''}" alt="${article.title}" onerror="this.src='https://appworks-tmp.mpanel.app/images/placeholder.jpg'">
                                 </div>
                                 <div class="blog-text">
-                                    <h3>${article.title}</h3>
-                                    <p>${article.intro}</p>
+                                    <h3 class="text-dark-gray">${article.title || 'Untitled'}</h3>
+                                    <p class="text-body-text">${article.intro || ''}</p>
                                 </div>
                             </div>
                         </a>
                     </div>
                 `;
             }
+
+            // Function to fetch articles from API
+            async function fetchArticles() {
+                try {
+                    // Replace with your actual API endpoint
+                    const response = await fetch('https://appworks-tmp.mpanel.app/api/articles');
+                    const articles = await response.json();
+                    
+                    const container = document.getElementById('articlesContainer');
+                    container.innerHTML = articles.map(article => createBlogCard(article)).join('');
+                    
+                    // Update Swiper after adding slides
+                    blogSlider.update();
+                } catch (error) {
+                    console.error('Error fetching articles:', error);
+                    // Show some sample articles as fallback
+                    const sampleArticles = [
+                        {
+                            id: 1,
+                            title: "Boom 93: Using mPanel tools for enhanced audience engagement",
+                            intro: "Boom 93 is a local media outlet in Požarevac, Serbia. Operating both online and on the radio, Boom 93 reaches a wide local audience but is also motivated to innovate to engage its audience.",
+                            image: "https://appworks-tmp.mpanel.app/images/blog/boom93.jpg"
+                        },
+                        {
+                            id: 2,
+                            title: "Panathinaikos FC: Elevating Fan Engagement with Innovative Mobile App Features",
+                            intro: "In the competitive world of football, keeping fans engaged and satisfied is a top priority for clubs.",
+                            image: "https://appworks-tmp.mpanel.app/images/blog/pao.jpg"
+                        },
+                        {
+                            id: 3,
+                            title: "Fan-Driven Content: Boosting Engagement in Sports & Media Apps",
+                            intro: "User-generated content (UGC) is crucial for boosting engagement in sports and media apps.",
+                            image: "https://appworks-tmp.mpanel.app/images/blog/fan-content.jpg"
+                        }
+                    ];
+                    const container = document.getElementById('articlesContainer');
+                    container.innerHTML = sampleArticles.map(article => createBlogCard(article)).join('');
+                    blogSlider.update();
+                }
+            }
+
+            // Fetch articles when the page loads
+            document.addEventListener('DOMContentLoaded', fetchArticles);
         </script>
         <!-- end section -->
         <!-- start testimonials section -->
