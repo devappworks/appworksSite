@@ -323,7 +323,8 @@
                         month: 'long',
                         day: 'numeric'
                     });
-                    let articleContent = article.body || article.text || article.content || '';
+                    let articleContent = article.body || article.text || article.contents || '';
+
                     articleContent = articleContent.replace(/\/storage/g, 'https://app-works.app/image/cache/large');
 
                     // Update the article content
