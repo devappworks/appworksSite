@@ -263,7 +263,7 @@
                 // Get article ID from URL parameters
                 const urlParams = new URLSearchParams(window.location.search);
                 const articleId = urlParams.get('id');
-                
+
                 if (!articleId) {
                     window.location.href = 'home.html';
                     return;
@@ -275,92 +275,99 @@
                         'Authorization': 'kmNTuI8dRmRX'
                     }
                 })
-                .then(response => response.json())
-                .then(data => {
-                    // Use the provided ID or fall back to the first article's ID
-                    const targetId = articleId || (data.result.articles && data.result.articles[0] ? data.result.articles[0].id : null);
-                    
-                    if (!targetId) {
-                        throw new Error('No article ID available');
-                    }
+                    .then(response => response.json())
+                    .then(data => {
+                        // Use the provided ID or fall back to the first article's ID
+                        const targetId = articleId || (data.result.articles && data.result.articles[0] ? data.result.articles[0].id : null);
 
-                    // Then fetch the full article data
-                    return fetch(`https://app-works.app/api/webV2/getOneArticle/${targetId}`, {
-                        headers: {
-                            'Authorization': 'kmNTuI8dRmRX'
+                        if (!targetId) {
+                            throw new Error('No article ID available');
                         }
-                    });
-                })
-                .then(response => response.json())
-                .then(data => {
-                    const articleContainer = document.getElementById('articleContainer');
-                    
-                    if (!data.success || !data.result || !data.result.article) {
+
+                        // Then fetch the full article data
+                        return fetch(`https://app-works.app/api/webV2/getOneArticle/${targetId}`, {
+                            headers: {
+                                'Authorization': 'kmNTuI8dRmRX'
+                            }
+                        });
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        const articleContainer = document.getElementById('articleContainer');
+
+                        if (!data.success || !data.result || !data.result.article) {
+                            articleContainer.innerHTML = `
+                <div class="text-center">
+                    <h2 class="text-dark-gray fw-600">Article not found</h2>
+                    <p class="mb-4">The requested article could not be loaded.</p>
+                    <a href="home.html" class="back-button">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Return to Home
+                    </a>
+                </div>
+            `;
+                            return;
+                        }
+
+                        const article = data.result.article;
+
+                        // Detailed console logging
+                        console.log('Full API Response:', data);
+                        console.log('Article Object:', article);
+                        console.log('Available article properties:', Object.keys(article));
+
+                        // Format the date
+                        const date = new Date(article.created_at);
+                        const formattedDate = date.toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        });
+
+                        // Get the raw article content
+                        let articleContent = article.body || article.text || article.content || '';
+
+                        // Remove potentially problematic tags like <!DOCTYPE html>, <html>, <head>, <script> using regex
+                        articleContent = articleContent.replace(/<!DOCTYPE html>|<html[^>]*>|<\/html>|<head[^>]*>.*<\/head>|<script[^>]*>.*<\/script>/g, '');
+
+                        // Update the article content
                         articleContainer.innerHTML = `
-                            <div class="text-center">
-                                <h2 class="text-dark-gray fw-600">Article not found</h2>
-                                <p class="mb-4">The requested article could not be loaded.</p>
-                                <a href="home.html" class="back-button">
-                                    <i class="fa-solid fa-arrow-left"></i>
-                                    Return to Home
-                                </a>
-                            </div>
-                        `;
-                        return;
-                    }
+            <img src="${article.media['medium-full'] || 'https://appworks-tmp.mpanel.app/images/placeholder.jpg'}"
+                 alt="${article.title}"
+                 class="article-image"
+                 onerror="this.src='https://appworks-tmp.mpanel.app/images/placeholder.jpg'">
+            <h1 class="article-title">${article.title}</h1>
+            <div class="article-meta">
+                <i class="fa-regular fa-calendar"></i>
+                Published on ${formattedDate}
+            </div>
+            <div class="article-intro">
+                ${article.intro || ''}
+            </div>
+            <div class="article-text">
+                ${articleContent} <!-- Insert raw HTML content -->
+            </div>
+        `;
 
-                    const article = data.result.article;
-                    
-                    // Detailed console logging
-                    console.log('Full API Response:', data);
-                    console.log('Article Object:', article);
-                    console.log('Available article properties:', Object.keys(article));
-                    
-                    // Format the date
-                    const date = new Date(article.created_at);
-                    const formattedDate = date.toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
+                        // Update page title
+                        document.title = `${article.title} - Appworks`;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching article:', error);
+                        const articleContainer = document.getElementById('articleContainer');
+                        articleContainer.innerHTML = `
+            <div class="text-center">
+                <h2 class="text-dark-gray fw-600">Error loading article</h2>
+                <p class="mb-4">There was a problem loading the article. Please try again later.</p>
+                <a href="home.html" class="back-button">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Return to Home
+                </a>
+            </div>
+        `;
                     });
-
-                    // Update the article content
-                    articleContainer.innerHTML = `
-                        <img src="${article.media['medium-full'] || 'https://appworks-tmp.mpanel.app/images/placeholder.jpg'}" 
-                             alt="${article.title}" 
-                             class="article-image"
-                             onerror="this.src='https://appworks-tmp.mpanel.app/images/placeholder.jpg'">
-                        <h1 class="article-title">${article.title}</h1>
-                        <div class="article-meta">
-                            <i class="fa-regular fa-calendar"></i>
-                            Published on ${formattedDate}
-                        </div>
-                        <div class="article-intro">
-                            ${article.intro || ''}
-                        </div>
-                        <div class="article-text">
-                            ${article.body || article.text || article.content || ''}
-                        </div>
-                    `;
-
-                    // Update page title
-                    document.title = `${article.title} - Appworks`;
-                })
-                .catch(error => {
-                    console.error('Error fetching article:', error);
-                    const articleContainer = document.getElementById('articleContainer');
-                    articleContainer.innerHTML = `
-                        <div class="text-center">
-                            <h2 class="text-dark-gray fw-600">Error loading article</h2>
-                            <p class="mb-4">There was a problem loading the article. Please try again later.</p>
-                            <a href="home.html" class="back-button">
-                                <i class="fa-solid fa-arrow-left"></i>
-                                Return to Home
-                            </a>
-                        </div>
-                    `;
-                });
             });
+
         </script>
     </body>
 </html> 
