@@ -124,11 +124,27 @@
                     return;
                 }
 
-                // Fetch article data
-                fetch(`https://app-works.app/api/webV2/getArticle?id=${articleId}`, {
+                // First fetch the list of articles to get the first article ID if none specified
+                fetch('https://app-works.app/api/webV2/getArticles?articleLimit=1', {
                     headers: {
                         'Authorization': 'kmNTuI8dRmRX'
                     }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Use the provided ID or fall back to the first article's ID
+                    const targetId = articleId || (data.result.articles && data.result.articles[0] ? data.result.articles[0].id : null);
+                    
+                    if (!targetId) {
+                        throw new Error('No article ID available');
+                    }
+
+                    // Then fetch the full article data
+                    return fetch(`https://app-works.app/api/webV2/getOneArticle/${targetId}`, {
+                        headers: {
+                            'Authorization': 'kmNTuI8dRmRX'
+                        }
+                    });
                 })
                 .then(response => response.json())
                 .then(data => {
