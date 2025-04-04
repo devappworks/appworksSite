@@ -327,16 +327,11 @@
 
                     articleContent = articleContent.replace(/\/storage/g, 'https://app-works.app/image/cache/large');
 
-                    // Dodaj ?crop=true na kraj svakog URL-a slika
-                    articleContent = articleContent.replace(/(src="https:\/\/app-works\.app\/image\/cache\/large[^"]*\.(?:jpg|jpeg|png|gif|bmp|svg|webp))"/g, (match) => {
-                        // Dodajemo ?crop=true na kraj URL-a, nakon poslednjeg citata
-                        if (match.includes('?')) {
-                            return match.replace('"', '&crop=true"'); // Ako već postoji ?, dodajemo &crop=true
-                        } else {
-                            return match.replace('"', '?crop=true"'); // Ako ne postoji ?, dodajemo ?crop=true
-                        }
+                    // Zameni URL-ove slika sa dodavanjem ?crop=true na kraju
+                    articleContent = articleContent.replace(/(src="https:\/\/app-works\.app\/image\/cache\/large[^"]*\.(jpg|jpeg|png|gif|bmp|svg|webp))"/g, (match) => {
+                        // Dodajemo ?crop=true na kraj slike
+                        return match.replace(/"/g, '?crop=true"');
                     });
-
                     articleContainer.innerHTML = `
                         <img src="${article.media['medium-full'] || 'https://appworks-tmp.mpanel.app/images/placeholder.jpg'}"
                              alt="${article.title}"
