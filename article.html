@@ -132,12 +132,23 @@
                 })
                 .then(response => response.json())
                 .then(data => {
+                    const articleContainer = document.getElementById('articleContainer');
+                    
                     if (!data.success || !data.result || !data.result.article) {
-                        throw new Error('Article not found');
+                        articleContainer.innerHTML = `
+                            <div class="text-center">
+                                <h2>Article not found</h2>
+                                <p>The requested article could not be loaded.</p>
+                                <a href="home.html" class="back-button mt-4">
+                                    <i class="fa-solid fa-arrow-left"></i>
+                                    Return to Home
+                                </a>
+                            </div>
+                        `;
+                        return;
                     }
 
                     const article = data.result.article;
-                    const articleContainer = document.getElementById('articleContainer');
                     
                     // Format the date
                     const date = new Date(article.created_at);
@@ -149,7 +160,7 @@
 
                     // Update the article content
                     articleContainer.innerHTML = `
-                        <img src="${article.media['medium-full']}" 
+                        <img src="${article.media['medium-full'] || 'https://appworks-tmp.mpanel.app/images/placeholder.jpg'}" 
                              alt="${article.title}" 
                              class="article-image"
                              onerror="this.src='https://appworks-tmp.mpanel.app/images/placeholder.jpg'">
@@ -158,7 +169,7 @@
                             Published on ${formattedDate}
                         </div>
                         <div class="article-text">
-                            ${article.content}
+                            ${article.content || article.intro}
                         </div>
                     `;
 
@@ -170,8 +181,12 @@
                     const articleContainer = document.getElementById('articleContainer');
                     articleContainer.innerHTML = `
                         <div class="text-center">
-                            <h2>Article not found</h2>
-                            <p>The requested article could not be loaded.</p>
+                            <h2>Error loading article</h2>
+                            <p>There was a problem loading the article. Please try again later.</p>
+                            <a href="home.html" class="back-button mt-4">
+                                <i class="fa-solid fa-arrow-left"></i>
+                                Return to Home
+                            </a>
                         </div>
                     `;
                 });

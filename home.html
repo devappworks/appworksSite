@@ -119,9 +119,16 @@
             }
             .blog-slider-next::after,
             .blog-slider-prev::after {
+                font-family: "Font Awesome 6 Free";
+                font-weight: 900;
                 font-size: 24px;
-                color: white !important;  /* Force white arrows */
-                font-weight: bold;
+                color: white !important;
+            }
+            .blog-slider-next:after {
+                content: "\f054"; /* Font Awesome chevron-right */
+            }
+            .blog-slider-prev:after {
+                content: "\f053"; /* Font Awesome chevron-left */
             }
             .blog-card {
                 height: 100%;
