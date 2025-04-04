@@ -327,10 +327,15 @@
 
                     articleContent = articleContent.replace(/\/storage/g, 'https://app-works.app/image/cache/large');
 
-                    // Zameni URL-ove slika sa dodavanjem ?crop=true na kraju
-                    articleContent = articleContent.replace(/(src="https:\/\/app-works\.app\/image\/cache\/large[^"]*\.(jpg|jpeg|png|gif|bmp|svg|webp))"/g, (match) => {
-                        // Dodajemo ?crop=true na kraj slike
-                        return match.replace(/"/g, '?crop=true"');
+                    articleContent = articleContent.replace(/(src="https:\/\/app-works\.app\/image\/cache\/large[^"]*\.(jpg|jpeg|png|gif|bmp|svg|webp))(?!\?crop=true)"/g, (match, url) => {
+                        // Proveravamo da li URL već sadrži neki parametar
+                        if (url.includes('?')) {
+                            // Ako već sadrži parametre, dodajemo &crop=true
+                            return match.replace(url, `${url}&crop=true`);
+                        } else {
+                            // Ako ne sadrži parametre, dodajemo ?crop=true
+                            return match.replace(url, `${url}?crop=true`);
+                        }
                     });
                     articleContainer.innerHTML = `
                         <img src="${article.media['medium-full'] || 'https://appworks-tmp.mpanel.app/images/placeholder.jpg'}"
