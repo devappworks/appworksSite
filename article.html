@@ -311,6 +311,11 @@
 
                     const article = data.result.article;
                     
+                    // Detailed console logging
+                    console.log('Full API Response:', data);
+                    console.log('Article Object:', article);
+                    console.log('Available article properties:', Object.keys(article));
+                    
                     // Format the date
                     const date = new Date(article.created_at);
                     const formattedDate = date.toLocaleDateString('en-US', {
@@ -334,12 +339,9 @@
                             ${article.intro || ''}
                         </div>
                         <div class="article-text">
-                            ${article.text || ''}
+                            ${article.body || article.text || article.content || ''}
                         </div>
                     `;
-
-                    // Add console log to debug the article object
-                    console.log('Article data:', article);
 
                     // Update page title
                     document.title = `${article.title} - Appworks`;
