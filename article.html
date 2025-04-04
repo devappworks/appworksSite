@@ -331,12 +331,15 @@
                             Published on ${formattedDate}
                         </div>
                         <div class="article-intro">
-                            ${article.intro}
+                            ${article.intro || ''}
                         </div>
                         <div class="article-text">
-                            ${article.content}
+                            ${article.text || ''}
                         </div>
                     `;
+
+                    // Add console log to debug the article object
+                    console.log('Article data:', article);
 
                     // Update page title
                     document.title = `${article.title} - Appworks`;
