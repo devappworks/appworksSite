@@ -327,7 +327,7 @@
 
                     articleContent = articleContent.replace(/\/storage/g, 'https://app-works.app/image/cache/large');
 
-                    articleContent = articleContent.replace(/(src="[^"]*\/[^"]*\.(?:jpg|jpeg|png|gif|bmp|svg|webp))"/g, (match) => {
+                    articleContent = articleContent.replace(/(src="https:\/\/app-works\.app\/image\/cache\/large[^"]*\.(?:jpg|jpeg|png|gif|bmp|svg|webp))"/g, (match) => {
                         if (match.includes('?')) {
                             return match.replace('"', '&crop=true"');
                         } else {
