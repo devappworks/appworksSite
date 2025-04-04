@@ -327,7 +327,14 @@
 
                     articleContent = articleContent.replace(/\/storage/g, 'https://app-works.app/image/cache/large');
 
-                    // Update the article content
+                    articleContent = articleContent.replace(/(src="[^"]*\/[^"]*\.(?:jpg|jpeg|png|gif|bmp|svg|webp))"/g, (match) => {
+                        if (match.includes('?')) {
+                            return match.replace('"', '&crop=true"');
+                        } else {
+                            return match.replace('"', '?crop=true"');
+                        }
+                    });
+
                     articleContainer.innerHTML = `
                         <img src="${article.media['medium-full'] || 'https://appworks-tmp.mpanel.app/images/placeholder.jpg'}"
                              alt="${article.title}"
@@ -342,7 +349,7 @@
                             ${article.intro || ''}
                         </div>
                         <div class="article-text">
-                            ${articleContent} <!-- Insert raw HTML content -->
+                            ${articleContent}
                         </div>
                     `;
 
