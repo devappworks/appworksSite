@@ -327,7 +327,7 @@
 
                     articleContent = articleContent.replace(/\/storage/g, 'https://app-works.app/image/cache/extra-large');
 
-                    articleContent = articleContent.replace(/(src="https:\/\/app-works\.app\/image\/cache\/large[^"]*\.(jpg|jpeg|png|gif|bmp|svg|webp))(?!\?crop=true)"/g, (match, url) => {
+                    articleContent = articleContent.replace(/(src="https:\/\/app-works\.app\/image\/cache\/extra-large[^"]*\.(jpg|jpeg|png|gif|bmp|svg|webp))(?!\?crop=true)"/g, (match, url) => {
                         // Proveravamo da li URL već sadrži neki parametar
                         if (url.includes('?')) {
                             // Ako već sadrži parametre, dodajemo &crop=true
