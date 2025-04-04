@@ -1,255 +1,181 @@
 <!doctype html>
 <html class="no-js" lang="en">
     <head>
-        <title>Article Title - Appworks</title>
+        <title>Article - Appworks</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="author" content="ThemeZaa">
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-        <meta name="description" content="Article description here">
+        <meta name="description" content="Appworks article view">
         <!-- favicon icon -->
-        <link rel="shortcut icon" href="images/appworks.png">
-        <link rel="apple-touch-icon" href="images/appworks.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="images/appworks - 72x72.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="images/appworks- 114x114.png">
+        <link rel="shortcut icon" href="https://appworks-tmp.mpanel.app/images/appworks.png">
+        <link rel="apple-touch-icon" href="https://appworks-tmp.mpanel.app/images/appworks.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="https://appworks-tmp.mpanel.app/images/appworks - 72x72.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="https://appworks-tmp.mpanel.app/images/appworks- 114x114.png">
         <!-- style sheets and font icons -->
-        <link rel="stylesheet" href="css/vendors.min.css"/>
-        <link rel="stylesheet" href="css/icon.min.css"/>
-        <link rel="stylesheet" href="css/style.css"/>
-        <link rel="stylesheet" href="css/responsive.css"/>
+        <link rel="stylesheet" href="https://appworks-tmp.mpanel.app/css/vendors.min.css"/>
+        <link rel="stylesheet" href="https://appworks-tmp.mpanel.app/css/icon.min.css"/>
+        <link rel="stylesheet" href="https://appworks-tmp.mpanel.app/css/style.css"/>
+        <link rel="stylesheet" href="https://appworks-tmp.mpanel.app/css/responsive.css"/>
         <style>
-            /* Article specific styles */
-            .article-header {
-                padding: 120px 0 60px;
-                background: #200A24;
-                color: white;
+            .article-content {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 40px 20px;
             }
-            .article-category {
-                display: inline-block;
-                padding: 5px 15px;
-                background: #FF4B36;
-                color: white;
-                border-radius: 20px;
-                font-size: 14px;
-                margin-bottom: 20px;
-                text-transform: uppercase;
-            }
-            .article-title {
-                font-size: 3rem;
-                line-height: 1.2;
-                margin-bottom: 30px;
-            }
-            .article-meta {
-                font-size: 16px;
-                opacity: 0.8;
-            }
+            
             .article-image {
                 width: 100%;
-                height: 500px;
+                height: 400px;
                 object-fit: cover;
-                margin-bottom: 40px;
+                border-radius: 12px;
+                margin-bottom: 30px;
             }
-            .article-content {
-                font-size: 18px;
+            
+            .article-title {
+                font-size: 2.5rem;
+                line-height: 1.3;
+                margin-bottom: 20px;
+                color: #200A24;
+            }
+            
+            .article-meta {
+                color: #666;
+                margin-bottom: 30px;
+                font-size: 0.9rem;
+            }
+            
+            .article-text {
+                font-size: 1.1rem;
                 line-height: 1.8;
                 color: #333;
             }
-            .article-content p {
-                margin-bottom: 20px;
+            
+            .back-button {
+                display: inline-flex;
+                align-items: center;
+                padding: 10px 20px;
+                background: #FF4B36;
+                color: white;
+                border-radius: 25px;
+                text-decoration: none;
+                margin-bottom: 30px;
+                transition: all 0.3s ease;
             }
-            .suggested-articles {
-                background: #f8f8f8;
-                padding: 80px 0;
+            
+            .back-button:hover {
+                background: #200A24;
+                color: white;
             }
-            .suggested-article-card {
-                background: white;
-                border-radius: 12px;
-                overflow: hidden;
-                transition: transform 0.3s ease;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            }
-            .suggested-article-card:hover {
-                transform: translateY(-10px);
-            }
-            .suggested-article-image {
-                width: 100%;
-                height: 200px;
-                object-fit: cover;
-            }
-            .suggested-article-content {
-                padding: 20px;
-            }
-            .suggested-article-title {
-                font-size: 20px;
-                margin-bottom: 10px;
-                color: #200A24;
-            }
-            .suggested-article-intro {
-                font-size: 14px;
-                color: #666;
+            
+            .back-button i {
+                margin-right: 8px;
             }
         </style>
     </head>
-    <body>
-        <!-- Header -->
+    <body data-mobile-nav-style="full-screen-menu" data-mobile-nav-bg-color="#252840">
+        <!-- start header -->
         <header>
-            <!-- Navigation -->
+            <!-- start navigation -->
             <nav class="navbar navbar-expand-lg header-transparent bg-transparent header-reverse glass-effect" data-header-hover="light">
                 <div class="container-fluid">
                     <div class="col-auto col-xxl-3 col-lg-2 me-lg-0 me-auto">
                         <a class="navbar-brand" href="home.html">
-                            <img src="images/appworks.png" data-at2x="images/appworks.png" alt="Appworks Logo" class="default-logo">
-                            <img src="images/appworks-black.png" data-at2x="images/appworks-black.png" alt="Appworks Logo" class="alt-logo">
-                            <img src="images/appworks.png" data-at2x="images/appworks.png" alt="Appworks Logo" class="mobile-logo">
+                            <img src="https://appworks-tmp.mpanel.app/images/appworks.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks.png" alt="Appworks Logo" class="default-logo">
+                            <img src="https://appworks-tmp.mpanel.app/images/appworks-black.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks-black.png" alt="Appworks Logo" class="alt-logo">
+                            <img src="https://appworks-tmp.mpanel.app/images/appworks.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks.png" alt="Appworks Logo" class="mobile-logo">
                         </a>
-                    </div>
-                    <div class="col-auto col-xxl-6 col-lg-8 menu-order position-static">
-                        <button class="navbar-toggler float-start" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                            <span class="navbar-toggler-line"></span>
-                            <span class="navbar-toggler-line"></span>
-                            <span class="navbar-toggler-line"></span>
-                            <span class="navbar-toggler-line"></span>
-                        </button>
-                        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                            <ul class="navbar-nav d-flex justify-content-between w-100" style="max-width: 1400px; padding: 0 15px; margin-left: 50px;">
-                                <li class="nav-item"><a href="home.html" class="nav-link">Home</a></li>
-                                <li class="nav-item"><a href="cms.html" class="nav-link">AI CMS</a></li>
-                                <li class="nav-item"><a href="media.html" class="nav-link">Media</a></li>
-                                <li class="nav-item"><a href="sport.html" class="nav-link">Sport</a></li>
-                                <li class="nav-item"><a href="https://litteraworks.com/" class="nav-link">Litteraworks</a></li>
-                                <li class="nav-item"><a href="projects.html" class="nav-link">Grant Projects</a></li>
-                                <li class="nav-item"><a href="partners.html" class="nav-link">Partners</a></li>
-                                <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </nav>
+            <!-- end navigation -->
         </header>
-
-        <!-- Article Header -->
-        <section class="article-header">
+        <!-- end header -->
+        
+        <!-- start article section -->
+        <section class="bg-light-gray">
             <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-10">
-                        <span class="article-category" id="articleCategory">Category</span>
-                        <h1 class="article-title" id="articleTitle">Article Title</h1>
-                        <div class="article-meta">
-                            <span id="articleDate">Publication Date</span>
+                <div class="article-content">
+                    <a href="home.html" class="back-button">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Back to Home
+                    </a>
+                    <div id="articleContainer">
+                        <!-- Article content will be loaded here -->
+                        <div class="text-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        <!-- end article section -->
 
-        <!-- Main Article Content -->
-        <section class="py-5">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-10">
-                        <img src="" alt="" class="article-image" id="articleImage">
-                        <div class="article-content" id="articleContent">
-                            <!-- Article content will be loaded here -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Suggested Articles -->
-        <section class="suggested-articles">
-            <div class="container">
-                <div class="row mb-5">
-                    <div class="col-12">
-                        <h2 class="text-dark-gray fw-600">Suggested Articles</h2>
-                    </div>
-                </div>
-                <div class="row" id="suggestedArticles">
-                    <!-- Suggested articles will be loaded here -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="p-0 footer-light">
-            <div class="container">
-                <div class="row justify-content-center pt-5">
-                    <div class="col-xl-3 col-lg-12 text-center text-xl-start">
-                        <a href="home.html" class="footer-logo">
-                            <img src="images/appworks-black - 114x114.png" alt="Appworks Logo">
-                        </a>
-                        <p class="mt-3">Creative solutions for innovative partners.</p>
-                        <div class="social-icons mt-3">
-                            <a href="https://www.linkedin.com/company/appworks-d-o-o/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://www.instagram.com/weareappworks/" target="_blank"><i class="fab fa-instagram"></i></a>
-                            <a href="https://www.youtube.com/channel/UCydhgWA6Kg40T9EFmRVDb9A" target="_blank"><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-        <!-- JavaScript -->
-        <script src="js/jquery.js"></script>
-        <script src="js/vendors.min.js"></script>
-        <script src="js/main.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                // Get article ID from URL parameter
+                // Get article ID from URL parameters
                 const urlParams = new URLSearchParams(window.location.search);
                 const articleId = urlParams.get('id');
-
-                if (articleId) {
-                    // Fetch article data
-                    fetchArticle(articleId);
+                
+                if (!articleId) {
+                    window.location.href = 'home.html';
+                    return;
                 }
+
+                // Fetch article data
+                fetch(`https://app-works.app/api/webV2/getArticle?id=${articleId}`, {
+                    headers: {
+                        'Authorization': 'kmNTuI8dRmRX'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.success || !data.result || !data.result.article) {
+                        throw new Error('Article not found');
+                    }
+
+                    const article = data.result.article;
+                    const articleContainer = document.getElementById('articleContainer');
+                    
+                    // Format the date
+                    const date = new Date(article.created_at);
+                    const formattedDate = date.toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+
+                    // Update the article content
+                    articleContainer.innerHTML = `
+                        <img src="${article.media['medium-full']}" 
+                             alt="${article.title}" 
+                             class="article-image"
+                             onerror="this.src='https://appworks-tmp.mpanel.app/images/placeholder.jpg'">
+                        <h1 class="article-title">${article.title}</h1>
+                        <div class="article-meta">
+                            Published on ${formattedDate}
+                        </div>
+                        <div class="article-text">
+                            ${article.content}
+                        </div>
+                    `;
+
+                    // Update page title
+                    document.title = `${article.title} - Appworks`;
+                })
+                .catch(error => {
+                    console.error('Error fetching article:', error);
+                    const articleContainer = document.getElementById('articleContainer');
+                    articleContainer.innerHTML = `
+                        <div class="text-center">
+                            <h2>Article not found</h2>
+                            <p>The requested article could not be loaded.</p>
+                        </div>
+                    `;
+                });
             });
-
-            function fetchArticle(id) {
-                // Replace with your actual API endpoint
-                fetch(`/api/articles/${id}`)
-                    .then(response => response.json())
-                    .then(article => {
-                        // Update page content
-                        document.getElementById('articleCategory').textContent = article.category;
-                        document.getElementById('articleTitle').textContent = article.title;
-                        document.getElementById('articleDate').textContent = new Date(article.date).toLocaleDateString();
-                        document.getElementById('articleImage').src = article.image;
-                        document.getElementById('articleImage').alt = article.title;
-                        document.getElementById('articleContent').innerHTML = article.content;
-
-                        // Fetch suggested articles
-                        fetchSuggestedArticles(article.category);
-                    })
-                    .catch(error => {
-                        console.error('Error fetching article:', error);
-                    });
-            }
-
-            function fetchSuggestedArticles(category) {
-                // Replace with your actual API endpoint
-                fetch(`/api/articles/suggested?category=${category}`)
-                    .then(response => response.json())
-                    .then(articles => {
-                        const container = document.getElementById('suggestedArticles');
-                        container.innerHTML = articles.map(article => `
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <a href="article.html?id=${article.id}" class="text-decoration-none">
-                                    <div class="suggested-article-card">
-                                        <img src="${article.image}" alt="${article.title}" class="suggested-article-image">
-                                        <div class="suggested-article-content">
-                                            <h3 class="suggested-article-title">${article.title}</h3>
-                                            <p class="suggested-article-intro">${article.intro}</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        `).join('');
-                    })
-                    .catch(error => {
-                        console.error('Error fetching suggested articles:', error);
-                    });
-            }
         </script>
     </body>
 </html> 

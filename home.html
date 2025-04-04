@@ -787,56 +787,43 @@
         </section>
 
         <script>
-            // Initialize blog posts slider
-            var blogSlider = new Swiper('.blog-posts-slider', {
-                slidesPerView: 1,
-                spaceBetween: 30,
-                grabCursor: true,
-                watchOverflow: true,
-                speed: 800,
-                navigation: {
-                    nextEl: '.blog-slider-next',
-                    prevEl: '.blog-slider-prev',
-                },
-                breakpoints: {
-                    768: {
-                        slidesPerView: 2
-                    },
-                    992: {
-                        slidesPerView: 3
-                    }
-                }
-            });
-
             document.addEventListener('DOMContentLoaded', function() {
                 const filterButtons = document.querySelectorAll('.portfolio-filter a');
-                const articlesContainer = document.getElementById('articlesContainer');
+                let blogSlider;
 
-                function createArticleSlide(article) {
-                    return `
-                        <div class="swiper-slide">
-                            <a href="article.html?id=${article.id}" class="text-decoration-none">
-                                <div class="blog-card">
-                                    <div class="blog-image">
-                                        <img src="${article.media['medium-full']}" alt="${article.title}" onerror="this.src='https://appworks-tmp.mpanel.app/images/placeholder.jpg'">
-                                    </div>
-                                    <div class="blog-text">
-                                        <h3 class="text-dark-gray">${article.title}</h3>
-                                        <p class="text-body-text">${article.intro}</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    `;
+                function initializeSwiper() {
+                    if (blogSlider) {
+                        blogSlider.destroy();
+                    }
+                    
+                    blogSlider = new Swiper('.blog-posts-slider', {
+                        slidesPerView: 1,
+                        spaceBetween: 30,
+                        grabCursor: true,
+                        watchOverflow: true,
+                        speed: 800,
+                        navigation: {
+                            nextEl: '.blog-slider-next',
+                            prevEl: '.blog-slider-prev',
+                        },
+                        breakpoints: {
+                            768: {
+                                slidesPerView: 2
+                            },
+                            992: {
+                                slidesPerView: 3
+                            }
+                        }
+                    });
                 }
 
                 function fetchAndDisplayArticles(filter = '*') {
                     let apiUrl = 'https://app-works.app/api/webV2/getArticles';
 
                     if (filter === '*') {
-                        apiUrl += '?articleLimit=20';  // Increased from 3 to 20
+                        apiUrl += '?articleLimit=20';  // Increased limit for more articles
                     } else {
-                        apiUrl += `?category[]=${encodeURIComponent(filter)}&articleLimit=20`;  // Increased from 3 to 20
+                        apiUrl += `?category[]=${encodeURIComponent(filter)}&articleLimit=20`;
                     }
 
                     fetch(apiUrl, {
@@ -846,11 +833,45 @@
                     })
                     .then(response => response.json())
                     .then(data => {
-                        if (data && Array.isArray(data.articles)) {
-                            articlesContainer.innerHTML = data.articles.map(createArticleSlide).join('');
-                            blogSlider.update();  // Update Swiper after content change
-                            blogSlider.slideTo(0);  // Reset to first slide
+                        const articlesContainer = document.getElementById('articlesContainer');
+                        if (!data.success || !data.result || !data.result.articles || data.result.articles.length === 0) {
+                            return;
                         }
+
+                        articlesContainer.innerHTML = ''; // Clear old articles
+
+                        data.result.articles.forEach(article => {
+                            const articleHtml = `
+                                <div class="swiper-slide">
+                                    <a href="article.html?id=${article.id}" class="text-decoration-none">
+                                        <div class="blog-card h-100">
+                                            <div class="blog-container">
+                                                <div class="blog-overlay">
+                                                    <div class="blog-content">
+                                                        <div class="arrow-container">
+                                                            <i class="fa-solid fa-arrow-right"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="blog-image" style="height: 250px;">
+                                                    <img src="${article.media['medium-full']}"
+                                                         onerror="this.src='https://appworks-tmp.mpanel.app/images/placeholder.jpg'"
+                                                         alt="${article.title}"
+                                                         style="width: 100%; height: 100%; object-fit: cover;">
+                                                </div>
+                                                <div class="blog-text">
+                                                    <h3 class="text-dark-gray fs-20 fw-600 mb-3" style="min-height: 60px;">${article.title}</h3>
+                                                    <p class="text-dark-gray opacity-6" style="font-size: 14px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">${article.intro}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            `;
+                            articlesContainer.insertAdjacentHTML('beforeend', articleHtml);
+                        });
+
+                        initializeSwiper();
                     })
                     .catch(error => {
                         console.error('Error fetching articles:', error);
@@ -864,17 +885,99 @@
                 filterButtons.forEach(button => {
                     button.addEventListener('click', (e) => {
                         e.preventDefault();
-                        const filter = button.getAttribute('data-filter');
                         
                         // Update active state
                         filterButtons.forEach(btn => btn.parentElement.classList.remove('active'));
                         button.parentElement.classList.add('active');
                         
+                        const filter = button.getAttribute('data-filter');
                         fetchAndDisplayArticles(filter);
                     });
                 });
             });
         </script>
+
+        <style>
+            .blog-posts-slider {
+                padding: 20px 60px;
+                margin: 0 -60px;
+                overflow: visible;
+            }
+
+            .blog-slider-next,
+            .blog-slider-prev {
+                width: 50px;
+                height: 50px;
+                background: #FF4B36 !important;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 100;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .blog-slider-next:after,
+            .blog-slider-prev:after {
+                font-family: "Font Awesome 6 Free";
+                font-weight: 900;
+                color: white;
+                font-size: 20px;
+            }
+
+            .blog-slider-next:after {
+                content: "\f054";
+            }
+
+            .blog-slider-prev:after {
+                content: "\f053";
+            }
+
+            .blog-slider-next {
+                right: 0;
+            }
+
+            .blog-slider-prev {
+                left: 0;
+            }
+
+            .blog-slider-next:hover,
+            .blog-slider-prev:hover {
+                background: #200A24 !important;
+            }
+
+            .blog-card {
+                background: white;
+                border-radius: 12px;
+                overflow: hidden;
+                transition: transform 0.3s ease;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+                height: 100%;
+            }
+
+            .blog-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            @media (max-width: 991px) {
+                .blog-posts-slider {
+                    padding: 20px 40px;
+                    margin: 0 -40px;
+                }
+            }
+
+            @media (max-width: 767px) {
+                .blog-posts-slider {
+                    padding: 20px 30px;
+                    margin: 0 -30px;
+                }
+            }
+        </style>
         <!-- end section -->
         <!-- start testimonials section -->
         <section class="bg-white">
