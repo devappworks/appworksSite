@@ -323,6 +323,8 @@
                         month: 'long',
                         day: 'numeric'
                     });
+                    let articleContent = article.body || article.text || article.content || '';
+                    articleContent = articleContent.replace(/\/storage/g, 'https://app-works.app/image/cache/large');
 
                     // Update the article content
                     articleContainer.innerHTML = `
@@ -339,7 +341,7 @@
                             ${article.intro || ''}
                         </div>
                         <div class="article-text">
-                            ${article.body || article.text || article.contents || ''}
+                            ${articleContent} <!-- Insert raw HTML content -->
                         </div>
                     `;
 
