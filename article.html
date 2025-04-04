@@ -18,10 +18,17 @@
         <link rel="stylesheet" href="https://appworks-tmp.mpanel.app/css/style.css"/>
         <link rel="stylesheet" href="https://appworks-tmp.mpanel.app/css/responsive.css"/>
         <style>
+            .article-header {
+                background: #200A24;
+                padding: 120px 0 60px;
+                position: relative;
+                overflow: hidden;
+            }
+            
             .article-content {
                 max-width: 800px;
                 margin: 0 auto;
-                padding: 40px 20px;
+                padding: 60px 20px;
             }
             
             .article-image {
@@ -30,6 +37,7 @@
                 object-fit: cover;
                 border-radius: 12px;
                 margin-bottom: 30px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             }
             
             .article-title {
@@ -37,12 +45,20 @@
                 line-height: 1.3;
                 margin-bottom: 20px;
                 color: #200A24;
+                font-weight: 600;
             }
             
             .article-meta {
                 color: #666;
                 margin-bottom: 30px;
                 font-size: 0.9rem;
+                display: flex;
+                align-items: center;
+            }
+            
+            .article-meta i {
+                color: #FF4B36;
+                margin-right: 8px;
             }
             
             .article-text {
@@ -51,25 +67,68 @@
                 color: #333;
             }
             
+            .article-intro {
+                font-size: 1.2rem;
+                line-height: 1.8;
+                color: #200A24;
+                margin-bottom: 30px;
+                font-weight: 500;
+            }
+            
             .back-button {
                 display: inline-flex;
                 align-items: center;
-                padding: 10px 20px;
+                padding: 12px 25px;
                 background: #FF4B36;
                 color: white;
                 border-radius: 25px;
                 text-decoration: none;
                 margin-bottom: 30px;
                 transition: all 0.3s ease;
+                font-weight: 600;
+                font-size: 0.9rem;
             }
             
             .back-button:hover {
                 background: #200A24;
                 color: white;
+                transform: translateY(-2px);
             }
             
             .back-button i {
                 margin-right: 8px;
+            }
+
+            @media (max-width: 991px) {
+                .article-header {
+                    padding: 100px 0 40px;
+                }
+                
+                .article-content {
+                    padding: 40px 20px;
+                }
+                
+                .article-title {
+                    font-size: 2rem;
+                }
+                
+                .article-image {
+                    height: 300px;
+                }
+            }
+
+            @media (max-width: 767px) {
+                .article-header {
+                    padding: 80px 0 30px;
+                }
+                
+                .article-title {
+                    font-size: 1.8rem;
+                }
+                
+                .article-image {
+                    height: 250px;
+                }
             }
         </style>
     </head>
@@ -86,6 +145,26 @@
                             <img src="https://appworks-tmp.mpanel.app/images/appworks.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks.png" alt="Appworks Logo" class="mobile-logo">
                         </a>
                     </div>
+                    <div class="col-auto col-xxl-6 col-lg-8 menu-order position-static">
+                        <button class="navbar-toggler float-start" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-line"></span>
+                            <span class="navbar-toggler-line"></span>
+                            <span class="navbar-toggler-line"></span>
+                            <span class="navbar-toggler-line"></span>
+                        </button>
+                        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                            <ul class="navbar-nav d-flex justify-content-between w-100" style="max-width: 1400px; padding: 0 15px; margin-left: 50px;">
+                                <li class="nav-item" style="margin: 0 10px;"><a href="home.html" class="nav-link">Home</a></li>
+                                <li class="nav-item" style="margin: 0 10px;"><a href="cms.html" class="nav-link">AI&nbsp;CMS</a></li>
+                                <li class="nav-item" style="margin: 0 10px;"><a href="media.html" class="nav-link">Media</a></li>
+                                <li class="nav-item" style="margin: 0 10px;"><a href="sport.html" class="nav-link">Sport</a></li>
+                                <li class="nav-item" style="margin: 0 10px;"><a href="https://litteraworks.com/" class="nav-link" target="_blank">Litteraworks</a></li>
+                                <li class="nav-item" style="margin: 0 10px;"><a href="projects.html" class="nav-link">Grant&nbsp;Projects</a></li>
+                                <li class="nav-item" style="margin: 0 10px;"><a href="partners.html" class="nav-link">Partners</a></li>
+                                <li class="nav-item" style="margin: 0 10px;"><a href="about.html" class="nav-link">About&nbsp;Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </nav>
             <!-- end navigation -->
@@ -93,17 +172,26 @@
         <!-- end header -->
         
         <!-- start article section -->
-        <section class="bg-light-gray">
+        <section class="article-header">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 text-center">
+                        <a href="home.html" class="back-button">
+                            <i class="fa-solid fa-arrow-left"></i>
+                            Back to Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-white">
             <div class="container">
                 <div class="article-content">
-                    <a href="home.html" class="back-button">
-                        <i class="fa-solid fa-arrow-left"></i>
-                        Back to Home
-                    </a>
                     <div id="articleContainer">
                         <!-- Article content will be loaded here -->
                         <div class="text-center">
-                            <div class="spinner-border text-primary" role="status">
+                            <div class="spinner-border" style="color: #FF4B36;" role="status">
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </div>
@@ -112,6 +200,63 @@
             </div>
         </section>
         <!-- end article section -->
+
+        <!-- start footer -->
+        <footer class="p-0 footer-light position-relative">
+            <div class="container position-relative">
+                <div class="row justify-content-center pt-5 sm-pt-40px">
+                    <!-- start footer column -->
+                    <div class="col-6 col-xl-3 col-lg-12 col-sm-6 last-paragraph-no-margin text-xl-start text-lg-center order-sm-1 lg-mb-60px sm-mb-40px">
+                        <a href="home.html" class="footer-logo mb-15px d-inline-block">
+                            <img src="https://appworks-tmp.mpanel.app/images/appworks-black - 114x114.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks-black - 114x114.png" alt="Appworks Logo">
+                        </a>
+                        <p class="lh-28 w-90 xl-w-100 mx-lg-auto mx-xl-0">Creative solutions for innovative partners.</p>
+                        <div class="elements-social social-icon-style-02 mt-15px">
+                            <ul class="medium-icon dark">
+                                <li class="my-0"><a class="linkedin" href="https://www.linkedin.com/company/appworks-d-o-o/" target="_blank"><i class="fa-brands fa-linkedin"></i></a></li>
+                                <li class="my-0"><a class="instagram" href="https://www.instagram.com/weareappworks/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                                <li class="my-0"><a class="youtube" href="https://www.youtube.com/channel/UCydhgWA6Kg40T9EFmRVDb9A" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- end footer column -->
+                    <!-- start footer column -->
+                    <div class="col-6 col-xl-2 col-lg-3 col-sm-4 xs-mb-30px order-sm-3 order-lg-2">
+                        <span class="fw-600 d-block text-dark-gray mb-5px">Company</span>
+                        <ul>
+                            <li><a href="about.html">About us</a></li>
+                            <li><a href="partners.html">Partners</a></li>
+                            <li><a href="#">Contact us</a></li>
+                        </ul>
+                    </div>
+                    <!-- end footer column -->
+                    <!-- start footer column -->
+                    <div class="col-6 col-xl-2 col-lg-3 col-md-5 col-sm-4 xs-mb-30px order-sm-4 order-lg-3">
+                        <span class="fw-600 d-block text-dark-gray mb-5px">Solutions</span>
+                        <ul>
+                            <li><a href="cms.html">CMS</a></li>
+                            <li><a href="media.html">Media</a></li>
+                            <li><a href="sport.html">Sports</a></li>
+                            <li><a href="#">AI</a></li>
+                            <li><a href="projects.html">Grant Projects</a></li>
+                        </ul>
+                    </div>
+                    <!-- end footer column -->
+                    <!-- start footer column -->
+                    <div class="col-6 col-xl-2 col-lg-3 col-md-3 col-sm-4 xs-mb-30px order-sm-5 order-lg-4">
+                        <span class="fw-600 d-block text-dark-gray mb-5px">Contact us</span>
+                        <a href="mailto:info@app-works.app" class="text-dark-gray fw-600">info@app-works.app</a>
+                    </div>
+                    <!-- end footer column -->
+                </div>
+            </div>
+        </footer>
+        <!-- end footer -->
+
+        <!-- javascript libraries -->
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/vendors.min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
@@ -153,9 +298,9 @@
                     if (!data.success || !data.result || !data.result.article) {
                         articleContainer.innerHTML = `
                             <div class="text-center">
-                                <h2>Article not found</h2>
-                                <p>The requested article could not be loaded.</p>
-                                <a href="home.html" class="back-button mt-4">
+                                <h2 class="text-dark-gray fw-600">Article not found</h2>
+                                <p class="mb-4">The requested article could not be loaded.</p>
+                                <a href="home.html" class="back-button">
                                     <i class="fa-solid fa-arrow-left"></i>
                                     Return to Home
                                 </a>
@@ -182,10 +327,14 @@
                              onerror="this.src='https://appworks-tmp.mpanel.app/images/placeholder.jpg'">
                         <h1 class="article-title">${article.title}</h1>
                         <div class="article-meta">
+                            <i class="fa-regular fa-calendar"></i>
                             Published on ${formattedDate}
                         </div>
+                        <div class="article-intro">
+                            ${article.intro}
+                        </div>
                         <div class="article-text">
-                            ${article.content || article.intro}
+                            ${article.content}
                         </div>
                     `;
 
@@ -197,9 +346,9 @@
                     const articleContainer = document.getElementById('articleContainer');
                     articleContainer.innerHTML = `
                         <div class="text-center">
-                            <h2>Error loading article</h2>
-                            <p>There was a problem loading the article. Please try again later.</p>
-                            <a href="home.html" class="back-button mt-4">
+                            <h2 class="text-dark-gray fw-600">Error loading article</h2>
+                            <p class="mb-4">There was a problem loading the article. Please try again later.</p>
+                            <a href="home.html" class="back-button">
                                 <i class="fa-solid fa-arrow-left"></i>
                                 Return to Home
                             </a>
