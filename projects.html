@@ -92,11 +92,11 @@
                 color: white !important;
             }
             .project-box a {
-                color: #FF4B36;
+                color: rgba(255, 255, 255, 0.6);
                 transition: all 0.3s ease;
             }
             .project-box a:hover {
-                color: white;
+                color: #FF4B36;
             }
 
             /* Blog Posts Slider Styles */
@@ -230,12 +230,12 @@
     </head>
     <body data-mobile-nav-style="full-screen-menu" data-mobile-nav-bg-color="#252840">  
         <!-- start header -->
-        <header class="header-with-topbar"> 
+        <header>
             <!-- start navigation -->
-            <nav class="navbar navbar-expand-lg header-transparent bg-transparent navbar-dark navbar-boxed" data-header-hover="light">
+            <nav class="navbar navbar-expand-lg header-transparent bg-transparent header-reverse glass-effect" data-header-hover="light">
                 <div class="container-fluid">
                     <div class="col-auto col-xxl-3 col-lg-2 me-lg-0 me-auto">
-                        <a class="navbar-brand" href="demo-it-business.html">
+                        <a class="navbar-brand" href="home.html">
                             <img src="https://appworks-tmp.mpanel.app/images/appworks.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks.png" alt="Appworks Logo" class="default-logo">
                             <img src="https://appworks-tmp.mpanel.app/images/appworks-black.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks-black.png" alt="Appworks Logo" class="alt-logo">
                             <img src="https://appworks-tmp.mpanel.app/images/appworks.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks.png" alt="Appworks Logo" class="mobile-logo">
@@ -416,59 +416,93 @@
         <!-- end projects section -->
 
         <!-- start blog slider section -->
-        <section style="background: #200A24;">
+        <section style="background: #200A24;" class="py-5">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-12 col-lg-8 text-center mb-5">
-                        <h2 class="text-white mb-0">Grant Project Articles</h2>
-                        <p class="text-white opacity-6 mt-3">Discover our latest grant project updates and success stories</p>
+                    <div class="col-12">
+                        <h2 class="text-white fw-600 ls-minus-2px mb-4">Grant Project Articles</h2>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12 position-relative">
-                        <div class="blog-posts-slider swiper-container">
-                            <div class="swiper-wrapper">
-                                <!-- Articles will be loaded here dynamically -->
-                            </div>
-                        </div>
-                        <div class="blog-slider-next"></div>
-                        <div class="blog-slider-prev"></div>
-                    </div>
+                <div class="row" id="articlesContainer">
+                    <!-- Articles will be loaded here dynamically -->
                 </div>
             </div>
+            
+            <style>
+                .blog-card {
+                    background: rgba(255, 255, 255, 0.05);
+                    border-radius: 12px;
+                    overflow: hidden;
+                    transition: transform 0.3s ease;
+                }
+                .blog-card:hover {
+                    transform: translateY(-10px);
+                }
+                .blog-container {
+                    position: relative;
+                    overflow: hidden;
+                }
+                .blog-overlay {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(32, 10, 36, 0.7);
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+                    z-index: 2;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .blog-container:hover .blog-overlay {
+                    opacity: 1;
+                }
+                .blog-image {
+                    position: relative;
+                    overflow: hidden;
+                }
+                .blog-image img {
+                    transition: transform 0.3s ease;
+                    aspect-ratio: 16/9;
+                    object-fit: cover;
+                }
+                .blog-container:hover .blog-image img {
+                    transform: scale(1.05);
+                }
+                .blog-text {
+                    padding: 1.5rem;
+                }
+                .fs-24 {
+                    font-size: 24px;
+                    line-height: 1.4;
+                }
+                @media (max-width: 991px) {
+                    .blog-card {
+                        margin-bottom: 2rem;
+                    }
+                }
+            </style>
         </section>
         <!-- end blog slider section -->
 
         <!-- start contact section -->
-        <section class="contact-section cover-background one-third-screen sm-h-500px pb-0 position-relative">
-            <div class="opacity-extra-medium bg-dark-gray"></div> 
-            <div class="container h-100"> 
+        <section class="cover-background one-third-screen sm-h-500px pb-0 position-relative" style="background-image:url('https://via.placeholder.com/1920x760'); background-color: #200A24;">
+            <div class="opacity-extra-medium bg-dark-gray"></div>
+            <div class="container h-100">
                 <div class="row align-items-center justify-content-center h-100">
-                    <div class="col-xl-8 col-lg-10 mb-9 md-mb-15 position-relative z-index-1 text-center d-flex flex-wrap align-items-center justify-content-center" data-anime='{ "el": "childs", "translateY": [50, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'>   
-                        <h1 class="text-white fw-600 ls-minus-2px mb-4">Contact Us</h1>
-                        <p class="fw-300 fs-18 text-white opacity-6 mb-5">If you are looking for a reliable partner in AI and innovation, let's talk.</p>
+                    <div class="col-xl-8 col-lg-10 mb-9 md-mb-15 position-relative z-index-1 text-center d-flex flex-wrap align-items-center justify-content-center" data-anime='{ "el": "childs", "translateY": [50, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'>
+                        <span class="ps-25px pe-25px pt-5px pb-5px mb-25px text-uppercase text-white fs-12 ls-1px fw-600 border-radius-100px bg-gradient-dark-gray-transparent d-inline-flex align-items-center text-start sm-lh-20"><i class="bi bi-megaphone text-white d-inline-block align-middle icon-small me-10px"></i>Got an idea? Let's turn it into reality.</span>
+                        <h1 class="text-white fw-600 ls-minus-2px mb-50px">Your Digital Partner in AI, Mobile & Innovation</h1>
                         <a href="about.html" class="btn btn-extra-large btn-switch-text btn-rounded" style="background: #FF4B36;">
                             <span>
                                 <span class="btn-double-text text-white" data-text="Contact us">Contact us</span>
                                 <span><i class="fa-solid fa-arrow-right text-white"></i></span>
                             </span>
-                        </a> 
-                    </div>  
-                </div> 
-            </div>
-            <div class="shape-image-animation p-0 w-100 bottom-minus-40px xl-bottom-0px d-none d-md-block"> 
-                <svg xmlns="http://www.w3.org/2000/svg" width="3000" height="400" viewBox="0 180 2500 200" fill="#ffffff"> 
-                    <path class="st1" d="M 0 250 C 1200 400 1200 50 3000 250 L 3000 550 L 0 550 L 0 250">
-                        <animate
-                            attributeName="d"
-                            dur="5s"
-                            values="M 0 250 C 1200 400 1200 50 3000 250 L 3000 550 L 0 550 L 0 250;
-                                    M 0 250 C 400 50 400 400 3000 250 L 3000 550 L 0 550 L 0 250;
-                                    M 0 250 C 1200 400 1200 50 3000 250 L 3000 550 L 0 550 L 0 250"
-                            repeatCount="indefinite"
-                        />
-                    </path>
-                </svg>
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
         <!-- end contact section -->
@@ -523,31 +557,7 @@
                 }
             });
 
-            // Initialize blog slider
             document.addEventListener('DOMContentLoaded', function() {
-                // Initialize Swiper
-                const blogSlider = new Swiper('.blog-posts-slider', {
-                    slidesPerView: 1,
-                    spaceBetween: 30,
-                    loop: true,
-                    autoplay: {
-                        delay: 5000,
-                        disableOnInteraction: false,
-                    },
-                    navigation: {
-                        nextEl: '.blog-slider-next',
-                        prevEl: '.blog-slider-prev',
-                    },
-                    breakpoints: {
-                        768: {
-                            slidesPerView: 2,
-                        },
-                        992: {
-                            slidesPerView: 3,
-                        }
-                    }
-                });
-
                 // Fetch and display articles
                 async function fetchArticles() {
                     try {
@@ -560,38 +570,49 @@
                             );
 
                             if (grantArticles.length === 0) {
-                                document.querySelector('.blog-posts-slider .swiper-wrapper').innerHTML = 
-                                    '<div class="swiper-slide"><div class="blog-card"><div class="blog-text">' +
+                                document.getElementById('articlesContainer').innerHTML = 
+                                    '<div class="col-12"><div class="blog-card"><div class="blog-text text-white">' +
                                     '<h3>No grant project articles found</h3></div></div></div>';
                                 return;
                             }
 
                             const articlesHTML = grantArticles.map(article => `
-                                <div class="swiper-slide">
-                                    <div class="blog-card">
-                                        <div class="blog-image">
-                                            <img src="${article.image || 'path/to/default-image.jpg'}" alt="${article.title}">
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <a href="${article.url || '#'}" class="text-decoration-none">
+                                        <div class="blog-card">
+                                            <div class="blog-container">
+                                                <div class="blog-overlay">
+                                                    <div class="blog-content">
+                                                        <div class="arrow-container">
+                                                            <i class="fa-solid fa-arrow-right"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="blog-image">
+                                                    <img src="${article.image || 'https://appworks-tmp.mpanel.app/images/placeholder.jpg'}"
+                                                         alt="${article.title}"
+                                                         style="width: 100%; height: 250px; object-fit: cover;">
+                                                </div>
+                                                <div class="blog-text">
+                                                    <h3 class="text-white fs-24 fw-600 mb-3">${article.title}</h3>
+                                                    <p class="text-white opacity-6">${article.description ? article.description.substring(0, 150) + '...' : ''}</p>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="blog-text">
-                                            <h3>${article.title}</h3>
-                                            <p>${article.description ? article.description.substring(0, 150) + '...' : ''}</p>
-                                            <a href="${article.url || '#'}" class="btn btn-link text-uppercase">Read More</a>
-                                        </div>
-                                    </div>
+                                    </a>
                                 </div>
                             `).join('');
 
-                            document.querySelector('.blog-posts-slider .swiper-wrapper').innerHTML = articlesHTML;
-                            blogSlider.update();
+                            document.getElementById('articlesContainer').innerHTML = articlesHTML;
                         } else {
-                            document.querySelector('.blog-posts-slider .swiper-wrapper').innerHTML = 
-                                '<div class="swiper-slide"><div class="blog-card"><div class="blog-text">' +
+                            document.getElementById('articlesContainer').innerHTML = 
+                                '<div class="col-12"><div class="blog-card"><div class="blog-text text-white">' +
                                 '<h3>No articles found</h3></div></div></div>';
                         }
                     } catch (error) {
                         console.error('Error fetching articles:', error);
-                        document.querySelector('.blog-posts-slider .swiper-wrapper').innerHTML = 
-                            '<div class="swiper-slide"><div class="blog-card"><div class="blog-text">' +
+                        document.getElementById('articlesContainer').innerHTML = 
+                            '<div class="col-12"><div class="blog-card"><div class="blog-text text-white">' +
                             '<h3>Error loading articles</h3></div></div></div>';
                     }
                 }
