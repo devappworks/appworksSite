@@ -780,13 +780,15 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <div class="swiper-container blog-posts-slider">
-                            <div class="swiper-wrapper" id="articlesContainer">
-                                <!-- Articles will be loaded here -->
+                        <div class="blog-posts-slider">
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper" id="articlesContainer">
+                                    <!-- Articles will be loaded here -->
+                                </div>
+                                <!-- Add Navigation -->
+                                <div class="swiper-button-next blog-slider-next"></div>
+                                <div class="swiper-button-prev blog-slider-prev"></div>
                             </div>
-                            <!-- Add Navigation -->
-                            <div class="swiper-button-next blog-slider-next"></div>
-                            <div class="swiper-button-prev blog-slider-prev"></div>
                         </div>
                     </div>
                 </div>
@@ -800,12 +802,13 @@
 
                 function initializeSwiper() {
                     if (blogSlider) {
-                        blogSlider.destroy();
+                        blogSlider.destroy(true, true);
                     }
                     
-                    blogSlider = new Swiper('.blog-posts-slider', {
+                    blogSlider = new Swiper('.blog-posts-slider .swiper-container', {
                         slidesPerView: 1,
                         spaceBetween: 30,
+                        loop: true,
                         grabCursor: true,
                         watchOverflow: true,
                         speed: 800,
@@ -860,7 +863,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="blog-image" style="height: 250px;">
+                                                <div class="blog-image">
                                                     <img src="${article.media['medium-full']}"
                                                          onerror="this.src='https://appworks-tmp.mpanel.app/images/placeholder.jpg'"
                                                          alt="${article.title}"
@@ -878,7 +881,10 @@
                             articlesContainer.insertAdjacentHTML('beforeend', articleHtml);
                         });
 
-                        initializeSwiper();
+                        // Initialize Swiper after adding slides
+                        setTimeout(() => {
+                            initializeSwiper();
+                        }, 100);
                     })
                     .catch(error => {
                         console.error('Error fetching articles:', error);
