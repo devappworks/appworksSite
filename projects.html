@@ -30,9 +30,6 @@
                 top: 0;
                 left: 0;
                 z-index: 1030;
-                background: rgba(32, 10, 36, 0.95) !important;
-                backdrop-filter: blur(10px);
-                box-shadow: 0 0 30px rgba(0,0,0,0.1);
             }
 
             .header-transparent {
@@ -65,17 +62,46 @@
 
             /* Project box styles */
             .project-box {
-                background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+                background: linear-gradient(145deg, #200A24 0%, #2d1432 100%);
                 border-radius: 12px;
                 transition: all 0.3s ease;
-                border: 1px solid rgba(0,0,0,0.05);
+                border: 1px solid rgba(255,255,255,0.05);
                 height: 100%;
                 margin-bottom: 30px;
+                padding: 2rem;
+                color: white;
             }
+
             .project-box:hover {
                 transform: translateY(-5px);
-                box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-                border-color: rgba(255,75,54,0.1);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                border-color: rgba(255,75,54,0.2);
+            }
+
+            .project-box h3 {
+                color: white;
+                margin-bottom: 1.5rem;
+                font-weight: 600;
+            }
+
+            .project-box strong {
+                color: #FF4B36;
+                font-weight: 600;
+            }
+
+            .project-box p {
+                color: rgba(255,255,255,0.8);
+                margin-bottom: 1rem;
+            }
+
+            .project-box a {
+                color: #FF4B36;
+                text-decoration: none;
+                transition: all 0.3s ease;
+            }
+
+            .project-box a:hover {
+                color: white;
             }
 
             /* Blog Posts Slider Styles */
@@ -85,6 +111,7 @@
                 padding: 20px 60px;
                 margin: 0 -60px;
             }
+
             .blog-slider-next,
             .blog-slider-prev {
                 width: 50px;
@@ -102,17 +129,21 @@
                 transition: all 0.3s ease;
                 opacity: 1 !important;
             }
+
             .blog-slider-next:hover,
             .blog-slider-prev:hover {
                 background: #200A24 !important;
                 transform: translateY(-50%) scale(1.1);
             }
+
             .blog-slider-next {
                 right: 0;
             }
+
             .blog-slider-prev {
                 left: 0;
             }
+
             .blog-slider-next::after,
             .blog-slider-prev::after {
                 font-family: "Font Awesome 6 Free" !important;
@@ -121,12 +152,15 @@
                 font-size: 20px !important;
                 line-height: 1;
             }
+
             .blog-slider-next:after {
                 content: "\f054" !important;
             }
+
             .blog-slider-prev:after {
                 content: "\f053" !important;
             }
+
             .blog-card {
                 height: 100%;
                 background: white;
@@ -134,29 +168,71 @@
                 overflow: hidden;
                 box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             }
+
             .blog-image {
                 position: relative;
                 overflow: hidden;
                 height: 400px;
             }
+
             .blog-image img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
                 transition: transform 0.3s ease;
             }
+
             .blog-text {
                 padding: 2rem;
             }
+
             .blog-text h3 {
                 font-size: 1.5rem;
                 line-height: 1.4;
                 margin-bottom: 1rem;
             }
+
             .blog-text p {
                 font-size: 1rem;
                 line-height: 1.6;
             }
+
+            /* Contact Section Styles */
+            .contact-section {
+                position: relative;
+                background: #200A24;
+                padding: 80px 0;
+                overflow: hidden;
+            }
+
+            .contact-section::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.2);
+                z-index: 1;
+            }
+
+            .contact-section .container {
+                position: relative;
+                z-index: 2;
+            }
+
+            .contact-section h1,
+            .contact-section p {
+                color: white;
+                position: relative;
+                z-index: 2;
+            }
+
+            .contact-section .btn {
+                position: relative;
+                z-index: 2;
+            }
+
             @media (max-width: 991px) {
                 .blog-posts-slider {
                     padding: 20px 40px;
@@ -168,6 +244,7 @@
                 .blog-slider-next { right: -20px; }
                 .blog-slider-prev { left: -20px; }
             }
+
             @media (max-width: 767px) {
                 .blog-posts-slider {
                     padding: 20px 30px;
@@ -250,148 +327,74 @@
         </section>
         <!-- end intro section -->
 
-        <!-- start projects section -->
-        <section class="pt-5 pb-5">
+        <!-- start project blocks section -->
+        <section class="bg-dark-gray">
             <div class="container">
                 <div class="row">
-                    <div class="col-12">
-                        <!-- Project boxes with gradient backgrounds -->
-                        <style>
-                            .project-box {
-                                background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
-                                border-radius: 12px;
-                                transition: all 0.3s ease;
-                                border: 1px solid rgba(0,0,0,0.05);
-                                height: 100%;
-                                margin-bottom: 30px;
-                            }
-                            .project-box:hover {
-                                transform: translateY(-5px);
-                                box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-                                border-color: rgba(255,75,54,0.1);
-                            }
-                        </style>
-                        <div class="row">
-                            <!-- Project 1 -->
-                            <div class="col-lg-6 mb-4">
-                                <div class="project-box p-4 box-shadow-medium">
-                                    <h3 class="text-dark-gray fw-600 mb-3">Mapapp Interactive Posters</h3>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <p class="mb-2"><strong>Opportunity by:</strong> The Innovation Fund of the Republic of Serbia</p>
-                                            <p class="mb-2"><strong>Title of the call:</strong> /</p>
-                                            <p class="mb-2"><strong>Programme:</strong> Matching grants</p>
-                                            <p class="mb-2"><strong>Call URL:</strong> /</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Project 2 -->
-                            <div class="col-lg-6 mb-4">
-                                <div class="project-box p-4 box-shadow-medium">
-                                    <h3 class="text-dark-gray fw-600 mb-3">NEWLOCAL - New approaches for local media</h3>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <p class="mb-2"><strong>Opportunity by:</strong> European Commission, EU</p>
-                                            <p class="mb-2"><strong>Title of the call:</strong> NEWS - Journalism Partnerships</p>
-                                            <p class="mb-2"><strong>Programme:</strong> CREA</p>
-                                            <p class="mb-2"><strong>Call URL:</strong> <a href="https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/crea-cross-2022-jourpart" target="_blank">View Call</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Project 3 -->
-                            <div class="col-lg-6 mb-4">
-                                <div class="project-box p-4 box-shadow-medium">
-                                    <h3 class="text-dark-gray fw-600 mb-3">Media Masters: Enhancing Media Literacy</h3>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <p class="mb-2"><strong>Opportunity by:</strong> European Commission, EU</p>
-                                            <p class="mb-2"><strong>Title of the call:</strong> Citizens' engagement and participation</p>
-                                            <p class="mb-2"><strong>Programme:</strong> CERV</p>
-                                            <p class="mb-2"><strong>Call URL:</strong> <a href="https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/cerv-2023-citizens-civ" target="_blank">View Call</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Project 4 -->
-                            <div class="col-lg-6 mb-4">
-                                <div class="project-box p-4 box-shadow-medium">
-                                    <h3 class="text-dark-gray fw-600 mb-3">Precise transcription of media content in Serbian</h3>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <p class="mb-2"><strong>Opportunity by:</strong> The Innovation Fund of the Republic of Serbia</p>
-                                            <p class="mb-2"><strong>Title of the call:</strong> GovTech</p>
-                                            <p class="mb-2"><strong>Programme:</strong> GovTech</p>
-                                            <p class="mb-2"><strong>Call URL:</strong> <a href="https://www.inovacionifond.rs/cir/program/govtech-program" target="_blank">View Call</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Project 5 -->
-                            <div class="col-lg-6 mb-4">
-                                <div class="project-box p-4 box-shadow-medium">
-                                    <h3 class="text-dark-gray fw-600 mb-3">UpSpace: Upcycling and Regeneration of urban Space for green skills</h3>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <p class="mb-2"><strong>Opportunity by:</strong> European Commission, EU</p>
-                                            <p class="mb-2"><strong>Title of the call:</strong> Cooperation partnerships in school education (KA220-SCH)</p>
-                                            <p class="mb-2"><strong>Programme:</strong> Erasmus+</p>
-                                            <p class="mb-2"><strong>Call URL:</strong> /</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Project 6 -->
-                            <div class="col-lg-6 mb-4">
-                                <div class="project-box p-4 box-shadow-medium">
-                                    <h3 class="text-dark-gray fw-600 mb-3">Safeguard the Truth - AI Solution for whistleblower Reporting Support</h3>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <p class="mb-2"><strong>Opportunity by:</strong> European Commission, EU</p>
-                                            <p class="mb-2"><strong>Title of the call:</strong> CERV-2024-CHAR-LITI</p>
-                                            <p class="mb-2"><strong>Programme:</strong> CERV</p>
-                                            <p class="mb-2"><strong>Call URL:</strong> <a href="https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/cerv-2024-char-liti-whistle?order=DESC&pageNumber=1&pageSize=50&sortBy=startDate&isExactMatch=true&status=31094501,31094502&frameworkProgramme=43251589&callIdentifier=CERV-2024-CHAR-LITI" target="_blank">View Call</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="col-12 mb-5">
+                        <h2 class="text-white mb-0">Our Projects</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 mb-4">
+                        <div class="project-box">
+                            <h3>AI Innovation Hub</h3>
+                            <p><strong>Opportunity Provider:</strong> European Commission</p>
+                            <p><strong>Title of the Call:</strong> Digital Innovation Hubs</p>
+                            <p><strong>Programme:</strong> Digital Europe Programme</p>
+                            <a href="#" class="read-more">Learn more <i class="fas fa-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                        <div class="project-box">
+                            <h3>Smart Manufacturing Solutions</h3>
+                            <p><strong>Opportunity Provider:</strong> Horizon Europe</p>
+                            <p><strong>Title of the Call:</strong> Industry 4.0 Transformation</p>
+                            <p><strong>Programme:</strong> Industrial Leadership</p>
+                            <a href="#" class="read-more">Learn more <i class="fas fa-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                        <div class="project-box">
+                            <h3>AI for Healthcare</h3>
+                            <p><strong>Opportunity Provider:</strong> EIT Health</p>
+                            <p><strong>Title of the Call:</strong> Digital Health Innovation</p>
+                            <p><strong>Programme:</strong> Healthcare Innovation</p>
+                            <a href="#" class="read-more">Learn more <i class="fas fa-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                        <div class="project-box">
+                            <h3>Sustainable AI Solutions</h3>
+                            <p><strong>Opportunity Provider:</strong> Green Deal</p>
+                            <p><strong>Title of the Call:</strong> Green Technology Innovation</p>
+                            <p><strong>Programme:</strong> Climate Innovation</p>
+                            <a href="#" class="read-more">Learn more <i class="fas fa-arrow-right ms-2"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- end projects section -->
+        <!-- end project blocks section -->
 
         <!-- start blog slider section -->
-        <section style="background: #200A24;">
+        <section class="bg-dark-gray pb-0">
             <div class="container">
-                <div class="row align-items-center mb-4">
-                    <div class="col-xl-5 lg-mb-30px text-center text-xl-start">
-                        <h3 class="text-white fw-600 mb-0 ls-minus-2px">Recent blog posts</h3>
-                    </div>
-                    <div class="col-xl-7 tab-style-04 text-center text-xl-end">
-                        <ul class="portfolio-filter nav nav-tabs justify-content-center justify-content-xl-end border-0 fw-500">
-                            <li class="nav active"><a data-filter="*" href="#">All</a></li>
-                            <li class="nav"><a data-filter="10" href="#">Grant Projects</a></li>
-                        </ul>
+                <div class="row justify-content-center">
+                    <div class="col-12 col-xl-5 col-lg-6 text-center margin-5-rem-bottom md-margin-3-rem-bottom">
+                        <h3 class="text-white alt-font font-weight-600 text-uppercase letter-spacing-minus-1px">Grant Projects</h3>
+                        <span class="text-medium d-block margin-10px-bottom">Latest updates from our grant projects</span>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12">
-                        <div class="blog-posts-slider">
-                            <div class="swiper-wrapper" id="articlesContainer">
-                                <!-- Articles will be loaded here -->
+                    <div class="col-12 blog-content">
+                        <div class="swiper-container black-move blog-posts-slider" data-slider-options='{ "loop": true, "centeredSlides": false, "slidesPerView": 3, "spaceBetween": 30, "autoplay": { "delay": 3000, "disableOnInteraction": false }, "navigation": { "nextEl": ".blog-slider-next", "prevEl": ".blog-slider-prev" }, "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "1200": { "slidesPerView": 3 }, "992": { "slidesPerView": 2 }, "768": { "slidesPerView": 2 }, "576": { "slidesPerView": 1 } } }'>
+                            <div class="swiper-wrapper" id="grantProjectsSlider">
+                                <!-- Blog posts will be dynamically loaded here -->
                             </div>
-                            <!-- Add Navigation -->
-                            <div class="swiper-button-next blog-slider-next"></div>
-                            <div class="swiper-button-prev blog-slider-prev"></div>
                         </div>
+                        <div class="blog-slider-prev swiper-button-prev d-none d-md-flex"></div>
+                        <div class="blog-slider-next swiper-button-next d-none d-md-flex"></div>
                     </div>
                 </div>
             </div>
@@ -399,9 +402,9 @@
         <!-- end blog slider section -->
 
         <!-- start contact section -->
-        <section class="cover-background one-third-screen sm-h-500px pb-0 position-relative" style="background-color: #200A24;">
+        <section class="contact-section position-relative overflow-visible">
             <div class="opacity-extra-medium bg-dark-gray"></div> 
-            <div class="container h-100"> 
+            <div class="container position-relative z-index-1"> 
                 <div class="row align-items-center justify-content-center h-100">
                     <div class="col-xl-8 col-lg-10 mb-9 md-mb-15 position-relative z-index-1 text-center d-flex flex-wrap align-items-center justify-content-center" data-anime='{ "el": "childs", "translateY": [50, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'>   
                         <h1 class="text-white fw-600 ls-minus-2px mb-4">Contact Us</h1>
@@ -415,7 +418,7 @@
                     </div>  
                 </div> 
             </div>
-            <div class="shape-image-animation p-0 w-100 bottom-minus-40px xl-bottom-0px d-none d-md-block"> 
+            <div class="shape-image-animation p-0 w-100 bottom-minus-40px xl-bottom-0px d-none d-md-block position-absolute" style="z-index: 1;"> 
                 <svg xmlns="http://www.w3.org/2000/svg" width="3000" height="400" viewBox="0 180 2500 200" fill="#ffffff"> 
                     <path class="st1" d="M 0 250 C 1200 400 1200 50 3000 250 L 3000 550 L 0 550 L 0 250">
                         <animate
@@ -508,121 +511,74 @@
                 }
             });
 
-            // Blog slider functionality
             document.addEventListener('DOMContentLoaded', function() {
-                const filterButtons = document.querySelectorAll('.portfolio-filter a');
-                let blogSlider;
-
-                function initializeSwiper() {
-                    if (blogSlider) {
-                        blogSlider.destroy(true, true);
-                    }
-                    
-                    blogSlider = new Swiper('.blog-posts-slider', {
-                        slidesPerView: 1,
-                        spaceBetween: 30,
-                        loop: true,
-                        grabCursor: true,
-                        watchOverflow: true,
-                        speed: 800,
-                        navigation: {
-                            nextEl: '.blog-slider-next',
-                            prevEl: '.blog-slider-prev',
+                // Initialize Swiper
+                const swiper = new Swiper('.blog-posts-slider', {
+                    loop: true,
+                    centeredSlides: false,
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                    autoplay: {
+                        delay: 3000,
+                        disableOnInteraction: false
+                    },
+                    navigation: {
+                        nextEl: '.blog-slider-next',
+                        prevEl: '.blog-slider-prev'
+                    },
+                    keyboard: {
+                        enabled: true,
+                        onlyInViewport: true
+                    },
+                    breakpoints: {
+                        1200: {
+                            slidesPerView: 3
                         },
-                        breakpoints: {
-                            768: {
-                                slidesPerView: 2
-                            },
-                            992: {
-                                slidesPerView: 3
-                            }
+                        992: {
+                            slidesPerView: 2
+                        },
+                        768: {
+                            slidesPerView: 2
+                        },
+                        576: {
+                            slidesPerView: 1
                         }
-                    });
-                }
-
-                function fetchAndDisplayArticles(filter = '*') {
-                    let apiUrl = 'https://app-works.app/api/webV2/getArticles';
-
-                    if (filter === '*') {
-                        apiUrl += '?articleLimit=20';
-                    } else {
-                        apiUrl += `?category[]=${encodeURIComponent(filter)}&articleLimit=20`;
                     }
+                });
 
-                    fetch(apiUrl, {
-                        headers: {
-                            'Authorization': 'kmNTuI8dRmRX'
-                        }
-                    })
+                // Fetch and display grant project articles
+                fetch('https://app-works.app/api/webV2/getArticles?category=Grant%20projects&limit=20')
                     .then(response => response.json())
                     .then(data => {
-                        const articlesContainer = document.getElementById('articlesContainer');
-                        if (!data.success || !data.result || !data.result.articles || data.result.articles.length === 0) {
-                            articlesContainer.innerHTML = '<div class="swiper-slide"><div class="blog-card"><div class="blog-text"><h3>No articles found</h3></div></div></div>';
-                            return;
-                        }
-
-                        articlesContainer.innerHTML = ''; // Clear old articles
-
-                        data.result.articles.forEach(article => {
-                            const articleHtml = `
-                                <div class="swiper-slide">
-                                    <a href="article.html?id=${article.id}" class="text-decoration-none">
-                                        <div class="blog-card">
-                                            <div class="blog-container">
-                                                <div class="blog-overlay">
-                                                    <div class="blog-content">
-                                                        <div class="arrow-container">
-                                                            <i class="fa-solid fa-arrow-right"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="blog-image">
-                                                    <img src="${article.media['medium-full']}"
-                                                         onerror="this.src='https://appworks-tmp.mpanel.app/images/placeholder.jpg'"
-                                                         alt="${article.title}"
-                                                         style="width: 100%; height: 250px; object-fit: cover;">
-                                                </div>
-                                                <div class="blog-text">
-                                                    <h3 class="text-dark-gray fs-20 fw-600 mb-3">${article.title}</h3>
-                                                    <p class="text-dark-gray opacity-6">${article.intro}</p>
-                                                </div>
-                                            </div>
+                        const slider = document.getElementById('grantProjectsSlider');
+                        if (data && data.length > 0) {
+                            data.forEach(article => {
+                                const slide = document.createElement('div');
+                                slide.className = 'swiper-slide';
+                                slide.innerHTML = `
+                                    <div class="blog-card">
+                                        <div class="blog-image">
+                                            <img src="${article.image || 'path/to/default-image.jpg'}" alt="${article.title}">
                                         </div>
-                                    </a>
-                                </div>
-                            `;
-                            articlesContainer.insertAdjacentHTML('beforeend', articleHtml);
-                        });
-
-                        // Initialize Swiper after adding slides
-                        setTimeout(() => {
-                            initializeSwiper();
-                        }, 100);
+                                        <div class="blog-text">
+                                            <h3>${article.title}</h3>
+                                            <p>${article.description ? article.description.substring(0, 150) + '...' : ''}</p>
+                                            <a href="${article.url}" class="btn btn-small btn-transparent-dark-gray">Read More</a>
+                                        </div>
+                                    </div>
+                                `;
+                                slider.appendChild(slide);
+                            });
+                            swiper.update();
+                        } else {
+                            slider.innerHTML = '<div class="col-12 text-center"><p class="text-white">No grant project articles found.</p></div>';
+                        }
                     })
                     .catch(error => {
                         console.error('Error fetching articles:', error);
-                        const articlesContainer = document.getElementById('articlesContainer');
-                        articlesContainer.innerHTML = '<div class="swiper-slide"><div class="blog-card"><div class="blog-text"><h3>Error loading articles</h3></div></div></div>';
+                        const slider = document.getElementById('grantProjectsSlider');
+                        slider.innerHTML = '<div class="col-12 text-center"><p class="text-white">Error loading articles. Please try again later.</p></div>';
                     });
-                }
-
-                // Initial load of all articles
-                fetchAndDisplayArticles('10'); // Load only Grant Projects articles
-
-                // Add click handlers for filter buttons
-                filterButtons.forEach(button => {
-                    button.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        
-                        // Update active state
-                        filterButtons.forEach(btn => btn.parentElement.classList.remove('active'));
-                        button.parentElement.classList.add('active');
-                        
-                        const filter = button.getAttribute('data-filter');
-                        fetchAndDisplayArticles(filter === '*' ? '10' : filter);
-                    });
-                });
             });
         </script>
     </body>
