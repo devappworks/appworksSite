@@ -780,7 +780,7 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <div class="swiper-container blog-posts-slider">
+                        <div class="blog-posts-slider">
                             <div class="swiper-wrapper" id="articlesContainer">
                                 <!-- Articles will be loaded here -->
                             </div>
@@ -843,6 +843,7 @@
                     .then(data => {
                         const articlesContainer = document.getElementById('articlesContainer');
                         if (!data.success || !data.result || !data.result.articles || data.result.articles.length === 0) {
+                            articlesContainer.innerHTML = '<div class="swiper-slide"><div class="blog-card"><div class="blog-text"><h3>No articles found</h3></div></div></div>';
                             return;
                         }
 
@@ -852,7 +853,7 @@
                             const articleHtml = `
                                 <div class="swiper-slide">
                                     <a href="article.html?id=${article.id}" class="text-decoration-none">
-                                        <div class="blog-card h-100">
+                                        <div class="blog-card">
                                             <div class="blog-container">
                                                 <div class="blog-overlay">
                                                     <div class="blog-content">
@@ -868,8 +869,8 @@
                                                          style="width: 100%; height: 250px; object-fit: cover;">
                                                 </div>
                                                 <div class="blog-text">
-                                                    <h3 class="text-dark-gray fs-20 fw-600 mb-3" style="min-height: 60px;">${article.title}</h3>
-                                                    <p class="text-dark-gray opacity-6" style="font-size: 14px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">${article.intro}</p>
+                                                    <h3 class="text-dark-gray fs-20 fw-600 mb-3">${article.title}</h3>
+                                                    <p class="text-dark-gray opacity-6">${article.intro}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -886,6 +887,8 @@
                     })
                     .catch(error => {
                         console.error('Error fetching articles:', error);
+                        const articlesContainer = document.getElementById('articlesContainer');
+                        articlesContainer.innerHTML = '<div class="swiper-slide"><div class="blog-card"><div class="blog-text"><h3>Error loading articles</h3></div></div></div>';
                     });
                 }
 
@@ -910,9 +913,11 @@
 
         <style>
             .blog-posts-slider {
-                padding: 20px 60px;
-                margin: 0 -60px;
-                overflow: visible;
+                position: relative;
+                width: 100%;
+                height: auto;
+                margin: 0 auto;
+                overflow: hidden;
             }
 
             .blog-slider-next,
@@ -930,7 +935,6 @@
                 z-index: 100;
                 cursor: pointer;
                 transition: all 0.3s ease;
-                opacity: 1 !important;
             }
 
             .blog-slider-next:hover,
@@ -940,11 +944,11 @@
             }
 
             .blog-slider-next {
-                right: 0;
+                right: -25px;
             }
 
             .blog-slider-prev {
-                left: 0;
+                left: -25px;
             }
 
             .blog-slider-next::after,
@@ -953,7 +957,6 @@
                 font-weight: 900;
                 color: white !important;
                 font-size: 20px !important;
-                line-height: 1;
             }
 
             .blog-slider-next:after {
@@ -968,9 +971,9 @@
                 background: white;
                 border-radius: 12px;
                 overflow: hidden;
-                transition: transform 0.3s ease;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
                 height: 100%;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+                transition: transform 0.3s ease;
             }
 
             .blog-card:hover {
@@ -980,7 +983,6 @@
 
             .blog-container {
                 position: relative;
-                overflow: hidden;
             }
 
             .blog-overlay {
@@ -992,7 +994,6 @@
                 background: rgba(32, 10, 36, 0.7);
                 opacity: 0;
                 transition: opacity 0.3s ease;
-                z-index: 2;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -1000,6 +1001,46 @@
 
             .blog-container:hover .blog-overlay {
                 opacity: 1;
+            }
+
+            .blog-image {
+                position: relative;
+                height: 250px;
+                overflow: hidden;
+            }
+
+            .blog-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+            }
+
+            .blog-container:hover .blog-image img {
+                transform: scale(1.1);
+            }
+
+            .blog-text {
+                padding: 20px;
+            }
+
+            .blog-text h3 {
+                margin-bottom: 10px;
+                line-height: 1.4;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
+            .blog-text p {
+                font-size: 14px;
+                line-height: 1.6;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                margin-bottom: 0;
             }
 
             .arrow-container {
@@ -1013,26 +1054,21 @@
                 transition: transform 0.3s ease;
             }
 
-            .blog-container:hover .arrow-container {
-                transform: translateX(10px);
-            }
-
             .arrow-container i {
                 color: white;
                 font-size: 24px;
             }
 
-            @media (max-width: 991px) {
-                .blog-posts-slider {
-                    padding: 20px 40px;
-                    margin: 0 -40px;
-                }
+            .blog-container:hover .arrow-container {
+                transform: translateX(10px);
             }
 
-            @media (max-width: 767px) {
-                .blog-posts-slider {
-                    padding: 20px 30px;
-                    margin: 0 -30px;
+            @media (max-width: 991px) {
+                .blog-slider-next {
+                    right: -15px;
+                }
+                .blog-slider-prev {
+                    left: -15px;
                 }
             }
         </style>
