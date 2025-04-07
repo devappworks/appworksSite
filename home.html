@@ -780,15 +780,13 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <div class="blog-posts-slider">
-                            <div class="swiper-container">
-                                <div class="swiper-wrapper" id="articlesContainer">
-                                    <!-- Articles will be loaded here -->
-                                </div>
-                                <!-- Add Navigation -->
-                                <div class="swiper-button-next blog-slider-next"></div>
-                                <div class="swiper-button-prev blog-slider-prev"></div>
+                        <div class="swiper-container blog-posts-slider">
+                            <div class="swiper-wrapper" id="articlesContainer">
+                                <!-- Articles will be loaded here -->
                             </div>
+                            <!-- Add Navigation -->
+                            <div class="swiper-button-next blog-slider-next"></div>
+                            <div class="swiper-button-prev blog-slider-prev"></div>
                         </div>
                     </div>
                 </div>
@@ -805,7 +803,7 @@
                         blogSlider.destroy(true, true);
                     }
                     
-                    blogSlider = new Swiper('.blog-posts-slider .swiper-container', {
+                    blogSlider = new Swiper('.blog-posts-slider', {
                         slidesPerView: 1,
                         spaceBetween: 30,
                         loop: true,
@@ -831,7 +829,7 @@
                     let apiUrl = 'https://app-works.app/api/webV2/getArticles';
 
                     if (filter === '*') {
-                        apiUrl += '?articleLimit=20';  // Increased limit for more articles
+                        apiUrl += '?articleLimit=20';
                     } else {
                         apiUrl += `?category[]=${encodeURIComponent(filter)}&articleLimit=20`;
                     }
@@ -867,7 +865,7 @@
                                                     <img src="${article.media['medium-full']}"
                                                          onerror="this.src='https://appworks-tmp.mpanel.app/images/placeholder.jpg'"
                                                          alt="${article.title}"
-                                                         style="width: 100%; height: 100%; object-fit: cover;">
+                                                         style="width: 100%; height: 250px; object-fit: cover;">
                                                 </div>
                                                 <div class="blog-text">
                                                     <h3 class="text-dark-gray fs-20 fw-600 mb-3" style="min-height: 60px;">${article.title}</h3>
@@ -935,8 +933,22 @@
                 opacity: 1 !important;
             }
 
-            .blog-slider-next:after,
-            .blog-slider-prev:after {
+            .blog-slider-next:hover,
+            .blog-slider-prev:hover {
+                background: #200A24 !important;
+                transform: translateY(-50%) scale(1.1);
+            }
+
+            .blog-slider-next {
+                right: 0;
+            }
+
+            .blog-slider-prev {
+                left: 0;
+            }
+
+            .blog-slider-next::after,
+            .blog-slider-prev::after {
                 font-family: "Font Awesome 6 Free" !important;
                 font-weight: 900;
                 color: white !important;
@@ -952,18 +964,62 @@
                 content: "\f053" !important;
             }
 
-            .blog-slider-next {
-                right: 0;
+            .blog-card {
+                background: white;
+                border-radius: 12px;
+                overflow: hidden;
+                transition: transform 0.3s ease;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+                height: 100%;
             }
 
-            .blog-slider-prev {
+            .blog-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .blog-container {
+                position: relative;
+                overflow: hidden;
+            }
+
+            .blog-overlay {
+                position: absolute;
+                top: 0;
                 left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(32, 10, 36, 0.7);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                z-index: 2;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
 
-            .blog-slider-next:hover,
-            .blog-slider-prev:hover {
-                background: #200A24 !important;
-                transform: translateY(-50%) scale(1.1);
+            .blog-container:hover .blog-overlay {
+                opacity: 1;
+            }
+
+            .arrow-container {
+                width: 50px;
+                height: 50px;
+                background: #FF4B36;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: transform 0.3s ease;
+            }
+
+            .blog-container:hover .arrow-container {
+                transform: translateX(10px);
+            }
+
+            .arrow-container i {
+                color: white;
+                font-size: 24px;
             }
 
             @media (max-width: 991px) {
