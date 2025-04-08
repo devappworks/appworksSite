@@ -151,9 +151,9 @@
                 <div class="container-fluid">
                     <div class="col-auto col-xxl-3 col-lg-2 me-lg-0 me-auto">
                         <a class="navbar-brand" href="home.html">
-                            <img src="images/appworks.png" data-at2x="images/appworks.png" alt="Appworks Logo" class="default-logo">
-                            <img src="images/appworks-black.png" data-at2x="images/appworks-black.png" alt="Appworks Logo" class="alt-logo">
-                            <img src="images/appworks.png" data-at2x="images/appworks.png" alt="Appworks Logo" class="mobile-logo">
+                            <img src="images/appworks.png" data-at2x="images/appworks@2x.png" alt="Appworks Logo" class="default-logo">
+                            <img src="images/appworks-black.png" data-at2x="images/appworks-black@2x.png" alt="Appworks Logo" class="alt-logo">
+                            <img src="images/appworks.png" data-at2x="images/appworks@2x.png" alt="Appworks Logo" class="mobile-logo">
                         </a>
                     </div>
                     <div class="col-auto col-xxl-6 col-lg-8 menu-order position-static">
@@ -432,7 +432,10 @@
         <!-- start scroll progress -->
         <div class="scroll-progress d-none d-xxl-block">
             <a href="#" class="scroll-top" aria-label="scroll">
-                <span class="scroll-text">Scroll</span><span class="scroll-line"><span class="scroll-point"></span></span>
+                <span class="scroll-text">Scroll</span>
+                <span class="scroll-line">
+                    <span class="scroll-point"></span>
+                </span>
             </a>
         </div>
         <!-- end scroll progress -->
@@ -454,7 +457,7 @@
             });
 
             document.addEventListener('DOMContentLoaded', function() {
-                fetch('https://app-works.app/api/webV2/getArticles?category[]=4&articleLimit=3', {
+                fetch('https://app-works.app/api/webV2/getArticles?category[]=9&articleLimit=3', {
                     headers: {
                         'Authorization': 'kmNTuI8dRmRX'
                     }
