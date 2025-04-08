@@ -385,8 +385,7 @@
                     <!-- start footer column -->
                     <div class="col-6 col-xl-3 col-lg-12 col-sm-6 last-paragraph-no-margin text-xl-start text-lg-center order-sm-1 lg-mb-60px sm-mb-40px">
                         <a href="demo-it-business.html" class="footer-logo mb-15px d-inline-block">
-                            <img src="https://appworks-tmp.mpanel.app/images/appworks-black - 114x114.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks-black - 114x114.png" alt="Appworks Logo">
-                        </a>
+                            <img src="https://appworks-tmp.mpanel.app/images/appworks-black - 114x114.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks-black - 114x114.png" alt="Appworks Logo">                        </a>
                         <p class="lh-28 w-90 xl-w-100 mx-lg-auto mx-xl-0">Creative solutions for innovative partners.</p>
                         <div class="elements-social social-icon-style-02 mt-15px">
                             <ul class="medium-icon dark">
@@ -456,35 +455,30 @@
 
             document.addEventListener('DOMContentLoaded', function() {
                 // Fetch and display articles
-                async function fetchArticles() {
-                    try {
-                        const response = await fetch('https://app-works.app/api/webV2/getArticles?limit=3');
-                        const data = await response.json();
-                        
-                        if (data && data.articles && data.articles.length > 0) {
-                            const aiArticles = data.articles.filter(article => 
-                                article.category_id === 9 || 
-                                (article.category && article.category.toLowerCase() === 'ai')
-                            );
-
-                            if (aiArticles.length === 0) {
-                                document.getElementById('articlesContainer').innerHTML = 
-                                    '<div class="col-12 text-center"><p class="text-white opacity-6">No articles found in the AI category.</p></div>';
-                                return;
-                            }
-
-                            const articlesHTML = aiArticles.slice(0, 3).map(article => `
-                                <div class="col-lg-4 col-md-6 mb-4">
+                fetch('https://app-works.app/api/webV2/getArticles?category[]=9&articleLimit=3', {
+                    headers: {
+                        'Authorization': 'kmNTuI8dRmRX'
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success && data.result.articles) {
+                            const articlesContainer = document.getElementById('articlesContainer');
+                            articlesContainer.innerHTML = '';
+                            data.result.articles.forEach(article => {
+                                const articleHtml = `
+                                <div class="col-lg-4 mb-4">
                                     <div class="blog-card h-100">
                                         <div class="blog-container">
                                             <div class="blog-image">
-                                                <img src="${article.image || 'https://appworks-tmp.mpanel.app/images/placeholder.jpg'}"
+                                                <img src="${article.media['medium-full']}"
+                                                     onerror="this.src='https://appworks-tmp.mpanel.app/images/placeholder.jpg'"
                                                      alt="${article.title}"
-                                                     onerror="this.src='https://appworks-tmp.mpanel.app/images/placeholder.jpg'">
+                                                     class="w-100">
                                             </div>
                                             <div class="blog-text">
-                                                <h3 class="text-white">${article.title}</h3>
-                                                <p>${article.description ? article.description.substring(0, 150) + '...' : ''}</p>
+                                                <h3 class="text-white fs-24 fw-600 mb-3">${article.title}</h3>
+                                                <p class="text-white opacity-6">${article.intro}</p>
                                                 <a href="${article.url || '#'}" class="btn btn-small btn-gradient-purple-pink btn-rounded">
                                                     Read More <i class="fas fa-arrow-right ms-2"></i>
                                                 </a>
@@ -492,21 +486,19 @@
                                         </div>
                                     </div>
                                 </div>
-                            `).join('');
-
-                            document.getElementById('articlesContainer').innerHTML = articlesHTML;
+                            `;
+                                articlesContainer.innerHTML += articleHtml;
+                            });
                         } else {
                             document.getElementById('articlesContainer').innerHTML = 
                                 '<div class="col-12 text-center"><p class="text-white opacity-6">No articles available at the moment.</p></div>';
                         }
-                    } catch (error) {
+                    })
+                    .catch(error => {
                         console.error('Error fetching articles:', error);
                         document.getElementById('articlesContainer').innerHTML = 
                             '<div class="col-12 text-center"><p class="text-white opacity-6">Error loading articles. Please try again later.</p></div>';
-                    }
-                }
-
-                fetchArticles();
+                    });
             });
         </script>
     </body>
