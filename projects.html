@@ -26,14 +26,19 @@
             /* Header styles */
             .header-transparent {
                 background: rgba(32, 10, 36, 0.95) !important;
+                transition: all 0.3s ease;
             }
             .navbar {
                 padding: 20px 0;
                 transition: all 0.3s ease;
             }
             .fixed-header .navbar {
-                background: rgba(32, 10, 36, 0.95) !important;
+                background: rgba(255, 255, 255, 0.95) !important;
                 padding: 15px 0;
+                box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
+            }
+            .fixed-header .nav-link {
+                color: #200A24 !important;
             }
             .nav-link {
                 color: white !important;
@@ -42,6 +47,15 @@
             }
             .nav-link:hover {
                 opacity: 1;
+            }
+            .fixed-header .default-logo {
+                display: none;
+            }
+            .fixed-header .alt-logo {
+                display: inline-block;
+            }
+            .alt-logo {
+                display: none;
             }
             
             /* Project box styles */
@@ -124,11 +138,14 @@
                 margin-bottom: 1rem;
                 flex-grow: 1;
             }
+            .blog-card .btn {
+                align-self: flex-start;
+            }
         </style>
     </head>
     <body data-mobile-nav-style="full-screen-menu" data-mobile-nav-bg-color="#252840">  
         <!-- start header -->
-        <header> 
+        <header class="header-with-topbar"> 
             <!-- start navigation -->
             <nav class="navbar navbar-expand-lg header-transparent bg-transparent header-reverse glass-effect" data-header-hover="light">
                 <div class="container-fluid">
@@ -445,17 +462,18 @@
                         const data = await response.json();
                         
                         if (data && data.articles && data.articles.length > 0) {
-                            const grantArticles = data.articles.filter(article => 
-                                article.category && article.category.toLowerCase() === 'grant projects'
+                            const aiArticles = data.articles.filter(article => 
+                                article.category_id === 9 || 
+                                (article.category && article.category.toLowerCase() === 'ai')
                             );
 
-                            if (grantArticles.length === 0) {
+                            if (aiArticles.length === 0) {
                                 document.getElementById('articlesContainer').innerHTML = 
-                                    '<div class="col-12 text-center"><p class="text-white opacity-6">No articles found in the Grant Projects category.</p></div>';
+                                    '<div class="col-12 text-center"><p class="text-white opacity-6">No articles found in the AI category.</p></div>';
                                 return;
                             }
 
-                            const articlesHTML = grantArticles.slice(0, 3).map(article => `
+                            const articlesHTML = aiArticles.slice(0, 3).map(article => `
                                 <div class="col-lg-4 col-md-6 mb-4">
                                     <div class="blog-card h-100">
                                         <div class="blog-container">
