@@ -151,9 +151,9 @@
                 <div class="container-fluid">
                     <div class="col-auto col-xxl-3 col-lg-2 me-lg-0 me-auto">
                         <a class="navbar-brand" href="home.html">
-                            <img src="https://appworks-tmp.mpanel.app/images/appworks.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks.png" alt="Appworks Logo" class="default-logo">
-                            <img src="https://appworks-tmp.mpanel.app/images/appworks-black.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks-black.png" alt="Appworks Logo" class="alt-logo">
-                            <img src="https://appworks-tmp.mpanel.app/images/appworks.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks.png" alt="Appworks Logo" class="mobile-logo">
+                            <img src="images/appworks.png" data-at2x="images/appworks.png" alt="Appworks Logo" class="default-logo">
+                            <img src="images/appworks-black.png" data-at2x="images/appworks-black.png" alt="Appworks Logo" class="alt-logo">
+                            <img src="images/appworks.png" data-at2x="images/appworks.png" alt="Appworks Logo" class="mobile-logo">
                         </a>
                     </div>
                     <div class="col-auto col-xxl-6 col-lg-8 menu-order position-static">
@@ -454,8 +454,7 @@
             });
 
             document.addEventListener('DOMContentLoaded', function() {
-                // Fetch and display articles
-                fetch('https://app-works.app/api/webV2/getArticles?category[]=9&articleLimit=3', {
+                fetch('https://app-works.app/api/webV2/getArticles?category[]=4&articleLimit=3', {
                     headers: {
                         'Authorization': 'kmNTuI8dRmRX'
                     }
@@ -470,18 +469,22 @@
                                 <div class="col-lg-4 mb-4">
                                     <div class="blog-card h-100">
                                         <div class="blog-container">
+                                            <div class="blog-overlay">
+                                                <div class="blog-content">
+                                                    <div class="arrow-container">
+                                                        <i class="bi bi-arrow-right"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="blog-image">
                                                 <img src="${article.media['medium-full']}"
-                                                     onerror="this.src='https://appworks-tmp.mpanel.app/images/placeholder.jpg'"
+                                                     onerror="this.src='https://source.unsplash.com/random/800x600/?article'"
                                                      alt="${article.title}"
                                                      class="w-100">
                                             </div>
                                             <div class="blog-text">
                                                 <h3 class="text-white fs-24 fw-600 mb-3">${article.title}</h3>
                                                 <p class="text-white opacity-6">${article.intro}</p>
-                                                <a href="${article.url || '#'}" class="btn btn-small btn-gradient-purple-pink btn-rounded">
-                                                    Read More <i class="fas fa-arrow-right ms-2"></i>
-                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -489,9 +492,6 @@
                             `;
                                 articlesContainer.innerHTML += articleHtml;
                             });
-                        } else {
-                            document.getElementById('articlesContainer').innerHTML = 
-                                '<div class="col-12 text-center"><p class="text-white opacity-6">No articles available at the moment.</p></div>';
                         }
                     })
                     .catch(error => {
