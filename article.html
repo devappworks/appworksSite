@@ -26,53 +26,89 @@
             }
             
             .article-content {
-                max-width: 800px;
+                max-width: 860px;
                 margin: 0 auto;
                 padding: 60px 20px;
             }
             
             .article-image {
                 width: 100%;
-                height: 400px;
+                height: 500px;
                 object-fit: cover;
                 border-radius: 12px;
-                margin-bottom: 30px;
+                margin: -120px auto 40px;
                 box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                position: relative;
             }
             
             .article-title {
-                font-size: 2.5rem;
-                line-height: 1.3;
+                font-size: 3rem;
+                line-height: 1.2;
                 margin-bottom: 20px;
                 color: #200A24;
-                font-weight: 600;
+                font-weight: 700;
             }
             
             .article-meta {
                 color: #666;
                 margin-bottom: 30px;
-                font-size: 0.9rem;
+                font-size: 0.95rem;
                 display: flex;
                 align-items: center;
+                gap: 20px;
             }
             
             .article-meta i {
                 color: #FF4B36;
                 margin-right: 8px;
             }
+
+            .article-breadcrumbs {
+                margin-bottom: 30px;
+                font-size: 0.9rem;
+                color: #666;
+            }
+
+            .article-breadcrumbs a {
+                color: #FF4B36;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+            .article-breadcrumbs a:hover {
+                color: #200A24;
+            }
+
+            .article-breadcrumbs span {
+                margin: 0 8px;
+                color: #999;
+            }
             
             .article-text {
-                font-size: 1.1rem;
+                font-size: 18px;
                 line-height: 1.8;
                 color: #333;
+                font-weight: 400;
+            }
+
+            .article-text p {
+                margin-bottom: 1.5em;
+            }
+
+            .article-text img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 8px;
+                margin: 2em 0;
             }
             
             .article-intro {
-                font-size: 1.2rem;
-                line-height: 1.8;
+                font-size: 22px;
+                line-height: 1.6;
                 color: #200A24;
-                margin-bottom: 30px;
+                margin-bottom: 40px;
                 font-weight: 500;
+                opacity: 0.85;
             }
             
             .back-button {
@@ -99,6 +135,98 @@
                 margin-right: 8px;
             }
 
+            .share-buttons {
+                display: flex;
+                gap: 15px;
+                margin: 30px 0;
+            }
+
+            .share-button {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                text-decoration: none;
+                transition: all 0.3s ease;
+            }
+
+            .share-button:hover {
+                transform: translateY(-3px);
+            }
+
+            .share-button.twitter {
+                background: #1DA1F2;
+            }
+
+            .share-button.linkedin {
+                background: #0077B5;
+            }
+
+            .share-button.facebook {
+                background: #4267B2;
+            }
+
+            .related-articles {
+                margin-top: 60px;
+                padding-top: 60px;
+                border-top: 1px solid #eee;
+            }
+
+            .related-articles h2 {
+                font-size: 2rem;
+                color: #200A24;
+                margin-bottom: 30px;
+                font-weight: 600;
+            }
+
+            .related-articles-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 30px;
+                margin-top: 30px;
+            }
+
+            .related-article-card {
+                background: white;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+                transition: all 0.3s ease;
+                text-decoration: none;
+            }
+
+            .related-article-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            }
+
+            .related-article-image {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+            }
+
+            .related-article-content {
+                padding: 20px;
+            }
+
+            .related-article-title {
+                font-size: 1.1rem;
+                color: #200A24;
+                margin-bottom: 10px;
+                font-weight: 600;
+                line-height: 1.4;
+            }
+
+            .related-article-excerpt {
+                font-size: 0.9rem;
+                color: #666;
+                line-height: 1.6;
+            }
+
             @media (max-width: 991px) {
                 .article-header {
                     padding: 100px 0 40px;
@@ -109,11 +237,16 @@
                 }
                 
                 .article-title {
-                    font-size: 2rem;
+                    font-size: 2.5rem;
                 }
                 
                 .article-image {
-                    height: 300px;
+                    height: 400px;
+                    margin-top: -80px;
+                }
+
+                .related-articles-grid {
+                    grid-template-columns: repeat(2, 1fr);
                 }
             }
 
@@ -123,11 +256,46 @@
                 }
                 
                 .article-title {
-                    font-size: 1.8rem;
+                    font-size: 2rem;
                 }
                 
                 .article-image {
+                    height: 300px;
+                    margin-top: -60px;
+                }
+
+                .article-text {
+                    font-size: 16px;
+                    line-height: 1.7;
+                }
+
+                .article-intro {
+                    font-size: 18px;
+                }
+
+                .related-articles-grid {
+                    grid-template-columns: 1fr;
+                    gap: 20px;
+                }
+
+                .share-buttons {
+                    justify-content: center;
+                }
+            }
+
+            @media (max-width: 400px) {
+                .article-text {
+                    font-size: 16px;
+                    line-height: 1.6;
+                }
+
+                .article-title {
+                    font-size: 1.8rem;
+                }
+
+                .article-image {
                     height: 250px;
+                    margin-top: -40px;
                 }
             }
         </style>
@@ -338,14 +506,38 @@
                         }
                     });
                     articleContainer.innerHTML = `
+                        <div class="article-breadcrumbs">
+                            <a href="home.html">Home</a>
+                            <span>/</span>
+                            <a href="articles.html">Blog</a>
+                            <span>/</span>
+                            <a href="articles.html?category=${article.category_id}">${article.category_name || 'Category'}</a>
+                        </div>
                         <img src="${article.media['medium-full'] || 'https://appworks-tmp.mpanel.app/images/placeholder.jpg'}"
                              alt="${article.title}"
                              class="article-image"
                              onerror="this.src='https://appworks-tmp.mpanel.app/images/placeholder.jpg'">
                         <h1 class="article-title">${article.title}</h1>
                         <div class="article-meta">
-                            <i class="fa-regular fa-calendar"></i>
-                            Published on ${formattedDate}
+                            <span><i class="fa-regular fa-calendar"></i> ${formattedDate}</span>
+                            <span><i class="fa-regular fa-folder"></i> ${article.category_name || 'Uncategorized'}</span>
+                        </div>
+                        <div class="share-buttons">
+                            <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(article.title)}" 
+                               target="_blank" 
+                               class="share-button twitter">
+                                <i class="fa-brands fa-x-twitter"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}" 
+                               target="_blank" 
+                               class="share-button linkedin">
+                                <i class="fa-brands fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}" 
+                               target="_blank" 
+                               class="share-button facebook">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </a>
                         </div>
                         <div class="article-intro">
                             ${article.intro || ''}
@@ -353,10 +545,73 @@
                         <div class="article-text">
                             ${articleContent}
                         </div>
+                        <div class="share-buttons">
+                            <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(article.title)}" 
+                               target="_blank" 
+                               class="share-button twitter">
+                                <i class="fa-brands fa-x-twitter"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}" 
+                               target="_blank" 
+                               class="share-button linkedin">
+                                <i class="fa-brands fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}" 
+                               target="_blank" 
+                               class="share-button facebook">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </a>
+                        </div>
+                        <div class="related-articles">
+                            <h2>Related Articles</h2>
+                            <div class="related-articles-grid" id="relatedArticlesContainer">
+                                <div class="text-center w-100">
+                                    <div class="spinner-border" style="color: #FF4B36;" role="status">
+                                        <span class="visually-hidden">Loading related articles...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     `;
 
                     // Update page title
                     document.title = `${article.title} - Appworks`;
+
+                    // Fetch related articles
+                    fetch(`https://app-works.app/api/webV2/getArticles?category[]=${article.category_id}&articleLimit=6`, {
+                        headers: {
+                            'Authorization': 'kmNTuI8dRmRX'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        const relatedArticlesContainer = document.getElementById('relatedArticlesContainer');
+                        if (!data.success || !data.result || !data.result.articles || data.result.articles.length === 0) {
+                            relatedArticlesContainer.innerHTML = '<p class="text-center w-100">No related articles found.</p>';
+                            return;
+                        }
+
+                        relatedArticlesContainer.innerHTML = data.result.articles
+                            .filter(relatedArticle => relatedArticle.id !== article.id) // Exclude current article
+                            .slice(0, 6) // Limit to 6 articles
+                            .map(relatedArticle => `
+                                <a href="article.html?id=${relatedArticle.id}" class="related-article-card">
+                                    <img src="${relatedArticle.media['medium-full'] || 'https://appworks-tmp.mpanel.app/images/placeholder.jpg'}"
+                                         alt="${relatedArticle.title}"
+                                         class="related-article-image"
+                                         onerror="this.src='https://appworks-tmp.mpanel.app/images/placeholder.jpg'">
+                                    <div class="related-article-content">
+                                        <h3 class="related-article-title">${relatedArticle.title}</h3>
+                                        <p class="related-article-excerpt">${relatedArticle.intro || ''}</p>
+                                    </div>
+                                </a>
+                            `).join('');
+                    })
+                    .catch(error => {
+                        console.error('Error fetching related articles:', error);
+                        const relatedArticlesContainer = document.getElementById('relatedArticlesContainer');
+                        relatedArticlesContainer.innerHTML = '<p class="text-center w-100">Error loading related articles.</p>';
+                    });
                 })
                 .catch(error => {
                     console.error('Error fetching article:', error);
