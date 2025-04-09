@@ -10,8 +10,116 @@
         <link rel="stylesheet" href="https://appworks-tmp.mpanel.app/css/icon.min.css"/>
         <link rel="stylesheet" href="https://appworks-tmp.mpanel.app/css/style.css"/>
         <link rel="stylesheet" href="https://appworks-tmp.mpanel.app/css/responsive.css"/>
+        <style>
+            /* Blog Card Styles - identical to home page */
+            .blog-card {
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 12px;
+                overflow: hidden;
+                transition: transform 0.3s ease;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            }
+            .blog-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            }
+            .blog-container {
+                position: relative;
+                overflow: hidden;
+            }
+            .blog-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(32, 10, 36, 0.7);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                z-index: 2;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .blog-container:hover .blog-overlay {
+                opacity: 1;
+            }
+            .blog-image {
+                position: relative;
+                height: 250px;
+                overflow: hidden;
+            }
+            .blog-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+            }
+            .blog-container:hover .blog-image img {
+                transform: scale(1.05);
+            }
+            .blog-text {
+                padding: 1.5rem;
+            }
+            .arrow-container {
+                width: 50px;
+                height: 50px;
+                background: #FF4B36;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto;
+                transition: transform 0.3s ease;
+            }
+            .arrow-container i {
+                color: white;
+                font-size: 24px;
+            }
+            .blog-container:hover .arrow-container {
+                transform: translateX(10px);
+            }
+        </style>
     </head>
-    <body>
+    <body data-mobile-nav-style="full-screen-menu" data-mobile-nav-bg-color="#252840">
+        <!-- start header -->
+        <header>
+            <!-- start navigation -->
+            <nav class="navbar navbar-expand-lg header-transparent bg-transparent header-reverse glass-effect" data-header-hover="light">
+                <div class="container-fluid">
+                    <div class="col-auto col-xxl-3 col-lg-2 me-lg-0 me-auto">
+                        <a class="navbar-brand" href="home.html">
+                            <img src="https://appworks-tmp.mpanel.app/images/appworks.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks.png" alt="Appworks Logo" class="default-logo">
+                            <img src="https://appworks-tmp.mpanel.app/images/appworks-black.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks-black.png" alt="Appworks Logo" class="alt-logo">
+                            <img src="https://appworks-tmp.mpanel.app/images/appworks.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks.png" alt="Appworks Logo" class="mobile-logo">
+                        </a>
+                    </div>
+                    <div class="col-auto col-xxl-6 col-lg-8 menu-order position-static">
+                        <button class="navbar-toggler float-start" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-line"></span>
+                            <span class="navbar-toggler-line"></span>
+                            <span class="navbar-toggler-line"></span>
+                            <span class="navbar-toggler-line"></span>
+                        </button>
+                        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                            <ul class="navbar-nav d-flex justify-content-between w-100" style="max-width: 1400px; padding: 0 15px; margin-left: 50px;">
+                                <li class="nav-item" style="margin: 0 10px;"><a href="home.html" class="nav-link">Home</a></li>
+                                <li class="nav-item" style="margin: 0 10px;"><a href="cms.html" class="nav-link">AI&nbsp;CMS</a></li>
+                                <li class="nav-item" style="margin: 0 10px;"><a href="media.html" class="nav-link">Media</a></li>
+                                <li class="nav-item" style="margin: 0 10px;"><a href="sport.html" class="nav-link">Sport</a></li>
+                                <li class="nav-item" style="margin: 0 10px;"><a href="https://litteraworks.com/" class="nav-link" target="_blank">Litteraworks</a></li>
+                                <li class="nav-item" style="margin: 0 10px;"><a href="projects.html" class="nav-link">Grant&nbsp;Projects</a></li>
+                                <li class="nav-item" style="margin: 0 10px;"><a href="partners.html" class="nav-link">Partners</a></li>
+                                <li class="nav-item" style="margin: 0 10px;"><a href="about.html" class="nav-link">About&nbsp;Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- end navigation -->
+        </header>
+        <!-- end header -->
+
         <!-- start section -->
         <section class="position-relative pt-120px">
             <div class="container">
@@ -46,6 +154,58 @@
             </div>
         </section>
         <!-- end section -->
+
+        <!-- start footer -->
+        <footer class="p-0 footer-light position-relative">
+            <div class="container position-relative">
+                <div class="row justify-content-center pt-5 sm-pt-40px">
+                    <!-- start footer column -->
+                    <div class="col-6 col-xl-3 col-lg-12 col-sm-6 last-paragraph-no-margin text-xl-start text-lg-center order-sm-1 lg-mb-60px sm-mb-40px">
+                        <a href="home.html" class="footer-logo mb-15px d-inline-block">
+                            <img src="https://appworks-tmp.mpanel.app/images/appworks-black - 114x114.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks-black - 114x114.png" alt="Appworks Logo">
+                        </a>
+                        <p class="lh-28 w-90 xl-w-100 mx-lg-auto mx-xl-0">Creative solutions for innovative partners.</p>
+                        <div class="elements-social social-icon-style-02 mt-15px">
+                            <ul class="medium-icon dark">
+                                <li class="my-0"><a class="linkedin" href="https://www.linkedin.com/company/appworks-d-o-o/" target="_blank"><i class="fa-brands fa-linkedin"></i></a></li>
+                                <li class="my-0"><a class="instagram" href="https://www.instagram.com/weareappworks/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                                <li class="my-0"><a class="youtube" href="https://www.youtube.com/channel/UCydhgWA6Kg40T9EFmRVDb9A" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- end footer column -->
+                    <!-- start footer column -->
+                    <div class="col-6 col-xl-2 col-lg-3 col-sm-4 xs-mb-30px order-sm-3 order-lg-2">
+                        <span class="fw-600 d-block text-dark-gray mb-5px">Company</span>
+                        <ul>
+                            <li><a href="about.html">About us</a></li>
+                            <li><a href="partners.html">Partners</a></li>
+                            <li><a href="about.html">Contact us</a></li>
+                        </ul>
+                    </div>
+                    <!-- end footer column -->
+                    <!-- start footer column -->
+                    <div class="col-6 col-xl-2 col-lg-3 col-md-5 col-sm-4 xs-mb-30px order-sm-4 order-lg-3">
+                        <span class="fw-600 d-block text-dark-gray mb-5px">Solutions</span>
+                        <ul>
+                            <li><a href="cms.html">CMS</a></li>
+                            <li><a href="media.html">Media</a></li>
+                            <li><a href="sport.html">Sports</a></li>
+                            <li><a href="https://litteraworks.com">Litteraworks</a></li>
+                            <li><a href="projects.html">Grant Projects</a></li>
+                        </ul>
+                    </div>
+                    <!-- end footer column -->
+                    <!-- start footer column -->
+                    <div class="col-6 col-xl-2 col-lg-3 col-md-3 col-sm-4 xs-mb-30px order-sm-5 order-lg-4">
+                        <span class="fw-600 d-block text-dark-gray mb-5px">Contact us</span>
+                        <a href="mailto:info@app-works.app" class="text-dark-gray fw-600">info@app-works.app</a>
+                    </div>
+                    <!-- end footer column -->
+                </div>
+            </div>
+        </footer>
+        <!-- end footer -->
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
