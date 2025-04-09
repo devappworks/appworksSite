@@ -20,7 +20,7 @@
         <style>
             .article-header {
                 background: #200A24;
-                padding: 120px 0 80px;
+                padding: 120px 0 0;
                 position: relative;
                 overflow: hidden;
             }
@@ -33,10 +33,10 @@
             
             .article-image {
                 width: 100%;
-                height: 500px;
+                height: 600px;
                 object-fit: cover;
                 border-radius: 12px;
-                margin: -80px auto 40px;
+                margin: 30px auto 40px;
                 box-shadow: 0 5px 15px rgba(0,0,0,0.2);
                 position: relative;
             }
@@ -273,7 +273,7 @@
 
             @media (max-width: 991px) {
                 .article-header {
-                    padding: 100px 0 60px;
+                    padding: 100px 0 0;
                 }
                 
                 .article-content {
@@ -285,8 +285,8 @@
                 }
                 
                 .article-image {
-                    height: 400px;
-                    margin-top: -60px;
+                    height: 450px;
+                    margin-top: 20px;
                 }
 
                 .related-articles-grid {
@@ -296,7 +296,7 @@
 
             @media (max-width: 767px) {
                 .article-header {
-                    padding: 80px 0 50px;
+                    padding: 80px 0 0;
                 }
                 
                 .article-title {
@@ -304,8 +304,8 @@
                 }
                 
                 .article-image {
-                    height: 300px;
-                    margin-top: -50px;
+                    height: 350px;
+                    margin-top: 20px;
                 }
 
                 .article-text {
@@ -350,19 +350,30 @@
                 }
 
                 .article-image {
-                    height: 250px;
-                    margin-top: -40px;
+                    height: 300px;
                 }
             }
 
-            .navbar-nav {
-                justify-content: flex-start !important;
-                padding-left: 0 !important;
-                margin-left: 0 !important;
+            .container-fluid {
+                padding-left: 30px !important;
+                padding-right: 30px !important;
             }
 
-            .navbar-collapse {
-                justify-content: flex-start !important;
+            .navbar-nav {
+                display: flex;
+                flex-direction: row !important;
+                justify-content: space-between !important;
+                width: 100%;
+                max-width: 1100px !important;
+                margin-left: 40px !important;
+            }
+
+            .nav-item {
+                margin: 0 5px !important;
+            }
+
+            .navbar-brand {
+                margin-right: 0 !important;
             }
         </style>
     </head>
@@ -372,30 +383,30 @@
             <!-- start navigation -->
             <nav class="navbar navbar-expand-lg header-transparent bg-transparent header-reverse glass-effect" data-header-hover="light">
                 <div class="container-fluid">
-                    <div class="col-auto col-xxl-3 col-lg-2 me-lg-0 me-auto">
+                    <div class="col-auto me-auto">
                         <a class="navbar-brand" href="home.html">
                             <img src="https://appworks-tmp.mpanel.app/images/appworks.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks.png" alt="Appworks Logo" class="default-logo">
                             <img src="https://appworks-tmp.mpanel.app/images/appworks-black.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks-black.png" alt="Appworks Logo" class="alt-logo">
                             <img src="https://appworks-tmp.mpanel.app/images/appworks.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks.png" alt="Appworks Logo" class="mobile-logo">
                         </a>
                     </div>
-                    <div class="col-auto col-xxl-6 col-lg-8 menu-order position-static">
+                    <div class="col-auto position-static">
                         <button class="navbar-toggler float-start" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-label="Toggle navigation">
                             <span class="navbar-toggler-line"></span>
                             <span class="navbar-toggler-line"></span>
                             <span class="navbar-toggler-line"></span>
                             <span class="navbar-toggler-line"></span>
                         </button>
-                        <div class="collapse navbar-collapse justify-content-start" id="navbarNav">
-                            <ul class="navbar-nav d-flex w-100" style="max-width: 1000px;">
-                                <li class="nav-item" style="margin: 0 8px;"><a href="home.html" class="nav-link">Home</a></li>
-                                <li class="nav-item" style="margin: 0 8px;"><a href="cms.html" class="nav-link">AI&nbsp;CMS</a></li>
-                                <li class="nav-item" style="margin: 0 8px;"><a href="media.html" class="nav-link">Media</a></li>
-                                <li class="nav-item" style="margin: 0 8px;"><a href="sport.html" class="nav-link">Sport</a></li>
-                                <li class="nav-item" style="margin: 0 8px;"><a href="https://litteraworks.com/" class="nav-link" target="_blank">Litteraworks</a></li>
-                                <li class="nav-item" style="margin: 0 8px;"><a href="projects.html" class="nav-link">Grant&nbsp;Projects</a></li>
-                                <li class="nav-item" style="margin: 0 8px;"><a href="partners.html" class="nav-link">Partners</a></li>
-                                <li class="nav-item" style="margin: 0 8px;"><a href="about.html" class="nav-link">About&nbsp;Us</a></li>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item"><a href="home.html" class="nav-link">Home</a></li>
+                                <li class="nav-item"><a href="cms.html" class="nav-link">AI&nbsp;CMS</a></li>
+                                <li class="nav-item"><a href="media.html" class="nav-link">Media</a></li>
+                                <li class="nav-item"><a href="sport.html" class="nav-link">Sport</a></li>
+                                <li class="nav-item"><a href="https://litteraworks.com/" class="nav-link" target="_blank">Litteraworks</a></li>
+                                <li class="nav-item"><a href="projects.html" class="nav-link">Grant&nbsp;Projects</a></li>
+                                <li class="nav-item"><a href="partners.html" class="nav-link">Partners</a></li>
+                                <li class="nav-item"><a href="about.html" class="nav-link">About&nbsp;Us</a></li>
                             </ul>
                         </div>
                     </div>
@@ -587,7 +598,7 @@
                         <img src="${article.media['medium-full'] || 'https://appworks-tmp.mpanel.app/images/placeholder.jpg'}?crop=true"
                              alt="${article.title}"
                              class="article-image"
-                             style="max-width: 95%; width: 95%;"
+                             style="width: 100%; max-width: 100%; height: auto; min-height: 500px; object-fit: cover;"
                              onerror="this.src='https://appworks-tmp.mpanel.app/images/placeholder.jpg'">
                         <div class="share-buttons">
                             <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(article.title)}" 
