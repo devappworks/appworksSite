@@ -418,6 +418,60 @@
                 .blog-slider-next { right: 5px; }
                 .blog-slider-prev { left: 5px; }
             }
+            
+            /* Custom filter styles for dark background */
+            .tab-style-04 .portfolio-filter li a {
+                color: rgba(255, 255, 255, 0.7);
+                padding: 8px 15px;
+                border-radius: 30px;
+                transition: all 0.3s ease;
+                border: none;
+            }
+            
+            .tab-style-04 .portfolio-filter li.active a,
+            .tab-style-04 .portfolio-filter li:hover a {
+                color: white;
+                background: #FF4B36;
+                border: none;
+            }
+            
+            .tab-style-04 .portfolio-filter li {
+                margin: 0 5px;
+                padding: 0;
+            }
+            
+            @media (max-width: 767px) {
+                .tab-style-04 .portfolio-filter {
+                    flex-wrap: nowrap;
+                    overflow-x: auto;
+                    padding-bottom: 15px;
+                    justify-content: flex-start !important;
+                }
+                
+                .tab-style-04 .portfolio-filter li a {
+                    white-space: nowrap;
+                    padding: 6px 12px;
+                    font-size: 13px;
+                }
+            }
+
+            .equal-height-cards {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+                margin-bottom: 30px;
+            }
+
+            .equal-height-cards .benefit-card {
+                height: 100%;
+                margin-bottom: 0;
+            }
+
+            @media (max-width: 768px) {
+                .equal-height-cards {
+                    grid-template-columns: 1fr;
+                }
+            }
         </style>
     </head>
     <body data-mobile-nav-style="full-screen-menu" data-mobile-nav-bg-color="#252840">
@@ -880,90 +934,22 @@
                 <div class="row justify-content-center">
                     <div class="col-12 text-center mb-5">
                         <h2 class="text-white fw-600 ls-minus-2px mb-4">Recent blog posts</h2>
+                        <div class="tab-style-04">
+                            <ul class="portfolio-filter nav nav-tabs justify-content-center border-0 fw-500" style="margin-top: 15px;">
+                                <li class="nav active"><a data-filter="*" href="#">All</a></li>
+                                <li class="nav"><a data-filter="4" href="#">Media</a></li>
+                                <li class="nav"><a data-filter="3" href="#">Sports</a></li>
+                                <li class="nav"><a data-filter="9" href="#">AI</a></li>
+                                <li class="nav"><a data-filter="10" href="#">Grant Projects</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
                         <div class="blog-posts-slider">
-                            <div class="swiper-wrapper">
-                                <!-- start blog item -->
-                                <div class="swiper-slide">
-                                    <a href="#" class="text-decoration-none">
-                                        <div class="blog-card">
-                                            <div class="blog-container">
-                                                <div class="blog-overlay">
-                                                    <div class="blog-content">
-                                                        <div class="arrow-container">
-                                                            <i class="fa-solid fa-arrow-right text-white"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="blog-image">
-                                                    <img src="https://appworks-tmp.mpanel.app/images/cms/ai-features.jpg" 
-                                                         alt="AI Features" 
-                                                         onerror="this.src='https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=600&auto=format&fit=crop'">
-                                                </div>
-                                                <div class="blog-text">
-                                                    <h3 class="text-white fs-20 fw-600 mb-3">New AI Features Released</h3>
-                                                    <p class="text-white opacity-6">Discover our latest AI-powered content management features.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <!-- end blog item -->
-                                <!-- start blog item -->
-                                <div class="swiper-slide">
-                                    <a href="#" class="text-decoration-none">
-                                        <div class="blog-card">
-                                            <div class="blog-container">
-                                                <div class="blog-overlay">
-                                                    <div class="blog-content">
-                                                        <div class="arrow-container">
-                                                            <i class="fa-solid fa-arrow-right text-white"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="blog-image">
-                                                    <img src="https://appworks-tmp.mpanel.app/images/cms/user-experience.jpg" 
-                                                         alt="User Experience" 
-                                                         onerror="this.src='https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=600&auto=format&fit=crop'">
-                                                </div>
-                                                <div class="blog-text">
-                                                    <h3 class="text-white fs-20 fw-600 mb-3">Enhanced User Experience</h3>
-                                                    <p class="text-white opacity-6">Improvements to our CMS interface and workflow.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <!-- end blog item -->
-                                <!-- start blog item -->
-                                <div class="swiper-slide">
-                                    <a href="#" class="text-decoration-none">
-                                        <div class="blog-card">
-                                            <div class="blog-container">
-                                                <div class="blog-overlay">
-                                                    <div class="blog-content">
-                                                        <div class="arrow-container">
-                                                            <i class="fa-solid fa-arrow-right text-white"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="blog-image">
-                                                    <img src="https://appworks-tmp.mpanel.app/images/cms/mobile-app.jpg" 
-                                                         alt="Mobile App" 
-                                                         onerror="this.src='https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=600&auto=format&fit=crop'">
-                                                </div>
-                                                <div class="blog-text">
-                                                    <h3 class="text-white fs-20 fw-600 mb-3">Mobile App Updates</h3>
-                                                    <p class="text-white opacity-6">New features for our mobile app platform.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <!-- end blog item -->
+                            <div class="swiper-wrapper" id="articlesContainer">
+                                <!-- Articles will be dynamically loaded here -->
                             </div>
                             <!-- Add Navigation -->
                             <div class="swiper-button-next blog-slider-next">
@@ -1068,26 +1054,121 @@
 
                 document.querySelectorAll('.fade-in, .stagger-item').forEach((el) => observer.observe(el));
                 
-                // Initialize the blog slider
-                let blogSlider = new Swiper('.blog-posts-slider', {
-                    slidesPerView: 1,
-                    spaceBetween: 30,
-                    loop: true,
-                    grabCursor: true,
-                    watchOverflow: true,
-                    speed: 800,
-                    navigation: {
-                        nextEl: '.blog-slider-next',
-                        prevEl: '.blog-slider-prev',
-                    },
-                    breakpoints: {
-                        768: {
-                            slidesPerView: 2
-                        },
-                        992: {
-                            slidesPerView: 3
-                        }
+                // Blog slider functionality
+                const filterButtons = document.querySelectorAll('.portfolio-filter a');
+                let blogSlider;
+
+                function initializeSwiper() {
+                    if (blogSlider) {
+                        blogSlider.destroy(true, true);
                     }
+                    
+                    blogSlider = new Swiper('.blog-posts-slider', {
+                        slidesPerView: 1,
+                        spaceBetween: 30,
+                        loop: true,
+                        grabCursor: true,
+                        watchOverflow: true,
+                        speed: 800,
+                        navigation: {
+                            nextEl: '.blog-slider-next',
+                            prevEl: '.blog-slider-prev',
+                        },
+                        breakpoints: {
+                            768: {
+                                slidesPerView: 2
+                            },
+                            992: {
+                                slidesPerView: 3
+                            }
+                        }
+                    });
+                }
+
+                function fetchAndDisplayArticles(filter = '*') {
+                    let apiUrl = 'https://app-works.app/api/webV2/getArticles';
+
+                    if (filter === '*') {
+                        apiUrl += '?articleLimit=9';
+                    } else {
+                        apiUrl += `?category[]=${encodeURIComponent(filter)}&articleLimit=9`;
+                    }
+
+                    fetch(apiUrl, {
+                        headers: {
+                            'Authorization': 'kmNTuI8dRmRX'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        const articlesContainer = document.getElementById('articlesContainer');
+                        
+                        if (!data.success || !data.result || !data.result.articles || data.result.articles.length === 0) {
+                            articlesContainer.innerHTML = '<div class="swiper-slide"><div class="blog-card"><div class="blog-text"><h3 class="text-white">No articles found</h3></div></div></div>';
+                            initializeSwiper();
+                            return;
+                        }
+
+                        articlesContainer.innerHTML = ''; // Clear old articles
+                        
+                        data.result.articles.forEach(article => {
+                            const articleHtml = `
+                                <div class="swiper-slide">
+                                    <a href="article.html?id=${article.id}" class="text-decoration-none">
+                                        <div class="blog-card">
+                                            <div class="blog-container">
+                                                <div class="blog-overlay">
+                                                    <div class="blog-content">
+                                                        <div class="arrow-container">
+                                                            <i class="fa-solid fa-arrow-right text-white"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="blog-image">
+                                                    <img src="${article.media['medium-full']}?crop=true"
+                                                         onerror="this.src='https://appworks-tmp.mpanel.app/images/placeholder.jpg'"
+                                                         alt="${article.title}">
+                                                </div>
+                                                <div class="blog-text">
+                                                    <h3 class="text-white fs-20 fw-600 mb-3">${article.title}</h3>
+                                                    <p class="text-white opacity-6">${article.intro}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            `;
+                            articlesContainer.innerHTML += articleHtml;
+                        });
+
+                        // Initialize Swiper after adding slides
+                        setTimeout(() => {
+                            initializeSwiper();
+                        }, 100);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching articles:', error);
+                        const articlesContainer = document.getElementById('articlesContainer');
+                        articlesContainer.innerHTML = '<div class="swiper-slide"><div class="blog-card"><div class="blog-text"><h3 class="text-white">Error loading articles</h3></div></div></div>';
+                        initializeSwiper();
+                    });
+                }
+
+                // Initial load of all articles
+                fetchAndDisplayArticles();
+
+                // Add click handlers for filter buttons
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', (event) => {
+                        event.preventDefault();
+                        
+                        // Update active state
+                        filterButtons.forEach(btn => btn.parentElement.classList.remove('active'));
+                        button.parentElement.classList.add('active');
+                        
+                        const filter = button.getAttribute('data-filter');
+                        fetchAndDisplayArticles(filter);
+                    });
                 });
             });
         </script>
