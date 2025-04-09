@@ -85,8 +85,8 @@
             .blog-posts-slider {
                 position: relative;
                 overflow: visible;
-                padding: 20px 60px;
-                margin: 0 -60px;
+                padding: 20px 40px;  /* Reduced padding to bring arrows closer */
+                margin: 0 -40px;
             }
             .blog-slider-next,
             .blog-slider-prev {
@@ -111,10 +111,10 @@
                 transform: translateY(-50%) scale(1.1);
             }
             .blog-slider-next {
-                right: 0;
+                right: 10px;  /* Moved inward from 0 */
             }
             .blog-slider-prev {
-                left: 0;
+                left: 10px;   /* Moved inward from 0 */
             }
             .blog-slider-next::after,
             .blog-slider-prev::after {
@@ -140,7 +140,7 @@
             .blog-image {
                 position: relative;
                 overflow: hidden;
-                height: 400px;        /* Increased image height */
+                height: 250px;        /* Fixed height for consistent look */
             }
             .blog-image img {
                 width: 100%;
@@ -839,6 +839,7 @@
                 function fetchAndDisplayArticles(filter = '*') {
                     let apiUrl = 'https://app-works.app/api/webV2/getArticles';
 
+                    // Always limit to 10 articles
                     if (filter === '*') {
                         apiUrl += '?articleLimit=10';
                     } else {
@@ -869,15 +870,14 @@
                                                 <div class="blog-overlay">
                                                     <div class="blog-content">
                                                         <div class="arrow-container">
-                                                            <i class="fa-solid fa-arrow-right"></i>
+                                                            <i class="fa-solid fa-arrow-right text-white"></i>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="blog-image">
                                                     <img src="${article.media['medium-full']}?crop=true"
                                                          onerror="this.src='https://appworks-tmp.mpanel.app/images/placeholder.jpg'"
-                                                         alt="${article.title}"
-                                                         style="width: 100%; height: 250px; object-fit: cover;">
+                                                         alt="${article.title}">
                                                 </div>
                                                 <div class="blog-text">
                                                     <h3 class="text-dark-gray fs-20 fw-600 mb-3">${article.title}</h3>
@@ -908,8 +908,8 @@
 
                 // Add click handlers for filter buttons
                 filterButtons.forEach(button => {
-                    button.addEventListener('click', (e) => {
-                        e.preventDefault();
+                    button.addEventListener('click', (event) => {
+                        event.preventDefault();
                         
                         // Update active state
                         filterButtons.forEach(btn => btn.parentElement.classList.remove('active'));
