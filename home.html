@@ -84,9 +84,8 @@
             /* Blog Posts Slider Styles */
             .blog-posts-slider {
                 position: relative;
-                overflow: visible;
-                padding: 20px 40px;  /* Reduced padding to bring arrows closer */
-                margin: 0 -40px;
+                overflow: visible !important;
+                padding: 0 40px;
             }
             .blog-slider-next,
             .blog-slider-prev {
@@ -111,24 +110,19 @@
                 transform: translateY(-50%) scale(1.1);
             }
             .blog-slider-next {
-                right: 10px;  /* Moved inward from 0 */
+                right: 0;
             }
             .blog-slider-prev {
-                left: 10px;   /* Moved inward from 0 */
+                left: 0;
+            }
+            .blog-slider-next i,
+            .blog-slider-prev i {
+                color: white !important;
+                font-size: 20px;
             }
             .blog-slider-next::after,
             .blog-slider-prev::after {
-                font-family: "Font Awesome 6 Free" !important;
-                font-weight: 900;
-                color: white !important;
-                font-size: 20px !important;
-                line-height: 1;
-            }
-            .blog-slider-next:after {
-                content: "\f054" !important;
-            }
-            .blog-slider-prev:after {
-                content: "\f053" !important;
+                display: none !important;
             }
             .blog-card {
                 height: 100%;
@@ -785,8 +779,12 @@
                                 <!-- Articles will be loaded here -->
                             </div>
                             <!-- Add Navigation -->
-                            <div class="swiper-button-next blog-slider-next"></div>
-                            <div class="swiper-button-prev blog-slider-prev"></div>
+                            <div class="swiper-button-next blog-slider-next">
+                                <i class="fa-solid fa-chevron-right" style="color: white !important;"></i>
+                            </div>
+                            <div class="swiper-button-prev blog-slider-prev">
+                                <i class="fa-solid fa-chevron-left" style="color: white !important;"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
