@@ -934,59 +934,206 @@
                 }
             }
 
-            <style>
+            .equal-height-cards {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+                margin-bottom: 30px;
+            }
+            .equal-height-cards:last-child {
+                margin-bottom: 0;
+            }
+            .challenge-card {
+                height: 100%;
+                background: white;
+                padding: 30px;
+                border-radius: 10px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .challenge-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            }
+            .challenge-card i {
+                font-size: 2rem;
+                color: #FF4B36;
+                margin-bottom: 20px;
+                width: 48px;
+                height: 48px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: rgba(255, 75, 54, 0.1);
+                border-radius: 12px;
+                transition: all 0.3s ease;
+            }
+            .challenge-card:hover i {
+                transform: scale(1.1);
+                background: rgba(255, 75, 54, 0.15);
+            }
+            .challenge-card h4 {
+                margin-bottom: 15px;
+                font-weight: 600;
+            }
+            .challenge-card p {
+                margin: 0;
+                opacity: 0.8;
+            }
+            @media (max-width: 768px) {
                 .equal-height-cards {
-                    display: grid;
-                    grid-template-columns: repeat(2, 1fr);
-                    gap: 30px;
-                    margin-bottom: 30px;
+                    grid-template-columns: 1fr;
                 }
-                .equal-height-cards:last-child {
-                    margin-bottom: 0;
+            }
+        </style>
+        <style>
+            /* Blog Slider Styles */
+            .blog-posts-slider {
+                position: relative;
+                overflow: visible !important;
+                padding: 0 40px;
+            }
+            .blog-slider-next,
+            .blog-slider-prev {
+                width: 50px;
+                height: 50px;
+                background: #FF4B36 !important;
+                border-radius: 50%;
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 100;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                opacity: 1 !important;
+            }
+            .blog-slider-next:hover,
+            .blog-slider-prev:hover {
+                background: #200A24 !important;
+                transform: translateY(-50%) scale(1.1);
+            }
+            .blog-slider-next {
+                right: 0;
+            }
+            .blog-slider-prev {
+                left: 0;
+            }
+            .blog-slider-next i,
+            .blog-slider-prev i {
+                color: white !important;
+                font-size: 20px;
+            }
+            .blog-slider-next::after,
+            .blog-slider-prev::after {
+                display: none !important;
+            }
+            .blog-card {
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 12px;
+                overflow: hidden;
+                transition: transform 0.3s ease;
+                height: 100%;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            .blog-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            }
+            .blog-container {
+                position: relative;
+                overflow: hidden;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+            .blog-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(32, 10, 36, 0.7);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                z-index: 2;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .blog-container:hover .blog-overlay {
+                opacity: 1;
+            }
+            .arrow-container {
+                width: 50px;
+                height: 50px;
+                background: #FF4B36;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transform: translateX(0);
+                transition: transform 0.3s ease;
+            }
+            .arrow-container i {
+                color: white !important;
+                font-size: 20px;
+            }
+            .blog-container:hover .arrow-container {
+                transform: translateX(10px);
+            }
+            .blog-image {
+                position: relative;
+                overflow: hidden;
+                height: 240px;
+            }
+            .blog-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+            }
+            .blog-text {
+                padding: 1.5rem;
+                flex-grow: 1;
+                display: flex;
+                flex-direction: column;
+            }
+            .blog-text h3 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                line-height: 1.4;
+            }
+            .blog-text p {
+                color: rgba(255, 255, 255, 0.7);
+                margin-bottom: 1rem;
+                flex-grow: 1;
+            }
+            
+            @media (max-width: 991px) {
+                .blog-posts-slider {
+                    padding: 20px 40px;
+                    margin: 0 -20px;
                 }
-                .challenge-card {
-                    height: 100%;
-                    background: white;
-                    padding: 30px;
-                    border-radius: 10px;
-                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+                .blog-image {
+                    height: 220px;
                 }
-                .challenge-card:hover {
-                    transform: translateY(-5px);
-                    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+                .blog-slider-next { right: 10px; }
+                .blog-slider-prev { left: 10px; }
+            }
+            @media (max-width: 767px) {
+                .blog-posts-slider {
+                    padding: 20px 30px;
+                    margin: 0 -10px;
                 }
-                .challenge-card i {
-                    font-size: 2rem;
-                    color: #FF4B36;
-                    margin-bottom: 20px;
-                    width: 48px;
-                    height: 48px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    background: rgba(255, 75, 54, 0.1);
-                    border-radius: 12px;
-                    transition: all 0.3s ease;
+                .blog-image {
+                    height: 200px;
                 }
-                .challenge-card:hover i {
-                    transform: scale(1.1);
-                    background: rgba(255, 75, 54, 0.15);
-                }
-                .challenge-card h4 {
-                    margin-bottom: 15px;
-                    font-weight: 600;
-                }
-                .challenge-card p {
-                    margin: 0;
-                    opacity: 0.8;
-                }
-                @media (max-width: 768px) {
-                    .equal-height-cards {
-                        grid-template-columns: 1fr;
-                    }
-                }
-            </style>
+                .blog-slider-next { right: 5px; }
+                .blog-slider-prev { left: 5px; }
+            }
         </style>
     </head>
     <body data-mobile-nav-style="full-screen-menu" data-mobile-nav-bg-color="#252840">
@@ -1744,70 +1891,38 @@
         <section style="background: #200A24;" class="py-5">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-12">
-                        <h2 class="text-white fw-600 ls-minus-2px mb-4">Recent blog posts</h2>
+                    <div class="col-12 text-center mb-5">
+                        <h2 class="text-white fw-600 ls-minus-2px mb-4">Recent media blog posts</h2>
                     </div>
                 </div>
-                <div class="row" id="articlesContainer">
-
+                <div class="row">
+                    <div class="col-12">
+                        <div class="blog-posts-slider">
+                            <div class="swiper-wrapper" id="articlesContainer">
+                                <!-- Articles will be dynamically loaded here -->
+                            </div>
+                            <!-- Add Navigation -->
+                            <div class="swiper-button-next blog-slider-next">
+                                <i class="fa-solid fa-chevron-right" style="color: white !important;"></i>
+                            </div>
+                            <div class="swiper-button-prev blog-slider-prev">
+                                <i class="fa-solid fa-chevron-left" style="color: white !important;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add View All button -->
+                <div class="row justify-content-center mt-5">
+                    <div class="col-auto">
+                        <a href="articles.html?filter=4" class="btn btn-extra-large btn-switch-text btn-rounded" style="background: #FF4B36;">
+                            <span>
+                                <span class="btn-double-text text-white" data-text="View All Media Articles">View All Media Articles</span>
+                                <span><i class="fa-solid fa-arrow-right text-white"></i></span>
+                            </span>
+                        </a>
+                    </div>
                 </div>
             </div>
-            <style>
-                .blog-card {
-                    background: rgba(255, 255, 255, 0.05);
-                    border-radius: 12px;
-                    overflow: hidden;
-                    transition: transform 0.3s ease;
-                }
-                .blog-card:hover {
-                    transform: translateY(-10px);
-                }
-                .blog-container {
-                    position: relative;
-                    overflow: hidden;
-                }
-                .blog-overlay {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: rgba(32, 10, 36, 0.7);
-                    opacity: 0;
-                    transition: opacity 0.3s ease;
-                    z-index: 2;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                }
-                .blog-container:hover .blog-overlay {
-                    opacity: 1;
-                }
-                .blog-image {
-                    position: relative;
-                    overflow: hidden;
-                }
-                .blog-image img {
-                    transition: transform 0.3s ease;
-                    aspect-ratio: 16/9;
-                    object-fit: cover;
-                }
-                .blog-container:hover .blog-image img {
-                    transform: scale(1.05);
-                }
-                .blog-text {
-                    padding: 1.5rem;
-                }
-                .fs-24 {
-                    font-size: 24px;
-                    line-height: 1.4;
-                }
-                @media (max-width: 991px) {
-                    .blog-card {
-                        margin-bottom: 2rem;
-                    }
-                }
-            </style>
         </section>
         <!-- end blog posts section -->
 
@@ -2411,48 +2526,94 @@
         </script>
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
-                    fetch('https://app-works.app/api/webV2/getArticles?category[]=4&articleLimit=3', {
+                    // Initialize Swiper slider for Media articles
+                    let blogSlider;
+
+                    function initializeSwiper() {
+                        if (blogSlider) {
+                            blogSlider.destroy(true, true);
+                        }
+                        
+                        blogSlider = new Swiper('.blog-posts-slider', {
+                            slidesPerView: 1,
+                            spaceBetween: 30,
+                            loop: true,
+                            grabCursor: true,
+                            watchOverflow: true,
+                            speed: 800,
+                            navigation: {
+                                nextEl: '.blog-slider-next',
+                                prevEl: '.blog-slider-prev',
+                            },
+                            breakpoints: {
+                                768: {
+                                    slidesPerView: 2
+                                },
+                                992: {
+                                    slidesPerView: 3
+                                }
+                            }
+                        });
+                    }
+
+                    // Fetch media category articles (category ID = 4)
+                    fetch('https://app-works.app/api/webV2/getArticles?category[]=4&articleLimit=9', {
                         headers: {
                             'Authorization': 'kmNTuI8dRmRX'
                         }
                     })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.success && data.result.articles) {
-                                const articlesContainer = document.getElementById('articlesContainer');
-                                articlesContainer.innerHTML = '';
-                                data.result.articles.forEach(article => {
-                                    const articleHtml = `
-                                    <div class="col-lg-4 mb-4">
-                                        <div class="blog-card h-100">
-                                            <div class="blog-container">
-                                                <div class="blog-overlay">
-                                                    <div class="blog-content">
-                                                        <div class="arrow-container">
-                                                            <i class="bi bi-arrow-right"></i>
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success && data.result.articles) {
+                            const articlesContainer = document.getElementById('articlesContainer');
+                            articlesContainer.innerHTML = '';
+                            
+                            data.result.articles.forEach(article => {
+                                const articleHtml = `
+                                    <div class="swiper-slide">
+                                        <a href="article.html?id=${article.id}" class="text-decoration-none">
+                                            <div class="blog-card">
+                                                <div class="blog-container">
+                                                    <div class="blog-overlay">
+                                                        <div class="blog-content">
+                                                            <div class="arrow-container">
+                                                                <i class="fa-solid fa-arrow-right text-white"></i>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="blog-image">
-                                                    <img src="${article.media['medium-full']}?crop=true"
-                                                         onerror="this.src='https://source.unsplash.com/random/800x600/?article'"
-                                                         alt="${article.title}"
-                                                         class="w-100">
-                                                </div>
-                                                <div class="blog-text">
-                                                    <h3 class="text-white fs-24 fw-600 mb-3">${article.title}</h3>
-                                                    <p class="text-white opacity-6">${article.intro}</p>
+                                                    <div class="blog-image">
+                                                        <img src="${article.media['medium-full']}?crop=true"
+                                                             onerror="this.src='https://appworks-tmp.mpanel.app/images/placeholder.jpg'"
+                                                             alt="${article.title}">
+                                                    </div>
+                                                    <div class="blog-text">
+                                                        <h3 class="text-white fs-20 fw-600 mb-3">${article.title}</h3>
+                                                        <p class="text-white opacity-6">${article.intro}</p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </a>
                                     </div>
                                 `;
-                                    articlesContainer.innerHTML += articleHtml;
-                                });
-                            }
-                        })
-                        .catch(error => {
-                        });
+                                articlesContainer.innerHTML += articleHtml;
+                            });
+
+                            // Initialize Swiper after adding slides
+                            setTimeout(() => {
+                                initializeSwiper();
+                            }, 100);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching articles:', error);
+                        const articlesContainer = document.getElementById('articlesContainer');
+                        articlesContainer.innerHTML = '<div class="swiper-slide"><div class="blog-card"><div class="blog-text"><h3 class="text-white">Error loading media articles</h3></div></div></div>';
+                        
+                        // Initialize empty swiper anyway
+                        setTimeout(() => {
+                            initializeSwiper();
+                        }, 100);
+                    });
                 });
             </script>
     </body>
