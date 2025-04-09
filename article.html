@@ -20,7 +20,7 @@
         <style>
             .article-header {
                 background: #200A24;
-                padding: 120px 0 250px;
+                padding: 120px 0 150px;
                 position: relative;
                 overflow: hidden;
             }
@@ -36,7 +36,7 @@
                 height: 500px;
                 object-fit: cover;
                 border-radius: 12px;
-                margin: -250px auto 40px;
+                margin: -150px auto 40px;
                 box-shadow: 0 5px 15px rgba(0,0,0,0.2);
                 position: relative;
             }
@@ -267,7 +267,7 @@
 
             @media (max-width: 991px) {
                 .article-header {
-                    padding: 100px 0 200px;
+                    padding: 100px 0 120px;
                 }
                 
                 .article-content {
@@ -280,7 +280,7 @@
                 
                 .article-image {
                     height: 400px;
-                    margin-top: -180px;
+                    margin-top: -100px;
                 }
 
                 .related-articles-grid {
@@ -290,7 +290,7 @@
 
             @media (max-width: 767px) {
                 .article-header {
-                    padding: 80px 0 150px;
+                    padding: 80px 0 100px;
                 }
                 
                 .article-title {
@@ -299,7 +299,7 @@
                 
                 .article-image {
                     height: 300px;
-                    margin-top: -120px;
+                    margin-top: -80px;
                 }
 
                 .article-text {
@@ -345,8 +345,14 @@
 
                 .article-image {
                     height: 250px;
-                    margin-top: -100px;
+                    margin-top: -60px;
                 }
+            }
+
+            .navbar-nav {
+                justify-content: flex-start !important;
+                padding-left: 0 !important;
+                margin-left: 0 !important;
             }
         </style>
     </head>
@@ -371,7 +377,7 @@
                             <span class="navbar-toggler-line"></span>
                         </button>
                         <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                            <ul class="navbar-nav d-flex justify-content-between w-100" style="max-width: 1400px; padding: 0 15px; margin-left: 50px;">
+                            <ul class="navbar-nav d-flex justify-content-between w-100" style="max-width: 1200px; padding: 0; margin-left: 0;">
                                 <li class="nav-item" style="margin: 0 10px;"><a href="home.html" class="nav-link">Home</a></li>
                                 <li class="nav-item" style="margin: 0 10px;"><a href="cms.html" class="nav-link">AI&nbsp;CMS</a></li>
                                 <li class="nav-item" style="margin: 0 10px;"><a href="media.html" class="nav-link">Media</a></li>
@@ -611,7 +617,7 @@
                     document.title = `${article.title} - Appworks`;
 
                     // Fetch related articles
-                    fetch('https://app-works.app/api/webV2/getArticles?articleLimit=6', {
+                    fetch('https://app-works.app/api/webV2/getArticles?articleLimit=10', {
                         headers: {
                             'Authorization': 'kmNTuI8dRmRX'
                         }
@@ -626,7 +632,7 @@
 
                         relatedArticlesContainer.innerHTML = data.result.articles
                             .filter(relatedArticle => relatedArticle.id !== article.id) // Exclude current article
-                            .slice(0, 6) // Limit to 6 articles
+                            .slice(0, 6) // Ensure exactly 6 articles
                             .map(relatedArticle => `
                                 <a href="article.html?id=${relatedArticle.id}" class="related-article-card">
                                     <img src="${relatedArticle.media['medium-full'] || 'https://appworks-tmp.mpanel.app/images/placeholder.jpg'}"
@@ -635,7 +641,7 @@
                                          onerror="this.src='https://appworks-tmp.mpanel.app/images/placeholder.jpg'">
                                     <div class="related-article-content">
                                         <h3 class="related-article-title">${relatedArticle.title}</h3>
-                                        <p class="related-article-excerpt">${relatedArticle.intro ? relatedArticle.intro.substring(0, 100) + '...' : ''}</p>
+                                        <p class="related-article-excerpt">${relatedArticle.intro ? relatedArticle.intro.substring(0, 80) + '...' : ''}</p>
                                     </div>
                                 </a>
                             `).join('');
