@@ -20,7 +20,7 @@
         <style>
             .article-header {
                 background: #200A24;
-                padding: 120px 0 60px;
+                padding: 120px 0 250px;
                 position: relative;
                 overflow: hidden;
             }
@@ -36,8 +36,8 @@
                 height: 500px;
                 object-fit: cover;
                 border-radius: 12px;
-                margin: -120px auto 40px;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                margin: -250px auto 40px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
                 position: relative;
             }
             
@@ -45,8 +45,12 @@
                 font-size: 3rem;
                 line-height: 1.2;
                 margin-bottom: 20px;
-                color: #200A24;
+                color: #fff;
                 font-weight: 700;
+                text-align: center;
+                padding: 0 20px;
+                position: relative;
+                z-index: 2;
             }
             
             .article-meta {
@@ -100,6 +104,40 @@
                 height: auto;
                 border-radius: 8px;
                 margin: 2em 0;
+            }
+            
+            .article-text a {
+                color: #FF4B36;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+            
+            .article-text a:hover {
+                text-decoration: underline;
+            }
+            
+            .article-text h1, .article-text h2, .article-text h3, 
+            .article-text h4, .article-text h5, .article-text h6 {
+                color: #200A24;
+                margin: 1.5em 0 0.8em;
+                font-weight: 600;
+                line-height: 1.3;
+            }
+            
+            .article-text h1 {
+                font-size: 2rem;
+            }
+            
+            .article-text h2 {
+                font-size: 1.8rem;
+            }
+            
+            .article-text h3 {
+                font-size: 1.5rem;
+            }
+            
+            .article-text h4 {
+                font-size: 1.3rem;
             }
             
             .article-intro {
@@ -229,7 +267,7 @@
 
             @media (max-width: 991px) {
                 .article-header {
-                    padding: 100px 0 40px;
+                    padding: 100px 0 200px;
                 }
                 
                 .article-content {
@@ -242,7 +280,7 @@
                 
                 .article-image {
                     height: 400px;
-                    margin-top: -80px;
+                    margin-top: -180px;
                 }
 
                 .related-articles-grid {
@@ -252,7 +290,7 @@
 
             @media (max-width: 767px) {
                 .article-header {
-                    padding: 80px 0 30px;
+                    padding: 80px 0 150px;
                 }
                 
                 .article-title {
@@ -261,12 +299,24 @@
                 
                 .article-image {
                     height: 300px;
-                    margin-top: -60px;
+                    margin-top: -120px;
                 }
 
                 .article-text {
                     font-size: 16px;
                     line-height: 1.7;
+                }
+                
+                .article-text h1 {
+                    font-size: 1.8rem;
+                }
+                
+                .article-text h2 {
+                    font-size: 1.6rem;
+                }
+                
+                .article-text h3 {
+                    font-size: 1.4rem;
                 }
 
                 .article-intro {
@@ -295,7 +345,7 @@
 
                 .article-image {
                     height: 250px;
-                    margin-top: -40px;
+                    margin-top: -100px;
                 }
             }
         </style>
@@ -344,10 +394,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12 text-center">
-                        <a href="home.html" class="back-button">
-                            <i class="fa-solid fa-arrow-left"></i>
-                            Back to Home
-                        </a>
+                        <h1 id="articleTitle" class="article-title">Loading article...</h1>
                     </div>
                 </div>
             </div>
@@ -462,15 +509,15 @@
                 .then(response => response.json())
                 .then(data => {
                     const articleContainer = document.getElementById('articleContainer');
+                    const articleTitleElement = document.getElementById('articleTitle');
 
                     if (!data.success || !data.result || !data.result.article) {
                         articleContainer.innerHTML = `
                             <div class="text-center">
                                 <h2 class="text-dark-gray fw-600">Article not found</h2>
                                 <p class="mb-4">The requested article could not be loaded.</p>
-                                <a href="home.html" class="back-button">
-                                    <i class="fa-solid fa-arrow-left"></i>
-                                    Return to Home
+                                <a href="home.html" class="btn btn-medium btn-round-edge btn-fancy btn-fast-red">
+                                    <i class="fa-solid fa-arrow-left"></i> Return to Home
                                 </a>
                             </div>
                         `;
@@ -491,20 +538,28 @@
                         month: 'long',
                         day: 'numeric'
                     });
+                    
+                    // Update the article title in the header
+                    articleTitleElement.textContent = article.title;
+                    
+                    // Prepare the article content
                     let articleContent = article.body || article.text || article.contents || '';
 
+                    // Fix image paths
                     articleContent = articleContent.replace(/\/storage/g, 'https://app-works.app/image/cache/extra-large');
 
+                    // Ensure all images have crop=true parameter
                     articleContent = articleContent.replace(/(src="https:\/\/app-works\.app\/image\/cache\/extra-large[^"]*\.(jpg|jpeg|png|gif|bmp|svg|webp))(?!\?crop=true)"/g, (match, url) => {
-                        // Proveravamo da li URL već sadrži neki parametar
+                        // Check if the URL already has parameters
                         if (url.includes('?')) {
-                            // Ako već sadrži parametre, dodajemo &crop=true
+                            // If it already has parameters, add &crop=true
                             return match.replace(url, `${url}&crop=true`);
                         } else {
-                            // Ako ne sadrži parametre, dodajemo ?crop=true
+                            // If it has no parameters, add ?crop=true
                             return match.replace(url, `${url}?crop=true`);
                         }
                     });
+                    
                     articleContainer.innerHTML = `
                         <div class="article-breadcrumbs">
                             <a href="home.html">Home</a>
@@ -513,15 +568,10 @@
                             <span>/</span>
                             <a href="articles.html?category=${article.category_id}">${article.category_name || 'Category'}</a>
                         </div>
-                        <img src="${article.media['medium-full'] || 'https://appworks-tmp.mpanel.app/images/placeholder.jpg'}"
+                        <img src="${article.media['medium-full'] || 'https://appworks-tmp.mpanel.app/images/placeholder.jpg'}?crop=true"
                              alt="${article.title}"
                              class="article-image"
                              onerror="this.src='https://appworks-tmp.mpanel.app/images/placeholder.jpg'">
-                        <h1 class="article-title">${article.title}</h1>
-                        <div class="article-meta">
-                            <span><i class="fa-regular fa-calendar"></i> ${formattedDate}</span>
-                            <span><i class="fa-regular fa-folder"></i> ${article.category_name || 'Uncategorized'}</span>
-                        </div>
                         <div class="share-buttons">
                             <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(article.title)}" 
                                target="_blank" 
@@ -545,23 +595,6 @@
                         <div class="article-text">
                             ${articleContent}
                         </div>
-                        <div class="share-buttons">
-                            <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(article.title)}" 
-                               target="_blank" 
-                               class="share-button twitter">
-                                <i class="fa-brands fa-x-twitter"></i>
-                            </a>
-                            <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}" 
-                               target="_blank" 
-                               class="share-button linkedin">
-                                <i class="fa-brands fa-linkedin-in"></i>
-                            </a>
-                            <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}" 
-                               target="_blank" 
-                               class="share-button facebook">
-                                <i class="fa-brands fa-facebook-f"></i>
-                            </a>
-                        </div>
                         <div class="related-articles">
                             <h2>Related Articles</h2>
                             <div class="related-articles-grid" id="relatedArticlesContainer">
@@ -578,7 +611,7 @@
                     document.title = `${article.title} - Appworks`;
 
                     // Fetch related articles
-                    fetch(`https://app-works.app/api/webV2/getArticles?category[]=${article.category_id}&articleLimit=6`, {
+                    fetch('https://app-works.app/api/webV2/getArticles?articleLimit=6', {
                         headers: {
                             'Authorization': 'kmNTuI8dRmRX'
                         }
@@ -602,7 +635,7 @@
                                          onerror="this.src='https://appworks-tmp.mpanel.app/images/placeholder.jpg'">
                                     <div class="related-article-content">
                                         <h3 class="related-article-title">${relatedArticle.title}</h3>
-                                        <p class="related-article-excerpt">${relatedArticle.intro || ''}</p>
+                                        <p class="related-article-excerpt">${relatedArticle.intro ? relatedArticle.intro.substring(0, 100) + '...' : ''}</p>
                                     </div>
                                 </a>
                             `).join('');
@@ -620,9 +653,8 @@
                         <div class="text-center">
                             <h2 class="text-dark-gray fw-600">Error loading article</h2>
                             <p class="mb-4">There was a problem loading the article. Please try again later.</p>
-                            <a href="home.html" class="back-button">
-                                <i class="fa-solid fa-arrow-left"></i>
-                                Return to Home
+                            <a href="home.html" class="btn btn-medium btn-round-edge btn-fancy btn-fast-red">
+                                <i class="fa-solid fa-arrow-left"></i> Return to Home
                             </a>
                         </div>
                     `;
