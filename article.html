@@ -20,7 +20,7 @@
         <style>
             .article-header {
                 background: #200A24;
-                padding: 120px 0 150px;
+                padding: 120px 0 80px;
                 position: relative;
                 overflow: hidden;
             }
@@ -36,7 +36,7 @@
                 height: 500px;
                 object-fit: cover;
                 border-radius: 12px;
-                margin: -150px auto 40px;
+                margin: -80px auto 40px;
                 box-shadow: 0 5px 15px rgba(0,0,0,0.2);
                 position: relative;
             }
@@ -265,9 +265,15 @@
                 line-height: 1.6;
             }
 
+            @media (max-width: 1400px) {
+                .navbar-nav {
+                    max-width: 1000px !important;
+                }
+            }
+
             @media (max-width: 991px) {
                 .article-header {
-                    padding: 100px 0 120px;
+                    padding: 100px 0 60px;
                 }
                 
                 .article-content {
@@ -280,7 +286,7 @@
                 
                 .article-image {
                     height: 400px;
-                    margin-top: -100px;
+                    margin-top: -60px;
                 }
 
                 .related-articles-grid {
@@ -290,7 +296,7 @@
 
             @media (max-width: 767px) {
                 .article-header {
-                    padding: 80px 0 100px;
+                    padding: 80px 0 50px;
                 }
                 
                 .article-title {
@@ -299,7 +305,7 @@
                 
                 .article-image {
                     height: 300px;
-                    margin-top: -80px;
+                    margin-top: -50px;
                 }
 
                 .article-text {
@@ -345,7 +351,7 @@
 
                 .article-image {
                     height: 250px;
-                    margin-top: -60px;
+                    margin-top: -40px;
                 }
             }
 
@@ -353,6 +359,10 @@
                 justify-content: flex-start !important;
                 padding-left: 0 !important;
                 margin-left: 0 !important;
+            }
+
+            .navbar-collapse {
+                justify-content: flex-start !important;
             }
         </style>
     </head>
@@ -376,16 +386,16 @@
                             <span class="navbar-toggler-line"></span>
                             <span class="navbar-toggler-line"></span>
                         </button>
-                        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                            <ul class="navbar-nav d-flex justify-content-between w-100" style="max-width: 1200px; padding: 0; margin-left: 0;">
-                                <li class="nav-item" style="margin: 0 10px;"><a href="home.html" class="nav-link">Home</a></li>
-                                <li class="nav-item" style="margin: 0 10px;"><a href="cms.html" class="nav-link">AI&nbsp;CMS</a></li>
-                                <li class="nav-item" style="margin: 0 10px;"><a href="media.html" class="nav-link">Media</a></li>
-                                <li class="nav-item" style="margin: 0 10px;"><a href="sport.html" class="nav-link">Sport</a></li>
-                                <li class="nav-item" style="margin: 0 10px;"><a href="https://litteraworks.com/" class="nav-link" target="_blank">Litteraworks</a></li>
-                                <li class="nav-item" style="margin: 0 10px;"><a href="projects.html" class="nav-link">Grant&nbsp;Projects</a></li>
-                                <li class="nav-item" style="margin: 0 10px;"><a href="partners.html" class="nav-link">Partners</a></li>
-                                <li class="nav-item" style="margin: 0 10px;"><a href="about.html" class="nav-link">About&nbsp;Us</a></li>
+                        <div class="collapse navbar-collapse justify-content-start" id="navbarNav">
+                            <ul class="navbar-nav d-flex w-100" style="max-width: 1000px;">
+                                <li class="nav-item" style="margin: 0 8px;"><a href="home.html" class="nav-link">Home</a></li>
+                                <li class="nav-item" style="margin: 0 8px;"><a href="cms.html" class="nav-link">AI&nbsp;CMS</a></li>
+                                <li class="nav-item" style="margin: 0 8px;"><a href="media.html" class="nav-link">Media</a></li>
+                                <li class="nav-item" style="margin: 0 8px;"><a href="sport.html" class="nav-link">Sport</a></li>
+                                <li class="nav-item" style="margin: 0 8px;"><a href="https://litteraworks.com/" class="nav-link" target="_blank">Litteraworks</a></li>
+                                <li class="nav-item" style="margin: 0 8px;"><a href="projects.html" class="nav-link">Grant&nbsp;Projects</a></li>
+                                <li class="nav-item" style="margin: 0 8px;"><a href="partners.html" class="nav-link">Partners</a></li>
+                                <li class="nav-item" style="margin: 0 8px;"><a href="about.html" class="nav-link">About&nbsp;Us</a></li>
                             </ul>
                         </div>
                     </div>
@@ -577,6 +587,7 @@
                         <img src="${article.media['medium-full'] || 'https://appworks-tmp.mpanel.app/images/placeholder.jpg'}?crop=true"
                              alt="${article.title}"
                              class="article-image"
+                             style="max-width: 95%; width: 95%;"
                              onerror="this.src='https://appworks-tmp.mpanel.app/images/placeholder.jpg'">
                         <div class="share-buttons">
                             <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(article.title)}" 
