@@ -1,0 +1,156 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <title>Articles - Appworks</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <link rel="shortcut icon" href="https://appworks-tmp.mpanel.app/images/appworks.png">
+        <link rel="stylesheet" href="https://appworks-tmp.mpanel.app/css/vendors.min.css"/>
+        <link rel="stylesheet" href="https://appworks-tmp.mpanel.app/css/icon.min.css"/>
+        <link rel="stylesheet" href="https://appworks-tmp.mpanel.app/css/style.css"/>
+        <link rel="stylesheet" href="https://appworks-tmp.mpanel.app/css/responsive.css"/>
+    </head>
+    <body>
+        <!-- start section -->
+        <section class="position-relative pt-120px">
+            <div class="container">
+                <div class="row align-items-center mb-4">
+                    <div class="col-xl-5 lg-mb-30px text-center text-xl-start">
+                        <h3 class="text-dark-gray fw-700 mb-0 ls-minus-2px">All Articles</h3>
+                    </div>
+                    <div class="col-xl-7 tab-style-04 text-center text-xl-end">
+                        <ul class="portfolio-filter nav nav-tabs justify-content-center justify-content-xl-end border-0 fw-500">
+                            <li class="nav active"><a data-filter="*" href="#">All</a></li>
+                            <li class="nav"><a data-filter="4" href="#">Media</a></li>
+                            <li class="nav"><a data-filter="3" href="#">Sports</a></li>
+                            <li class="nav"><a data-filter="9" href="#">AI</a></li>
+                            <li class="nav"><a data-filter="10" href="#">Grant Projects</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row" id="articlesContainer">
+                    <!-- Articles will be loaded here -->
+                </div>
+                <!-- Load More button -->
+                <div class="row justify-content-center mt-5">
+                    <div class="col-auto">
+                        <button id="loadMoreBtn" class="btn btn-extra-large btn-switch-text btn-rounded" style="background: #FF4B36;">
+                            <span>
+                                <span class="btn-double-text text-white" data-text="Load More">Load More</span>
+                                <span><i class="fa-solid fa-arrow-right text-white"></i></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end section -->
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                let currentPage = 1;
+                let currentFilter = '*';
+                const filterButtons = document.querySelectorAll('.portfolio-filter a');
+                const loadMoreBtn = document.getElementById('loadMoreBtn');
+
+                function fetchAndDisplayArticles(page, filter = '*', append = false) {
+                    let apiUrl = 'https://app-works.app/api/webV2/getArticles';
+
+                    if (filter === '*') {
+                        apiUrl += `?articleLimit=20&page=${page}`;
+                    } else {
+                        apiUrl += `?category[]=${encodeURIComponent(filter)}&articleLimit=20&page=${page}`;
+                    }
+
+                    fetch(apiUrl, {
+                        headers: {
+                            'Authorization': 'kmNTuI8dRmRX'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        const articlesContainer = document.getElementById('articlesContainer');
+                        
+                        if (!data.success || !data.result || !data.result.articles || data.result.articles.length === 0) {
+                            if (!append) {
+                                articlesContainer.innerHTML = '<div class="col-12 text-center">No articles found</div>';
+                            }
+                            loadMoreBtn.style.display = 'none';
+                            return;
+                        }
+
+                        if (!append) {
+                            articlesContainer.innerHTML = '';
+                        }
+
+                        data.result.articles.forEach(article => {
+                            const articleHtml = `
+                                <div class="col-lg-4 mb-4">
+                                    <a href="article.html?id=${article.id}" class="text-decoration-none">
+                                        <div class="blog-card h-100">
+                                            <div class="blog-container">
+                                                <div class="blog-overlay">
+                                                    <div class="blog-content">
+                                                        <div class="arrow-container">
+                                                            <i class="fa-solid fa-arrow-right"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="blog-image">
+                                                    <img src="${article.media['medium-full']}"
+                                                         onerror="this.src='https://appworks-tmp.mpanel.app/images/placeholder.jpg'"
+                                                         alt="${article.title}"
+                                                         class="w-100">
+                                                </div>
+                                                <div class="blog-text">
+                                                    <h3 class="text-dark-gray fs-20 fw-600 mb-3">${article.title}</h3>
+                                                    <p class="text-dark-gray opacity-6">${article.intro}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            `;
+                            articlesContainer.insertAdjacentHTML('beforeend', articleHtml);
+                        });
+
+                        // Show/hide load more button based on results
+                        loadMoreBtn.style.display = data.result.articles.length < 20 ? 'none' : 'inline-block';
+                    })
+                    .catch(error => {
+                        console.error('Error fetching articles:', error);
+                    });
+                }
+
+                // Initial load
+                fetchAndDisplayArticles(currentPage);
+
+                // Load More button click handler
+                loadMoreBtn.addEventListener('click', () => {
+                    currentPage++;
+                    fetchAndDisplayArticles(currentPage, currentFilter, true);
+                });
+
+                // Filter buttons click handlers
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        filterButtons.forEach(btn => btn.parentElement.classList.remove('active'));
+                        this.parentElement.classList.add('active');
+                        
+                        currentFilter = this.getAttribute('data-filter');
+                        currentPage = 1;
+                        fetchAndDisplayArticles(currentPage, currentFilter);
+                    });
+                });
+            });
+        </script>
+
+        <!-- javascript libraries -->
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/vendors.min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+    </body>
+</html> 
