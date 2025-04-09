@@ -1743,71 +1743,24 @@
         <!-- start blog posts section -->
         <section style="background: #200A24;" class="py-5">
             <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-12">
-                        <h2 class="text-white fw-600 ls-minus-2px mb-4">Recent blog posts</h2>
+                <div class="row align-items-center mb-4">
+                    <div class="col-xl-5 lg-mb-30px text-center text-xl-start">
+                        <h3 class="text-white fw-700 mb-0 ls-minus-2px">Recent blog posts</h3>
                     </div>
                 </div>
-                <div class="row" id="articlesContainer">
-
+                <div class="row">
+                    <div class="col-12">
+                        <div class="blog-posts-slider">
+                            <div class="swiper-wrapper" id="articlesContainer">
+                                <!-- Articles will be loaded here -->
+                            </div>
+                            <!-- Add Navigation -->
+                            <div class="swiper-button-next blog-slider-next"></div>
+                            <div class="swiper-button-prev blog-slider-prev"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <style>
-                .blog-card {
-                    background: rgba(255, 255, 255, 0.05);
-                    border-radius: 12px;
-                    overflow: hidden;
-                    transition: transform 0.3s ease;
-                }
-                .blog-card:hover {
-                    transform: translateY(-10px);
-                }
-                .blog-container {
-                    position: relative;
-                    overflow: hidden;
-                }
-                .blog-overlay {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: rgba(32, 10, 36, 0.7);
-                    opacity: 0;
-                    transition: opacity 0.3s ease;
-                    z-index: 2;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                }
-                .blog-container:hover .blog-overlay {
-                    opacity: 1;
-                }
-                .blog-image {
-                    position: relative;
-                    overflow: hidden;
-                }
-                .blog-image img {
-                    transition: transform 0.3s ease;
-                    aspect-ratio: 16/9;
-                    object-fit: cover;
-                }
-                .blog-container:hover .blog-image img {
-                    transform: scale(1.05);
-                }
-                .blog-text {
-                    padding: 1.5rem;
-                }
-                .fs-24 {
-                    font-size: 24px;
-                    line-height: 1.4;
-                }
-                @media (max-width: 991px) {
-                    .blog-card {
-                        margin-bottom: 2rem;
-                    }
-                }
-            </style>
         </section>
         <!-- end blog posts section -->
 
