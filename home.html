@@ -840,9 +840,9 @@
                     let apiUrl = 'https://app-works.app/api/webV2/getArticles';
 
                     if (filter === '*') {
-                        apiUrl += '?articleLimit=20';
+                        apiUrl += '?articleLimit=10';
                     } else {
-                        apiUrl += `?category[]=${encodeURIComponent(filter)}&articleLimit=20`;
+                        apiUrl += `?category[]=${encodeURIComponent(filter)}&articleLimit=10`;
                     }
 
                     fetch(apiUrl, {
