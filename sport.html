@@ -2339,80 +2339,35 @@
         <script type="text/javascript" src="js/main.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                // Initialize scroll animations with improved visibility handling
-                    const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                entry.target.classList.add('visible');
-                            entry.target.style.opacity = '1';
-                            entry.target.style.transform = 'none';
-                            }
-                        });
-                    }, {
-                    threshold: 0.1,
-                    rootMargin: '20px'
-                });
+                let blogSlider;
 
-                // Observe all animated elements
-                document.querySelectorAll('.fade-up, .slide-in-left, .feature-item, .fade-in, .stagger-item').forEach((el) => {
-                    observer.observe(el);
-                });
-
-                // Initialize hover effects for mockups
-                document.querySelectorAll('.media-mockup').forEach(mockup => {
-                    mockup.addEventListener('mousemove', (e) => {
-                        const rect = mockup.getBoundingClientRect();
-                        const x = e.clientX - rect.left;
-                        const y = e.clientY - rect.top;
-                        
-                        const rotateX = (y / rect.height - 0.5) * 10;
-                        const rotateY = (x / rect.width - 0.5) * 10;
-                        
-                        mockup.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-                    });
-
-                    mockup.addEventListener('mouseleave', () => {
-                        mockup.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
-                    });
-                });
-
-                // Ensure all sections are visible initially
-                document.querySelectorAll('section').forEach(section => {
-                    section.style.opacity = '1';
-                    section.style.visibility = 'visible';
-                });
-
-                // Initialize partner carousel
-                if (typeof Swiper !== 'undefined') {
-                    new Swiper('.partner-carousel', {
-                        slidesPerView: 2,
-                    spaceBetween: 30,
+                function initializeSwiper() {
+                    if (blogSlider) {
+                        blogSlider.destroy(true, true);
+                    }
+                    
+                    blogSlider = new Swiper('.blog-posts-slider', {
+                        slidesPerView: 1,
+                        spaceBetween: 30,
                         loop: true,
-                    autoplay: {
-                        delay: 3000,
-                        disableOnInteraction: false,
-                    },
+                        grabCursor: true,
+                        watchOverflow: true,
+                        speed: 800,
                         navigation: {
-                            nextEl: '.swiper-button-next',
-                            prevEl: '.swiper-button-prev',
+                            nextEl: '.blog-slider-next',
+                            prevEl: '.blog-slider-prev',
                         },
-                    breakpoints: {
-                            640: {
-                                slidesPerView: 3,
-                        },
-                        768: {
-                                slidesPerView: 4,
+                        breakpoints: {
+                            768: {
+                                slidesPerView: 2
                             },
-                            1024: {
-                                slidesPerView: 5,
-                            },
+                            992: {
+                                slidesPerView: 3
+                            }
                         }
                     });
                 }
-            });
-        </script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
+
                 fetch('https://app-works.app/api/webV2/getArticles?category[]=3&articleLimit=3', {
                     headers: {
                         'Authorization': 'kmNTuI8dRmRX'
@@ -2425,36 +2380,46 @@
                             articlesContainer.innerHTML = '';
                             data.result.articles.forEach(article => {
                                 const articleHtml = `
-                                    <div class="col-lg-4 mb-4">
-                                        <div class="blog-card h-100">
-                                            <div class="blog-container">
-                                                <div class="blog-overlay">
-                                                    <div class="blog-content">
-                                                        <div class="arrow-container">
-                                                            <i class="bi bi-arrow-right"></i>
+                                    <div class="swiper-slide">
+                                        <a href="article.html?id=${article.id}" class="text-decoration-none">
+                                            <div class="blog-card h-100">
+                                                <div class="blog-container">
+                                                    <div class="blog-overlay">
+                                                        <div class="blog-content">
+                                                            <div class="arrow-container">
+                                                                <i class="bi bi-arrow-right"></i>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="blog-image">
-                                                    <img src="${article.media['medium-full']}?crop=true"
-                                                         onerror="this.src='https://source.unsplash.com/random/800x600/?article'"
-                                                         alt="${article.title}"
-                                                         class="w-100">
-                                                </div>
-                                                <div class="blog-text">
-                                                    <h3 class="text-white fs-24 fw-600 mb-3">${article.title}</h3>
-                                                    <p class="text-white opacity-6">${article.intro}</p>
+                                                    <div class="blog-image">
+                                                        <img src="${article.media['medium-full']}?crop=true"
+                                                            onerror="this.src='https://source.unsplash.com/random/800x600/?article'"
+                                                            alt="${article.title}"
+                                                            class="w-100">
+                                                    </div>
+                                                    <div class="blog-text">
+                                                        <h3 class="text-white fs-24 fw-600 mb-3">${article.title}</h3>
+                                                        <p class="text-white opacity-6">${article.intro}</p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </a>
                                     </div>
                                 `;
                                 articlesContainer.innerHTML += articleHtml;
                             });
+                            
+                            // Initialize Swiper after content is loaded
+                            setTimeout(initializeSwiper, 100);
                         }
                     })
                     .catch(error => {
-
+                        console.error('Error fetching articles:', error);
+                        document.getElementById('articlesContainer').innerHTML = 
+                            '<div class="swiper-slide"><div class="blog-card"><div class="blog-text"><h3 class="text-white">Error loading sports articles</h3></div></div></div>';
+                            
+                        // Initialize empty swiper anyway
+                        setTimeout(initializeSwiper, 100);
                     });
             });
         </script>
