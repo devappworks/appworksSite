@@ -112,13 +112,49 @@
                 display: flex;
                 flex-direction: column;
             }
+            .blog-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(32, 10, 36, 0.7);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                z-index: 2;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .blog-container:hover .blog-overlay {
+                opacity: 1;
+            }
+            .arrow-container {
+                width: 50px;
+                height: 50px;
+                background: #FF4B36;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transform: translateX(0);
+                transition: transform 0.3s ease;
+            }
+            .arrow-container i {
+                color: white !important;
+                font-size: 20px;
+            }
+            .blog-container:hover .arrow-container {
+                transform: translateX(10px);
+            }
             .blog-image {
                 position: relative;
                 overflow: hidden;
+                height: 240px;
             }
             .blog-image img {
                 width: 100%;
-                height: 240px;
+                height: 100%;
                 object-fit: cover;
                 transition: transform 0.3s ease;
             }
@@ -137,9 +173,77 @@
                 color: rgba(255, 255, 255, 0.7);
                 margin-bottom: 1rem;
                 flex-grow: 1;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
             }
-            .blog-card .btn {
-                align-self: flex-start;
+            
+            /* Blog Slider Styles */
+            .blog-posts-slider {
+                position: relative;
+                overflow: visible !important;
+                padding: 0 40px;
+            }
+            .blog-slider-next,
+            .blog-slider-prev {
+                width: 50px;
+                height: 50px;
+                background: #FF4B36 !important;
+                border-radius: 50%;
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 100;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                opacity: 1 !important;
+            }
+            .blog-slider-next:hover,
+            .blog-slider-prev:hover {
+                background: #200A24 !important;
+                transform: translateY(-50%) scale(1.1);
+            }
+            .blog-slider-next {
+                right: 0;
+            }
+            .blog-slider-prev {
+                left: 0;
+            }
+            .blog-slider-next i,
+            .blog-slider-prev i {
+                color: white !important;
+                font-size: 20px;
+            }
+            .blog-slider-next::after,
+            .blog-slider-prev::after {
+                display: none !important;
+            }
+            
+            @media (max-width: 991px) {
+                .blog-posts-slider {
+                    padding: 20px 40px;
+                    margin: 0 -20px;
+                }
+                .blog-image {
+                    height: 220px;
+                }
+                .blog-slider-next { right: 10px; }
+                .blog-slider-prev { left: 10px; }
+            }
+            @media (max-width: 767px) {
+                .blog-posts-slider {
+                    padding: 20px 30px;
+                    margin: 0 -10px;
+                }
+                .blog-image {
+                    height: 200px;
+                }
+                .blog-slider-next { right: 5px; }
+                .blog-slider-prev { left: 5px; }
             }
         </style>
     </head>
@@ -335,11 +439,35 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12 text-center mb-5">
-                        <h2 class="text-white fw-600 ls-minus-2px mb-4">Recent blog posts</h2>
+                        <h2 class="text-white fw-600 ls-minus-2px mb-4">Recent grant projects blog posts</h2>
                     </div>
                 </div>
-                <div class="row" id="articlesContainer">
-                    <!-- Articles will be dynamically loaded here -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="blog-posts-slider">
+                            <div class="swiper-wrapper" id="articlesContainer">
+                                <!-- Articles will be dynamically loaded here -->
+                            </div>
+                            <!-- Add Navigation -->
+                            <div class="swiper-button-next blog-slider-next">
+                                <i class="fa-solid fa-chevron-right" style="color: white !important;"></i>
+                            </div>
+                            <div class="swiper-button-prev blog-slider-prev">
+                                <i class="fa-solid fa-chevron-left" style="color: white !important;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add View All button -->
+                <div class="row justify-content-center mt-5">
+                    <div class="col-auto">
+                        <a href="articles.html?filter=10" class="btn btn-extra-large btn-switch-text btn-rounded" style="background: #FF4B36;">
+                            <span>
+                                <span class="btn-double-text text-white" data-text="View All Grant Projects Articles">View All Grant Projects Articles</span>
+                                <span><i class="fa-solid fa-arrow-right text-white"></i></span>
+                            </span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -453,7 +581,36 @@
             });
 
             document.addEventListener('DOMContentLoaded', function() {
-                fetch('https://app-works.app/api/webV2/getArticles?category[]=10&articleLimit=3', {
+                let blogSlider;
+
+                function initializeSwiper() {
+                    if (blogSlider) {
+                        blogSlider.destroy(true, true);
+                    }
+                    
+                    blogSlider = new Swiper('.blog-posts-slider', {
+                        slidesPerView: 1,
+                        spaceBetween: 30,
+                        loop: true,
+                        grabCursor: true,
+                        watchOverflow: true,
+                        speed: 800,
+                        navigation: {
+                            nextEl: '.blog-slider-next',
+                            prevEl: '.blog-slider-prev',
+                        },
+                        breakpoints: {
+                            768: {
+                                slidesPerView: 2
+                            },
+                            992: {
+                                slidesPerView: 3
+                            }
+                        }
+                    });
+                }
+
+                fetch('https://app-works.app/api/webV2/getArticles?category[]=10&articleLimit=10', {
                     headers: {
                         'Authorization': 'kmNTuI8dRmRX'
                     }
@@ -465,38 +622,46 @@
                             articlesContainer.innerHTML = '';
                             data.result.articles.forEach(article => {
                                 const articleHtml = `
-                                <div class="col-lg-4 mb-4">
-                                    <div class="blog-card h-100">
-                                        <div class="blog-container">
-                                            <div class="blog-overlay">
-                                                <div class="blog-content">
-                                                    <div class="arrow-container">
-                                                        <i class="bi bi-arrow-right"></i>
+                                    <div class="swiper-slide">
+                                        <a href="article.html?id=${article.id}" class="text-decoration-none">
+                                            <div class="blog-card h-100">
+                                                <div class="blog-container">
+                                                    <div class="blog-overlay">
+                                                        <div class="blog-content">
+                                                            <div class="arrow-container">
+                                                                <i class="bi bi-arrow-right"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="blog-image">
+                                                        <img src="${article.media['medium-full']}?crop=true"
+                                                            onerror="this.src='https://source.unsplash.com/random/800x600/?article'"
+                                                            alt="${article.title}"
+                                                            class="w-100">
+                                                    </div>
+                                                    <div class="blog-text">
+                                                        <h3 class="text-white fs-24 fw-600 mb-3">${article.title}</h3>
+                                                        <p class="text-white opacity-6">${article.intro}</p>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="blog-image">
-                                                <img src="${article.media['medium-full']}"
-                                                     onerror="this.src='https://source.unsplash.com/random/800x600/?article'"
-                                                     alt="${article.title}"
-                                                     class="w-100">
-                                            </div>
-                                            <div class="blog-text">
-                                                <h3 class="text-white fs-24 fw-600 mb-3">${article.title}</h3>
-                                                <p class="text-white opacity-6">${article.intro}</p>
-                                            </div>
-                                        </div>
+                                        </a>
                                     </div>
-                                </div>
-                            `;
+                                `;
                                 articlesContainer.innerHTML += articleHtml;
                             });
+                            
+                            // Initialize Swiper after content is loaded
+                            setTimeout(initializeSwiper, 100);
                         }
                     })
                     .catch(error => {
                         console.error('Error fetching articles:', error);
                         document.getElementById('articlesContainer').innerHTML = 
-                            '<div class="col-12 text-center"><p class="text-white opacity-6">Error loading articles. Please try again later.</p></div>';
+                            '<div class="swiper-slide"><div class="blog-card"><div class="blog-text"><h3 class="text-white">Error loading grant projects articles</h3></div></div></div>';
+                            
+                        // Initialize empty swiper anyway
+                        setTimeout(initializeSwiper, 100);
                     });
             });
         </script>
