@@ -298,7 +298,7 @@
 
             @media (max-width: 767px) {
                 .article-header {
-                    padding: 120px 0 110px;
+                    padding: 140px 0 110px;
                 }
                 
                 .article-title {
@@ -311,6 +311,17 @@
                     margin-top: -60px;
                     margin-bottom: 30px;
                     border-radius: 8px;
+                }
+
+                /* Fix for mobile navigation */
+                .navbar-nav {
+                    flex-direction: column !important;
+                    margin-left: 0 !important;
+                }
+                
+                .nav-item {
+                    margin: 8px 0 !important;
+                    text-align: center;
                 }
 
                 .article-text {
@@ -397,7 +408,7 @@
                         <a class="navbar-brand" href="home.html">
                             <img src="https://appworks-tmp.mpanel.app/images/appworks.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks.png" alt="Appworks Logo" class="default-logo">
                             <img src="https://appworks-tmp.mpanel.app/images/appworks-black.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks-black.png" alt="Appworks Logo" class="alt-logo">
-                            <img src="https://appworks-tmp.mpanel.app/images/appworks.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks.png" alt="Appworks Logo" class="mobile-logo">
+                            <img src="https://appworks-tmp.mpanel.app/images/appworks-black.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks-black.png" alt="Appworks Logo" class="mobile-logo">
                         </a>
                     </div>
                     <div class="col-auto position-static">
