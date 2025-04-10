@@ -298,7 +298,7 @@
 
             @media (max-width: 767px) {
                 .article-header {
-                    padding: 80px 0 110px;
+                    padding: 120px 0 110px;
                 }
                 
                 .article-title {
@@ -306,8 +306,11 @@
                 }
                 
                 .article-image {
-                    height: 350px;
-                    margin-top: -80px;
+                    height: auto;
+                    min-height: 250px;
+                    margin-top: -60px;
+                    margin-bottom: 30px;
+                    border-radius: 8px;
                 }
 
                 .article-text {
@@ -598,7 +601,7 @@
                         <img src="${article.media['medium-full'] || 'https://appworks-tmp.mpanel.app/images/placeholder.jpg'}?crop=true"
                              alt="${article.title}"
                              class="article-image"
-                             style="width: 100%; max-width: 100%; height: auto; min-height: 500px; object-fit: cover;"
+                             style="width: 100%; max-width: 100%; height: auto; object-fit: cover; border-radius: 12px;"
                              onerror="this.src='https://appworks-tmp.mpanel.app/images/placeholder.jpg'">
                         <div class="share-buttons">
                             <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(article.title)}" 

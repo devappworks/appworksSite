@@ -154,6 +154,61 @@
                 font-size: 1rem;
                 line-height: 1.6;
             }
+            
+            /* Hero section mobile fixes */
+            @media (max-width: 767px) {
+                .hero-buttons-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px !important;
+                    margin-bottom: 40px;
+                }
+                
+                .hero-image-wrapper {
+                    margin-top: 20px !important;
+                }
+                
+                .hero-image {
+                    max-width: 80% !important;
+                    margin: 0 auto !important;
+                    transform: perspective(1000px) rotateY(10deg) translateY(0) !important;
+                }
+                
+                /* Fix progress bar text overlap */
+                .progress-bar-title {
+                    font-size: 10px !important;
+                    line-height: 1.2 !important;
+                    margin-top: 5px;
+                }
+            }
+            
+            /* Partners logo size for mobile */
+            @media (max-width: 767px) {
+                .partner-logo {
+                    max-width: 80%;
+                    max-height: 60px;
+                }
+                
+                .partners-grid {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr) !important;
+                    gap: 15px !important;
+                }
+                
+                .partners-grid .partner-item {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 80px !important;
+                }
+                
+                .partners-grid .partner-item img {
+                    max-width: 85%;
+                    max-height: 50px;
+                    object-fit: contain;
+                }
+            }
+            
             @media (max-width: 991px) {
                 .blog-posts-slider {
                     padding: 20px 40px;
@@ -204,6 +259,34 @@
                 transition: opacity 0.3s ease;
                 z-index: 2;
             }
+            /* Fix progress bar text overlap on mobile */
+            @media (max-width: 767px) {
+                .progress-bar-style-02 .progress {
+                    height: auto !important;
+                    min-height: 35px !important;
+                    padding: 8px 15px !important;
+                }
+                
+                .progress-bar-style-02 .progress-bar {
+                    width: 120px !important;
+                    text-align: left !important;
+                }
+                
+                .progress-bar-style-02 .progress-bar-percent {
+                    right: auto !important;
+                    left: 10px !important;
+                    padding-left: 0 !important;
+                }
+                
+                .progress-bar-style-02 .progress-bar-title {
+                    padding-left: 70px !important;
+                    font-size: 9px !important;
+                    line-height: 1.2 !important;
+                    width: 100% !important;
+                    text-align: left !important;
+                    white-space: normal !important;
+                }
+            }
         </style>
     </head>
     <body data-mobile-nav-style="full-screen-menu" data-mobile-nav-bg-color="#252840">
@@ -216,7 +299,7 @@
                         <a class="navbar-brand" href="demo-it-business.html">
                             <img src="https://appworks-tmp.mpanel.app/images/appworks.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks.png" alt="Appworks Logo" class="default-logo">
                             <img src="https://appworks-tmp.mpanel.app/images/appworks-black.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks-black.png" alt="Appworks Logo" class="alt-logo">
-                            <img src="https://appworks-tmp.mpanel.app/images/appworks.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks.png" alt="Appworks Logo" class="mobile-logo">
+                            <img src="https://appworks-tmp.mpanel.app/images/appworks-black.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks-black.png" alt="Appworks Logo" class="mobile-logo">
                         </a>
                     </div>
                     <div class="col-auto col-xxl-6 col-lg-8 menu-order position-static">
@@ -258,7 +341,7 @@
                             </div>
                             <h1 class="text-white fw-600 ls-minus-2px mb-4" style="font-size: 3.5rem;">AI, Apps & Digital Platforms for Media and Sports.</h1>
                             <p class="fw-300 fs-18 text-white opacity-6 mb-5" style="max-width: 600px;">Small team, big work. We help our partners publish, play, and stay connected.</p>
-                            <div class="d-flex flex-wrap gap-3">
+                            <div class="d-flex flex-wrap gap-3 hero-buttons-wrapper">
                                 <a href="about.html" class="btn btn-extra-large btn-switch-text btn-rounded" style="background: #FF4B36;">
                                     <span>
                                         <span class="btn-double-text text-white" data-text="Get in touch">We are listening</span>
@@ -275,8 +358,8 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 position-relative" data-anime='{ "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 300, "easing": "easeOutQuad" }'>
-                        <div class="d-flex justify-content-center align-items-center" style="margin-top: -35px;">
-                            <img src="https://appworks-tmp.mpanel.app/images/appworksPartners/mockups/mainslider-phone-ESAKE.png" alt="ESAKE Mobile App" class="img-fluid" style="max-width: 65%; transform: perspective(1000px) rotateY(10deg) translateY(20px); margin-left: -30px;">
+                        <div class="d-flex justify-content-center align-items-center hero-image-wrapper" style="margin-top: -35px;">
+                            <img src="https://appworks-tmp.mpanel.app/images/appworksPartners/mockups/mainslider-phone-ESAKE.png" alt="ESAKE Mobile App" class="img-fluid hero-image" style="max-width: 65%; transform: perspective(1000px) rotateY(10deg) translateY(20px); margin-left: -30px;">
                         </div>
                     </div>
                 </div>
