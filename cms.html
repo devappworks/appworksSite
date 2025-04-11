@@ -968,7 +968,7 @@
                 <!-- Add View All button -->
                 <div class="row justify-content-center mt-5">
                     <div class="col-auto">
-                        <a href="articles.html" class="btn btn-extra-large btn-switch-text btn-rounded" style="background: #FF4B36;">
+                        <a href="/articles" class="btn btn-extra-large btn-switch-text btn-rounded" style="background: #FF4B36;">
                             <span>
                                 <span class="btn-double-text text-white" data-text="View All">View All</span>
                                 <span><i class="fa-solid fa-arrow-right text-white"></i></span>
@@ -1003,9 +1003,9 @@
                     <div class="col-6 col-xl-2 col-lg-3 col-sm-4 xs-mb-30px order-sm-3 order-lg-2">
                         <span class="fw-600 d-block text-dark-gray mb-5px">Company</span>
                         <ul>
-                            <li><a href="about.html">About us</a></li>
-                            <li><a href="partners.html">Partners</a></li>
-                            <li><a href="about.html">Contact us</a></li>
+                            <li><a href="/about">About us</a></li>
+                            <li><a href="/partners">Partners</a></li>
+                            <li><a href="/about">Contact us</a></li>
                         </ul>
                     </div>
                     <!-- end footer column -->
@@ -1118,7 +1118,7 @@
                         data.result.articles.forEach(article => {
                             const articleHtml = `
                                 <div class="swiper-slide">
-                                    <a href="article.html?id=${article.id}" class="text-decoration-none">
+                                    <a href="/article?id=${article.id}" class="text-decoration-none">
                                         <div class="blog-card">
                                             <div class="blog-container">
                                                 <div class="blog-overlay">

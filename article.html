@@ -405,7 +405,7 @@
             <nav class="navbar navbar-expand-lg header-transparent bg-transparent header-reverse glass-effect" data-header-hover="light">
                 <div class="container-fluid">
                     <div class="col-auto me-auto">
-                        <a class="navbar-brand" href="home.html">
+                        <a class="navbar-brand" href="/home">
                             <img src="https://appworks-tmp.mpanel.app/images/appworks.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks.png" alt="Appworks Logo" class="default-logo">
                             <img src="https://appworks-tmp.mpanel.app/images/appworks-black.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks-black.png" alt="Appworks Logo" class="alt-logo">
                             <img src="https://appworks-tmp.mpanel.app/images/appworks-black.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks-black.png" alt="Appworks Logo" class="mobile-logo">
@@ -470,7 +470,7 @@
                 <div class="row justify-content-center pt-5 sm-pt-40px">
                     <!-- start footer column -->
                     <div class="col-6 col-xl-3 col-lg-12 col-sm-6 last-paragraph-no-margin text-xl-start text-lg-center order-sm-1 lg-mb-60px sm-mb-40px">
-                        <a href="home.html" class="footer-logo mb-15px d-inline-block">
+                        <a href="/home" class="footer-logo mb-15px d-inline-block">
                             <img src="https://appworks-tmp.mpanel.app/images/appworks-black - 114x114.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks-black - 114x114.png" alt="Appworks Logo">
                         </a>
                         <p class="lh-28 w-90 xl-w-100 mx-lg-auto mx-xl-0">Creative solutions for innovative partners.</p>
@@ -487,8 +487,8 @@
                     <div class="col-6 col-xl-2 col-lg-3 col-sm-4 xs-mb-30px order-sm-3 order-lg-2">
                         <span class="fw-600 d-block text-dark-gray mb-5px">Company</span>
                         <ul>
-                            <li><a href="about.html">About us</a></li>
-                            <li><a href="partners.html">Partners</a></li>
+                            <li><a href="/about">About us</a></li>
+                            <li><a href="/partners">Partners</a></li>
                             <li><a href="#">Contact us</a></li>
                         </ul>
                     </div>
@@ -528,7 +528,7 @@
                 const articleId = urlParams.get('id');
 
                 if (!articleId) {
-                    window.location.href = 'home.html';
+                    window.location.href = '/home';
                     return;
                 }
 
@@ -564,7 +564,7 @@
                             <div class="text-center">
                                 <h2 class="text-dark-gray fw-600">Article not found</h2>
                                 <p class="mb-4">The requested article could not be loaded.</p>
-                                <a href="home.html" class="btn btn-medium btn-round-edge btn-fancy btn-fast-red">
+                                <a href="/home" class="btn btn-medium btn-round-edge btn-fancy btn-fast-red">
                                     <i class="fa-solid fa-arrow-left"></i> Return to Home
                                 </a>
                             </div>
@@ -670,7 +670,7 @@
                             .filter(relatedArticle => relatedArticle.id !== article.id) // Exclude current article
                             .slice(0, 6) // Ensure exactly 6 articles
                             .map(relatedArticle => `
-                                <a href="article.html?id=${relatedArticle.id}" class="related-article-card">
+                                <a href="/article?id=${relatedArticle.id}" class="related-article-card">
                                     <img src="${relatedArticle.media['medium-full'] || 'https://appworks-tmp.mpanel.app/images/placeholder.jpg'}"
                                          alt="${relatedArticle.title}"
                                          class="related-article-image"
@@ -695,7 +695,7 @@
                         <div class="text-center">
                             <h2 class="text-dark-gray fw-600">Error loading article</h2>
                             <p class="mb-4">There was a problem loading the article. Please try again later.</p>
-                            <a href="home.html" class="btn btn-medium btn-round-edge btn-fancy btn-fast-red">
+                            <a href="/home" class="btn btn-medium btn-round-edge btn-fancy btn-fast-red">
                                 <i class="fa-solid fa-arrow-left"></i> Return to Home
                             </a>
                         </div>
