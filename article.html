@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="author" content="ThemeZaa">
-        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0" />
         <meta name="description" content="Appworks article view">
         <!-- favicon icon -->
         <link rel="shortcut icon" href="https://appworks-tmp.mpanel.app/images/appworks.png">
@@ -18,6 +18,13 @@
         <link rel="stylesheet" href="https://appworks-tmp.mpanel.app/css/style.css"/>
         <link rel="stylesheet" href="https://appworks-tmp.mpanel.app/css/responsive.css"/>
         <style>
+            body {
+                overflow-x: hidden;
+                width: 100%;
+                position: relative;
+                max-width: 100vw;
+            }
+            
             .article-header {
                 background: #200A24;
                 padding: 120px 0 150px;
@@ -298,7 +305,7 @@
 
             @media (max-width: 767px) {
                 .article-header {
-                    padding: 140px 0 110px;
+                    padding: 180px 0 110px;
                 }
                 
                 .article-title {
@@ -366,7 +373,7 @@
                 }
 
                 .article-header {
-                    padding: 80px 0 100px;
+                    padding: 160px 0 100px;
                 }
                 
                 .article-image {
