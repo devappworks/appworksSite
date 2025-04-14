@@ -4,7 +4,7 @@
         <title>Articles - Appworks</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0" />
         <link rel="shortcut icon" href="https://appworks-tmp.mpanel.app/images/appworks.png">
         <link rel="stylesheet" href="https://appworks-tmp.mpanel.app/css/vendors.min.css"/>
         <link rel="stylesheet" href="https://appworks-tmp.mpanel.app/css/icon.min.css"/>
@@ -12,6 +12,13 @@
         <link rel="stylesheet" href="https://appworks-tmp.mpanel.app/css/responsive.css"/>
         <style>
             /* Blog Card Styles - identical to home page */
+            body {
+                overflow-x: hidden;
+                width: 100%;
+                position: relative;
+                max-width: 100vw;
+            }
+            
             .blog-card {
                 background: rgba(255, 255, 255, 0.05);
                 border-radius: 12px;
@@ -91,7 +98,7 @@
                         <a class="navbar-brand" href="home.html">
                             <img src="https://appworks-tmp.mpanel.app/images/appworks.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks.png" alt="Appworks Logo" class="default-logo">
                             <img src="https://appworks-tmp.mpanel.app/images/appworks-black.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks-black.png" alt="Appworks Logo" class="alt-logo">
-                            <img src="https://appworks-tmp.mpanel.app/images/appworks.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks.png" alt="Appworks Logo" class="mobile-logo">
+                            <img src="https://appworks-tmp.mpanel.app/images/appworks-black.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks-black.png" alt="Appworks Logo" class="mobile-logo">
                         </a>
                     </div>
                     <div class="col-auto col-xxl-6 col-lg-8 menu-order position-static">
