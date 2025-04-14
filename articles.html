@@ -242,7 +242,7 @@
                 const loadMoreBtn = document.getElementById('loadMoreBtn');
 
                 function fetchAndDisplayArticles(page, filter = '*', append = false) {
-                    let apiUrl = 'https://app-works.app/api/webV2/getArticles';
+                    let apiUrl = 'https://appworks.mpanel.app/api/webV2/getArticles';
 
                     if (filter === '*') {
                         apiUrl += `?articleLimit=20&page=${page}`;

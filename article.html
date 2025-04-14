@@ -533,7 +533,7 @@
                 }
 
                 // First fetch the list of articles to get the first article ID if none specified
-                fetch('https://app-works.app/api/webV2/getArticles?articleLimit=1', {
+                fetch('https://appworks.mpanel.app/api/webV2/getArticles?articleLimit=1', {
                     headers: {
                         'Authorization': 'kmNTuI8dRmRX'
                     }
@@ -548,7 +548,7 @@
                     }
 
                     // Then fetch the full article data
-                    return fetch(`https://app-works.app/api/webV2/getOneArticle/${targetId}`, {
+                    return fetch(`https://appworks.mpanel.app/api/webV2/getOneArticle/${targetId}`, {
                         headers: {
                             'Authorization': 'kmNTuI8dRmRX'
                         }
@@ -594,7 +594,7 @@
                     let articleContent = article.body || article.text || article.contents || '';
 
                     // Fix image paths
-                    articleContent = articleContent.replace(/\/storage/g, 'https://app-works.app/image/cache/extra-large');
+                    articleContent = articleContent.replace(/\/storage/g, 'https://appworks.mpanel.app/image/cache/extra-large');
 
                     // Ensure all images have crop=true parameter
                     articleContent = articleContent.replace(/(src="https:\/\/app-works\.app\/image\/cache\/extra-large[^"]*\.(jpg|jpeg|png|gif|bmp|svg|webp))(?!\?crop=true)"/g, (match, url) => {
@@ -653,7 +653,7 @@
                     document.title = `${article.title} - Appworks`;
 
                     // Fetch related articles
-                    fetch('https://app-works.app/api/webV2/getArticles?articleLimit=10', {
+                    fetch('https://appworks.mpanel.app/api/webV2/getArticles?articleLimit=10', {
                         headers: {
                             'Authorization': 'kmNTuI8dRmRX'
                         }

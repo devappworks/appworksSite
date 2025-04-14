@@ -923,7 +923,7 @@
                 }
 
                 function fetchAndDisplayArticles(filter = '*') {
-                    let apiUrl = 'https://app-works.app/api/webV2/getArticles';
+                    let apiUrl = 'https://appworks.mpanel.app/api/webV2/getArticles';
 
                     // Always limit to 10 articles
                     if (filter === '*') {
@@ -1852,7 +1852,7 @@
 
 <!--    <script>-->
 <!--        document.addEventListener('DOMContentLoaded', function() {-->
-<!--            fetch('https://app-works.app/api/webV2/getArticles?articleLimit=3', {-->
+<!--            fetch('https://appworks.mpanel.app/api/webV2/getArticles?articleLimit=3', {-->
 <!--                headers: {-->
 <!--                    'Authorization': 'kmNTuI8dRmRX'-->
 <!--                }-->
@@ -1903,7 +1903,7 @@
             const filterButtons = document.querySelectorAll('.portfolio-filter a');
 
             function fetchAndDisplayArticles(filter = '*') {
-                let apiUrl = 'https://app-works.app/api/webV2/getArticles';
+                let apiUrl = 'https://appworks.mpanel.app/api/webV2/getArticles';
 
                 if (filter === '*') {
                     apiUrl += '?articleLimit=3';
