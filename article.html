@@ -8,15 +8,15 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0" />
         <meta name="description" content="Appworks article view">
         <!-- favicon icon -->
-        <link rel="shortcut icon" href="https://appworks-tmp.mpanel.app/images/appworks.png">
-        <link rel="apple-touch-icon" href="https://appworks-tmp.mpanel.app/images/appworks.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="https://appworks-tmp.mpanel.app/images/appworks - 72x72.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="https://appworks-tmp.mpanel.app/images/appworks- 114x114.png">
+        <link rel="shortcut icon" href="https://app-works.app/images/appworks.png">
+        <link rel="apple-touch-icon" href="https://app-works.app/images/appworks.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="https://app-works.app/images/appworks - 72x72.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="https://app-works.app/images/appworks- 114x114.png">
         <!-- style sheets and font icons -->
-        <link rel="stylesheet" href="https://appworks-tmp.mpanel.app/css/vendors.min.css"/>
-        <link rel="stylesheet" href="https://appworks-tmp.mpanel.app/css/icon.min.css"/>
-        <link rel="stylesheet" href="https://appworks-tmp.mpanel.app/css/style.css"/>
-        <link rel="stylesheet" href="https://appworks-tmp.mpanel.app/css/responsive.css"/>
+        <link rel="stylesheet" href="https://app-works.app/css/vendors.min.css"/>
+        <link rel="stylesheet" href="https://app-works.app/css/icon.min.css"/>
+        <link rel="stylesheet" href="https://app-works.app/css/style.css"/>
+        <link rel="stylesheet" href="https://app-works.app/css/responsive.css"/>
         <style>
             body {
                 overflow-x: hidden;
@@ -413,9 +413,9 @@
                 <div class="container-fluid">
                     <div class="col-auto me-auto">
                         <a class="navbar-brand" href="/home">
-                            <img src="https://appworks-tmp.mpanel.app/images/appworks.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks.png" alt="Appworks Logo" class="default-logo">
-                            <img src="https://appworks-tmp.mpanel.app/images/appworks-black.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks-black.png" alt="Appworks Logo" class="alt-logo">
-                            <img src="https://appworks-tmp.mpanel.app/images/appworks-black.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks-black.png" alt="Appworks Logo" class="mobile-logo">
+                            <img src="https://app-works.app/images/appworks.png" data-at2x="https://app-works.app/images/appworks.png" alt="Appworks Logo" class="default-logo">
+                            <img src="https://app-works.app/images/appworks-black.png" data-at2x="https://app-works.app/images/appworks-black.png" alt="Appworks Logo" class="alt-logo">
+                            <img src="https://app-works.app/images/appworks-black.png" data-at2x="https://app-works.app/images/appworks-black.png" alt="Appworks Logo" class="mobile-logo">
                         </a>
                     </div>
                     <div class="col-auto position-static">
@@ -478,7 +478,7 @@
                     <!-- start footer column -->
                     <div class="col-6 col-xl-3 col-lg-12 col-sm-6 last-paragraph-no-margin text-xl-start text-lg-center order-sm-1 lg-mb-60px sm-mb-40px">
                         <a href="/home" class="footer-logo mb-15px d-inline-block">
-                            <img src="https://appworks-tmp.mpanel.app/images/appworks-black - 114x114.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks-black - 114x114.png" alt="Appworks Logo">
+                            <img src="https://app-works.app/images/appworks-black - 114x114.png" data-at2x="https://app-works.app/images/appworks-black - 114x114.png" alt="Appworks Logo">
                         </a>
                         <p class="lh-28 w-90 xl-w-100 mx-lg-auto mx-xl-0">Creative solutions for innovative partners.</p>
                         <div class="elements-social social-icon-style-02 mt-15px">
@@ -616,11 +616,11 @@
                     });
                     
                     articleContainer.innerHTML = `
-                        <img src="${article.media['medium-full'] || 'https://appworks-tmp.mpanel.app/images/placeholder.jpg'}?crop=true"
+                        <img src="${article.media['medium-full'] || 'https://app-works.app/images/placeholder.jpg'}?crop=true"
                              alt="${article.title}"
                              class="article-image"
                              style="width: 100%; max-width: 100%; height: auto; object-fit: cover; border-radius: 12px;"
-                             onerror="this.src='https://appworks-tmp.mpanel.app/images/placeholder.jpg'">
+                             onerror="this.src='https://app-works.app/images/placeholder.jpg'">
                         <div class="share-buttons">
                             <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(article.title)}" 
                                target="_blank" 
@@ -678,10 +678,10 @@
                             .slice(0, 6) // Ensure exactly 6 articles
                             .map(relatedArticle => `
                                 <a href="/article?id=${relatedArticle.id}" class="related-article-card">
-                                    <img src="${relatedArticle.media['medium-full'] || 'https://appworks-tmp.mpanel.app/images/placeholder.jpg'}"
+                                    <img src="${relatedArticle.media['medium-full'] || 'https://app-works.app/images/placeholder.jpg'}"
                                          alt="${relatedArticle.title}"
                                          class="related-article-image"
-                                         onerror="this.src='https://appworks-tmp.mpanel.app/images/placeholder.jpg'">
+                                         onerror="this.src='https://app-works.app/images/placeholder.jpg'">
                                     <div class="related-article-content">
                                         <h3 class="related-article-title">${relatedArticle.title}</h3>
                                         <p class="related-article-excerpt">${relatedArticle.intro ? relatedArticle.intro.substring(0, 80) + '...' : ''}</p>
