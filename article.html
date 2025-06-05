@@ -616,7 +616,7 @@
                     });
                     
                     articleContainer.innerHTML = `
-                        <img src="${article.media['medium-full'] || 'https://app-works.app/images/placeholder.jpg'}?crop=true"
+                        <img src="${article.images['medium-full'].url || 'https://app-works.app/images/placeholder.jpg'}?crop=true"
                              alt="${article.title}"
                              class="article-image"
                              style="width: 100%; max-width: 100%; height: auto; object-fit: cover; border-radius: 12px;"
@@ -678,7 +678,7 @@
                             .slice(0, 6) // Ensure exactly 6 articles
                             .map(relatedArticle => `
                                 <a href="/article?id=${relatedArticle.id}" class="related-article-card">
-                                    <img src="${relatedArticle.media['medium-full'] || 'https://app-works.app/images/placeholder.jpg'}"
+                                    <img src="${relatedArticle.images['medium-full'].url || 'https://app-works.app/images/placeholder.jpg'}"
                                          alt="${relatedArticle.title}"
                                          class="related-article-image"
                                          onerror="this.src='https://app-works.app/images/placeholder.jpg'">
