@@ -1,8 +1,15 @@
 <?php
-var_dump('radiiiiiiiiiii');
+// Debug mode - set to false in production
+$debug = true;
+
 // Get article ID or slug from URL
 $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 $articleSlug = isset($_GET['slug']) ? $_GET['slug'] : null;
+
+if ($debug) {
+    echo "<!-- DEBUG: Article ID: " . ($articleId ?: 'none') . " -->\n";
+    echo "<!-- DEBUG: Article Slug: " . ($articleSlug ?: 'none') . " -->\n";
+}
 
 // Default meta values
 $pageTitle = "Article - Appworks";
@@ -39,29 +46,72 @@ if ($articleId || $articleSlug) {
         $apiUrl .= '?articleLimit=50';
     }
     
+    if ($debug) {
+        echo "<!-- DEBUG: API URL: " . $apiUrl . " -->\n";
+    }
+    
     $context = stream_context_create([
         'http' => [
-            'header' => "Authorization: kmNTuI8dRmRX\r\n"
+            'header' => "Authorization: kmNTuI8dRmRX\r\n",
+            'method' => 'GET',
+            'timeout' => 30
+        ],
+        'ssl' => [
+            'verify_peer' => false,
+            'verify_peer_name' => false
         ]
     ]);
     
     $response = @file_get_contents($apiUrl, false, $context);
     
+    if ($debug) {
+        echo "<!-- DEBUG: Response received: " . ($response ? 'YES' : 'NO') . " -->\n";
+        if ($response) {
+            echo "<!-- DEBUG: Response length: " . strlen($response) . " -->\n";
+        } else {
+            $error = error_get_last();
+            echo "<!-- DEBUG: Error: " . ($error['message'] ?? 'Unknown error') . " -->\n";
+        }
+    }
+    
     if ($response) {
         $data = json_decode($response, true);
+        
+        if ($debug) {
+            echo "<!-- DEBUG: JSON decoded: " . ($data ? 'YES' : 'NO') . " -->\n";
+            if ($data) {
+                echo "<!-- DEBUG: Data success: " . ($data['success'] ? 'true' : 'false') . " -->\n";
+                echo "<!-- DEBUG: Articles count: " . (isset($data['result']['articles']) ? count($data['result']['articles']) : 0) . " -->\n";
+            }
+        }
         
         if ($data && $data['success'] && isset($data['result']['articles'])) {
             if ($articleId) {
                 // Direct ID lookup
                 $articleData = $data['result']['articles'][0] ?? null;
+                if ($debug) {
+                    echo "<!-- DEBUG: Found article by ID: " . ($articleData ? 'YES' : 'NO') . " -->\n";
+                }
             } else {
                 // Search by slug
+                if ($debug) {
+                    echo "<!-- DEBUG: Searching for slug: " . $articleSlug . " -->\n";
+                }
                 foreach ($data['result']['articles'] as $article) {
                     $slug = createSlug($article['title']);
+                    if ($debug) {
+                        echo "<!-- DEBUG: Comparing '" . $slug . "' with '" . $articleSlug . "' -->\n";
+                    }
                     if ($slug === $articleSlug) {
                         $articleData = $article;
+                        if ($debug) {
+                            echo "<!-- DEBUG: Match found! -->\n";
+                        }
                         break;
                     }
+                }
+                if ($debug && !$articleData) {
+                    echo "<!-- DEBUG: No slug match found -->\n";
                 }
             }
         }
@@ -73,25 +123,47 @@ if ($articleData) {
     $pageTitle = htmlspecialchars($articleData['title']) . " - Appworks";
     $pageDescription = htmlspecialchars($articleData['intro'] ?? $articleData['title']);
     
+    if ($debug) {
+        echo "<!-- DEBUG: Article found! Title: " . $articleData['title'] . " -->\n";
+        echo "<!-- DEBUG: Article intro: " . ($articleData['intro'] ?? 'none') . " -->\n";
+        echo "<!-- DEBUG: Available fields: " . implode(', ', array_keys($articleData)) . " -->\n";
+    }
+    
     // Handle image URL
     if (isset($articleData['images']['large-full']['url'])) {
         $pageImage = $articleData['images']['large-full']['url'];
+        if ($debug) echo "<!-- DEBUG: Using images[large-full][url] -->\n";
     } elseif (isset($articleData['images']['medium-full']['url'])) {
         $pageImage = $articleData['images']['medium-full']['url'];
+        if ($debug) echo "<!-- DEBUG: Using images[medium-full][url] -->\n";
     } elseif (isset($articleData['media']['large-full'])) {
         $pageImage = $articleData['media']['large-full'];
+        if ($debug) echo "<!-- DEBUG: Using media[large-full] -->\n";
     } elseif (isset($articleData['media']['medium-full'])) {
         $pageImage = $articleData['media']['medium-full'];
+        if ($debug) echo "<!-- DEBUG: Using media[medium-full] -->\n";
+    }
+    
+    if ($debug) {
+        echo "<!-- DEBUG: Selected image: " . $pageImage . " -->\n";
     }
     
     // Clean up image URL
     if ($pageImage && !filter_var($pageImage, FILTER_VALIDATE_URL)) {
         $pageImage = 'https://app-works.app' . $pageImage;
+        if ($debug) echo "<!-- DEBUG: Fixed image URL: " . $pageImage . " -->\n";
     }
     
     // Create clean slug URL
     $cleanSlug = createSlug($articleData['title']);
     $pageUrl = "https://" . $_SERVER['HTTP_HOST'] . "/article.php?slug=" . $cleanSlug;
+    
+    if ($debug) {
+        echo "<!-- DEBUG: Final title: " . $pageTitle . " -->\n";
+        echo "<!-- DEBUG: Final description: " . $pageDescription . " -->\n";
+        echo "<!-- DEBUG: Final image: " . $pageImage . " -->\n";
+        echo "<!-- DEBUG: Final URL: " . $pageUrl . " -->\n";
+    }
 }
 
 // Keywords
