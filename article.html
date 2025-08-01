@@ -984,7 +984,7 @@
                             .filter(relatedArticle => relatedArticle.id !== article.id) // Exclude current article
                             .slice(0, 6) // Ensure exactly 6 articles
                             .map(relatedArticle => `
-                                <a href="/article?id=${relatedArticle.id}" class="related-article-card">
+                                <a href="article.php?slug=${relatedArticle.title.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').trim('-')}" class="related-article-card">
                                     <img src="${relatedArticle.images['medium-full'].url || 'https://app-works.app/images/placeholder.jpg'}"
                                          alt="${relatedArticle.title}"
                                          class="related-article-image"

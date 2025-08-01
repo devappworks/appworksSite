@@ -1125,7 +1125,7 @@
                         data.result.articles.forEach(article => {
                             const articleHtml = `
                                 <div class="swiper-slide">
-                                    <a href="/article?id=${article.id}" class="text-decoration-none">
+                                    <a href="article.php?slug=${article.title.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').trim('-')}" class="text-decoration-none">
                                         <div class="blog-card">
                                             <div class="blog-container">
                                                 <div class="blog-overlay">
