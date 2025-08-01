@@ -109,7 +109,7 @@ if ($articleId || $articleSlug) {
                     echo "<!-- DEBUG: Found article by ID: " . ($articleData ? 'YES' : 'NO') . " -->\n";
                 }
             } else {
-                // Search by slug in articles list
+                // Search by slug in articles list, then fetch full article
                 if ($debug) {
                     echo "<!-- DEBUG: Searching for slug: " . $articleSlug . " -->\n";
                 }
@@ -121,21 +121,42 @@ if ($articleId || $articleSlug) {
                     $articles = $data['result'];
                 }
                 
+                $foundArticleId = null;
                 foreach ($articles as $article) {
                     $slug = createSlug($article['title']);
                     if ($debug) {
                         echo "<!-- DEBUG: Comparing '" . $slug . "' with '" . $articleSlug . "' -->\n";
                     }
                     if ($slug === $articleSlug) {
-                        $articleData = $article;
+                        $foundArticleId = $article['id'];
                         if ($debug) {
-                            echo "<!-- DEBUG: Match found! -->\n";
+                            echo "<!-- DEBUG: Slug match found! Article ID: " . $foundArticleId . " -->\n";
                         }
                         break;
                     }
                 }
+                
+                // If we found the article by slug, fetch full content using getOneArticle
+                if ($foundArticleId) {
+                    $fullApiUrl = 'https://appworks.mpanel.app/api/webV2/getOneArticle/' . $foundArticleId;
+                    if ($debug) {
+                        echo "<!-- DEBUG: Fetching full article from: " . $fullApiUrl . " -->\n";
+                    }
+                    
+                    $fullResponse = @file_get_contents($fullApiUrl, false, $context);
+                    if ($fullResponse) {
+                        $fullData = json_decode($fullResponse, true);
+                        if ($fullData && $fullData['success'] && isset($fullData['result']['article'])) {
+                            $articleData = $fullData['result']['article'];
+                            if ($debug) {
+                                echo "<!-- DEBUG: Full article fetched successfully -->\n";
+                            }
+                        }
+                    }
+                }
+                
                 if ($debug && !$articleData) {
-                    echo "<!-- DEBUG: No slug match found -->\n";
+                    echo "<!-- DEBUG: No slug match found or failed to fetch full article -->\n";
                 }
             }
         }
@@ -428,13 +449,37 @@ if ($articleData) {
                         <div class="article-body">
                             <?php 
                             if ($articleData) {
-                                $content = $articleData['content'] ?? $articleData['body'] ?? $articleData['text'] ?? '';
+                                // Debug what fields are available
+                                if ($debug) {
+                                    echo "<!-- DEBUG: Article data keys: " . implode(', ', array_keys($articleData)) . " -->\n";
+                                    echo "<!-- DEBUG: Content fields - body: " . (isset($articleData['body']) ? 'EXISTS' : 'MISSING') . ", text: " . (isset($articleData['text']) ? 'EXISTS' : 'MISSING') . ", contents: " . (isset($articleData['contents']) ? 'EXISTS' : 'MISSING') . " -->\n";
+                                }
+                                
+                                // Get content - try body, text, contents (same order as article.html)
+                                $content = $articleData['body'] ?? $articleData['text'] ?? $articleData['contents'] ?? '';
+                                
                                 if ($content) {
-                                    // Fix relative image paths to absolute
-                                    $content = str_replace('src="/storage', 'src="https://app-works.app/storage', $content);
-                                    $content = str_replace('src="/image', 'src="https://app-works.app/image', $content);
+                                    // Fix image paths (same as article.html)
+                                    $content = str_replace('/storage', 'https://appworks.mpanel.app/image/cache/extra-large', $content);
+                                    
+                                    // Add crop=true parameter to images
+                                    $content = preg_replace('/(src="https:\/\/appworks\.mpanel\.app\/image\/cache\/extra-large[^"]*\.(jpg|jpeg|png|gif|bmp|svg|webp))(?!\?crop=true)"/i', '$1?crop=true"', $content);
+                                    
+                                    // Display intro if available
+                                    if (!empty($articleData['intro'])) {
+                                        echo '<div class="article-intro mb-4">';
+                                        echo '<p class="fs-18 lh-32 text-dark-gray">' . htmlspecialchars($articleData['intro']) . '</p>';
+                                        echo '</div>';
+                                    }
+                                    
+                                    // Display main content
+                                    echo '<div class="article-text">';
                                     echo $content;
+                                    echo '</div>';
                                 } else {
+                                    if ($debug) {
+                                        echo "<!-- DEBUG: No content found in body, text, or contents fields -->\n";
+                                    }
                                     echo '<p>Article content is not available.</p>';
                                 }
                             } else {
