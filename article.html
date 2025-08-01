@@ -597,21 +597,46 @@
                     const description = article.intro || article.title;
                     
                     // Handle different image data structures
-                    let image = 'https://app-works.app/images/appworks.png'; // fallback
+                    let image = 'https://appworks-tmp.mpanel.app/images/appworks.png'; // fallback
+                    
+                    console.log('Looking for image in article data...');
+                    console.log('article.images:', article.images);
+                    console.log('article.media:', article.media);
+                    
                     if (article.images && article.images['large-full']) {
                         // If images object exists with large-full
                         image = article.images['large-full'].url || article.images['large-full'];
+                        console.log('Found image in article.images[large-full]:', image);
+                    } else if (article.images && article.images['medium-full']) {
+                        // Fallback to medium-full if large-full not available
+                        image = article.images['medium-full'].url || article.images['medium-full'];
+                        console.log('Found image in article.images[medium-full]:', image);
                     } else if (article.media && article.media['large-full']) {
                         // If media object exists with large-full
                         image = article.media['large-full'];
+                        console.log('Found image in article.media[large-full]:', image);
+                    } else if (article.media && article.media['medium-full']) {
+                        // Fallback to medium-full in media
+                        image = article.media['medium-full'];
+                        console.log('Found image in article.media[medium-full]:', image);
                     } else if (article.image) {
                         // If direct image property exists
                         image = article.image;
+                        console.log('Found image in article.image:', image);
                     }
                     
-                    // Ensure image URL is complete
-                    if (image && !image.startsWith('http')) {
-                        image = `https://app-works.app${image}`;
+                    console.log('Image before processing:', image);
+                    
+                    // Ensure image URL is complete and clean
+                    if (image) {
+                        // Remove any @ symbols that might appear
+                        image = image.replace('@', '');
+                        
+                        if (!image.startsWith('http')) {
+                            image = `https://app-works.app${image}`;
+                        }
+                        
+                        console.log('Final image URL after processing:', image);
                     }
                     
                     const slug = createSlug(article.title);
@@ -634,6 +659,11 @@
                     if (titleElement) titleElement.textContent = title;
                     if (descElement) descElement.setAttribute('content', description);
                     if (keywordsElement) keywordsElement.setAttribute('content', `${article.title}, Appworks, ${getCategoryName(article.category_id)}`);
+                    
+                    // Force browser to recognize title change
+                    setTimeout(() => {
+                        document.title = title;
+                    }, 100);
 
                     // Update Open Graph tags
                     const ogTitle = document.getElementById('ogTitle');
@@ -697,6 +727,14 @@
                         const newUrl = `${window.location.pathname}?slug=${slug}`;
                         window.history.replaceState({}, '', newUrl);
                     }
+                    
+                    // Final verification
+                    console.log('=== SEO UPDATE COMPLETE ===');
+                    console.log('Browser title:', document.title);
+                    console.log('Page title element:', document.getElementById('pageTitle')?.textContent);
+                    console.log('Meta description:', document.getElementById('pageDescription')?.getAttribute('content'));
+                    console.log('OG Image:', document.getElementById('ogImage')?.getAttribute('content'));
+                    console.log('============================');
                 }
 
                 // Function to find article by slug
