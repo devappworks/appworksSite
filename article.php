@@ -1,4 +1,5 @@
 <?php
+var_dump('radiiiiiiiiiii');
 // Get article ID or slug from URL
 $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 $articleSlug = isset($_GET['slug']) ? $_GET['slug'] : null;
