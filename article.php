@@ -281,7 +281,7 @@ if ($articleData) {
                 "name": "Appworks",
                 "logo": {
                     "@type": "ImageObject",
-                    "url": "https://appworks-tmp.mpanel.app/images/appworks.png"
+                    "url": "https://app-works.app//images/appworks.png"
                 }
             },
             "mainEntityOfPage": {
@@ -385,9 +385,9 @@ if ($articleData) {
                 <div class="container-fluid">
                     <div class="col-auto col-xxl-3 col-lg-2 me-lg-0 me-auto">
                         <a class="navbar-brand" href="home.html">
-                            <img src="https://appworks-tmp.mpanel.app/images/appworks.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks.png" alt="Appworks Logo" class="default-logo">
-                            <img src="https://appworks-tmp.mpanel.app/images/appworks-black.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks-black.png" alt="Appworks Logo" class="alt-logo">
-                            <img src="https://appworks-tmp.mpanel.app/images/appworks.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks.png" alt="Appworks Logo" class="mobile-logo">
+                            <img src="https://app-works.app//images/appworks.png" data-at2x="https://app-works.app//images/appworks.png" alt="Appworks Logo" class="default-logo">
+                            <img src="https://app-works.app//images/appworks-black.png" data-at2x="https://app-works.app//images/appworks-black.png" alt="Appworks Logo" class="alt-logo">
+                            <img src="https://app-works.app//images/appworks.png" data-at2x="https://app-works.app//images/appworks.png" alt="Appworks Logo" class="mobile-logo">
                         </a>
                     </div>
                     <div class="col-auto col-xxl-6 col-lg-8 menu-order position-static">
@@ -445,7 +445,7 @@ if ($articleData) {
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-10">
-                        <?php if ($articleData && $pageImage !== 'https://appworks-tmp.mpanel.app/images/appworks.png'): ?>
+                        <?php if ($articleData && $pageImage !== 'https://app-works.app//images/appworks.png'): ?>
                         <div class="article-featured-image">
                             <img src="<?php echo $pageImage; ?>" alt="<?php echo htmlspecialchars($articleData['title']); ?>" />
                         </div>
@@ -503,7 +503,7 @@ if ($articleData) {
                 <div class="row justify-content-center pt-5 sm-pt-40px">
                     <div class="col-6 col-xl-3 col-lg-12 col-sm-6 last-paragraph-no-margin text-xl-start text-lg-center order-sm-1 lg-mb-60px sm-mb-40px">
                         <a href="home.html" class="footer-logo mb-15px d-inline-block">
-                            <img src="https://appworks-tmp.mpanel.app/images/appworks-black - 114x114.png" data-at2x="https://appworks-tmp.mpanel.app/images/appworks-black - 114x114.png" alt="Appworks Logo">
+                            <img src="https://app-works.app//images/appworks-black - 114x114.png" data-at2x="https://app-works.app//images/appworks-black - 114x114.png" alt="Appworks Logo">
                         </a>
                         <p class="lh-28 w-90 xl-w-100 mx-lg-auto mx-xl-0">Creative solutions for innovative partners.</p>
                         <div class="elements-social social-icon-style-02 mt-15px">
