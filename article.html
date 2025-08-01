@@ -591,30 +591,73 @@
 
                 // Function to update meta tags for SEO
                 function updateMetaTags(article) {
+                    console.log('updateMetaTags called with article:', article);
+                    
                     const title = `${article.title} - Appworks`;
                     const description = article.intro || article.title;
-                    const image = article.images && article.images['large-full'] ? article.images['large-full'].url : 'https://app-works.app/images/appworks.png';
+                    
+                    // Handle different image data structures
+                    let image = 'https://app-works.app/images/appworks.png'; // fallback
+                    if (article.images && article.images['large-full']) {
+                        // If images object exists with large-full
+                        image = article.images['large-full'].url || article.images['large-full'];
+                    } else if (article.media && article.media['large-full']) {
+                        // If media object exists with large-full
+                        image = article.media['large-full'];
+                    } else if (article.image) {
+                        // If direct image property exists
+                        image = article.image;
+                    }
+                    
+                    // Ensure image URL is complete
+                    if (image && !image.startsWith('http')) {
+                        image = `https://app-works.app${image}`;
+                    }
+                    
                     const slug = createSlug(article.title);
-                    const url = `${window.location.origin}/article?slug=${slug}`;
+                    const url = `${window.location.origin}/article.html?slug=${slug}`;
+
+                    // Debug logging
+                    console.log('SEO Debug:');
+                    console.log('Title:', title);
+                    console.log('Description:', description);
+                    console.log('Image:', image);
+                    console.log('URL:', url);
 
                     // Update page title and meta description
-                    document.getElementById('pageTitle').textContent = title;
-                    document.getElementById('pageDescription').setAttribute('content', description);
-                    document.getElementById('pageKeywords').setAttribute('content', `${article.title}, Appworks, ${getCategoryName(article.category_id)}`);
+                    document.title = title; // Update browser title
+                    
+                    const titleElement = document.getElementById('pageTitle');
+                    const descElement = document.getElementById('pageDescription');
+                    const keywordsElement = document.getElementById('pageKeywords');
+                    
+                    if (titleElement) titleElement.textContent = title;
+                    if (descElement) descElement.setAttribute('content', description);
+                    if (keywordsElement) keywordsElement.setAttribute('content', `${article.title}, Appworks, ${getCategoryName(article.category_id)}`);
 
                     // Update Open Graph tags
-                    document.getElementById('ogTitle').setAttribute('content', title);
-                    document.getElementById('ogDescription').setAttribute('content', description);
-                    document.getElementById('ogImage').setAttribute('content', image);
-                    document.getElementById('ogUrl').setAttribute('content', url);
+                    const ogTitle = document.getElementById('ogTitle');
+                    const ogDesc = document.getElementById('ogDescription');
+                    const ogImage = document.getElementById('ogImage');
+                    const ogUrl = document.getElementById('ogUrl');
+                    
+                    if (ogTitle) ogTitle.setAttribute('content', title);
+                    if (ogDesc) ogDesc.setAttribute('content', description);
+                    if (ogImage) ogImage.setAttribute('content', image);
+                    if (ogUrl) ogUrl.setAttribute('content', url);
 
                     // Update Twitter Card tags
-                    document.getElementById('twitterTitle').setAttribute('content', title);
-                    document.getElementById('twitterDescription').setAttribute('content', description);
-                    document.getElementById('twitterImage').setAttribute('content', image);
+                    const twitterTitle = document.getElementById('twitterTitle');
+                    const twitterDesc = document.getElementById('twitterDescription');
+                    const twitterImage = document.getElementById('twitterImage');
+                    
+                    if (twitterTitle) twitterTitle.setAttribute('content', title);
+                    if (twitterDesc) twitterDesc.setAttribute('content', description);
+                    if (twitterImage) twitterImage.setAttribute('content', image);
 
                     // Update canonical URL
-                    document.getElementById('canonicalUrl').setAttribute('href', url);
+                    const canonicalUrl = document.getElementById('canonicalUrl');
+                    if (canonicalUrl) canonicalUrl.setAttribute('href', url);
 
                     // Update structured data for SEO
                     const structuredData = {
@@ -643,7 +686,10 @@
                         }
                     };
 
-                    document.getElementById('structuredData').textContent = JSON.stringify(structuredData);
+                    const structuredDataElement = document.getElementById('structuredData');
+                    if (structuredDataElement) {
+                        structuredDataElement.textContent = JSON.stringify(structuredData);
+                    }
 
                     // Update URL without page reload if slug is different
                     const currentUrl = new URL(window.location);
@@ -737,13 +783,15 @@
 
                     const article = data.result.article;
                     
-                    // Update meta tags for SEO
-                    updateMetaTags(article);
-
-                    // Detailed console logging
+                    // Detailed console logging for debugging
                     console.log('Full API Response:', data);
                     console.log('Article Object:', article);
                     console.log('Available article properties:', Object.keys(article));
+                    console.log('Article images:', article.images);
+                    console.log('Article media:', article.media);
+
+                    // Update meta tags for SEO
+                    updateMetaTags(article);
 
                     // Format the date
                     const date = new Date(article.created_at);
