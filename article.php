@@ -14,13 +14,18 @@ if ($debug) {
 // Default meta values
 $pageTitle = "Article - Appworks";
 $pageDescription = "Appworks article view";
-$pageImage = "https://appworks-tmp.mpanel.app/images/appworks.png";
+$pageImage = "https://app-works.app/images/appworks.png";
 $pageUrl = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 $articleData = null;
 
-// Function to create slug from title
+// Function to create slug from title (identical to JavaScript version)
 function createSlug($title) {
-    return strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $title), '-'));
+    $slug = strtolower($title);
+    $slug = preg_replace('/[^a-z0-9\s-]/', '', $slug); // Remove special characters
+    $slug = preg_replace('/\s+/', '-', $slug); // Replace spaces with hyphens
+    $slug = preg_replace('/-+/', '-', $slug); // Replace multiple hyphens with single
+    $slug = trim($slug, '-'); // Remove leading/trailing hyphens
+    return $slug;
 }
 
 // Function to get category name
@@ -247,8 +252,8 @@ if ($articleData) {
         <link rel="canonical" href="<?php echo $pageUrl; ?>">
         
         <!-- favicon icon -->
-        <link rel="shortcut icon" href="https://appworks-tmp.mpanel.app/images/appworks.png">
-        <link rel="apple-touch-icon" href="https://appworks-tmp.mpanel.app/images/appworks.png">
+        <link rel="shortcut icon" href="https://app-works.app/images/appworks.png">
+        <link rel="apple-touch-icon" href="https://app-works.app/images/appworks.png">
         
         <!-- style sheets and font icons -->
         <link rel="stylesheet" href="https://app-works.app/css/vendors.min.css"/>
