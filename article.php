@@ -42,11 +42,11 @@ function getCategoryName($categoryId) {
 // Fetch article data from API
 if ($articleId || $articleSlug) {
     if ($articleId) {
-        // Try direct article fetch first
+        // Direct article fetch by ID
         $apiUrl = 'https://appworks.mpanel.app/api/webV2/getOneArticle/' . urlencode($articleId);
     } else {
-        // For slug search, get articles list
-        $apiUrl = 'https://appworks.mpanel.app/api/webV2/getArticles?articleLimit=50';
+        // Direct article fetch by slug
+        $apiUrl = 'https://appworks.mpanel.app/api/webV2/getArticlesBySlug/' . urlencode($articleSlug);
     }
     
     if ($debug) {
@@ -75,17 +75,7 @@ if ($articleId || $articleSlug) {
             $error = error_get_last();
             echo "<!-- DEBUG: Error: " . ($error['message'] ?? 'Unknown error') . " -->\n";
             
-            // Try alternative API endpoint if first one fails
-            if (!$response && !$articleId) {
-                if ($debug) {
-                    echo "<!-- DEBUG: Trying alternative API endpoint -->\n";
-                }
-                $altApiUrl = 'https://appworks.mpanel.app/api/webV2/getArticles';
-                $response = @file_get_contents($altApiUrl, false, $context);
-                if ($debug) {
-                    echo "<!-- DEBUG: Alternative response: " . ($response ? 'YES' : 'NO') . " -->\n";
-                }
-            }
+
         }
     }
     
@@ -101,67 +91,19 @@ if ($articleId || $articleSlug) {
         }
         
         if ($data && $data['success']) {
-            if ($articleId) {
-                // Direct ID lookup from getOneArticle endpoint
-                if (isset($data['result']['article'])) {
-                    $articleData = $data['result']['article'];
-                } elseif (isset($data['result']['articles'][0])) {
-                    $articleData = $data['result']['articles'][0];
-                } elseif (isset($data['result'][0])) {
-                    $articleData = $data['result'][0];
-                }
-                if ($debug) {
-                    echo "<!-- DEBUG: Found article by ID: " . ($articleData ? 'YES' : 'NO') . " -->\n";
-                }
-            } else {
-                // Search by slug in articles list, then fetch full article
-                if ($debug) {
-                    echo "<!-- DEBUG: Searching for slug: " . $articleSlug . " -->\n";
-                }
-                
-                $articles = [];
-                if (isset($data['result']['articles'])) {
-                    $articles = $data['result']['articles'];
-                } elseif (isset($data['result']) && is_array($data['result'])) {
-                    $articles = $data['result'];
-                }
-                
-                $foundArticleId = null;
-                foreach ($articles as $article) {
-                    $slug = createSlug($article['title']);
-                    if ($debug) {
-                        echo "<!-- DEBUG: Comparing '" . $slug . "' with '" . $articleSlug . "' -->\n";
-                    }
-                    if ($slug === $articleSlug) {
-                        $foundArticleId = $article['id'];
-                        if ($debug) {
-                            echo "<!-- DEBUG: Slug match found! Article ID: " . $foundArticleId . " -->\n";
-                        }
-                        break;
-                    }
-                }
-                
-                // If we found the article by slug, fetch full content using getOneArticle
-                if ($foundArticleId) {
-                    $fullApiUrl = 'https://appworks.mpanel.app/api/webV2/getOneArticle/' . $foundArticleId;
-                    if ($debug) {
-                        echo "<!-- DEBUG: Fetching full article from: " . $fullApiUrl . " -->\n";
-                    }
-                    
-                    $fullResponse = @file_get_contents($fullApiUrl, false, $context);
-                    if ($fullResponse) {
-                        $fullData = json_decode($fullResponse, true);
-                        if ($fullData && $fullData['success'] && isset($fullData['result']['article'])) {
-                            $articleData = $fullData['result']['article'];
-                            if ($debug) {
-                                echo "<!-- DEBUG: Full article fetched successfully -->\n";
-                            }
-                        }
-                    }
-                }
-                
-                if ($debug && !$articleData) {
-                    echo "<!-- DEBUG: No slug match found or failed to fetch full article -->\n";
+            // Both getOneArticle and getArticlesBySlug should return article in same format
+            if (isset($data['result']['article'])) {
+                $articleData = $data['result']['article'];
+            } elseif (isset($data['result']['articles'][0])) {
+                $articleData = $data['result']['articles'][0];
+            } elseif (isset($data['result'][0])) {
+                $articleData = $data['result'][0];
+            }
+            
+            if ($debug) {
+                echo "<!-- DEBUG: Found article: " . ($articleData ? 'YES' : 'NO') . " -->\n";
+                if ($articleData) {
+                    echo "<!-- DEBUG: Article title: " . ($articleData['title'] ?? 'NO TITLE') . " -->\n";
                 }
             }
         }
