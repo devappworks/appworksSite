@@ -36,14 +36,12 @@ function getCategoryName($categoryId) {
 
 // Fetch article data from API
 if ($articleId || $articleSlug) {
-    $apiUrl = 'https://app-works.app/api/webV2/getArticles';
-    
     if ($articleId) {
-        // If we have ID, fetch directly
-        $apiUrl .= '?id=' . urlencode($articleId);
+        // Try direct article fetch first
+        $apiUrl = 'https://app-works.app/api/webV2/getOneArticle/' . urlencode($articleId);
     } else {
-        // If we have slug, we need to search through articles
-        $apiUrl .= '?articleLimit=50';
+        // For slug search, get articles list
+        $apiUrl = 'https://app-works.app/api/webV2/getArticles?articleLimit=50';
     }
     
     if ($debug) {
@@ -71,6 +69,18 @@ if ($articleId || $articleSlug) {
         } else {
             $error = error_get_last();
             echo "<!-- DEBUG: Error: " . ($error['message'] ?? 'Unknown error') . " -->\n";
+            
+            // Try alternative API endpoint if first one fails
+            if (!$response && !$articleId) {
+                if ($debug) {
+                    echo "<!-- DEBUG: Trying alternative API endpoint -->\n";
+                }
+                $altApiUrl = 'https://app-works.app/api/webV2/getArticles';
+                $response = @file_get_contents($altApiUrl, false, $context);
+                if ($debug) {
+                    echo "<!-- DEBUG: Alternative response: " . ($response ? 'YES' : 'NO') . " -->\n";
+                }
+            }
         }
     }
     
@@ -85,19 +95,33 @@ if ($articleId || $articleSlug) {
             }
         }
         
-        if ($data && $data['success'] && isset($data['result']['articles'])) {
+        if ($data && $data['success']) {
             if ($articleId) {
-                // Direct ID lookup
-                $articleData = $data['result']['articles'][0] ?? null;
+                // Direct ID lookup from getOneArticle endpoint
+                if (isset($data['result']['article'])) {
+                    $articleData = $data['result']['article'];
+                } elseif (isset($data['result']['articles'][0])) {
+                    $articleData = $data['result']['articles'][0];
+                } elseif (isset($data['result'][0])) {
+                    $articleData = $data['result'][0];
+                }
                 if ($debug) {
                     echo "<!-- DEBUG: Found article by ID: " . ($articleData ? 'YES' : 'NO') . " -->\n";
                 }
             } else {
-                // Search by slug
+                // Search by slug in articles list
                 if ($debug) {
                     echo "<!-- DEBUG: Searching for slug: " . $articleSlug . " -->\n";
                 }
-                foreach ($data['result']['articles'] as $article) {
+                
+                $articles = [];
+                if (isset($data['result']['articles'])) {
+                    $articles = $data['result']['articles'];
+                } elseif (isset($data['result']) && is_array($data['result'])) {
+                    $articles = $data['result'];
+                }
+                
+                foreach ($articles as $article) {
                     $slug = createSlug($article['title']);
                     if ($debug) {
                         echo "<!-- DEBUG: Comparing '" . $slug . "' with '" . $articleSlug . "' -->\n";
