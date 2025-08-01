@@ -86,7 +86,12 @@ if ($articleId || $articleSlug) {
             echo "<!-- DEBUG: JSON decoded: " . ($data ? 'YES' : 'NO') . " -->\n";
             if ($data) {
                 echo "<!-- DEBUG: Data success: " . ($data['success'] ? 'true' : 'false') . " -->\n";
+                echo "<!-- DEBUG: Full API response structure: " . json_encode(array_keys($data)) . " -->\n";
+                if (isset($data['result'])) {
+                    echo "<!-- DEBUG: Result structure: " . json_encode(array_keys($data['result'])) . " -->\n";
+                }
                 echo "<!-- DEBUG: Articles count: " . (isset($data['result']['articles']) ? count($data['result']['articles']) : 0) . " -->\n";
+                echo "<!-- DEBUG: Raw result (first 500 chars): " . substr(json_encode($data['result']), 0, 500) . " -->\n";
             }
         }
         
