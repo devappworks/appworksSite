@@ -1,12 +1,30 @@
 <!doctype html>
 <html class="no-js" lang="en">
     <head>
-        <title>Article - Appworks</title>
+        <title id="pageTitle">Article - Appworks</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="author" content="ThemeZaa">
-        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0" />
-        <meta name="description" content="Appworks article view">
+        <meta name="author" content="Appworks">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <meta name="description" id="pageDescription" content="Appworks article view">
+        <meta name="keywords" id="pageKeywords" content="">
+        
+        <!-- Open Graph meta tags for social sharing -->
+        <meta property="og:title" id="ogTitle" content="">
+        <meta property="og:description" id="ogDescription" content="">
+        <meta property="og:image" id="ogImage" content="">
+        <meta property="og:url" id="ogUrl" content="">
+        <meta property="og:type" content="article">
+        <meta property="og:site_name" content="Appworks">
+        
+        <!-- Twitter Card meta tags -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" id="twitterTitle" content="">
+        <meta name="twitter:description" id="twitterDescription" content="">
+        <meta name="twitter:image" id="twitterImage" content="">
+        
+        <!-- Canonical URL -->
+        <link rel="canonical" id="canonicalUrl" href="">
         <!-- favicon icon -->
         <link rel="shortcut icon" href="https://app-works.app/images/appworks.png">
         <link rel="apple-touch-icon" href="https://app-works.app/images/appworks.png">
@@ -530,13 +548,109 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                // Get article ID from URL parameters
+                // Get article ID or slug from URL parameters
                 const urlParams = new URLSearchParams(window.location.search);
                 const articleId = urlParams.get('id');
+                const articleSlug = urlParams.get('slug');
 
-                if (!articleId) {
+                if (!articleId && !articleSlug) {
                     window.location.href = '/home';
                     return;
+                }
+
+                // Function to create slug from title
+                function createSlug(title) {
+                    return title
+                        .toLowerCase()
+                        .replace(/[^a-z0-9\s-]/g, '') // Remove special characters
+                        .replace(/\s+/g, '-') // Replace spaces with hyphens
+                        .replace(/-+/g, '-') // Replace multiple hyphens with single
+                        .trim('-'); // Remove leading/trailing hyphens
+                }
+
+                // Function to get category name by ID
+                function getCategoryName(categoryId) {
+                    const categories = {
+                        '3': 'Sports',
+                        '4': 'Media', 
+                        '9': 'AI',
+                        '10': 'Grant Projects'
+                    };
+                    return categories[categoryId] || 'General';
+                }
+
+                // Function to format date
+                function formatDate(dateString) {
+                    const date = new Date(dateString);
+                    return date.toLocaleDateString('en-US', { 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric' 
+                    });
+                }
+
+                // Function to update meta tags for SEO
+                function updateMetaTags(article) {
+                    const title = `${article.title} - Appworks`;
+                    const description = article.intro || article.title;
+                    const image = article.images && article.images['large-full'] ? article.images['large-full'].url : 'https://app-works.app/images/appworks.png';
+                    const slug = createSlug(article.title);
+                    const url = `${window.location.origin}/article?slug=${slug}&id=${article.id}`;
+
+                    // Update page title and meta description
+                    document.getElementById('pageTitle').textContent = title;
+                    document.getElementById('pageDescription').setAttribute('content', description);
+                    document.getElementById('pageKeywords').setAttribute('content', `${article.title}, Appworks, ${getCategoryName(article.category_id)}`);
+
+                    // Update Open Graph tags
+                    document.getElementById('ogTitle').setAttribute('content', title);
+                    document.getElementById('ogDescription').setAttribute('content', description);
+                    document.getElementById('ogImage').setAttribute('content', image);
+                    document.getElementById('ogUrl').setAttribute('content', url);
+
+                    // Update Twitter Card tags
+                    document.getElementById('twitterTitle').setAttribute('content', title);
+                    document.getElementById('twitterDescription').setAttribute('content', description);
+                    document.getElementById('twitterImage').setAttribute('content', image);
+
+                    // Update canonical URL
+                    document.getElementById('canonicalUrl').setAttribute('href', url);
+
+                    // Update structured data for SEO
+                    const structuredData = {
+                        "@context": "https://schema.org",
+                        "@type": "Article",
+                        "headline": article.title,
+                        "description": description,
+                        "image": image,
+                        "datePublished": article.created_at,
+                        "dateModified": article.updated_at || article.created_at,
+                        "author": {
+                            "@type": "Organization",
+                            "name": "Appworks"
+                        },
+                        "publisher": {
+                            "@type": "Organization",
+                            "name": "Appworks",
+                            "logo": {
+                                "@type": "ImageObject",
+                                "url": "https://app-works.app/images/appworks.png"
+                            }
+                        },
+                        "mainEntityOfPage": {
+                            "@type": "WebPage",
+                            "@id": url
+                        }
+                    };
+
+                    document.getElementById('structuredData').textContent = JSON.stringify(structuredData);
+
+                    // Update URL without page reload if slug is different
+                    const currentUrl = new URL(window.location);
+                    if (!currentUrl.searchParams.get('slug') || currentUrl.searchParams.get('slug') !== slug) {
+                        const newUrl = `${window.location.pathname}?slug=${slug}&id=${article.id}`;
+                        window.history.replaceState({}, '', newUrl);
+                    }
                 }
 
                 // First fetch the list of articles to get the first article ID if none specified
@@ -580,6 +694,9 @@
                     }
 
                     const article = data.result.article;
+                    
+                    // Update meta tags for SEO
+                    updateMetaTags(article);
 
                     // Detailed console logging
                     console.log('Full API Response:', data);
@@ -710,5 +827,14 @@
                 });
             });
         </script>
+
+        <!-- Structured data for SEO -->
+        <script type="application/ld+json" id="structuredData">
+        </script>
+
+        <!-- javascript libraries -->
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/vendors.min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
     </body>
 </html> 
