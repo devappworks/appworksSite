@@ -1,6 +1,6 @@
 <?php
 // Debug mode - set to false in production
-$debug = true;
+$debug = false;
 
 // Get article ID or slug from URL
 $articleId = isset($_GET['id']) ? $_GET['id'] : null;
@@ -103,21 +103,31 @@ if ($articleId || $articleSlug) {
         if ($data && $data['success']) {
             if ($debug) {
                 echo "<!-- DEBUG: FULL DATA DUMP: " . json_encode($data) . " -->\n";
+                echo "<!-- DEBUG: Checking conditions - data[article] exists: " . (isset($data['article']) ? 'YES' : 'NO') . " -->\n";
+                echo "<!-- DEBUG: Checking conditions - data[result][article] exists: " . (isset($data['result']['article']) ? 'YES' : 'NO') . " -->\n";
+                echo "<!-- DEBUG: Checking conditions - data[result][articles][0] exists: " . (isset($data['result']['articles'][0]) ? 'YES' : 'NO') . " -->\n";
             }
             
             // getArticlesBySlug returns article directly, getOneArticle returns in result.article
-            if (isset($data['article'])) {
+            if (isset($data['article']) && !empty($data['article'])) {
                 // Direct article from getArticlesBySlug
                 $articleData = $data['article'];
-            } elseif (isset($data['result']['article'])) {
+                if ($debug) echo "<!-- DEBUG: Using data[article] -->\n";
+            } elseif (isset($data['result']['article']) && !empty($data['result']['article'])) {
                 // Article from getOneArticle
                 $articleData = $data['result']['article'];
-            } elseif (isset($data['result']['articles'][0])) {
+                if ($debug) echo "<!-- DEBUG: Using data[result][article] -->\n";
+            } elseif (isset($data['result']['articles'][0]) && !empty($data['result']['articles'][0])) {
                 // Article from getArticles list
                 $articleData = $data['result']['articles'][0];
-            } elseif (isset($data['result'][0])) {
+                if ($debug) echo "<!-- DEBUG: Using data[result][articles][0] -->\n";
+            } elseif (isset($data['result'][0]) && !empty($data['result'][0])) {
                 // Fallback
                 $articleData = $data['result'][0];
+                if ($debug) echo "<!-- DEBUG: Using data[result][0] -->\n";
+            } else {
+                if ($debug) echo "<!-- DEBUG: No matching condition found -->\n";
+                $articleData = null;
             }
             
             if ($debug) {
@@ -181,7 +191,17 @@ if ($articleData) {
 // Keywords
 $keywords = "";
 if ($articleData) {
-    $category = getCategoryName($articleData['category_id'] ?? '');
+    // Get category from categories array or fallback to category_id
+    $categoryId = '';
+    $categoryName = '';
+    if (isset($articleData['categories'][0])) {
+        $categoryId = $articleData['categories'][0]['id'] ?? '';
+        $categoryName = $articleData['categories'][0]['name'] ?? '';
+    } elseif (isset($articleData['category_id'])) {
+        $categoryId = $articleData['category_id'];
+    }
+    
+    $category = $categoryName ?: getCategoryName($categoryId);
     $keywords = htmlspecialchars($articleData['title']) . ", Appworks, " . $category;
 }
 ?>
@@ -387,7 +407,20 @@ if ($articleData) {
                         </a>
                         <div class="article-meta">
                             <?php if ($articleData): ?>
-                                <span class="article-category"><?php echo getCategoryName($articleData['category_id'] ?? ''); ?></span>
+                                <?php 
+                                // Get category name from categories array or fallback
+                                $displayCategory = '';
+                                if (isset($articleData['categories'][0]['name'])) {
+                                    $displayCategory = $articleData['categories'][0]['name'];
+                                } elseif (isset($articleData['categories'][0]['id'])) {
+                                    $displayCategory = getCategoryName($articleData['categories'][0]['id']);
+                                } elseif (isset($articleData['category_id'])) {
+                                    $displayCategory = getCategoryName($articleData['category_id']);
+                                }
+                                ?>
+                                <?php if ($displayCategory): ?>
+                                <span class="article-category"><?php echo htmlspecialchars($displayCategory); ?></span>
+                                <?php endif; ?>
                                 <span class="article-date"><?php echo date('F j, Y', strtotime($articleData['created_at'])); ?></span>
                             <?php endif; ?>
                         </div>
