@@ -65,17 +65,16 @@ if ($articleId || $articleSlug) {
         ]
     ]);
     
-    $response = @file_get_contents($apiUrl, false, $context);
+        $response = @file_get_contents($apiUrl, false, $context);
     
     if ($debug) {
         echo "<!-- DEBUG: Response received: " . ($response ? 'YES' : 'NO') . " -->\n";
         if ($response) {
             echo "<!-- DEBUG: Response length: " . strlen($response) . " -->\n";
+            echo "<!-- DEBUG: First 200 chars of response: " . substr($response, 0, 200) . " -->\n";
         } else {
             $error = error_get_last();
             echo "<!-- DEBUG: Error: " . ($error['message'] ?? 'Unknown error') . " -->\n";
-            
-
         }
     }
     
@@ -96,6 +95,10 @@ if ($articleId || $articleSlug) {
         }
         
         if ($data && $data['success']) {
+            if ($debug) {
+                echo "<!-- DEBUG: FULL DATA DUMP: " . json_encode($data) . " -->\n";
+            }
+            
             // Both getOneArticle and getArticlesBySlug should return article in same format
             if (isset($data['result']['article'])) {
                 $articleData = $data['result']['article'];
