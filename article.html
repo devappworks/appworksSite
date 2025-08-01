@@ -598,8 +598,17 @@
                 function updateMetaTags(article) {
                     console.log('updateMetaTags called with article:', article);
                     
+                    // Ensure we have valid article data
+                    if (!article || !article.title) {
+                        console.error('Invalid article data:', article);
+                        return;
+                    }
+                    
                     const title = `${article.title} - Appworks`;
                     const description = article.intro || article.title;
+                    
+                    console.log('Creating title:', title);
+                    console.log('Creating description:', description);
                     
                     // Handle different image data structures
                     let image = 'https://appworks-tmp.mpanel.app/images/appworks.png'; // fallback
@@ -633,15 +642,21 @@
                     console.log('Image before processing:', image);
                     
                     // Ensure image URL is complete and clean
-                    if (image) {
+                    if (image && image !== 'undefined' && image !== undefined) {
                         // Remove any @ symbols that might appear
                         image = image.replace('@', '');
+                        // Remove 'undefined' string if it appears
+                        image = image.replace('undefined', '');
                         
                         if (!image.startsWith('http')) {
                             image = `https://app-works.app${image}`;
                         }
                         
                         console.log('Final image URL after processing:', image);
+                    } else {
+                        // Use fallback image if undefined
+                        image = 'https://appworks-tmp.mpanel.app/images/appworks.png';
+                        console.log('Using fallback image:', image);
                     }
                     
                     const slug = createSlug(article.title);
@@ -661,9 +676,31 @@
                     const descElement = document.getElementById('pageDescription');
                     const keywordsElement = document.getElementById('pageKeywords');
                     
-                    if (titleElement) titleElement.textContent = title;
-                    if (descElement) descElement.setAttribute('content', description);
-                    if (keywordsElement) keywordsElement.setAttribute('content', `${article.title}, Appworks, ${getCategoryName(article.category_id)}`);
+                    console.log('DOM elements found:');
+                    console.log('titleElement:', titleElement);
+                    console.log('descElement:', descElement);
+                    console.log('keywordsElement:', keywordsElement);
+                    
+                    if (titleElement) {
+                        titleElement.textContent = title;
+                        console.log('Updated title element to:', title);
+                    } else {
+                        console.error('Title element not found!');
+                    }
+                    
+                    if (descElement) {
+                        descElement.setAttribute('content', description);
+                        console.log('Updated description element to:', description);
+                    } else {
+                        console.error('Description element not found!');
+                    }
+                    
+                    if (keywordsElement) {
+                        keywordsElement.setAttribute('content', `${article.title}, Appworks, ${getCategoryName(article.category_id)}`);
+                        console.log('Updated keywords element');
+                    } else {
+                        console.error('Keywords element not found!');
+                    }
                     
                     // Force browser to recognize title change
                     setTimeout(() => {
@@ -676,10 +713,28 @@
                     const ogImage = document.getElementById('ogImage');
                     const ogUrl = document.getElementById('ogUrl');
                     
-                    if (ogTitle) ogTitle.setAttribute('content', title);
-                    if (ogDesc) ogDesc.setAttribute('content', description);
-                    if (ogImage) ogImage.setAttribute('content', image);
-                    if (ogUrl) ogUrl.setAttribute('content', url);
+                    console.log('OG elements found:');
+                    console.log('ogTitle:', ogTitle);
+                    console.log('ogDesc:', ogDesc);
+                    console.log('ogImage:', ogImage);
+                    console.log('ogUrl:', ogUrl);
+                    
+                    if (ogTitle) {
+                        ogTitle.setAttribute('content', title);
+                        console.log('Updated OG title to:', title);
+                    }
+                    if (ogDesc) {
+                        ogDesc.setAttribute('content', description);
+                        console.log('Updated OG description to:', description);
+                    }
+                    if (ogImage) {
+                        ogImage.setAttribute('content', image);
+                        console.log('Updated OG image to:', image);
+                    }
+                    if (ogUrl) {
+                        ogUrl.setAttribute('content', url);
+                        console.log('Updated OG url to:', url);
+                    }
 
                     // Update Twitter Card tags
                     const twitterTitle = document.getElementById('twitterTitle');
@@ -833,8 +888,10 @@
                     console.log('Article images:', article.images);
                     console.log('Article media:', article.media);
 
-                    // Update meta tags for SEO
-                    updateMetaTags(article);
+                    // Update meta tags for SEO with a small delay to ensure DOM is ready
+                    setTimeout(() => {
+                        updateMetaTags(article);
+                    }, 200);
 
                     // Format the date
                     const date = new Date(article.created_at);
