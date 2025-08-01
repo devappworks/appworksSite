@@ -595,7 +595,7 @@
                     const description = article.intro || article.title;
                     const image = article.images && article.images['large-full'] ? article.images['large-full'].url : 'https://app-works.app/images/appworks.png';
                     const slug = createSlug(article.title);
-                    const url = `${window.location.origin}/article?slug=${slug}&id=${article.id}`;
+                    const url = `${window.location.origin}/article?slug=${slug}`;
 
                     // Update page title and meta description
                     document.getElementById('pageTitle').textContent = title;
@@ -648,33 +648,75 @@
                     // Update URL without page reload if slug is different
                     const currentUrl = new URL(window.location);
                     if (!currentUrl.searchParams.get('slug') || currentUrl.searchParams.get('slug') !== slug) {
-                        const newUrl = `${window.location.pathname}?slug=${slug}&id=${article.id}`;
+                        const newUrl = `${window.location.pathname}?slug=${slug}`;
                         window.history.replaceState({}, '', newUrl);
                     }
                 }
 
-                // First fetch the list of articles to get the first article ID if none specified
-                fetch('https://appworks.mpanel.app/api/webV2/getArticles?articleLimit=1', {
-                    headers: {
-                        'Authorization': 'kmNTuI8dRmRX'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    // Use the provided ID or fall back to the first article's ID
-                    const targetId = articleId || (data.result.articles && data.result.articles[0] ? data.result.articles[0].id : null);
+                // Function to find article by slug
+                function findArticleBySlug(slug) {
+                    return fetch('https://appworks.mpanel.app/api/webV2/getArticles?articleLimit=50', {
+                        headers: {
+                            'Authorization': 'kmNTuI8dRmRX'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success && data.result && data.result.articles) {
+                            // Find article with matching slug
+                            const article = data.result.articles.find(art => {
+                                const articleSlug = createSlug(art.title);
+                                return articleSlug === slug;
+                            });
+                            
+                            if (article) {
+                                // Fetch full article data
+                                return fetch(`https://appworks.mpanel.app/api/webV2/getOneArticle/${article.id}`, {
+                                    headers: {
+                                        'Authorization': 'kmNTuI8dRmRX'
+                                    }
+                                });
+                            }
+                        }
+                        throw new Error('Article not found by slug');
+                    });
+                }
 
-                    if (!targetId) {
-                        throw new Error('No article ID available');
-                    }
-
-                    // Then fetch the full article data
-                    return fetch(`https://appworks.mpanel.app/api/webV2/getOneArticle/${targetId}`, {
+                // Fetch article data
+                let fetchPromise;
+                
+                if (articleId) {
+                    // If ID is provided, use it directly
+                    fetchPromise = fetch(`https://appworks.mpanel.app/api/webV2/getOneArticle/${articleId}`, {
                         headers: {
                             'Authorization': 'kmNTuI8dRmRX'
                         }
                     });
-                })
+                } else if (articleSlug) {
+                    // If only slug is provided, find article by slug
+                    fetchPromise = findArticleBySlug(articleSlug);
+                } else {
+                    // Fallback to first article
+                    fetchPromise = fetch('https://appworks.mpanel.app/api/webV2/getArticles?articleLimit=1', {
+                        headers: {
+                            'Authorization': 'kmNTuI8dRmRX'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        const targetId = data.result.articles && data.result.articles[0] ? data.result.articles[0].id : null;
+                        if (!targetId) {
+                            throw new Error('No article ID available');
+                        }
+                        return fetch(`https://appworks.mpanel.app/api/webV2/getOneArticle/${targetId}`, {
+                            headers: {
+                                'Authorization': 'kmNTuI8dRmRX'
+                            }
+                        });
+                    });
+                }
+
+                fetchPromise
                 .then(response => response.json())
                 .then(data => {
                     const articleContainer = document.getElementById('articleContainer');
