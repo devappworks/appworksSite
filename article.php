@@ -223,6 +223,7 @@ if ($articleData) {
         <meta property="og:url" content="<?php echo $pageUrl; ?>">
         <meta property="og:type" content="article">
         <meta property="og:site_name" content="Appworks">
+        <meta property="og:logo" content="https://app-works.app/images/appworks.png">
         
         <!-- Twitter Card meta tags -->
         <meta name="twitter:card" content="summary_large_image">
