@@ -89,8 +89,14 @@ if ($articleId || $articleSlug) {
                 if (isset($data['result'])) {
                     echo "<!-- DEBUG: Result structure: " . json_encode(array_keys($data['result'])) . " -->\n";
                 }
-                echo "<!-- DEBUG: Articles count: " . (isset($data['result']['articles']) ? count($data['result']['articles']) : 0) . " -->\n";
-                echo "<!-- DEBUG: Raw result (first 500 chars): " . substr(json_encode($data['result']), 0, 500) . " -->\n";
+                if (isset($data['result']['articles'])) {
+                    echo "<!-- DEBUG: Articles count: " . count($data['result']['articles']) . " -->\n";
+                } elseif (isset($data['article'])) {
+                    echo "<!-- DEBUG: Single article found via slug -->\n";
+                } else {
+                    echo "<!-- DEBUG: No articles or article found -->\n";
+                }
+                echo "<!-- DEBUG: Raw result (first 500 chars): " . substr(json_encode($data['result'] ?? $data), 0, 500) . " -->\n";
             }
         }
         
@@ -99,12 +105,18 @@ if ($articleId || $articleSlug) {
                 echo "<!-- DEBUG: FULL DATA DUMP: " . json_encode($data) . " -->\n";
             }
             
-            // Both getOneArticle and getArticlesBySlug should return article in same format
-            if (isset($data['result']['article'])) {
+            // getArticlesBySlug returns article directly, getOneArticle returns in result.article
+            if (isset($data['article'])) {
+                // Direct article from getArticlesBySlug
+                $articleData = $data['article'];
+            } elseif (isset($data['result']['article'])) {
+                // Article from getOneArticle
                 $articleData = $data['result']['article'];
             } elseif (isset($data['result']['articles'][0])) {
+                // Article from getArticles list
                 $articleData = $data['result']['articles'][0];
             } elseif (isset($data['result'][0])) {
+                // Fallback
                 $articleData = $data['result'][0];
             }
             
