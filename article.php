@@ -38,10 +38,10 @@ function getCategoryName($categoryId) {
 if ($articleId || $articleSlug) {
     if ($articleId) {
         // Try direct article fetch first
-        $apiUrl = 'https://app-works.app/api/webV2/getOneArticle/' . urlencode($articleId);
+        $apiUrl = 'https://appworks.mpanel.app/api/webV2/getOneArticle/' . urlencode($articleId);
     } else {
         // For slug search, get articles list
-        $apiUrl = 'https://app-works.app/api/webV2/getArticles?articleLimit=50';
+        $apiUrl = 'https://appworks.mpanel.app/api/webV2/getArticles?articleLimit=50';
     }
     
     if ($debug) {
@@ -75,7 +75,7 @@ if ($articleId || $articleSlug) {
                 if ($debug) {
                     echo "<!-- DEBUG: Trying alternative API endpoint -->\n";
                 }
-                $altApiUrl = 'https://app-works.app/api/webV2/getArticles';
+                $altApiUrl = 'https://appworks.mpanel.app/api/webV2/getArticles';
                 $response = @file_get_contents($altApiUrl, false, $context);
                 if ($debug) {
                     echo "<!-- DEBUG: Alternative response: " . ($response ? 'YES' : 'NO') . " -->\n";
@@ -174,7 +174,7 @@ if ($articleData) {
     
     // Clean up image URL
     if ($pageImage && !filter_var($pageImage, FILTER_VALIDATE_URL)) {
-        $pageImage = 'https://app-works.app' . $pageImage;
+        $pageImage = 'https://appworks.mpanel.app' . $pageImage;
         if ($debug) echo "<!-- DEBUG: Fixed image URL: " . $pageImage . " -->\n";
     }
     
