@@ -124,6 +124,38 @@
                 --spacing-md: 18px;
                 --spacing-lg: 24px;
                 --spacing-xl: 36px;
+                --fs-14: 1.09375rem;
+                --fs-16: 1.25rem;
+                --fs-18: 1.40625rem;
+                --fs-20: 1.5625rem;
+            }
+
+            /* Navigation Menu Typography - MATCHING HOMEPAGE */
+            .navbar-nav .nav-link {
+                font-size: var(--fs-18) !important;
+                font-weight: 500 !important;
+            }
+
+            /* Navigation Link Hover Effects */
+            .nav-link {
+                position: relative;
+                transition: all 0.3s ease !important;
+            }
+
+            .nav-link::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 0;
+                height: 2px;
+                background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%);
+                transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .nav-link:hover::after {
+                width: 80%;
             }
 
             /* Unified Mockup Styles */
@@ -1015,6 +1047,137 @@
             }
         </style>
         <style>
+            /* Navigation Menu - Purple Dropdown */
+            :root {
+                --primary: #FF4B36;
+                --primary-light: #FF6B50;
+                --primary-dark: #E63920;
+                --dark-purple: #200A24;
+            }
+
+            .dropdown-menu-large {
+                background: linear-gradient(135deg, #200A24 0%, #1A0E2E 100%) !important;
+                border: 1px solid rgba(255, 75, 54, 0.2) !important;
+                animation: dropdownFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                backdrop-filter: blur(10px);
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4) !important;
+                min-width: 580px !important;
+                padding: 25px 20px !important;
+                border-radius: 20px !important;
+                margin-top: 15px !important;
+            }
+
+            .dropdown-menu-large .dropdown-item {
+                border-radius: 14px !important;
+                padding: 20px 18px !important;
+                margin-bottom: 8px;
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.05);
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .dropdown-menu-large .dropdown-item::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 75, 54, 0.1), transparent);
+                transition: left 0.6s ease;
+            }
+
+            .dropdown-menu-large .dropdown-item:hover::before {
+                left: 100%;
+            }
+
+            .dropdown-menu-large .dropdown-item:hover {
+                background: rgba(255, 75, 54, 0.12) !important;
+                border-color: rgba(255, 75, 54, 0.3) !important;
+                transform: translateX(8px) scale(1.02);
+                box-shadow: 0 8px 20px rgba(255, 75, 54, 0.15);
+            }
+
+            .dropdown-menu-large .dropdown-item:hover .solution-icon {
+                transform: scale(1.15) rotate(5deg);
+                background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%) !important;
+                box-shadow: 0 6px 20px rgba(255, 75, 54, 0.4);
+            }
+
+            .dropdown-menu-large .dropdown-item:hover .solution-title {
+                color: #FF4B36 !important;
+                transform: translateX(4px);
+            }
+
+            .dropdown-menu-large .dropdown-item:hover .solution-arrow {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            .dropdown-menu-large .solution-icon {
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                width: 64px !important;
+                height: 64px !important;
+                min-width: 64px !important;
+                background: rgba(255, 75, 54, 0.15) !important;
+                border: 1px solid rgba(255, 75, 54, 0.2);
+            }
+
+            .dropdown-menu-large .solution-icon i,
+            .dropdown-menu-large .solution-icon svg {
+                font-size: 32px !important;
+                width: 32px !important;
+                height: 32px !important;
+                color: #FF4B36 !important;
+                filter: drop-shadow(0 2px 4px rgba(255, 75, 54, 0.3));
+            }
+
+            .dropdown-menu-large .solution-title {
+                font-size: 19px !important;
+                font-weight: 700 !important;
+                color: white !important;
+                margin-bottom: 6px !important;
+                transition: all 0.3s ease;
+            }
+
+            .dropdown-menu-large .solution-description {
+                font-size: 13px !important;
+                color: rgba(255, 255, 255, 0.6) !important;
+                line-height: 1.5 !important;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
+            .dropdown-menu-large .solution-arrow {
+                font-size: 20px;
+                color: #FF4B36;
+                opacity: 0;
+                transform: translateX(-10px);
+                transition: all 0.3s ease;
+            }
+
+            .dropdown-menu-large .dropdown-divider {
+                border-color: rgba(255, 255, 255, 0.1) !important;
+                margin: 8px 0 !important;
+                opacity: 1 !important;
+            }
+
+            @keyframes dropdownFadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        </style>
+        <style>
             /* Testimonial Author Image */
             .testimonial-author-image {
                 width: 120px;
@@ -1209,14 +1372,96 @@
                         </button>
                         <div class="collapse navbar-collapse justify-content-center" id="navbarNav"> 
                             <ul class="navbar-nav d-flex justify-content-between w-100" style="max-width: 1400px; padding: 0 15px; margin-left: 50px;">
-                                <li class="nav-item" style="margin: 0 10px;"><a href="/home" class="nav-link">Home</a></li>
-                                <li class="nav-item" style="margin: 0 10px;"><a href="/cms" class="nav-link">AI&nbsp;CMS</a></li>
-                                <li class="nav-item" style="margin: 0 10px;"><a href="/media" class="nav-link">Media</a></li>
-                                <li class="nav-item" style="margin: 0 10px;"><a href="/sport" class="nav-link">Sport</a></li>
-                                <li class="nav-item" style="margin: 0 10px;"><a href="https://litteraworks.com/" class="nav-link" target="_blank">Litteraworks</a></li>
-                                <li class="nav-item" style="margin: 0 10px;"><a href="/projects" class="nav-link">Grant&nbsp;Projects</a></li>
-                                <li class="nav-item" style="margin: 0 10px;"><a href="/partners" class="nav-link">Partners</a></li>
-                                <li class="nav-item" style="margin: 0 10px;"><a href="/about" class="nav-link">About&nbsp;Us</a></li>
+                                <li class="nav-item" style="margin: 0 10px;"><a href="/home.html" class="nav-link">Home</a></li>
+                                <li class="nav-item dropdown dropdown-with-icon-style-02" style="margin: 0 10px;">
+                                    <a href="#" class="nav-link dropdown-toggle" id="solutionsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Solutions</a>
+                                    <ul class="dropdown-menu dropdown-menu-large" aria-labelledby="solutionsDropdown">
+                                        <li>
+                                            <a class="dropdown-item" href="/cms.html">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="d-flex align-items-center justify-content-center solution-icon" style="border-radius: 14px; margin-right: 20px;">
+                                                        <i class="bi bi-display"></i>
+                                                    </div>
+                                                    <div style="flex: 1; padding-right: 40px;">
+                                                        <span class="d-block solution-title">mPanel CMS</span>
+                                                        <span class="d-block solution-description">Complete content management system for media publishers with AI-powered tools and automation</span>
+                                                    </div>
+                                                    <i class="bi bi-arrow-right solution-arrow"></i>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li>
+                                            <a class="dropdown-item" href="/media.html">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="d-flex align-items-center justify-content-center solution-icon" style="border-radius: 14px; margin-right: 20px;">
+                                                        <i class="bi bi-newspaper"></i>
+                                                    </div>
+                                                    <div style="flex: 1; padding-right: 40px;">
+                                                        <span class="d-block solution-title">Media</span>
+                                                        <span class="d-block solution-description">Digital publishing platforms, mobile apps, and content delivery solutions for modern newsrooms</span>
+                                                    </div>
+                                                    <i class="bi bi-arrow-right solution-arrow"></i>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li>
+                                            <a class="dropdown-item" href="/sport.html">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="d-flex align-items-center justify-content-center solution-icon" style="border-radius: 14px; margin-right: 20px;">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                            <circle cx="12" cy="12" r="10"></circle>
+                                                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                                                            <path d="M2 12h20"></path>
+                                                        </svg>
+                                                    </div>
+                                                    <div style="flex: 1; padding-right: 40px;">
+                                                        <span class="d-block solution-title">Sport</span>
+                                                        <span class="d-block solution-description">Fan engagement platforms, loyalty programs, and mobile apps for sports clubs and leagues</span>
+                                                    </div>
+                                                    <i class="bi bi-arrow-right solution-arrow"></i>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li>
+                                            <a class="dropdown-item" href="https://litteraworks.com/" target="_blank">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="d-flex align-items-center justify-content-center solution-icon" style="border-radius: 14px; margin-right: 20px;">
+                                                        <i class="bi bi-mic"></i>
+                                                    </div>
+                                                    <div style="flex: 1; padding-right: 40px;">
+                                                        <span class="d-block solution-title">Litteraworks</span>
+                                                        <span class="d-block solution-description">AI-powered transcription, subtitle generation, and content processing for media professionals</span>
+                                                    </div>
+                                                    <i class="bi bi-arrow-right solution-arrow"></i>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="d-flex align-items-center justify-content-center solution-icon" style="border-radius: 14px; margin-right: 20px;">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
+                                                            <path d="M8.5 0a5.5 5.5 0 0 0-5.5 5.5v.21c0 1.92-.56 3.8-1.59 5.43-.37.57.25 1.23.89 1.16l5.48-.59c.61-.07 1.16.39 1.16 1v.24c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-.24c0-.61.55-1.07 1.16-1l5.48.59c.64.07 1.26-.59.89-1.16-1.03-1.63-1.59-3.51-1.59-5.43V5.5A5.5 5.5 0 0 0 8.5 0z"/>
+                                                        </svg>
+                                                    </div>
+                                                    <div style="flex: 1; padding-right: 40px;">
+                                                        <span class="d-block solution-title">Pchela</span>
+                                                        <span class="d-block solution-description">Intelligent digital asset management system with AI-powered organization and search capabilities</span>
+                                                    </div>
+                                                    <i class="bi bi-arrow-right solution-arrow"></i>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item" style="margin: 0 10px;"><a href="/consultation.html" class="nav-link">Consultation</a></li>
+                                <li class="nav-item" style="margin: 0 10px;"><a href="/projects.html" class="nav-link">Grant&nbsp;Projects</a></li>
+                                <li class="nav-item" style="margin: 0 10px;"><a href="/partners.html" class="nav-link">Partners</a></li>
+                                <li class="nav-item" style="margin: 0 10px;"><a href="/about.html" class="nav-link">About&nbsp;Us</a></li>
                             </ul>
                         </div>
                     </div>
@@ -1229,13 +1474,13 @@
         <!-- end header -->
 
         <!-- start hero section -->
-        <section class="cover-background position-relative overflow-visible" style="background: #200A24; padding-top: 120px; padding-bottom: 120px;">
+        <section class="cover-background position-relative overflow-visible" style="background: #200A24; padding-top: 140px; padding-bottom: 140px;">
             <div class="opacity-very-light bg-black"></div>
-            <div class="container position-relative z-index-1"> 
+            <div class="container position-relative z-index-1">
                 <div class="row justify-content-center text-center">
-                    <div class="col-xl-8 col-lg-10" data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay":0, "staggervalue": 300, "easing": "easeOutQuad" }'>
-                        <h1 class="text-white fw-600 ls-minus-2px mb-4 hero-title">Creative solutions for innovative clubs</h1>
-                        <p class="fw-300 fs-18 text-white opacity-6 mb-5">Fan-first focused approach</p>
+                    <div class="col-xl-10 col-lg-11" data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay":0, "staggervalue": 300, "easing": "easeOutQuad" }'>
+                        <h1 class="text-white fw-800 ls-minus-2px mb-4" style="font-size: 3.2rem; line-height: 1.2;">FanFuel: Fan-First Approach</h1>
+                        <p class="fw-500 fs-20 text-white mb-0" style="opacity: 0.9; line-height: 1.8; max-width: 850px; margin-left: auto; margin-right: auto;">AI-powered mobile platform that drives engagement at the venue and beyond—without breaking your budget</p>
                     </div>
                 </div>
             </div>
@@ -1256,43 +1501,69 @@
         </section>
         <!-- end hero section -->
 
-        <!-- start challenges and statistics section -->
-        <section class="section-padding">
+        <!-- start desktop screenshot section -->
+        <section style="padding: 60px 0; background: #ffffff;">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 text-center">
+                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/image-57.png?crop=true"
+                             alt="FanFuel Analytics Dashboard"
+                             class="img-fluid"
+                             style="max-width: 1000px; filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15)); border-radius: 12px;">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end desktop screenshot section -->
+
+        <!-- start crisis section -->
+        <section class="section-padding" style="padding: 80px 0; background: #ffffff;">
             <div class="container">
                 <div class="row justify-content-center text-center mb-5">
                     <div class="col-xl-8 col-lg-10 fade-in">
-                        <h2 class="text-dark-gray fw-600 ls-minus-2px mb-4 section-title">Challenges for Sports Leagues & Clubs in the Digital Age</h2>
+                        <h2 class="text-dark-gray fw-800 ls-minus-2px mb-4" style="font-size: 3rem;">Sports Organizations Face a Fan Engagement Crisis</h2>
+                        <p class="fw-500 fs-19 text-dark-gray mb-0" style="opacity: 0.7; line-height: 1.7;">The cost of inactivity? Declining attendance, eroding loyalty, and lost revenue opportunities.</p>
                     </div>
                 </div>
-                <div class="row justify-content-center">
+                <div class="row justify-content-center g-4">
                     <!-- First Statistic -->
-                    <div class="col-lg-4 mb-4">
+                    <div class="col-lg-3 col-md-6">
                         <div class="challenge-card text-center stagger-item h-100" style="animation-delay: 0.1s">
                             <div class="mb-3">
-                                <span class="fw-600 fs-60 text-gradient bg-gradient-orange-pink">31%</span>
-                                <h4 class="text-gradient bg-gradient-orange-pink mb-3">Declining Live Viewership</h4>
+                                <span class="fw-800 text-gradient bg-gradient-orange-pink" style="font-size: 3.5rem; line-height: 1;">31%</span>
                             </div>
-                            <p class="fw-300 fs-18 text-dark-gray">of global sports fans aged 18-24 watch live matches, compared to 75% of those aged 55 and over.</p>
+                            <h5 class="fw-700 mb-3" style="color: #1a1a2e;">Declining Live Viewership</h5>
+                            <p class="fw-500 text-dark-gray mb-0" style="font-size: 15px; line-height: 1.6; opacity: 0.8;">Only 31% of fans aged 18-24 watch live matches (vs 75% of fans 55+)</p>
                         </div>
                     </div>
                     <!-- Second Statistic -->
-                    <div class="col-lg-4 mb-4">
+                    <div class="col-lg-3 col-md-6">
                         <div class="challenge-card text-center stagger-item h-100" style="animation-delay: 0.2s">
                             <div class="mb-3">
-                                <span class="fw-600 fs-60 text-gradient bg-gradient-orange-pink">70%</span>
-                                <h4 class="text-gradient bg-gradient-orange-pink mb-3">Increased Social Media Engagement</h4>
+                                <span class="fw-800 text-gradient bg-gradient-orange-pink" style="font-size: 3.5rem; line-height: 1;">70%</span>
                             </div>
-                            <p class="fw-300 fs-18 text-dark-gray">of younger fans use social media while watching sports at home, and 44% engage with it during live events.</p>
+                            <h5 class="fw-700 mb-3" style="color: #1a1a2e;">Social Media Distraction</h5>
+                            <p class="fw-500 text-dark-gray mb-0" style="font-size: 15px; line-height: 1.6; opacity: 0.8;">70% of younger fans use social media during games instead of watching</p>
                         </div>
                     </div>
                     <!-- Third Statistic -->
-                    <div class="col-lg-4 mb-4">
+                    <div class="col-lg-3 col-md-6">
                         <div class="challenge-card text-center stagger-item h-100" style="animation-delay: 0.3s">
                             <div class="mb-3">
-                                <span class="fw-600 fs-60 text-gradient bg-gradient-orange-pink">55%</span>
-                                <h4 class="text-gradient bg-gradient-orange-pink mb-3">Demand for Technological Integration</h4>
+                                <span class="fw-800 text-gradient bg-gradient-orange-pink" style="font-size: 3.5rem; line-height: 1;">55%</span>
                             </div>
-                            <p class="fw-300 fs-18 text-dark-gray">of fans desire opportunities to engage with technology at live events, reflecting heightened expectations.</p>
+                            <h5 class="fw-700 mb-3" style="color: #1a1a2e;">Tech Integration Demand</h5>
+                            <p class="fw-500 text-dark-gray mb-0" style="font-size: 15px; line-height: 1.6; opacity: 0.8;">55% of fans demand technological integration at live events</p>
+                        </div>
+                    </div>
+                    <!-- Fourth Statistic -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="challenge-card text-center stagger-item h-100" style="animation-delay: 0.4s">
+                            <div class="mb-3">
+                                <span class="fw-800 text-gradient bg-gradient-orange-pink" style="font-size: 3.5rem; line-height: 1;">85%</span>
+                            </div>
+                            <h5 class="fw-700 mb-3" style="color: #1a1a2e;">Mobile App Expectation</h5>
+                            <p class="fw-500 text-dark-gray mb-0" style="font-size: 15px; line-height: 1.6; opacity: 0.8;">85% expect mobile app engagement from their teams</p>
                         </div>
                     </div>
                 </div>
@@ -1460,225 +1731,299 @@
         </section>
         <!-- end challenges and statistics section -->
 
-        <!-- start cost of inactivity section -->
-        <section class="section-padding-dark" style="padding-top: 40px; padding-bottom: 40px;">
+        <!-- start social proof section -->
+        <section class="section-padding" style="padding-top: 60px; padding-bottom: 60px; background: #ffffff;">
             <div class="container">
-                <div class="row justify-content-center text-center mb-3">
-                    <div class="col-xl-8 col-lg-10 fade-in">
-                        <h2 class="text-white fw-600 ls-minus-2px mb-2" style="color: #ffffff !important; opacity: 1; font-size: 2.5rem;">The Cost of Inactivity</h2>
-                        <p class="fw-300 fs-18 text-white opacity-6 mb-3" style="color: #ffffff !important;">Sports leagues and clubs face significant challenges if they fail to invest in fan engagement</p>
+                <div class="row justify-content-center text-center mb-5">
+                    <div class="col-lg-8">
+                        <h3 class="text-dark-gray fw-700 ls-minus-1px mb-3" style="font-size: 2rem;">Sports organizations we work with</h3>
                     </div>
                 </div>
-                <div class="inactivity-cards-grid">
-                    <div class="inactivity-card stagger-item" style="animation-delay: 0.1s">
-                        <div class="inactivity-icon">
-                            <i class="bi bi-phone"></i>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="logo-carousel-wrapper" style="overflow: hidden; position: relative;">
+                            <div class="logo-carousel-track">
+                                <img src="https://app-works.app/images/appworksPartners/Sports/Leeds.png" alt="Leeds">
+                                <img src="https://app-works.app/images/appworksPartners/Sports/PAO.png" alt="PAO">
+                                <img src="https://app-works.app/images/appworksPartners/Sports/QPR.png" alt="QPR">
+                                <img src="https://app-works.app/images/appworksPartners/Sports/ESAKE.png" alt="ESAKE">
+                                <img src="https://app-works.app/images/appworksPartners/Sports/FK Partizan.png" alt="FK Partizan">
+                                <img src="https://app-works.app/images/appworksPartners/Sports/Peristeri.png" alt="Peristeri">
+                                <img src="https://app-works.app/images/appworksPartners/Sports/HKS.png" alt="HKS">
+                                <img src="https://app-works.app/images/appworksPartners/Sports/HRS.png" alt="HRS">
+                                <img src="https://app-works.app/images/appworksPartners/Sports/Cedevita.png" alt="Cedevita">
+                                <img src="https://app-works.app/images/appworksPartners/Sports/KSBIH.png" alt="KSBIH">
+                                <img src="https://app-works.app/images/appworksPartners/Sports/Savez za skolski sport.png" alt="Savez za skolski sport">
+                                <img src="https://app-works.app/images/appworksPartners/Sports/futsal-partizan-logo.png" alt="Futsal Partizan">
+                                <!-- Duplicate for seamless loop -->
+                                <img src="https://app-works.app/images/appworksPartners/Sports/Leeds.png" alt="Leeds">
+                                <img src="https://app-works.app/images/appworksPartners/Sports/PAO.png" alt="PAO">
+                                <img src="https://app-works.app/images/appworksPartners/Sports/QPR.png" alt="QPR">
+                                <img src="https://app-works.app/images/appworksPartners/Sports/ESAKE.png" alt="ESAKE">
+                                <img src="https://app-works.app/images/appworksPartners/Sports/FK Partizan.png" alt="FK Partizan">
+                                <img src="https://app-works.app/images/appworksPartners/Sports/Peristeri.png" alt="Peristeri">
+                                <img src="https://app-works.app/images/appworksPartners/Sports/HKS.png" alt="HKS">
+                                <img src="https://app-works.app/images/appworksPartners/Sports/HRS.png" alt="HRS">
+                                <img src="https://app-works.app/images/appworksPartners/Sports/Cedevita.png" alt="Cedevita">
+                                <img src="https://app-works.app/images/appworksPartners/Sports/KSBIH.png" alt="KSBIH">
+                                <img src="https://app-works.app/images/appworksPartners/Sports/Savez za skolski sport.png" alt="Savez za skolski sport">
+                                <img src="https://app-works.app/images/appworksPartners/Sports/futsal-partizan-logo.png" alt="Futsal Partizan">
+                            </div>
                         </div>
-                        <h4 class="mb-2">High Fan Expectations</h4>
-                        <p>85% of sports fans anticipate mobile app engagement.</p>
-                    </div>
-                    <div class="inactivity-card stagger-item" style="animation-delay: 0.2s">
-                        <div class="inactivity-icon">
-                            <i class="bi bi-currency-dollar"></i>
-                        </div>
-                        <h4 class="mb-2">Missed Revenue Opportunities</h4>
-                        <p>Only 30% of leagues, teams, and federations currently utilize digital platforms for revenue.</p>
-                    </div>
-                    <div class="inactivity-card stagger-item" style="animation-delay: 0.3s">
-                        <div class="inactivity-icon">
-                            <i class="bi bi-display"></i>
-                        </div>
-                        <h4 class="mb-2">Enhanced In-Stadium Experience</h4>
-                        <p>Fans expect advanced technological features during live events, such as second screen and additional engagement during events.</p>
-                    </div>
-                    <div class="inactivity-card stagger-item" style="animation-delay: 0.4s">
-                        <div class="inactivity-icon">
-                            <i class="bi bi-shield-x"></i>
-                        </div>
-                        <h4 class="mb-2">Brand Loyalty Erosion</h4>
-                        <p>Without proactive engagement, clubs may experience a decline in brand loyalty, with fans shifting their allegiance to other entertaiment options.</p>
                     </div>
                 </div>
             </div>
             <style>
-                .inactivity-cards-grid {
-                    display: grid;
-                    grid-template-columns: repeat(2, 1fr);
-                    gap: 20px;
-                    visibility: visible !important;
-                    opacity: 1 !important;
+                .logo-carousel-wrapper {
+                    padding: 20px 0;
                 }
-                
-                .inactivity-card {
-                    height: 100%;
-                    background: rgba(255, 255, 255, 0.98);
-                    background-image: linear-gradient(to bottom right, #f9f9f9, #ffffff);
-                    padding: 22px;
-                    border-radius: 10px;
-                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03), 0 0 0 1px rgba(0, 0, 0, 0.05);
-                    transition: all 0.3s ease;
+
+                .logo-carousel-track {
                     display: flex;
-                    flex-direction: column;
-                    visibility: visible !important;
-                    opacity: 1 !important;
+                    gap: 60px;
+                    animation: scroll 40s linear infinite;
+                    width: fit-content;
                 }
-                
-                .inactivity-card:hover {
-                    transform: translateY(-3px);
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.07);
+
+                .logo-carousel-track:hover {
+                    animation-play-state: paused;
                 }
-                
-                .inactivity-icon {
-                    margin-bottom: 16px;
-                    width: 42px;
-                    height: 42px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    background: rgba(240, 240, 240, 0.7);
-                    border-radius: 8px;
+
+                .logo-carousel-track img {
+                    height: 50px;
+                    width: auto;
+                    max-width: 160px;
+                    object-fit: contain;
                     transition: all 0.3s ease;
                 }
-                
-                .inactivity-icon i {
-                    font-size: 1.6rem;
-                    color: #777;
-                    filter: grayscale(100%);
-                    transition: all 0.3s ease;
+
+                .logo-carousel-track img:hover {
+                    transform: scale(1.1);
                 }
-                
-                .inactivity-card:hover .inactivity-icon {
-                    background: rgba(255, 75, 54, 0.1);
+
+                @keyframes scroll {
+                    0% {
+                        transform: translateX(0);
+                    }
+                    100% {
+                        transform: translateX(-50%);
+                    }
                 }
-                
-                .inactivity-card:hover .inactivity-icon i {
-                    color: #FF4B36;
-                    filter: grayscale(0%);
-                }
-                
-                .inactivity-card h4 {
-                    font-size: 1.15rem;
-                    line-height: 1.3;
-                    font-weight: 600;
-                    color: #333;
-                }
-                
-                .inactivity-card p {
-                    margin: 0;
-                    opacity: 0.8;
-                    font-size: 0.95rem;
-                    line-height: 1.5;
-                }
-                
+
                 @media (max-width: 768px) {
-                    .inactivity-cards-grid {
-                        grid-template-columns: 1fr;
-                        gap: 16px;
+                    .logo-carousel-track {
+                        gap: 40px;
                     }
-                    
-                    .inactivity-card {
-                        padding: 18px;
-                    }
-                    
-                    .inactivity-icon {
-                        margin-bottom: 12px;
+
+                    .logo-carousel-track img {
+                        height: 40px;
+                        max-width: 120px;
                     }
                 }
             </style>
         </section>
-        <!-- end cost of inactivity section -->
+        <!-- end social proof section -->
 
-        <!-- start mobile app platform section -->
-        <section class="section-padding gradient-light section-transition" style="padding-top: 30px; padding-bottom: 30px;">
+        <!-- start why now section -->
+        <section class="section-padding" style="padding: 80px 0; background: #200A24; position: relative;">
             <div class="container">
-                <div class="row justify-content-start text-start" style="margin-bottom: 0; padding-bottom: 0;">
-                    <div class="col-xl-8 col-lg-10 fade-up">
-                        <h2 class="text-dark-gray fw-600 ls-minus-2px" style="margin-bottom: 20px !important;">Mobile App Platform</h2>
-                        <p class="fw-300 fs-18 text-dark-gray opacity-6" style="margin-bottom: 0 !important; padding-bottom: 0;">An app is no longer a luxury but a necessity.</p>
+                <div class="row justify-content-center text-center mb-5">
+                    <div class="col-lg-8">
+                        <h2 class="text-white fw-800 ls-minus-2px mb-4" style="font-size: 3rem;">Why Your Club Needs This Now</h2>
+                        <p class="fw-500 fs-19 text-white mb-0" style="opacity: 0.85; line-height: 1.7;">The sports industry is transforming. Organizations that don't adapt risk being left behind.</p>
                     </div>
                 </div>
-                <div class="split-section" style="margin-top: -120px !important;">
-                    <div class="split-content fade-up">
-                        <div class="feature-column" style="margin-top: 0;">
-                            <div class="feature-horizontal slide-in-left" style="animation-delay: 0.1s;">
-                                <i class="bi bi-phone" style="font-size: 2rem; color: #FF4B36; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
-                                <div class="feature-content">
-                                    <h4 class="mb-1">Fan Engagement Platform</h4>
-                                    <p>Fans demand and expect engagement with the club & the community.</p>
-                        </div>
-                    </div>
-                            <div class="feature-horizontal slide-in-left" style="animation-delay: 0.2s;">
-                                <i class="bi bi-collection" style="font-size: 2rem; color: #FF4B36; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
-                                <div class="feature-content">
-                                    <h4 class="mb-1">Centralize Your Content</h4>
-                                    <p>All your sources in one place - connection to your website, social media, and more.</p>
-                </div>
-            </div>
-                            <div class="feature-horizontal slide-in-left" style="animation-delay: 0.3s;">
-                                <i class="bi bi-bar-chart" style="font-size: 2rem; color: #FF4B36; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
-                                <div class="feature-content">
-                                    <h4 class="mb-1">Stats Provider Integration</h4>
-                                    <p>We connect with your stats provider for automatic fixtures, results and statistics import.</p>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="why-now-card h-100" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border-radius: 16px; padding: 35px; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.4s ease;">
+                            <div class="mb-3">
+                                <div style="width: 64px; height: 64px; background: rgba(255, 75, 54, 0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                                    <i class="bi bi-phone" style="font-size: 32px; color: #FF4B36;"></i>
                                 </div>
+                                <h5 class="text-white fw-700 mb-3">Fan Expectations Have Changed</h5>
+                                <p class="text-white mb-0" style="opacity: 0.7; font-size: 15px; line-height: 1.6;">85% of sports fans anticipate mobile app engagement from their teams.</p>
                             </div>
                         </div>
                     </div>
-                    <div class="split-image fade-up">
-                        <div class="media-mockup phone-mockup" style="max-width: 450px; transform: scale(1);">
-                            <img src="https://app-works.app/images/appworksPartners/mockups/Sport - PAO & PFC.png"
-                                 alt="Sports App Interface" 
-                                 class="w-100">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="why-now-card h-100" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border-radius: 16px; padding: 35px; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.4s ease;">
+                            <div class="mb-3">
+                                <div style="width: 64px; height: 64px; background: rgba(255, 75, 54, 0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                                    <i class="bi bi-cash-stack" style="font-size: 32px; color: #FF4B36;"></i>
+                                </div>
+                                <h5 class="text-white fw-700 mb-3">Revenue Opportunities Are Being Missed</h5>
+                                <p class="text-white mb-0" style="opacity: 0.7; font-size: 15px; line-height: 1.6;">Only 30% of teams use digital platforms for revenue generation beyond ticketing.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="why-now-card h-100" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border-radius: 16px; padding: 35px; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.4s ease;">
+                            <div class="mb-3">
+                                <div style="width: 64px; height: 64px; background: rgba(255, 75, 54, 0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                                    <i class="bi bi-calendar-event" style="font-size: 32px; color: #FF4B36;"></i>
+                                </div>
+                                <h5 class="text-white fw-700 mb-3">Next Season Is Coming</h5>
+                                <p class="text-white mb-0" style="opacity: 0.7; font-size: 15px; line-height: 1.6;">Do you have a strategy to engage fans beyond the arena? Launch in 45-60 days, ready for your season.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
             <style>
-                .mobile-app-platform-section {
-                    display: none;
+                .why-now-card:hover {
+                    transform: translateY(-8px);
+                    background: rgba(255, 255, 255, 0.08) !important;
+                    border-color: rgba(255, 75, 54, 0.3) !important;
+                    box-shadow: 0 12px 30px rgba(255, 75, 54, 0.2);
                 }
             </style>
         </section>
-        <!-- end mobile app platform section -->
+        <!-- end why now section -->
 
-        <!-- start fan-generated content section -->
-        <section class="section-padding-dark gradient-dark section-transition" style="padding-top: 30px; padding-bottom: 30px;">
+        <!-- start before match journey section -->
+        <section class="section-padding gradient-light section-transition" style="padding-top: 80px; padding-bottom: 80px; background: #ffffff;">
             <div class="container">
-                <div class="row justify-content-end text-end" style="margin-bottom: 0; padding-bottom: 0;">
+                <div class="row justify-content-start text-start" style="margin-bottom: 40px;">
                     <div class="col-xl-8 col-lg-10 fade-up">
-                        <h2 class="text-white fw-600 ls-minus-2px" style="margin-bottom: 20px !important;">Fan-Generated Content</h2>
-                        <p class="fw-300 fs-18 text-white opacity-6" style="margin-bottom: 0 !important; padding-bottom: 0;">Your fans can share their experiences and create engaging community content.</p>
+                        <h2 class="text-dark-gray fw-800 ls-minus-2px" style="font-size: 3rem; margin-bottom: 20px;">Before the Match</h2>
+                        <p class="fw-500 fs-19 text-dark-gray" style="opacity: 0.7; margin-bottom: 0;">Build anticipation and drive engagement before kickoff</p>
                     </div>
                 </div>
-                <div class="split-section" style="margin-top: -80px !important;">
-                    <div class="split-image fade-up" style="display: flex; align-items: flex-start; padding-top: 50px;">
-                        <div class="media-mockup phone-mockup" style="max-width: 350px; position: relative; top: auto; transform: scale(0.9);">
-                            <img src="https://app-works.app/images/appworksPartners/mockups/Sport - Cedevita.png" 
-                                 alt="Fan Content Upload Interface" 
-                                 class="w-100">
-                        </div>
-                    </div>
-                    <div class="split-content fade-up">
-                        <div class="feature-column" style="margin-top: 0;">
-                            <div class="feature-horizontal slide-in-left" style="animation-delay: 0.1s;">
-                                <i class="bi bi-camera" style="font-size: 2rem; color: #FF4B36; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
-                                <div class="feature-content">
-                                    <h4 class="text-white mb-1">Fan Media Uploads</h4>
-                                    <p class="text-white opacity-8">Users can upload photos and videos through the app, sharing their matchday experience.</p>
-                        </div>
-                    </div>
-                            <div class="feature-horizontal slide-in-left" style="animation-delay: 0.2s;">
-                                <i class="bi bi-collection-play" style="font-size: 2rem; color: #FF4B36; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
-                                <div class="feature-content">
-                                    <h4 class="text-white mb-1">Club Media Hub</h4>
-                                    <p class="text-white opacity-8">A combination of official club content and fan-generated uploads.</p>
+                <div class="row align-items-center g-5">
+                    <!-- Features Column -->
+                    <div class="col-lg-6">
+                        <div class="row g-4">
+                            <div class="col-12">
+                                <div class="feature-horizontal slide-in-left" style="animation-delay: 0.1s; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); display: flex; gap: 20px;">
+                                    <div style="flex-shrink: 0;">
+                                        <i class="bi bi-bell" style="font-size: 2rem; color: #FF4B36; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4 class="mb-2 fw-700" style="font-size: 1.35rem;">Push Notifications Build Anticipation</h4>
+                                        <p class="mb-0" style="font-size: 16px; line-height: 1.6; opacity: 0.8;">Team news, lineup updates, and match countdowns keep fans engaged in the hours before the game.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="feature-horizontal slide-in-left" style="animation-delay: 0.3s;">
-                                <i class="bi bi-chat-square-text" style="font-size: 2rem; color: #FF4B36; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
-                                <div class="feature-content">
-                                    <h4 class="text-white mb-1">Fan Forum & Chat</h4>
-                                    <p class="text-white opacity-8">Discord - style group chats with category-based discussions & premium access for season ticket holders and subscribers.</p>
+                            <div class="col-12">
+                                <div class="feature-horizontal slide-in-left" style="animation-delay: 0.2s; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); display: flex; gap: 20px;">
+                                    <div style="flex-shrink: 0;">
+                                        <i class="bi bi-chat-square-text" style="font-size: 2rem; color: #FF4B36; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4 class="mb-2 fw-700" style="font-size: 1.35rem;">Polls & Quizzes Drive Pre-Game Engagement</h4>
+                                        <p class="mb-0" style="font-size: 16px; line-height: 1.6; opacity: 0.8;">"Who will score first?" and tactical prediction polls get fans thinking and participating.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="feature-horizontal slide-in-left" style="animation-delay: 0.3s; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); display: flex; gap: 20px;">
+                                    <div style="flex-shrink: 0;">
+                                        <i class="bi bi-ticket-perforated" style="font-size: 2rem; color: #FF4B36; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4 class="mb-2 fw-700" style="font-size: 1.35rem;">Ticket Purchase Integration</h4>
+                                        <p class="mb-0" style="font-size: 16px; line-height: 1.6; opacity: 0.8;">Last-minute ticket sales through the app, with digital wallet integration for season ticket holders.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="feature-horizontal slide-in-left" style="animation-delay: 0.4s; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); display: flex; gap: 20px;">
+                                    <div style="flex-shrink: 0;">
+                                        <i class="bi bi-robot" style="font-size: 2rem; color: #FF4B36; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4 class="mb-2 fw-700" style="font-size: 1.35rem;">AI Summaries & Predictions</h4>
+                                        <p class="mb-0" style="font-size: 16px; line-height: 1.6; opacity: 0.8;">Automated match previews, tactical analysis, and AI-generated predictions from multiple sources.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Mockup Column -->
+                    <div class="col-lg-6 text-center">
+                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/device-mockup-15x-postspark-2026-01-12-09-51-35.png?crop=true"
+                             alt="Fan Engagement Platform"
+                             class="img-fluid"
+                             style="max-width: 360px; filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end before match journey section -->
+
+        <!-- start at the venue journey section -->
+        <section class="section-padding gradient-dark section-transition" style="padding-top: 80px; padding-bottom: 80px; background: #200A24;">
+            <div class="container">
+                <div class="row justify-content-start text-start" style="margin-bottom: 40px;">
+                    <div class="col-xl-8 col-lg-10 fade-up">
+                        <h2 class="text-white fw-800 ls-minus-2px" style="font-size: 3rem; margin-bottom: 20px;">At the Venue</h2>
+                        <p class="fw-500 fs-19 text-white" style="opacity: 0.85; margin-bottom: 0;">Transform your stadium into a smart venue with next-generation fan experience</p>
+                    </div>
+                </div>
+                <div class="row align-items-center g-5">
+                    <!-- Mockup Column (Left) -->
+                    <div class="col-lg-6 text-center order-lg-1 order-2">
+                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/device-mockup-15x-postspark-2026-01-12-09-53-34.png?crop=true"
+                             alt="Match Day Experience"
+                             class="img-fluid"
+                             style="max-width: 400px; filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));">
+                    </div>
+                    <!-- Features Column (Right) -->
+                    <div class="col-lg-6 order-lg-2 order-1">
+                        <div class="row g-4">
+                            <div class="col-12">
+                                <div class="feature-horizontal slide-in-left" style="animation-delay: 0.1s; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 30px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); display: flex; gap: 20px;">
+                                    <div style="flex-shrink: 0;">
+                                        <i class="bi bi-phone-vibrate" style="font-size: 2rem; color: #FF4B36; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4 class="mb-2 fw-700 text-white" style="font-size: 1.35rem;">In-Seat Food & Drink Ordering</h4>
+                                        <p class="mb-0 text-white" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Order from your seat, skip the queues. Increase concession revenue by 25%.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="feature-horizontal slide-in-left" style="animation-delay: 0.2s; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 30px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); display: flex; gap: 20px;">
+                                    <div style="flex-shrink: 0;">
+                                        <i class="bi bi-broadcast" style="font-size: 2rem; color: #FF4B36; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4 class="mb-2 fw-700 text-white" style="font-size: 1.35rem;">Live Notifications (Play-by-Play)</h4>
+                                        <p class="mb-0 text-white" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Real-time updates for goals, cards, substitutions synced automatically with your stats provider.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="feature-horizontal slide-in-left" style="animation-delay: 0.3s; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 30px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); display: flex; gap: 20px;">
+                                    <div style="flex-shrink: 0;">
+                                        <i class="bi bi-gift" style="font-size: 2rem; color: #FF4B36; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4 class="mb-2 fw-700 text-white" style="font-size: 1.35rem;">Mobile App Venue Rewards</h4>
+                                        <p class="mb-0 text-white" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Scan QR codes at entrance, earn points for attendance, redeem for prizes and discounts.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="feature-horizontal slide-in-left" style="animation-delay: 0.4s; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 30px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); display: flex; gap: 20px;">
+                                    <div style="flex-shrink: 0;">
+                                        <i class="bi bi-camera-video" style="font-size: 2rem; color: #FF4B36; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4 class="mb-2 fw-700 text-white" style="font-size: 1.35rem;">User-Generated Content</h4>
+                                        <p class="mb-0 text-white" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Fans upload photos/videos, appear on jumbotron, participate in halftime contests.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="feature-horizontal slide-in-left" style="animation-delay: 0.5s; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 30px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); display: flex; gap: 20px;">
+                                    <div style="flex-shrink: 0;">
+                                        <i class="bi bi-geo-alt" style="font-size: 2rem; color: #FF4B36; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4 class="mb-2 fw-700 text-white" style="font-size: 1.35rem;">Geo-Targeted Promotions</h4>
+                                        <p class="mb-0 text-white" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Location-based offers trigger when fans enter the stadium or specific zones.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1686,203 +2031,147 @@
                 </div>
             </div>
         </section>
-        <!-- end fan-generated content section -->
+        <!-- end at the venue journey section -->
 
-        <!-- start loyalty system section -->
-        <section class="section-padding gradient-light section-transition" style="padding-top: 30px; padding-bottom: 30px;">
+        <!-- start after the match journey section -->
+        <section class="section-padding gradient-light" style="padding-top: 80px; padding-bottom: 80px; background: #ffffff;">
             <div class="container">
-                <div class="row justify-content-start text-start" style="margin-bottom: 24px; padding-bottom: 0;">
-                    <div class="col-xl-8 col-lg-10 fade-up">
-                        <h2 class="text-dark-gray fw-600 ls-minus-2px" style="margin-bottom: 20px !important;">Loyalty System</h2>
-                        <p class="fw-300 fs-18 text-dark-gray opacity-6" style="margin-bottom: 0 !important; padding-bottom: 0;">Reward the most active & dedicated fans.</p>
+                <div class="row justify-content-center text-center mb-5">
+                    <div class="col-xl-10 col-lg-11">
+                        <h2 class="text-dark-gray fw-800 ls-minus-2px mb-3" style="font-size: 3rem;">After the Match</h2>
+                        <p class="fw-500 fs-19 text-dark-gray mb-0" style="opacity: 0.7;">Keep fans engaged long after the final whistle</p>
                     </div>
                 </div>
-                <div class="split-section" style="margin-top: -20px !important;">
-                    <div class="split-content fade-up">
-                        <div class="feature-column" style="margin-top: 60px;">
-                            <div class="feature-horizontal slide-in-left" style="animation-delay: 0.1s;">
-                                <i class="bi bi-award" style="font-size: 2rem; color: #FF4B36; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
-                                <div class="feature-content">
-                                    <h4 class="mb-1">Points System</h4>
-                                    <p>Users can earn points throughout the season, becoming eligible for exclusive rewards.</p>
+                <div class="row align-items-center g-5">
+                    <!-- Features Column -->
+                    <div class="col-lg-6">
+                        <div class="row g-4">
+                            <div class="col-12">
+                                <div class="feature-horizontal slide-in-left" style="animation-delay: 0.1s; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 1px solid rgba(0, 0, 0, 0.06); display: flex; gap: 20px; transition: all 0.3s ease;">
+                                    <div style="flex-shrink: 0;">
+                                        <i class="bi bi-play-circle" style="font-size: 2rem; color: #FF4B36; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4 class="mb-2 fw-700 text-dark-gray" style="font-size: 1.35rem;">Match Highlights & Stats</h4>
+                                        <p class="mb-0 text-dark-gray" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Instantly share automated match highlights, key moments, and full statistics. Fans relive the action and stay connected.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="feature-horizontal slide-in-left" style="animation-delay: 0.2s;">
-                                <i class="bi bi-question-circle" style="font-size: 2rem; color: #FF4B36; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
-                                <div class="feature-content">
-                                    <h4 class="mb-1">Gamification</h4>
-                                    <p>Earn points by participating in polls, quizzes and predictors.</p>
+                            <div class="col-12">
+                                <div class="feature-horizontal slide-in-left" style="animation-delay: 0.2s; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 1px solid rgba(0, 0, 0, 0.06); display: flex; gap: 20px; transition: all 0.3s ease;">
+                                    <div style="flex-shrink: 0;">
+                                        <i class="bi bi-trophy" style="font-size: 2rem; color: #FF4B36; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4 class="mb-2 fw-700 text-dark-gray" style="font-size: 1.35rem;">Man of the Match Voting</h4>
+                                        <p class="mb-0 text-dark-gray" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Let fans choose their player of the match. Build engagement through interactive voting and give fans a voice.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="feature-horizontal slide-in-left" style="animation-delay: 0.3s;">
-                                <i class="bi bi-graph-up" style="font-size: 2rem; color: #FF4B36; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
-                                <div class="feature-content">
-                                    <h4 class="mb-1">Reward Loyalty & Activity</h4>
-                                    <p>Offer rewards for the most loyal fans, such as unlocking in-app features or discounts on tickets and merchandise.</p>
+                            <div class="col-12">
+                                <div class="feature-horizontal slide-in-left" style="animation-delay: 0.3s; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 1px solid rgba(0, 0, 0, 0.06); display: flex; gap: 20px; transition: all 0.3s ease;">
+                                    <div style="flex-shrink: 0;">
+                                        <i class="bi bi-share" style="font-size: 2rem; color: #FF4B36; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4 class="mb-2 fw-700 text-dark-gray" style="font-size: 1.35rem;">Content Sharing</h4>
+                                        <p class="mb-0 text-dark-gray" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Fans share match moments, photos, and reactions on social media directly from the app, expanding your reach organically.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="feature-horizontal slide-in-left" style="animation-delay: 0.4s;">
-                                <i class="bi bi-ticket-perforated" style="font-size: 2rem; color: #FF4B36; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
-                                <div class="feature-content">
-                                    <h4 class="mb-1">Real-World Integration</h4>
-                                    <p>Points connected to real-life actions such as attending games, purchasing tickets or merchandise.</p>
+                            <div class="col-12">
+                                <div class="feature-horizontal slide-in-left" style="animation-delay: 0.4s; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 1px solid rgba(0, 0, 0, 0.06); display: flex; gap: 20px; transition: all 0.3s ease;">
+                                    <div style="flex-shrink: 0;">
+                                        <i class="bi bi-star" style="font-size: 2rem; color: #FF4B36; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4 class="mb-2 fw-700 text-dark-gray" style="font-size: 1.35rem;">Loyalty Points Accumulation</h4>
+                                        <p class="mb-0 text-dark-gray" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Reward attendance, participation, and engagement with points that unlock exclusive rewards and perks.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="split-image fade-up">
-                        <div class="media-mockup phone-mockup" style="max-width: 350px; transform: scale(0.9);">
-                            <img src="https://app-works.app/images/appworksPartners/mockups/Sport - PAO.png" 
-                                 alt="Sports App Loyalty System" 
-                                 class="w-100">
-                        </div>
+                    <!-- Mockup Column -->
+                    <div class="col-lg-6 text-center">
+                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/device-mockup-15x-postspark-2026-01-12-09-51-15.png?crop=true"
+                             alt="After Match Engagement"
+                             class="img-fluid"
+                             style="max-width: 320px; filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));">
                     </div>
                 </div>
             </div>
         </section>
-        <!-- end loyalty system section -->
+        <!-- end after the match journey section -->
 
-        <!-- start push notifications section -->
-        <section class="section-padding-dark gradient-dark section-transition" style="padding-top: 30px; padding-bottom: 30px;">
+        <!-- start loyalty rewards section -->
+        <section class="section-padding gradient-light" style="padding-top: 80px; padding-bottom: 80px; background: #f8f9fa;">
             <div class="container">
-                <div class="row justify-content-end text-end" style="margin-bottom: 0; padding-bottom: 0;">
-                    <div class="col-xl-8 col-lg-10 fade-up">
-                        <h2 class="text-white fw-600 ls-minus-2px" style="margin-bottom: 20px !important;">Push Notifications</h2>
-                        <p class="fw-300 fs-18 text-white opacity-6" style="margin-bottom: 0 !important; padding-bottom: 0;">Most direct channel of communication with your fans.</p>
+                <div class="row justify-content-center text-center mb-5">
+                    <div class="col-xl-10 col-lg-11">
+                        <h2 class="text-dark-gray fw-800 ls-minus-2px mb-3" style="font-size: 3rem;">Reward Your Loyal Fans</h2>
+                        <p class="fw-500 fs-19 text-dark-gray mb-0" style="opacity: 0.7;">Build a points-based loyalty system that turns casual fans into season ticket holders</p>
                     </div>
                 </div>
-                <div class="split-section" style="margin-top: -80px !important;">
-                    <div class="split-image fade-up" style="display: flex; align-items: flex-start; padding-top: 50px;">
-                        <div class="media-mockup phone-mockup" style="max-width: 350px; position: relative; top: auto; transform: scale(0.9);">
-                            <img src="https://app-works.app/images/appworksPartners/mockups/Media - phone - Push notifications.png" 
-                                 alt="Sports App Push Notifications" 
-                                 class="w-100">
+                <div class="row g-4 mb-5">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-vertical text-center slide-in-up h-100" style="animation-delay: 0.1s; background: white; padding: 35px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 1px solid rgba(0, 0, 0, 0.06); transition: all 0.3s ease;">
+                            <div style="margin-bottom: 20px;">
+                                <i class="bi bi-trophy" style="font-size: 3rem; color: #FF4B36; width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 16px; margin: 0 auto;"></i>
+                            </div>
+                            <h4 class="mb-3 fw-700 text-dark-gray" style="font-size: 1.35rem;">Earn Points Everywhere</h4>
+                            <p class="mb-0 text-dark-gray" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Attendance, purchases, polls, quizzes, predictions, and social sharing all earn loyalty points throughout the season.</p>
                         </div>
                     </div>
-                    <div class="split-content fade-up">
-                        <div class="feature-column" style="margin-top: 0;">
-                            <div class="feature-horizontal slide-in-left" style="animation-delay: 0.1s;">
-                                <i class="bi bi-newspaper" style="font-size: 2rem; color: #FF4B36; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
-                                <div class="feature-content">
-                                    <h4 class="text-white mb-1">News Updates</h4>
-                                    <p class="text-white opacity-8">Automatic notifications as you publish content on your website.</p>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-vertical text-center slide-in-up h-100" style="animation-delay: 0.2s; background: white; padding: 35px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 1px solid rgba(0, 0, 0, 0.06); transition: all 0.3s ease;">
+                            <div style="margin-bottom: 20px;">
+                                <i class="bi bi-gift" style="font-size: 3rem; color: #FF4B36; width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 16px; margin: 0 auto;"></i>
+                            </div>
+                            <h4 class="mb-3 fw-700 text-dark-gray" style="font-size: 1.35rem;">Redeem for Rewards</h4>
+                            <p class="mb-0 text-dark-gray" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Discounts on tickets and merchandise, exclusive content access, VIP experiences, meet-and-greets, or premium app features.</p>
                         </div>
                     </div>
-                            <div class="feature-horizontal slide-in-left" style="animation-delay: 0.2s;">
-                                <i class="bi bi-broadcast" style="font-size: 2rem; color: #FF4B36; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
-                                <div class="feature-content">
-                                    <h4 class="text-white mb-1">Live Match Updates</h4>
-                                    <p class="text-white opacity-8">Real-time notifications during games connected to your liveblog or stats provider.</p>
-                                </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-vertical text-center slide-in-up h-100" style="animation-delay: 0.3s; background: white; padding: 35px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 1px solid rgba(0, 0, 0, 0.06); transition: all 0.3s ease;">
+                            <div style="margin-bottom: 20px;">
+                                <i class="bi bi-arrow-repeat" style="font-size: 3rem; color: #FF4B36; width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 16px; margin: 0 auto;"></i>
                             </div>
-                            <div class="feature-horizontal slide-in-left" style="animation-delay: 0.3s;">
-                                <i class="bi bi-geo-alt" style="font-size: 2rem; color: #FF4B36; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
-                                <div class="feature-content">
-                                    <h4 class="text-white mb-1">Geo-Targeted Notifications</h4>
-                                    <p class="text-white opacity-8">Location-based, great for promotional activities at the stadium.</p>
-                                </div>
-                            </div>
+                            <h4 class="mb-3 fw-700 text-dark-gray" style="font-size: 1.35rem;">Create the Loop</h4>
+                            <p class="mb-0 text-dark-gray" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Fans engage → Earn points → Redeem rewards → Come back for more. The self-reinforcing cycle of loyalty.</p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        <!-- end push notifications section -->
-
-        <!-- start user engagement section -->
-        <section class="section-padding gradient-light section-transition" style="padding-top: 30px; padding-bottom: 30px;">
-            <div class="container">
-                <div class="row justify-content-start text-start" style="margin-bottom: 24px; padding-bottom: 0;">
-                    <div class="col-xl-8 col-lg-10 fade-up">
-                        <h2 class="text-dark-gray fw-600 ls-minus-2px" style="margin-bottom: 20px !important;">User Engagement</h2>
-                        <p class="fw-300 fs-18 text-dark-gray opacity-6" style="margin-bottom: 0 !important; padding-bottom: 0;">Boost user interaction with interactive features</p>
-                    </div>
-                </div>
-                <div class="split-section" style="margin-top: -20px !important;">
-                    <div class="split-content fade-up">
-                        <div class="feature-column" style="margin-top: 60px;">
-                            <div class="feature-horizontal slide-in-left" style="animation-delay: 0.1s;">
-                                <i class="bi bi-bar-chart" style="font-size: 2rem; color: #FF4B36; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
-                                <div class="feature-content">
-                                    <h4 class="mb-1">Polls & Votings</h4>
-                                    <p>Automatically and AI-created interactive polls like "Man of the Match" or "Player of the Month".</p>
-                        </div>
-                    </div>
-                            <div class="feature-horizontal slide-in-left" style="animation-delay: 0.2s;">
-                                <i class="bi bi-question-circle" style="font-size: 2rem; color: #FF4B36; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
-                                <div class="feature-content">
-                                    <h4 class="mb-1">Quizzes</h4>
-                                    <p>Weekly, monthly, or pre-match quizzes auto-generated from your database of questions, testing fans' knowledge.</p>
-                        </div>
-                    </div>
-                            <div class="feature-horizontal slide-in-left" style="animation-delay: 0.3s;">
-                                <i class="bi bi-graph-up" style="font-size: 2rem; color: #FF4B36; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
-                                <div class="feature-content">
-                                    <h4 class="mb-1">Live Predictors</h4>
-                                    <p>Automatically generated questions during live games based on stats and live feeds.</p>
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="engagement-loop" style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);">
+                            <div class="row g-4 align-items-center">
+                                <div class="col-md-3 text-center">
+                                    <div style="background: rgba(255, 75, 54, 0.1); width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
+                                        <i class="bi bi-chat-dots" style="font-size: 2.5rem; color: #FF4B36;"></i>
+                                    </div>
+                                    <h5 class="fw-700 text-dark-gray mb-2">Engage</h5>
+                                    <p class="text-dark-gray mb-0" style="font-size: 14px; opacity: 0.7;">Fans participate in polls, quizzes, attend matches</p>
                                 </div>
-                            </div>
-                            <div class="feature-horizontal slide-in-left" style="animation-delay: 0.4s;">
-                                <i class="bi bi-trophy" style="font-size: 2rem; color: #FF4B36; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
-                                <div class="feature-content">
-                                    <h4 class="mb-1">Integrate with points systems to reward users</h4>
-                                    <p>Gamify user engagement with points and rewards for active participation.</p>
+                                <div class="col-md-1 text-center d-none d-md-block">
+                                    <i class="bi bi-arrow-right" style="font-size: 2rem; color: #FF4B36;"></i>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="split-image fade-up">
-                        <div class="media-mockup phone-mockup" style="max-width: 350px; transform: scale(0.9);">
-                            <img src="https://app-works.app/images/appworksPartners/mockups/Sport - HKS.png" 
-                                 alt="Media App - Vecer" 
-                                 class="w-100">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- end user engagement section -->
-
-        <!-- start monetization section -->
-        <section class="section-padding-dark gradient-dark section-transition" style="padding-top: 30px; padding-bottom: 30px;">
-            <div class="container">
-                <div class="row justify-content-end text-end" style="margin-bottom: 0; padding-bottom: 0;">
-                    <div class="col-xl-8 col-lg-10 fade-up">
-                        <h2 class="text-white fw-600 ls-minus-2px" style="margin-bottom: 20px !important;">Monetization Solutions</h2>
-                        <p class="fw-300 fs-18 text-white opacity-6" style="margin-bottom: 0 !important; padding-bottom: 0;">Create additional revenue streams through your mobile app.</p>
-                    </div>
-                </div>
-                <div class="split-section" style="margin-top: -20px !important;">
-                    <div class="split-image fade-up" style="display: flex; align-items: flex-start; padding-top: 20px;">
-                        <div class="media-mockup phone-mockup" style="max-width: 450px; position: relative; top: auto; transform: scale(1);">
-                            <img src="https://app-works.app/images/appworksPartners/mockups/Sport - EHCB & Cork City.png" 
-                                 alt="Sports App Monetization Features" 
-                                 class="w-100">
-                        </div>
-                    </div>
-                    <div class="split-content fade-up">
-                        <div class="feature-column" style="margin-top: -150px;">
-                            <div class="feature-horizontal slide-in-left" style="animation-delay: 0.1s;">
-                                <div style="font-size: 2rem; color: #FF4B36; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;">
-                                    <i class="bi bi-megaphone"></i>
-                        </div>
-                                <div class="feature-content">
-                                    <h4 class="text-white mb-1">Sponsors & Advertising</h4>
-                                    <p class="text-white opacity-8">Banners, exclusive app sponsorships, and partner coupon offers within your digital ecosystem.</p>
-                    </div>
-                        </div>
-                            <div class="feature-horizontal slide-in-left" style="animation-delay: 0.2s;">
-                                <i class="bi bi-cup-hot" style="font-size: 2rem; color: #FF4B36; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
-                                <div class="feature-content">
-                                    <h4 class="text-white mb-1">In-App Venue Ordering</h4>
-                                    <p class="text-white opacity-8">Allow fans to order food and drinks directly from their seats at the stadium or arena.</p>
+                                <div class="col-md-3 text-center">
+                                    <div style="background: rgba(255, 75, 54, 0.1); width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
+                                        <i class="bi bi-star-fill" style="font-size: 2.5rem; color: #FF4B36;"></i>
+                                    </div>
+                                    <h5 class="fw-700 text-dark-gray mb-2">Earn Points</h5>
+                                    <p class="text-dark-gray mb-0" style="font-size: 14px; opacity: 0.7;">Every action rewards loyal behavior</p>
                                 </div>
-                            </div>
-                            <div class="feature-horizontal slide-in-left" style="animation-delay: 0.3s;">
-                                <i class="bi bi-star" style="font-size: 2rem; color: #FF4B36; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
-                                <div class="feature-content">
-                                    <h4 class="text-white mb-1">Premium Content</h4>
-                                    <p class="text-white opacity-8">Exclusive content available for purchase or offered as additional benefits to season ticket holders and subscribers.</p>
+                                <div class="col-md-1 text-center d-none d-md-block">
+                                    <i class="bi bi-arrow-right" style="font-size: 2rem; color: #FF4B36;"></i>
+                                </div>
+                                <div class="col-md-3 text-center">
+                                    <div style="background: rgba(255, 75, 54, 0.1); width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
+                                        <i class="bi bi-gift-fill" style="font-size: 2.5rem; color: #FF4B36;"></i>
+                                    </div>
+                                    <h5 class="fw-700 text-dark-gray mb-2">Redeem Rewards</h5>
+                                    <p class="text-dark-gray mb-0" style="font-size: 14px; opacity: 0.7;">Unlock exclusive perks and experiences</p>
                                 </div>
                             </div>
                         </div>
@@ -1890,47 +2179,385 @@
                 </div>
             </div>
         </section>
-        <!-- end monetization section -->
+        <!-- end loyalty rewards section -->
 
-        <!-- start ticketing and webshop section -->
-        <section class="section-padding gradient-light section-transition" style="padding-top: 30px; padding-bottom: 30px;">
+        <!-- start year-round engagement journey section -->
+        <section class="section-padding gradient-dark" style="padding-top: 80px; padding-bottom: 80px; background: #200A24;">
             <div class="container">
-                <div class="row justify-content-start text-start" style="margin-bottom: 24px; padding-bottom: 0;">
-                    <div class="col-xl-8 col-lg-10 fade-up">
-                        <h2 class="text-dark-gray fw-600 ls-minus-2px" style="margin-bottom: 20px !important;">Ticketing & Webshop</h2>
-                        <p class="fw-300 fs-18 text-dark-gray opacity-6" style="margin-bottom: 0 !important; padding-bottom: 0;">Integration with your ticketing and merchandise platforms.</p>
+                <div class="row justify-content-center text-center mb-5">
+                    <div class="col-xl-10 col-lg-11">
+                        <h2 class="text-white fw-800 ls-minus-2px mb-3" style="font-size: 3rem;">Year-Round Engagement</h2>
+                        <p class="fw-500 fs-19 text-white mb-0" style="opacity: 0.85;">Keep fans connected during the off-season and build anticipation for the next campaign</p>
                     </div>
                 </div>
-                <div class="split-section" style="margin-top: -100px !important;">
-                    <div class="split-content fade-up">
-                        <div class="feature-column" style="margin-top: 50px;">
-                            <div class="feature-horizontal slide-in-left" style="animation-delay: 0.1s; margin-bottom: 20px;">
-                                <i class="bi bi-ticket-detailed" style="font-size: 2rem; color: #FF4B36; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
-                                <div class="feature-content">
-                                    <h4 class="mb-1">Ticketing Platform Integration</h4>
-                                    <p class="opacity-8">The app can be used as a digital wallet for tickets, with personalized offers and promotions.</p>
-                                </div>
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="feature-horizontal slide-in-left h-100" style="animation-delay: 0.1s; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 30px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); display: flex; gap: 20px; transition: all 0.3s ease;">
+                            <div style="flex-shrink: 0;">
+                                <i class="bi bi-file-earmark-text" style="font-size: 2rem; color: #FF4B36; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
                             </div>
-                            <div class="feature-horizontal slide-in-left" style="animation-delay: 0.2s;">
-                                <i class="bi bi-shop" style="font-size: 2rem; color: #FF4B36; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
-                                <div class="feature-content">
-                                    <h4 class="mb-1">Webshop Connection</h4>
-                                    <p class="opacity-8">Sell your products directly through the app with targeted personalized promotions.</p>
-                                </div>
+                            <div class="feature-content">
+                                <h4 class="mb-2 fw-700 text-white" style="font-size: 1.35rem;">Off-Season Content</h4>
+                                <p class="mb-0 text-white" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Training updates, pre-season coverage, and club news keep fans engaged when there are no matches.</p>
                             </div>
                         </div>
                     </div>
-                    <div class="split-image fade-up">
-                        <div class="media-mockup phone-mockup" style="max-width: 320px; transform: scale(0.9);">
-                            <img src="https://app-works.app/images/appworksPartners/mockups/Sport - Peristeri.png"
-                                 alt="Media App - Vecer" 
-                                 class="w-100">
+                    <div class="col-lg-6">
+                        <div class="feature-horizontal slide-in-left h-100" style="animation-delay: 0.2s; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 30px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); display: flex; gap: 20px; transition: all 0.3s ease;">
+                            <div style="flex-shrink: 0;">
+                                <i class="bi bi-people" style="font-size: 2rem; color: #FF4B36; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4 class="mb-2 fw-700 text-white" style="font-size: 1.35rem;">Transfer News & Rumors</h4>
+                                <p class="mb-0 text-white" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Push notifications for breaking transfer news and new signings generate buzz during the transfer window.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="feature-horizontal slide-in-left h-100" style="animation-delay: 0.3s; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 30px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); display: flex; gap: 20px; transition: all 0.3s ease;">
+                            <div style="flex-shrink: 0;">
+                                <i class="bi bi-chat-left-quote" style="font-size: 2rem; color: #FF4B36; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4 class="mb-2 fw-700 text-white" style="font-size: 1.35rem;">Player Q&As in Chat Forum</h4>
+                                <p class="mb-0 text-white" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Exclusive behind-the-scenes access via Discord-style forums where players answer fan questions.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="feature-horizontal slide-in-left h-100" style="animation-delay: 0.4s; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 30px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); display: flex; gap: 20px; transition: all 0.3s ease;">
+                            <div style="flex-shrink: 0;">
+                                <i class="bi bi-joystick" style="font-size: 2rem; color: #FF4B36; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4 class="mb-2 fw-700 text-white" style="font-size: 1.35rem;">Additional Gamification</h4>
+                                <p class="mb-0 text-white" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Fantasy leagues, trivia challenges, and prediction games maintain engagement between matches.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Mockup Image -->
+                <div class="row mt-5 justify-content-center">
+                    <div class="col-lg-5 col-md-7 text-center">
+                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/device-mockup-15x-postspark-2026-01-12-09-52-55.png?crop=true"
+                             alt="Year-Round Engagement"
+                             class="img-fluid"
+                             style="max-width: 320px; filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end year-round engagement journey section -->
+
+        <!-- start stats integration section -->
+        <section class="section-padding gradient-light" style="padding-top: 80px; padding-bottom: 80px; background: #ffffff;">
+            <div class="container">
+                <div class="row justify-content-center text-center mb-5">
+                    <div class="col-xl-10 col-lg-11">
+                        <h2 class="text-dark-gray fw-800 ls-minus-2px mb-3" style="font-size: 3rem;">Live Match Experience: Stats Integration</h2>
+                        <p class="fw-500 fs-19 text-dark-gray mb-0" style="opacity: 0.7;">Auto-sync with your stats provider to deliver real-time content and automated engagement</p>
+                    </div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-vertical text-center slide-in-up h-100" style="animation-delay: 0.1s; background: white; padding: 35px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 1px solid rgba(0, 0, 0, 0.06); transition: all 0.3s ease;">
+                            <div style="margin-bottom: 20px;">
+                                <i class="bi bi-broadcast" style="font-size: 3rem; color: #FF4B36; width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 16px; margin: 0 auto;"></i>
+                            </div>
+                            <h4 class="mb-3 fw-700 text-dark-gray" style="font-size: 1.35rem;">Auto-Sync with Stats Provider</h4>
+                            <p class="mb-0 text-dark-gray" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Seamlessly integrate with Opta, Stats Perform, or your data provider for instant updates.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-vertical text-center slide-in-up h-100" style="animation-delay: 0.2s; background: white; padding: 35px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 1px solid rgba(0, 0, 0, 0.06); transition: all 0.3s ease;">
+                            <div style="margin-bottom: 20px;">
+                                <i class="bi bi-bell" style="font-size: 3rem; color: #FF4B36; width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 16px; margin: 0 auto;"></i>
+                            </div>
+                            <h4 class="mb-3 fw-700 text-dark-gray" style="font-size: 1.35rem;">Live Push Notifications</h4>
+                            <p class="mb-0 text-dark-gray" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Automated alerts for goals, cards, substitutions, and key moments triggered by live data feeds.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-vertical text-center slide-in-up h-100" style="animation-delay: 0.3s; background: white; padding: 35px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 1px solid rgba(0, 0, 0, 0.06); transition: all 0.3s ease;">
+                            <div style="margin-bottom: 20px;">
+                                <i class="bi bi-graph-up-arrow" style="font-size: 3rem; color: #FF4B36; width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 16px; margin: 0 auto;"></i>
+                            </div>
+                            <h4 class="mb-3 fw-700 text-dark-gray" style="font-size: 1.35rem;">Real-Time Predictors</h4>
+                            <p class="mb-0 text-dark-gray" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">AI-generated prediction questions during matches based on live stats and game situations.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-vertical text-center slide-in-up h-100" style="animation-delay: 0.4s; background: white; padding: 35px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 1px solid rgba(0, 0, 0, 0.06); transition: all 0.3s ease;">
+                            <div style="margin-bottom: 20px;">
+                                <i class="bi bi-bar-chart-line" style="font-size: 3rem; color: #FF4B36; width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 16px; margin: 0 auto;"></i>
+                            </div>
+                            <h4 class="mb-3 fw-700 text-dark-gray" style="font-size: 1.35rem;">Automated Polls</h4>
+                            <p class="mb-0 text-dark-gray" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Man of the Match voting and tactical polls automatically created from match events and stats.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-vertical text-center slide-in-up h-100" style="animation-delay: 0.5s; background: white; padding: 35px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 1px solid rgba(0, 0, 0, 0.06); transition: all 0.3s ease;">
+                            <div style="margin-bottom: 20px;">
+                                <i class="bi bi-list-ol" style="font-size: 3rem; color: #FF4B36; width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 16px; margin: 0 auto;"></i>
+                            </div>
+                            <h4 class="mb-3 fw-700 text-dark-gray" style="font-size: 1.35rem;">Live Standings & Fixtures</h4>
+                            <p class="mb-0 text-dark-gray" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">League tables and upcoming matches updated automatically from official competition feeds.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-vertical text-center slide-in-up h-100" style="animation-delay: 0.6s; background: white; padding: 35px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 1px solid rgba(0, 0, 0, 0.06); transition: all 0.3s ease;">
+                            <div style="margin-bottom: 20px;">
+                                <i class="bi bi-robot" style="font-size: 3rem; color: #FF4B36; width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 16px; margin: 0 auto;"></i>
+                            </div>
+                            <h4 class="mb-3 fw-700 text-dark-gray" style="font-size: 1.35rem;">AI Match Summaries</h4>
+                            <p class="mb-0 text-dark-gray" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Post-match AI-generated highlights, analysis, and key stats automatically delivered to fans.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Mockup Images -->
+                <div class="row mt-5 justify-content-center align-items-center g-4">
+                    <div class="col-lg-6 text-center">
+                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/device-mockup-15x-postspark-2026-01-12-09-52-05.png?crop=true"
+                             alt="Live Match Stats"
+                             class="img-fluid"
+                             style="max-width: 560px; filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));">
+                    </div>
+                    <div class="col-lg-6 text-center">
+                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/image-56.png?crop=true"
+                             alt="Stats Dashboard"
+                             class="img-fluid"
+                             style="max-width: 500px; filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15)); border-radius: 12px;">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end stats integration section -->
+
+
+        <!-- start revenue generation section -->
+        <section class="section-padding gradient-dark" style="padding-top: 80px; padding-bottom: 80px; background: #200A24;">
+            <div class="container">
+                <div class="row justify-content-center text-center mb-5">
+                    <div class="col-xl-10 col-lg-11">
+                        <h2 class="text-white fw-800 ls-minus-2px mb-3" style="font-size: 3rem;">Revenue Generation: 6 Streams</h2>
+                        <p class="fw-500 fs-19 text-white mb-0" style="opacity: 0.85;">Generate €5-15 per active user per season through multiple revenue channels</p>
+                    </div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-vertical text-center slide-in-up h-100" style="animation-delay: 0.1s; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 35px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s ease;">
+                            <div style="margin-bottom: 20px;">
+                                <i class="bi bi-ticket-perforated" style="font-size: 3rem; color: #FF4B36; width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 16px; margin: 0 auto;"></i>
+                            </div>
+                            <h4 class="mb-3 fw-700 text-white" style="font-size: 1.35rem;">Ticketing Integration</h4>
+                            <p class="mb-0 text-white" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Digital wallet for tickets with personalized offers. Drive incremental ticket sales and upsells through targeted campaigns.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-vertical text-center slide-in-up h-100" style="animation-delay: 0.2s; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 35px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s ease;">
+                            <div style="margin-bottom: 20px;">
+                                <i class="bi bi-cart3" style="font-size: 3rem; color: #FF4B36; width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 16px; margin: 0 auto;"></i>
+                            </div>
+                            <h4 class="mb-3 fw-700 text-white" style="font-size: 1.35rem;">Merchandise Sales</h4>
+                            <p class="mb-0 text-white" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Webshop integration with push notification campaigns for new releases, limited editions, and personalized promotions.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-vertical text-center slide-in-up h-100" style="animation-delay: 0.3s; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 35px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s ease;">
+                            <div style="margin-bottom: 20px;">
+                                <i class="bi bi-cup-hot" style="font-size: 3rem; color: #FF4B36; width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 16px; margin: 0 auto;"></i>
+                            </div>
+                            <h4 class="mb-3 fw-700 text-white" style="font-size: 1.35rem;">In-Venue Ordering</h4>
+                            <p class="mb-0 text-white" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Order food and drinks from seats. Increase concession revenue by 25% while reducing queue times and improving fan experience.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-vertical text-center slide-in-up h-100" style="animation-delay: 0.4s; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 35px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s ease;">
+                            <div style="margin-bottom: 20px;">
+                                <i class="bi bi-lock" style="font-size: 3rem; color: #FF4B36; width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 16px; margin: 0 auto;"></i>
+                            </div>
+                            <h4 class="mb-3 fw-700 text-white" style="font-size: 1.35rem;">Premium Content</h4>
+                            <p class="mb-0 text-white" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Exclusive behind-the-scenes content, player interviews, and match analysis available for season ticket holders or as paid add-ons.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-vertical text-center slide-in-up h-100" style="animation-delay: 0.5s; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 35px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s ease;">
+                            <div style="margin-bottom: 20px;">
+                                <i class="bi bi-megaphone" style="font-size: 3rem; color: #FF4B36; width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 16px; margin: 0 auto;"></i>
+                            </div>
+                            <h4 class="mb-3 fw-700 text-white" style="font-size: 1.35rem;">Sponsor Visibility</h4>
+                            <p class="mb-0 text-white" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Banner ads, branded content, partner coupons, and exclusive sponsorship placements throughout the app experience.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-vertical text-center slide-in-up h-100" style="animation-delay: 0.6s; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 35px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s ease;">
+                            <div style="margin-bottom: 20px;">
+                                <i class="bi bi-star" style="font-size: 3rem; color: #FF4B36; width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 16px; margin: 0 auto;"></i>
+                            </div>
+                            <h4 class="mb-3 fw-700 text-white" style="font-size: 1.35rem;">Subscription Tiers</h4>
+                            <p class="mb-0 text-white" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Freemium or premium subscription models for enhanced features, ad-free experience, and exclusive access to content.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Mockup Image -->
+                <div class="row mt-5 justify-content-center">
+                    <div class="col-lg-8 col-md-10 text-center">
+                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/device-mockup-15x-postspark-2026-01-12-09-52-41.png?crop=true"
+                             alt="E-Commerce Platform"
+                             class="img-fluid"
+                             style="max-width: 560px; filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end revenue generation section -->
+
+        <!-- start smart venue section -->
+        <section class="section-padding gradient-light" style="padding-top: 80px; padding-bottom: 80px; background: #ffffff;">
+            <div class="container">
+                <div class="row justify-content-center text-center mb-5">
+                    <div class="col-xl-10 col-lg-11">
+                        <h2 class="text-dark-gray fw-800 ls-minus-2px mb-3" style="font-size: 3rem;">Transform Your Stadium Into a Smart Venue</h2>
+                        <p class="fw-500 fs-19 text-dark-gray mb-0" style="opacity: 0.7;">Leverage technology to create seamless fan experiences from arrival to departure</p>
+                    </div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="feature-horizontal slide-in-left h-100" style="animation-delay: 0.1s; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 1px solid rgba(0, 0, 0, 0.06); display: flex; gap: 20px; transition: all 0.3s ease;">
+                            <div style="flex-shrink: 0;">
+                                <i class="bi bi-qr-code-scan" style="font-size: 2rem; color: #FF4B36; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4 class="mb-2 fw-700 text-dark-gray" style="font-size: 1.35rem;">Digital Ticketing & Fast Entry</h4>
+                                <p class="mb-0 text-dark-gray" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">QR code-based tickets with contactless entry. Reduce queue times and improve turnstile efficiency by 40%.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="feature-horizontal slide-in-left h-100" style="animation-delay: 0.2s; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 1px solid rgba(0, 0, 0, 0.06); display: flex; gap: 20px; transition: all 0.3s ease;">
+                            <div style="flex-shrink: 0;">
+                                <i class="bi bi-geo" style="font-size: 2rem; color: #FF4B36; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4 class="mb-2 fw-700 text-dark-gray" style="font-size: 1.35rem;">Location-Based Services</h4>
+                                <p class="mb-0 text-dark-gray" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Geo-fencing triggers offers when fans arrive. Guide them to seats, concessions, and facilities with in-app navigation.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="feature-horizontal slide-in-left h-100" style="animation-delay: 0.3s; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 1px solid rgba(0, 0, 0, 0.06); display: flex; gap: 20px; transition: all 0.3s ease;">
+                            <div style="flex-shrink: 0;">
+                                <i class="bi bi-phone-vibrate" style="font-size: 2rem; color: #FF4B36; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4 class="mb-2 fw-700 text-dark-gray" style="font-size: 1.35rem;">Contactless Ordering & Payment</h4>
+                                <p class="mb-0 text-dark-gray" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Order food, drinks, and merchandise from your seat. Pay via mobile wallet or integrated payment systems.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="feature-horizontal slide-in-left h-100" style="animation-delay: 0.4s; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 1px solid rgba(0, 0, 0, 0.06); display: flex; gap: 20px; transition: all 0.3s ease;">
+                            <div style="flex-shrink: 0;">
+                                <i class="bi bi-tv" style="font-size: 2rem; color: #FF4B36; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4 class="mb-2 fw-700 text-dark-gray" style="font-size: 1.35rem;">Jumbotron Integration</h4>
+                                <p class="mb-0 text-dark-gray" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Fan photos and videos appear on big screens. Real-time poll results and social media feeds displayed live.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="feature-horizontal slide-in-left h-100" style="animation-delay: 0.5s; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 1px solid rgba(0, 0, 0, 0.06); display: flex; gap: 20px; transition: all 0.3s ease;">
+                            <div style="flex-shrink: 0;">
+                                <i class="bi bi-wifi" style="font-size: 2rem; color: #FF4B36; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4 class="mb-2 fw-700 text-dark-gray" style="font-size: 1.35rem;">Connected Fan Experience</h4>
+                                <p class="mb-0 text-dark-gray" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Real-time stats, replays, and multi-angle views accessible on personal devices during the match.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="feature-horizontal slide-in-left h-100" style="animation-delay: 0.6s; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 1px solid rgba(0, 0, 0, 0.06); display: flex; gap: 20px; transition: all 0.3s ease;">
+                            <div style="flex-shrink: 0;">
+                                <i class="bi bi-bar-chart-line" style="font-size: 2rem; color: #FF4B36; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 12px;"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4 class="mb-2 fw-700 text-dark-gray" style="font-size: 1.35rem;">Data-Driven Operations</h4>
+                                <p class="mb-0 text-dark-gray" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Track foot traffic, concession demand, and fan behavior to optimize staffing and inventory for future matches.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- end ticketing and webshop section -->
+        <!-- end smart venue section -->
+
+        <!-- start fan forum section -->
+        <section class="section-padding gradient-dark" style="padding-top: 80px; padding-bottom: 80px; background: #200A24;">
+            <div class="container">
+                <div class="row justify-content-center text-center mb-5">
+                    <div class="col-xl-10 col-lg-11">
+                        <h2 class="text-white fw-800 ls-minus-2px mb-3" style="font-size: 3rem;">Build a Digital Fan Community</h2>
+                        <p class="fw-500 fs-19 text-white mb-0" style="opacity: 0.85;">Discord-style forums that create belonging, drive engagement, and generate revenue</p>
+                    </div>
+                </div>
+                <div class="row g-4 mb-5">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-vertical text-center slide-in-up h-100" style="animation-delay: 0.1s; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 35px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s ease;">
+                            <div style="margin-bottom: 20px;">
+                                <i class="bi bi-chat-square-dots" style="font-size: 3rem; color: #FF4B36; width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 16px; margin: 0 auto;"></i>
+                            </div>
+                            <h4 class="mb-3 fw-700 text-white" style="font-size: 1.35rem;">Category-Based Channels</h4>
+                            <p class="mb-0 text-white" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Match discussions, transfer talk, tactics analysis, youth academy, women's team—organized conversations for every interest.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-vertical text-center slide-in-up h-100" style="animation-delay: 0.2s; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 35px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s ease;">
+                            <div style="margin-bottom: 20px;">
+                                <i class="bi bi-lock" style="font-size: 3rem; color: #FF4B36; width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 16px; margin: 0 auto;"></i>
+                            </div>
+                            <h4 class="mb-3 fw-700 text-white" style="font-size: 1.35rem;">Premium Access Channels</h4>
+                            <p class="mb-0 text-white" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Exclusive forums for season ticket holders, subscribers, and loyalty tier members. VIP Q&As with players and coaches.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-vertical text-center slide-in-up h-100" style="animation-delay: 0.3s; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 35px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s ease;">
+                            <div style="margin-bottom: 20px;">
+                                <i class="bi bi-shield-check" style="font-size: 3rem; color: #FF4B36; width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; background: rgba(255, 75, 54, 0.1); border-radius: 16px; margin: 0 auto;"></i>
+                            </div>
+                            <h4 class="mb-3 fw-700 text-white" style="font-size: 1.35rem;">AI Moderation</h4>
+                            <p class="mb-0 text-white" style="font-size: 16px; line-height: 1.6; opacity: 0.7;">Automated content filtering prevents toxicity and spam. Keep conversations positive and on-brand without heavy manual moderation.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 40px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            <h4 class="text-white fw-700 mb-4 text-center" style="font-size: 1.5rem;">Monetization Opportunities</h4>
+                            <div class="row g-4">
+                                <div class="col-md-4 text-center">
+                                    <i class="bi bi-star-fill" style="font-size: 2rem; color: #FF4B36; margin-bottom: 15px; display: block;"></i>
+                                    <h5 class="text-white fw-700 mb-2">Premium Subscriptions</h5>
+                                    <p class="text-white mb-0" style="font-size: 14px; opacity: 0.7;">Charge for access to exclusive channels and insider content</p>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <i class="bi bi-badge-vr" style="font-size: 2rem; color: #FF4B36; margin-bottom: 15px; display: block;"></i>
+                                    <h5 class="text-white fw-700 mb-2">Season Ticket Perks</h5>
+                                    <p class="text-white mb-0" style="font-size: 14px; opacity: 0.7;">Automatic forum access increases season ticket value proposition</p>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <i class="bi bi-people-fill" style="font-size: 2rem; color: #FF4B36; margin-bottom: 15px; display: block;"></i>
+                                    <h5 class="text-white fw-700 mb-2">Community Engagement</h5>
+                                    <p class="text-white mb-0" style="font-size: 14px; opacity: 0.7;">Active forums drive daily app opens and increase lifetime value</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end fan forum section -->
 
         <!-- start blog posts section -->
         <section style="background: #200A24;" class="py-5">
@@ -1972,184 +2599,318 @@
         <!-- end blog posts section -->
 
         <!-- start testimonials section -->
-        <section style="background: white;">
-            <div class="container py-5">
+        <section style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 60px 0;">
+            <div class="container">
                 <div class="row justify-content-center text-center mb-5">
-                    <div class="col-xl-8 col-lg-10" data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay":0, "staggervalue": 300, "easing": "easeOutQuad" }'>
-                        <h2 class="text-dark-gray fw-600 ls-minus-2px mb-4">What Our Sports Partners Say</h2>
-                        <p class="fw-300 fs-18 text-dark-gray opacity-6">Testimonials from partners that have transformed their digital presence.</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="swiper magic-cursor testimonials-slider" data-slider-options='{ "slidesPerView": 1, "spaceBetween": 30, "loop": true, "autoplay": { "delay": 5000, "disableOnInteraction": false }, "keyboard": { "enabled": true, "onlyInViewport": true }, "effect": "slide" }'>
-                            <div class="swiper-wrapper">
-                                <!-- start testimonial item -->
-                                <div class="swiper-slide">
-                                    <div class="testimonial-box">
-                                        <div class="testimonial-content">
-                                            <p class="text-dark-gray">"We aim to be one of the greatest leagues in Europe with complete digital services. Appworks' offer was so attractive and it was the first time that someone understood what we wanted. Our cooperation has started well and we are very happy with it, hoping it will continue into the future. We appreciate Appworks coming to Athens and meeting us in person and we are very excited about the ideas we have talked about."</p>
-                            </div>
-                                        <div class="testimonial-author">
-                                            <div class="testimonial-author-image">
-                                                <img src="https://app-works.app/images/appworksPartners/Sports/ESAKE.png" alt="GBL">
+                    <div class="col-xl-8 col-lg-10">
+                        <h2 class="text-dark-gray fw-700 ls-minus-2px" style="font-size: 3rem;">What Our Sports Partners Say</h2>
+                        <div class="d-flex justify-content-center mb-3">
+                            <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px;"></div>
                         </div>
-                                            <div class="testimonial-author-info">
-                                                <h5 class="text-dark-gray">Sotiris Katoufas</h5>
-                                                <p class="text-dark-gray opacity-6">Greek Basketball League</p>
                     </div>
                 </div>
-            </div>
-                    </div>
-                                <!-- end testimonial item -->
-                                <!-- start testimonial item -->
-                                <div class="swiper-slide">
-                                    <div class="testimonial-box">
-                                        <div class="testimonial-content">
-                                            <p class="text-dark-gray">"I started using Litteraworks in recent weeks and, I must confess, was skeptical to begin with. How beneficial would it actually be? How much time would be spent reviewing, editing, and correcting multiple grammatical errors?I was genuinely taken aback by the accuracy and speed of the transcription. It has had a significant impact on reducing the team's workload and I cannot recommend it higher."</p>
-                </div>
-                                        <div class="testimonial-author">
-                                            <div class="testimonial-author-image">
-                                                <img src="https://app-works.app/images/appworksPartners/Sports/QPR.png" alt="QPR">
-                                            </div>
-                                            <div class="testimonial-author-info">
-                                                <h5 class="text-dark-gray">Paul Morrisey</h5>
-                                                <p class="text-dark-gray opacity-6">QPR</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end testimonial item -->
-                                <!-- start testimonial item -->
-                                <div class="swiper-slide">
-                                    <div class="testimonial-box">
-                                        <div class="testimonial-content">
-                                            <p class="text-dark-gray">"We are entering the third season of collaboration between KK Cedevita Olimpija and Appworks in the development of the 6.Zmaj loyalty app. We are extremely satisfied with this partnership because it is not just a business relationship, but also a shared passion for basketball. We are developing the app in the desired direction, constantly exchanging ideas, and striving to improve and expand its features for our members, whose numbers are growing daily. We actively listen to their feedback and suggestions, ensuring we respond as quickly as possible. The Appworks team is always available, responding promptly to all our requests and ideas. We are truly more than satisfied with their dedication and support."</p>
-                                    </div>
-                                        <div class="testimonial-author">
-                                            <div class="testimonial-author-image">
-                                                <img src="https://app-works.app/images/appworksPartners/Sports/Cedevita.png" alt="Cedevita">
-                                </div>
-                                            <div class="testimonial-author-info">
-                                                <h5 class="text-dark-gray">Igor Jagić</h5>
-                                                <p class="text-dark-gray opacity-6">Cedevita Olimpija</p>
+                <div class="testimonials-grid">
+                    <!-- start testimonial item -->
+                    <div class="testimonial-card">
+                        <div class="quote-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.135 9h2.012L10 14h4l1.147-5.639C15.628 5.585 13.453 4 11.011 4H9c-1.105 0-2 .895-2 2v3c0 1.105.895 2 2 2zm9.117 0L17.105 14h4L22.252 8.361C22.733 5.585 20.558 4 18.116 4h-2.011c-1.105 0-2 .895-2 2v3c0 1.105.895 2 2 2h2.147z" fill="currentColor" opacity="0.15"/>
+                            </svg>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"We aim to be one of the greatest leagues in Europe with complete digital services. <strong>Appworks' offer was so attractive and it was the first time that someone understood what we wanted.</strong> Our cooperation has started well and we are very happy with it, hoping it will continue into the future. <strong>We appreciate Appworks coming to Athens and meeting us in person</strong> and we are very excited about the ideas we have talked about."</p>
+                        </div>
+                        <div class="testimonial-footer">
+                            <div class="testimonial-logo">
+                                <img src="https://app-works.app/images/appworksPartners/Sports/ESAKE.png" alt="Greek Basketball League">
+                            </div>
+                            <div class="testimonial-author">
+                                <h5>Sotiris Katoufas</h5>
+                                <p>Greek Basketball League</p>
                             </div>
                         </div>
                     </div>
-                </div>
-                                <!-- end testimonial item -->
-                                <!-- start testimonial item -->
-                                <div class="swiper-slide">
-                                    <div class="testimonial-box">
-                                        <div class="testimonial-content">
-                                            <p class="text-dark-gray">"A great team of professionals, the collaboration is at a very high level. We specifically use the CMS and LitteraWorks, and we are extremely satisfied with both platforms. We look forward to continuing our cooperation."</p>
-                                    </div>
-                                        <div class="testimonial-author">
-                                            <div class="testimonial-author-image">
-                                                <img src="https://app-works.app/images/appworksPartners/Sports/FK Partizan.png" alt="FKP">
-                                </div>
-                                            <div class="testimonial-author-info">
-                                                <h5 class="text-dark-gray">Mirko Panajotović</h5>
-                                                <p class="text-dark-gray opacity-6">FK Partizan</p>
+                    <!-- end testimonial item -->
+
+                    <!-- start testimonial item -->
+                    <div class="testimonial-card">
+                        <div class="quote-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.135 9h2.012L10 14h4l1.147-5.639C15.628 5.585 13.453 4 11.011 4H9c-1.105 0-2 .895-2 2v3c0 1.105.895 2 2 2zm9.117 0L17.105 14h4L22.252 8.361C22.733 5.585 20.558 4 18.116 4h-2.011c-1.105 0-2 .895-2 2v3c0 1.105.895 2 2 2h2.147z" fill="currentColor" opacity="0.15"/>
+                            </svg>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"I started using Litteraworks in recent weeks and, I must confess, was skeptical to begin with. How beneficial would it actually be? How much time would be spent reviewing, editing, and correcting multiple grammatical errors? <strong>I was genuinely taken aback by the accuracy and speed of the transcription. It has had a significant impact on reducing the team's workload</strong> and I cannot recommend it higher."</p>
+                        </div>
+                        <div class="testimonial-footer">
+                            <div class="testimonial-logo">
+                                <img src="https://app-works.app/images/appworksPartners/Sports/QPR.png" alt="QPR">
+                            </div>
+                            <div class="testimonial-author">
+                                <h5>Paul Morrisey</h5>
+                                <p>QPR</p>
                             </div>
                         </div>
                     </div>
-                </div>
-                                <!-- end testimonial item -->
-                                <!-- start testimonial item -->
-                                <div class="swiper-slide">
-                                    <div class="testimonial-box">
-                                        <div class="testimonial-content">
-                                            <p class="text-dark-gray">"At a time when the market is changing and most younger basketball followers are using phones, our collaboration with AppWorks has proven to be extremely important, as the app allows everyone to more easily follow all the news about Croatian basketball. The growth in followers is also evident through the prize games, where more and more people participate week after week. The team at AppWorks is available to us daily in case any issues arise or if we have ideas for changes."</p>
-                                    </div>
-                                        <div class="testimonial-author">
-                                            <div class="testimonial-author-image">
-                                                <img src="https://app-works.app/images/appworksPartners/Sports/HKS.png" alt="HKS">
-                                </div>
-                                            <div class="testimonial-author-info">
-                                                <h5 class="text-dark-gray">Andro Anzulović</h5>
-                                                <p class="text-dark-gray opacity-6">Croatian Basketball Federation</p>
+                    <!-- end testimonial item -->
+
+                    <!-- start testimonial item -->
+                    <div class="testimonial-card">
+                        <div class="quote-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.135 9h2.012L10 14h4l1.147-5.639C15.628 5.585 13.453 4 11.011 4H9c-1.105 0-2 .895-2 2v3c0 1.105.895 2 2 2zm9.117 0L17.105 14h4L22.252 8.361C22.733 5.585 20.558 4 18.116 4h-2.011c-1.105 0-2 .895-2 2v3c0 1.105.895 2 2 2h2.147z" fill="currentColor" opacity="0.15"/>
+                            </svg>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"We are entering the third season of collaboration between KK Cedevita Olimpija and Appworks in the development of the 6.Zmaj loyalty app. <strong>We are extremely satisfied with this partnership because it is not just a business relationship, but also a shared passion for basketball.</strong> We are developing the app in the desired direction, constantly exchanging ideas, and striving to improve and expand its features for our members, whose numbers are growing daily. We actively listen to their feedback and suggestions, ensuring we respond as quickly as possible. <strong>The Appworks team is always available, responding promptly to all our requests and ideas.</strong> We are truly more than satisfied with their dedication and support."</p>
+                        </div>
+                        <div class="testimonial-footer">
+                            <div class="testimonial-logo">
+                                <img src="https://app-works.app/images/appworksPartners/Sports/Cedevita.png" alt="Cedevita Olimpija">
+                            </div>
+                            <div class="testimonial-author">
+                                <h5>Igor Jagić</h5>
+                                <p>Cedevita Olimpija</p>
                             </div>
                         </div>
                     </div>
-                </div>
-                                <!-- end testimonial item -->
-            </div>
+                    <!-- end testimonial item -->
+
+                    <!-- start testimonial item -->
+                    <div class="testimonial-card">
+                        <div class="quote-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.135 9h2.012L10 14h4l1.147-5.639C15.628 5.585 13.453 4 11.011 4H9c-1.105 0-2 .895-2 2v3c0 1.105.895 2 2 2zm9.117 0L17.105 14h4L22.252 8.361C22.733 5.585 20.558 4 18.116 4h-2.011c-1.105 0-2 .895-2 2v3c0 1.105.895 2 2 2h2.147z" fill="currentColor" opacity="0.15"/>
+                            </svg>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"<strong>A great team of professionals, the collaboration is at a very high level.</strong> We specifically use the CMS and LitteraWorks, and <strong>we are extremely satisfied with both platforms.</strong> We look forward to continuing our cooperation."</p>
+                        </div>
+                        <div class="testimonial-footer">
+                            <div class="testimonial-logo">
+                                <img src="https://app-works.app/images/appworksPartners/Sports/FK Partizan.png" alt="FK Partizan">
+                            </div>
+                            <div class="testimonial-author">
+                                <h5>Mirko Panajotović</h5>
+                                <p>FK Partizan</p>
+                            </div>
                         </div>
                     </div>
+                    <!-- end testimonial item -->
+
+                    <!-- start testimonial item -->
+                    <div class="testimonial-card">
+                        <div class="quote-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.135 9h2.012L10 14h4l1.147-5.639C15.628 5.585 13.453 4 11.011 4H9c-1.105 0-2 .895-2 2v3c0 1.105.895 2 2 2zm9.117 0L17.105 14h4L22.252 8.361C22.733 5.585 20.558 4 18.116 4h-2.011c-1.105 0-2 .895-2 2v3c0 1.105.895 2 2 2h2.147z" fill="currentColor" opacity="0.15"/>
+                            </svg>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"At a time when the market is changing and most younger basketball followers are using phones, <strong>our collaboration with AppWorks has proven to be extremely important, as the app allows everyone to more easily follow all the news about Croatian basketball.</strong> The growth in followers is also evident through the prize games, where more and more people participate week after week. <strong>The team at AppWorks is available to us daily</strong> in case any issues arise or if we have ideas for changes."</p>
+                        </div>
+                        <div class="testimonial-footer">
+                            <div class="testimonial-logo">
+                                <img src="https://app-works.app/images/appworksPartners/Sports/HKS.png" alt="Croatian Basketball Federation">
+                            </div>
+                            <div class="testimonial-author">
+                                <h5>Andro Anzulović</h5>
+                                <p>Croatian Basketball Federation</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end testimonial item -->
                 </div>
             </div>
             <style>
-                .testimonial-author-image {
-                    width: 120px;
-                    height: 60px;
-                    margin-right: 20px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    background-color: white;
-                    overflow: hidden;
-                    border-radius: 8px;
+                .testimonials-grid {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 30px;
+                    max-width: 1400px;
+                    margin: 0 auto;
                 }
-                .testimonial-author-image img {
-                    max-width: 100px;
-                    max-height: 50px;
-                    object-fit: contain;
-                }
-                
-                .testimonial-author {
-                    display: flex;
-                    align-items: center;
-                    margin-top: 20px;
-                }
-                
-                .testimonial-author-info {
+
+                .testimonial-card {
+                    background: #ffffff;
+                    border-radius: 20px;
+                    padding: 45px;
+                    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
                     display: flex;
                     flex-direction: column;
+                    height: 100%;
+                    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                .testimonial-card::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    height: 4px;
+                    background: linear-gradient(90deg, #FF4B36 0%, #ff6b5a 100%);
+                    transform: scaleX(0);
+                    transform-origin: left;
+                    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                }
+
+                .testimonial-card:hover {
+                    transform: translateY(-8px);
+                    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+                }
+
+                .testimonial-card:hover::before {
+                    transform: scaleX(1);
+                }
+
+                .quote-icon {
+                    color: #FF4B36;
+                    margin-bottom: 25px;
+                    opacity: 0.9;
+                }
+
+                .testimonial-content {
+                    flex: 1;
+                    margin-bottom: 30px;
+                }
+
+                .testimonial-content p {
+                    font-size: 17px;
+                    line-height: 1.8;
+                    color: #4a5568;
+                    margin: 0;
+                    font-weight: 400;
+                }
+
+                .testimonial-footer {
+                    display: flex;
+                    align-items: center;
+                    gap: 20px;
+                    padding-top: 25px;
+                    border-top: 1px solid #e2e8f0;
+                    margin-top: auto;
+                }
+
+                .testimonial-logo {
+                    flex-shrink: 0;
+                    width: 180px;
+                    height: 90px;
+                    display: flex;
+                    align-items: center;
                     justify-content: center;
-                }
-                
-                .testimonial-author-info h5 {
-                    margin-bottom: 5px;
-                }
-                
-                .testimonial-box {
-                    background: #f8f8f8;
+                    padding: 15px;
+                    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
                     border-radius: 12px;
-                    padding: 30px;
-                    box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
                     transition: all 0.3s ease;
                 }
-                
-                .testimonial-box:hover {
-                    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-                    transform: translateY(-5px);
+
+                .testimonial-logo img {
+                    max-width: 100%;
+                    max-height: 100%;
+                    object-fit: contain;
+                    filter: grayscale(0%);
+                    transition: all 0.3s ease;
                 }
-                
-                .testimonial-content {
-                    margin-bottom: 25px;
+
+                .testimonial-card:hover .testimonial-logo {
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
                 }
-                
-                .testimonial-content p {
-                    font-size: 16px;
-                    line-height: 1.6;
-                    margin-bottom: 0;
+
+                .testimonial-card:hover .testimonial-logo img {
+                    transform: scale(1.05);
                 }
-                
-                @media (max-width: 768px) {
-                    .testimonial-author {
-                        flex-direction: column;
-                        align-items: flex-start;
+
+                .testimonial-author {
+                    flex: 1;
+                }
+
+                .testimonial-author h5 {
+                    font-size: 18px;
+                    font-weight: 700;
+                    color: #1a202c;
+                    margin: 0 0 5px 0;
+                    letter-spacing: -0.01em;
+                }
+
+                .testimonial-author p {
+                    font-size: 15px;
+                    color: #718096;
+                    margin: 0;
+                    font-weight: 500;
+                }
+
+                /* Responsive Design */
+                @media (max-width: 1024px) {
+                    .testimonials-grid {
+                        gap: 25px;
                     }
-                    
-                    .testimonial-author-image {
-                        margin-right: 0;
-                        margin-bottom: 15px;
+
+                    .testimonial-card {
+                        padding: 35px;
+                    }
+
+                    .testimonial-content p {
+                        font-size: 16px;
+                    }
+                }
+
+                @media (max-width: 768px) {
+                    .testimonials-grid {
+                        grid-template-columns: 1fr;
+                        gap: 20px;
+                    }
+
+                    .testimonial-card {
+                        padding: 30px;
+                    }
+
+                    .quote-icon svg {
+                        width: 36px;
+                        height: 36px;
+                    }
+
+                    .testimonial-content p {
+                        font-size: 15.5px;
+                        line-height: 1.7;
+                    }
+
+                    .testimonial-footer {
+                        gap: 15px;
+                        padding-top: 20px;
+                    }
+
+                    .testimonial-logo {
+                        width: 120px;
+                        height: 60px;
+                        padding: 12px;
+                    }
+
+                    .testimonial-author h5 {
+                        font-size: 16px;
+                    }
+
+                    .testimonial-author p {
+                        font-size: 14px;
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    .testimonial-card {
+                        padding: 25px;
+                    }
+
+                    .testimonial-content p {
+                        font-size: 15px;
                     }
                 }
             </style>
         </section>
         <!-- end testimonials section -->
+
 
         <!-- start partners section -->
         <section class="bg-white section-transition">
@@ -2180,11 +2941,6 @@
                             </a>
                             </div>
                             <div class="partner-item">
-                                <a href="https://www.headcoaches.org/" target="_blank">
-                                <img src="https://app-works.app/images/appworksPartners/Sports/EHCB.png" alt="EHCB" class="partner-logo">
-                            </a>
-                            </div>
-                            <div class="partner-item">
                                 <a href="https://www.esake.gr/" target="_blank">
                                 <img src="https://app-works.app/images/appworksPartners/Sports/ESAKE.png" alt="ESAKE" class="partner-logo">
                             </a>
@@ -2192,11 +2948,6 @@
                             <div class="partner-item">
                                 <a href="https://www.partizan.rs/" target="_blank">
                                 <img src="https://app-works.app/images/appworksPartners/Sports/FK Partizan.png" alt="FK Partizan" class="partner-logo">
-                            </a>
-                            </div>
-                            <div class="partner-item">
-                                <a href="https://www.corkcityfc.ie/" target="_blank">
-                                <img src="https://app-works.app/images/appworksPartners/Sports/Cork City.png" alt="Cork City" class="partner-logo">
                             </a>
                             </div>
                             <div class="partner-item">
@@ -2232,11 +2983,6 @@
                             <div class="partner-item">
                                 <a href="https://www.futsalklubpartizan.rs/" target="_blank">
                                     <img src="https://app-works.app/images/appworksPartners/Sports/futsal-partizan-logo.png" alt="Futsal Partizan" class="partner-logo">
-                                </a>
-                            </div>
-                            <div class="partner-item">
-                                <a href="https://www.mskzilina.sk/" target="_blank">
-                                    <img src="https://app-works.app/images/appworksPartners/Sports/msk_zilina_logo.png" alt="mskzilina" class="partner-logo">
                                 </a>
                             </div>
                         </div>
@@ -2344,9 +3090,9 @@
                     <div class="col-6 col-xl-2 col-lg-3 col-sm-4 xs-mb-30px order-sm-3 order-lg-2">
                         <span class="fw-600 d-block text-dark-gray mb-5px">Company</span>
                         <ul>
-                            <li><a href="/about">About us</a></li>
-                            <li><a href="/partners">Partners</a></li>
-                            <li><a href="/about">Contact us</a></li>
+                            <li><a href="/about.html">About us</a></li>
+                            <li><a href="/partners.html">Partners</a></li>
+                            <li><a href="/about.html">Contact us</a></li>
                         </ul>
                     </div>
                     <!-- end footer column -->
@@ -2354,11 +3100,11 @@
                     <div class="col-6 col-xl-2 col-lg-3 col-md-5 col-sm-4 xs-mb-30px order-sm-4 order-lg-3">
                         <span class="fw-600 d-block text-dark-gray mb-5px">Solutions</span>
                         <ul>
-                            <li><a href="/cms">CMS</a></li>
-                            <li><a href="/media">Media</a></li>
-                            <li><a href="/sport">Sports</a></li>
+                            <li><a href="/cms.html">CMS</a></li>
+                            <li><a href="/media.html">Media</a></li>
+                            <li><a href="/sport.html">Sports</a></li>
                             <li><a href="https://litteraworks.com">Litteraworks</a></li>
-                            <li><a href="/projects">Grant Projects</a></li>
+                            <li><a href="/projects.html">Grant Projects</a></li>
                         </ul>
                     </div>
                     <!-- end footer column -->
