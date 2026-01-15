@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Partners | Appworks</title>
+    <meta name="description" content="Trusted by 50+ organizations across 4 continents. See our partners in media, sports, and digital innovation.">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://app-works.app/images/appworks.png">
+    <link rel="apple-touch-icon" href="https://app-works.app/images/appworks.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: #200A24;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Background noise texture */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: 1;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Navigation */
+        .glass-light {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-link {
+            font-size: 1.125rem !important;
+            font-weight: 700 !important;
+            color: white !important;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #FF6B50 !important;
+        }
+
+        /* Mega Dropdown */
+        .mega-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-10px);
+            width: 580px;
+            max-width: 90vw;
+            background: rgba(32, 10, 36, 0.98);
+            backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-item:hover .mega-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .mega-dropdown-item {
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            transition: background 0.3s ease;
+        }
+
+        .mega-dropdown-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Smooth Transitions */
+        .smooth-transition {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-8px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header style="position: relative; z-index: 1000;">
+        <nav class="glass-light" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1rem 0;">
+            <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+                <div class="flex items-center justify-between">
+                    <!-- Logo -->
+                    <a href="/home_v2.html" class="flex items-center">
+                        <img src="https://app-works.app/images/appworks.png" alt="Appworks" class="h-10">
+                    </a>
+
+                    <!-- Desktop Navigation -->
+                    <div class="hidden lg:flex items-center gap-8">
+                        <a href="/home_v2.html" class="nav-link">Home</a>
+
+                        <!-- Solutions Dropdown -->
+                        <div class="nav-item relative">
+                            <button class="nav-link flex items-center gap-2">
+                                Solutions
+                                <i class="bi bi-chevron-down text-xs"></i>
+                            </button>
+                            <div class="mega-dropdown">
+                                <div class="space-y-1">
+                                    <!-- mPanel CMS -->
+                                    <a href="/cms_v2.html" class="mega-dropdown-item block group/item">
+                                        <div class="flex items-center gap-4">
+                                            <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300" style="background: rgba(255, 75, 54, 0.1);">
+                                                <i class="bi bi-display text-2xl" style="color: #FF6B50;"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="text-white font-bold text-base mb-1">mPanel CMS</div>
+                                                <div class="text-gray-400 text-sm leading-relaxed">Complete content management system for media publishers with AI-powered tools and automation</div>
+                                            </div>
+                                            <i class="bi bi-arrow-right text-gray-500 text-lg transition-all duration-300 flex-shrink-0"></i>
+                                        </div>
+                                    </a>
+
+                                    <div class="h-px bg-white/10"></div>
+
+                                    <!-- Media -->
+                                    <a href="/media_v2.html" class="mega-dropdown-item block group/item">
+                                        <div class="flex items-center gap-4">
+                                            <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300" style="background: rgba(255, 75, 54, 0.1);">
+                                                <i class="bi bi-newspaper text-2xl" style="color: #FF6B50;"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="text-white font-bold text-base mb-1">Media</div>
+                                                <div class="text-gray-400 text-sm leading-relaxed">Digital publishing platforms, mobile apps, and content delivery solutions for modern newsrooms</div>
+                                            </div>
+                                            <i class="bi bi-arrow-right text-gray-500 text-lg transition-all duration-300 flex-shrink-0"></i>
+                                        </div>
+                                    </a>
+
+                                    <div class="h-px bg-white/10"></div>
+
+                                    <!-- Sport -->
+                                    <a href="/sport_v2.html" class="mega-dropdown-item block group/item">
+                                        <div class="flex items-center gap-4">
+                                            <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300" style="background: rgba(255, 75, 54, 0.1);">
+                                                <i class="bi bi-trophy text-2xl" style="color: #FF6B50;"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="text-white font-bold text-base mb-1">Sport</div>
+                                                <div class="text-gray-400 text-sm leading-relaxed">Fan engagement platforms, loyalty programs, and mobile apps for sports clubs and leagues</div>
+                                            </div>
+                                            <i class="bi bi-arrow-right text-gray-500 text-lg transition-all duration-300 flex-shrink-0"></i>
+                                        </div>
+                                    </a>
+
+                                    <div class="h-px bg-white/10"></div>
+
+                                    <!-- Litteraworks -->
+                                    <a href="https://litteraworks.com/" target="_blank" class="mega-dropdown-item block group/item">
+                                        <div class="flex items-center gap-4">
+                                            <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300" style="background: rgba(139, 92, 246, 0.1);">
+                                                <i class="bi bi-mic text-2xl" style="color: #A78BFA;"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="text-white font-bold text-base mb-1">Litteraworks</div>
+                                                <div class="text-gray-400 text-sm leading-relaxed">AI-powered transcription, subtitle generation, and content processing for media professionals</div>
+                                            </div>
+                                            <i class="bi bi-arrow-right text-gray-500 text-lg transition-all duration-300 flex-shrink-0"></i>
+                                        </div>
+                                    </a>
+
+                                    <div class="h-px bg-white/10"></div>
+
+                                    <!-- Pchela -->
+                                    <a href="#" class="mega-dropdown-item block group/item">
+                                        <div class="flex items-center gap-4">
+                                            <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300" style="background: rgba(139, 92, 246, 0.1);">
+                                                <i class="bi bi-collection text-2xl" style="color: #A78BFA;"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="text-white font-bold text-base mb-1">Pchela</div>
+                                                <div class="text-gray-400 text-sm leading-relaxed">Intelligent digital asset management system with AI-powered organization and search capabilities</div>
+                                            </div>
+                                            <i class="bi bi-arrow-right text-gray-500 text-lg transition-all duration-300 flex-shrink-0"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="/consultation_v2.html" class="nav-link">Consultation</a>
+                        <a href="/projects_v2.html" class="nav-link">Grant Projects</a>
+                        <a href="/partners_v2.html" class="nav-link">Partners</a>
+                        <a href="/about_v2.html" class="nav-link">About Us</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-48 pb-24" style="background: #200A24;">
+        <div class="mx-auto px-6 lg:px-8 text-center" style="max-width: 1600px;">
+            <div class="inline-block px-4 py-2 rounded-lg glass-light mb-6">
+                <span class="text-white text-xs font-black tracking-wider uppercase">Trusted by 50+ Organizations Across 4 Continents</span>
+            </div>
+            <h1 class="text-white font-black text-5xl lg:text-7xl mb-8 leading-tight" style="letter-spacing: -0.03em;">
+                Our Partners
+            </h1>
+            <p class="text-gray-300 text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed" style="opacity: 0.85;">
+                We're proud to work with leading organizations in media, sports, and digital innovation around the world.
+            </p>
+        </div>
+    </section>
+
+    <!-- Partners Grid Section -->
+    <section class="relative py-24" style="background: #200A24;">
+        <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+            <!-- Partners Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12">
+                <!-- Row 1 -->
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Sports/Leeds.png" alt="Leeds United" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Featured/Ringier.jpg" alt="Ringier" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Featured/RTS.png" alt="RTS" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Featured/PAO.png" alt="PAO" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Featured/HRT.png" alt="HRT" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+
+                <!-- Row 2 -->
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Featured/N1.png" alt="N1" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Featured/QPR.png" alt="QPR" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://appworks.mpanel.app/image/cache/original/files/images/nova-serbia.png?crop=true" alt="Nova S" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Featured/RTCG.png" alt="RTCG" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Featured/Media 24.png" alt="Media 24" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+
+                <!-- Row 3 -->
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Featured/FK Partizan.png" alt="FK Partizan" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Featured/DAN.png" alt="DAN" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Featured/Insajder.png" alt="Insajder" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/Hanza Media.png" alt="Hanza Media" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+
+                <!-- Row 4 -->
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Featured/ESAKE.png" alt="ESAKE" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Featured/Euronews.png" alt="Euronews" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/KRIK.png" alt="KRIK" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/Dnevnik.jpg" alt="Dnevnik" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+
+                <!-- Row 5 -->
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/Politika.png" alt="Politika" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/Mozzart.png" alt="Mozzart" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/DPG.jpg" alt="DPG" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/Hrvatski telekom.png" alt="Hrvatski telekom" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+
+                <!-- Row 6 -->
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/Vijesti.png" alt="Vijesti" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Sports/Cedevita.png" alt="Cedevita" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/All/Fraktura.jpg" alt="Fraktura" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/IPSOS.png" alt="IPSOS" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/FONET.png" alt="Fonet" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+
+                <!-- Row 7 -->
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/Meridian.png" alt="Meridian" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/Oslobodjenje.png" alt="Oslobodjenje" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/WMG.png" alt="WMG" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/Večer.png" alt="Večer" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Sports/Peristeri.png" alt="Peristeri" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+
+                <!-- Row 8 -->
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/Financial Afrik.jpg" alt="Financial Afrik" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/SAT Media.png" alt="SAT Media" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Sports/HKS.png" alt="HKS" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/newsmax.png" alt="Newsmax" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/All/Geopoetika.png" alt="Geopoetika" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+
+                <!-- Row 9 -->
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Sports/HRS.png" alt="HRS" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/Motus Media.png" alt="Motus Media" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/FENA.png" alt="FENA" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/boom 93.png" alt="boom 93" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/Tanjug.png" alt="Tanjug" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+
+                <!-- Row 10 -->
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/ANEM.jpg" alt="ANEM" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/PC Press.png" alt="PC Press" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/ALO.png" alt="ALO" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+
+                <!-- Row 11 -->
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/telegraf.jpg" alt="Telegraf" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Sports/KSBIH.png" alt="KSBIH" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/Codigopro.png" alt="Codigopro" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/Tocka.png" alt="Tocka" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+
+                <!-- Row 12 -->
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/Telesport.png" alt="Telesport" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/danas-tamniji-logo.png" alt="Danas" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Sports/Savez za skolski sport.png" alt="Savez za skolski sport" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Sports/futsal-partizan-logo.png" alt="Futsal Partizan" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+
+                <!-- Row 13 -->
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/nedeljnik-logo.png" alt="Nedeljnik" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                    <img src="https://app-works.app/images/appworksPartners/Media/astra-logo.png" alt="Astra" class="max-h-16 w-auto object-contain" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative py-16" style="background: rgba(0, 0, 0, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.1);">
+        <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Column 1: Logo & Tagline -->
+                <div>
+                    <img src="https://app-works.app/images/appworks.png" alt="Appworks" class="h-16 w-auto mb-4">
+                    <p class="text-gray-400 text-base leading-relaxed mb-6">Creative solutions for innovative partners.</p>
+                    <div class="flex gap-4">
+                        <a href="https://www.linkedin.com/company/appworks-d-o-o/" target="_blank" class="w-10 h-10 rounded-lg flex items-center justify-center smooth-transition" style="background: rgba(255, 255, 255, 0.05);" onmouseover="this.style.background='rgba(255, 75, 54, 0.15)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.05)';">
+                            <i class="bi bi-linkedin text-xl" style="color: rgba(255, 255, 255, 0.6);"></i>
+                        </a>
+                        <a href="https://www.instagram.com/weareappworks/" target="_blank" class="w-10 h-10 rounded-lg flex items-center justify-center smooth-transition" style="background: rgba(255, 255, 255, 0.05);" onmouseover="this.style.background='rgba(255, 75, 54, 0.15)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.05)';">
+                            <i class="bi bi-instagram text-xl" style="color: rgba(255, 255, 255, 0.6);"></i>
+                        </a>
+                        <a href="https://www.youtube.com/channel/UCydhgWA6Kg40T9EFmRVDb9A" target="_blank" class="w-10 h-10 rounded-lg flex items-center justify-center smooth-transition" style="background: rgba(255, 255, 255, 0.05);" onmouseover="this.style.background='rgba(255, 75, 54, 0.15)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.05)';">
+                            <i class="bi bi-youtube text-xl" style="color: rgba(255, 255, 255, 0.6);"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Company -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6">Company</h4>
+                    <ul class="space-y-3">
+                        <li><a href="/about_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">About us</a></li>
+                        <li><a href="/partners_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">Partners</a></li>
+                        <li><a href="/about_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">Contact us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Solutions -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6">Solutions</h4>
+                    <ul class="space-y-3">
+                        <li><a href="/cms_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">CMS</a></li>
+                        <li><a href="/media_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">Media</a></li>
+                        <li><a href="/sport_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">Sports</a></li>
+                        <li><a href="https://litteraworks.com" class="text-gray-400 hover:text-orange-500 transition-colors">Litteraworks</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-orange-500 transition-colors">Pchela</a></li>
+                        <li><a href="/consultation_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">Consultation</a></li>
+                        <li><a href="/projects_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">Grant Projects</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Contact -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6">Contact us</h4>
+                    <a href="mailto:info@app-works.app" class="text-gray-400 hover:text-orange-500 transition-colors font-semibold">info@app-works.app</a>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="pt-8 border-t border-white/10 text-center">
+                <p class="text-gray-500 text-sm">&copy; 2026 Appworks. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
