@@ -1,0 +1,703 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <title>mPanel CMS - AI-Powered Content Management | Appworks</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <meta name="description" content="One dashboard for your website, mobile app, and audience with AI built in. Everything you need to manage content, users, and engagement.">
+
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="https://app-works.app/images/appworks.png">
+        <link rel="apple-touch-icon" href="https://app-works.app/images/appworks.png">
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- Bootstrap Icons -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+        <style>
+            * {
+                font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+            }
+
+            body {
+                background: #200A24;
+                color: white;
+                overflow-x: hidden;
+            }
+
+            /* SVG Noise Texture */
+            body::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0.03;
+                z-index: 1;
+                pointer-events: none;
+                background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            }
+
+            /* Glassmorphism */
+            .glass-light {
+                background: rgba(255, 255, 255, 0.05);
+                backdrop-filter: blur(24px);
+                -webkit-backdrop-filter: blur(24px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .glass-medium {
+                background: rgba(255, 255, 255, 0.08);
+                backdrop-filter: blur(32px);
+                -webkit-backdrop-filter: blur(32px);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+            }
+
+            /* Browser Window Frame */
+            .browser-frame {
+                background: linear-gradient(180deg, #3D3D3D 0%, #2A2A2A 100%);
+                border-radius: 12px 12px 0 0;
+                padding: 12px 16px;
+                border: 1px solid rgba(0, 0, 0, 0.3);
+            }
+
+            .traffic-lights {
+                display: flex;
+                gap: 8px;
+            }
+
+            .traffic-light {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+            }
+
+            .traffic-light.red { background: #FF5F57; }
+            .traffic-light.yellow { background: #FFBD2E; }
+            .traffic-light.green { background: #28CA42; }
+
+            /* Floating Animation */
+            @keyframes floating {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-10px); }
+            }
+
+            .floating-icon {
+                animation: floating 3s ease-in-out infinite;
+            }
+
+            /* Orange Glow */
+            .glow-orange-hover:hover {
+                box-shadow: 0 0 40px rgba(255, 75, 54, 0.6) !important;
+            }
+
+            /* Smooth Transitions */
+            .smooth-transition {
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            /* Navigation */
+            .nav-link {
+                font-size: 1.125rem !important;
+                font-weight: 700 !important;
+                color: white !important;
+                transition: all 0.3s ease;
+            }
+
+            .nav-link:hover {
+                color: #FF6B50 !important;
+            }
+
+            /* Mega Dropdown */
+            .mega-dropdown {
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%) translateY(-10px);
+                width: 580px;
+                max-width: 90vw;
+                background: rgba(32, 10, 36, 0.98);
+                backdrop-filter: blur(32px);
+                -webkit-backdrop-filter: blur(32px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 1rem;
+                padding: 2rem;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
+            }
+
+            .nav-item:hover .mega-dropdown {
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(-50%) translateY(0);
+            }
+
+            .mega-dropdown-item {
+                padding: 1.25rem;
+                border-radius: 0.75rem;
+                transition: background 0.3s ease;
+            }
+
+            .mega-dropdown-item:hover {
+                background: rgba(255, 255, 255, 0.05);
+            }
+        </style>
+    </head>
+
+    <body class="relative">
+        <!-- Navigation -->
+        <header class="fixed top-0 left-0 right-0 z-50" style="background: rgba(32, 10, 36, 0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+            <nav class="mx-auto px-6 py-4" style="max-width: 1600px;">
+                <div class="flex items-center justify-between h-20">
+                    <!-- Logo -->
+                    <a href="/home_v2.html" class="flex items-center">
+                        <img src="https://app-works.app/images/appworks.png" alt="Appworks" class="h-12 w-auto">
+                    </a>
+
+                    <!-- Nav Links -->
+                    <div class="hidden lg:flex items-center space-x-8">
+                        <a href="/home_v2.html" class="nav-link">Home</a>
+
+                        <!-- Solutions Dropdown -->
+                        <div class="nav-item relative group">
+                            <button class="nav-link flex items-center gap-2">
+                                Solutions
+                                <i class="bi bi-chevron-down text-xs"></i>
+                            </button>
+                            <div class="mega-dropdown">
+                                <div class="flex flex-col gap-3">
+                                    <!-- mPanel CMS -->
+                                    <a href="/cms_v2.html" class="mega-dropdown-item block group/item">
+                                        <div class="flex items-center gap-4">
+                                            <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300" style="background: rgba(255, 75, 54, 0.1);">
+                                                <i class="bi bi-display text-2xl" style="color: #FF6B50;"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="text-white font-bold text-base mb-1">mPanel CMS</div>
+                                                <div class="text-gray-400 text-sm leading-relaxed">Complete content management system for media publishers with AI-powered tools and automation</div>
+                                            </div>
+                                            <i class="bi bi-arrow-right text-gray-500 text-lg transition-all duration-300 flex-shrink-0" style="transition: all 0.3s ease;"></i>
+                                        </div>
+                                    </a>
+
+                                    <div class="h-px bg-white/10"></div>
+
+                                    <!-- Media -->
+                                    <a href="/media_v2.html" class="mega-dropdown-item block group/item">
+                                        <div class="flex items-center gap-4">
+                                            <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300" style="background: rgba(255, 75, 54, 0.1);">
+                                                <i class="bi bi-newspaper text-2xl" style="color: #FF6B50;"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="text-white font-bold text-base mb-1">Media</div>
+                                                <div class="text-gray-400 text-sm leading-relaxed">Digital publishing platforms, mobile apps, and content delivery solutions for modern newsrooms</div>
+                                            </div>
+                                            <i class="bi bi-arrow-right text-gray-500 text-lg transition-all duration-300 flex-shrink-0" style="transition: all 0.3s ease;"></i>
+                                        </div>
+                                    </a>
+
+                                    <div class="h-px bg-white/10"></div>
+
+                                    <!-- Sport -->
+                                    <a href="/sport_v2.html" class="mega-dropdown-item block group/item">
+                                        <div class="flex items-center gap-4">
+                                            <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300" style="background: rgba(255, 75, 54, 0.1);">
+                                                <i class="bi bi-trophy text-2xl" style="color: #FF6B50;"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="text-white font-bold text-base mb-1">Sport</div>
+                                                <div class="text-gray-400 text-sm leading-relaxed">Fan engagement platforms, loyalty programs, and mobile apps for sports clubs and leagues</div>
+                                            </div>
+                                            <i class="bi bi-arrow-right text-gray-500 text-lg transition-all duration-300 flex-shrink-0" style="transition: all 0.3s ease;"></i>
+                                        </div>
+                                    </a>
+
+                                    <div class="h-px bg-white/10"></div>
+
+                                    <!-- Litteraworks -->
+                                    <a href="https://litteraworks.com/" target="_blank" class="mega-dropdown-item block group/item">
+                                        <div class="flex items-center gap-4">
+                                            <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300" style="background: rgba(139, 92, 246, 0.1);">
+                                                <i class="bi bi-mic text-2xl" style="color: #A78BFA;"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="text-white font-bold text-base mb-1">Litteraworks</div>
+                                                <div class="text-gray-400 text-sm leading-relaxed">AI-powered transcription, subtitle generation, and content processing for media professionals</div>
+                                            </div>
+                                            <i class="bi bi-arrow-right text-gray-500 text-lg transition-all duration-300 flex-shrink-0" style="transition: all 0.3s ease;"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="/consultation_v2.html" class="nav-link">Consultation</a>
+                        <a href="/projects_v2.html" class="nav-link">Grant Projects</a>
+                        <a href="/partners_v2.html" class="nav-link">Partners</a>
+                        <a href="/about_v2.html" class="nav-link">About Us</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="relative pt-48 pb-32 overflow-hidden" style="background: #200A24;">
+            <div class="mx-auto px-6 lg:px-8 relative z-10" style="max-width: 1600px;">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <!-- Left: Text Content -->
+                    <div class="space-y-6">
+                        <div class="inline-block px-4 py-2 rounded-lg glass-light">
+                            <span class="text-white text-xs font-black tracking-wider uppercase">AI-POWERED CMS</span>
+                        </div>
+                        <h1 class="text-white font-black text-5xl lg:text-7xl" style="letter-spacing: -0.03em; line-height: 1.1;">mPanel CMS</h1>
+                        <h2 class="text-white text-2xl lg:text-3xl font-semibold" style="opacity: 0.95; letter-spacing: -0.01em;">One dashboard for your website, mobile app, and audience — with built in AI.</h2>
+                        <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9; max-width: 600px;">mPanel is built for media companies and sports organizations that need to move fast and stay in control. Publish content, manage users, and keep everything in sync — without jumping between tools.</p>
+                        <div class="flex gap-4 pt-4">
+                            <a href="/consultation_v2.html" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg smooth-transition glow-orange-hover" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); color: white; box-shadow: 0 4px 15px rgba(255, 75, 54, 0.3);">
+                                <span>Get Started</span>
+                                <i class="bi bi-arrow-right text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right: Product Screenshot with Browser Frame -->
+                    <div class="relative">
+                        <!-- Purple Glow Behind -->
+                        <div class="absolute inset-0 -z-10" style="background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.4) 0%, rgba(139, 92, 246, 0.2) 40%, transparent 70%); filter: blur(60px); transform: scale(1.2);"></div>
+
+                        <div class="browser-frame">
+                            <div class="traffic-lights">
+                                <div class="traffic-light red"></div>
+                                <div class="traffic-light yellow"></div>
+                                <div class="traffic-light green"></div>
+                            </div>
+                        </div>
+                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/image-36-1767002395.png?crop=true" alt="mPanel CMS Dashboard" class="w-full rounded-b-2xl shadow-2xl" style="border: 1px solid rgba(0, 0, 0, 0.3); border-top: none; box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 75, 54, 0.2);">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What You Can Do - Bento Grid -->
+        <section class="relative py-24" style="background: #200A24;">
+            <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+                <!-- Section Header -->
+                <div class="text-center mb-16">
+                    <h2 class="text-white font-black text-4xl lg:text-5xl mb-6" style="letter-spacing: -0.02em;">What You Can Do with mPanel</h2>
+                    <div class="flex justify-center mb-6">
+                        <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px; box-shadow: 0 0 20px rgba(255, 75, 54, 0.5);"></div>
+                    </div>
+                    <p class="text-gray-300 text-xl max-w-3xl mx-auto" style="opacity: 0.85;">mPanel covers the core things media and sports teams deal with every day. Content, users, and tools that help with the repetitive parts — all in one place.</p>
+                </div>
+
+                <!-- Bento Grid: 3 Pillars -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Pillar 1: Content & Publishing -->
+                    <div class="relative rounded-3xl p-10 smooth-transition hover:-translate-y-2 glow-orange-hover" style="background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.15), transparent); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.3), 0 10px 30px rgba(0, 0, 0, 0.5); min-height: 320px;">
+                        <i class="bi bi-file-earmark-text text-7xl mb-6 block" style="color: #FF4B36; filter: drop-shadow(0 0 25px rgba(255, 75, 54, 0.4));"></i>
+                        <h3 class="text-white font-bold text-2xl mb-4" style="letter-spacing: -0.02em;">Content & Publishing</h3>
+                        <p class="text-gray-300 leading-relaxed" style="opacity: 0.85;">Articles, e-Paper, menus, live blogs</p>
+                    </div>
+
+                    <!-- Pillar 2: Users & Revenue -->
+                    <div class="relative rounded-3xl p-10 smooth-transition hover:-translate-y-2 glow-orange-hover" style="background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.15), transparent); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.3), 0 10px 30px rgba(0, 0, 0, 0.5); min-height: 320px;">
+                        <i class="bi bi-people text-7xl mb-6 block" style="color: #FF4B36; filter: drop-shadow(0 0 25px rgba(255, 75, 54, 0.4));"></i>
+                        <h3 class="text-white font-bold text-2xl mb-4" style="letter-spacing: -0.02em;">Users & Revenue</h3>
+                        <p class="text-gray-300 leading-relaxed" style="opacity: 0.85;">Subscriptions, user accounts, transactions</p>
+                    </div>
+
+                    <!-- Pillar 3: AI That Helps -->
+                    <div class="relative rounded-3xl p-10 smooth-transition hover:-translate-y-2 glow-orange-hover" style="background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.15), transparent); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.3), 0 10px 30px rgba(0, 0, 0, 0.5); min-height: 320px;">
+                        <i class="bi bi-stars text-7xl mb-6 block" style="color: #8B5CF6; filter: drop-shadow(0 0 25px rgba(139, 92, 246, 0.4));"></i>
+                        <h3 class="text-white font-bold text-2xl mb-4" style="letter-spacing: -0.02em;">AI That Helps</h3>
+                        <p class="text-gray-300 leading-relaxed" style="opacity: 0.85;">Translations, tagging, moderation, transcription</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Modules - Alternating Rows -->
+        <section class="relative py-24" style="background: #200A24;">
+            <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+                <!-- Section Header -->
+                <div class="text-center mb-16">
+                    <h2 class="text-white font-black text-4xl lg:text-5xl mb-6" style="letter-spacing: -0.02em;">Core Modules</h2>
+                    <div class="flex justify-center mb-6">
+                        <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px;"></div>
+                    </div>
+                </div>
+
+                <!-- Module 1: Content Management (Image Right) -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-32">
+                    <div class="space-y-6">
+                        <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
+                            <span class="text-white text-xs font-black tracking-wider uppercase">CONTENT MANAGEMENT</span>
+                        </div>
+                        <h3 class="text-white font-black text-4xl lg:text-5xl" style="letter-spacing: -0.03em;">Article Editor & Publishing</h3>
+                        <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">Article editor, menu management, live blogs, match center — all the tools you need to publish content quickly across web and mobile.</p>
+                    </div>
+                    <div class="relative">
+                        <div class="browser-frame">
+                            <div class="traffic-lights">
+                                <div class="traffic-light red"></div>
+                                <div class="traffic-light yellow"></div>
+                                <div class="traffic-light green"></div>
+                            </div>
+                        </div>
+                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/image-35-1767092242.png?crop=true" alt="Content Management" class="w-full rounded-b-2xl" style="border: 1px solid rgba(0, 0, 0, 0.3); border-top: none; box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 75, 54, 0.2);">
+                    </div>
+                </div>
+
+                <!-- Module 2: e-Paper (Image Left) -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-32">
+                    <div class="relative order-2 lg:order-1">
+                        <div class="browser-frame">
+                            <div class="traffic-lights">
+                                <div class="traffic-light red"></div>
+                                <div class="traffic-light yellow"></div>
+                                <div class="traffic-light green"></div>
+                            </div>
+                        </div>
+                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/image-38.png?crop=true" alt="e-Paper & Issues" class="w-full rounded-b-2xl" style="border: 1px solid rgba(0, 0, 0, 0.3); border-top: none; box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 75, 54, 0.2);">
+                    </div>
+                    <div class="space-y-6 order-1 lg:order-2">
+                        <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
+                            <span class="text-white text-xs font-black tracking-wider uppercase">DIGITAL EDITIONS</span>
+                        </div>
+                        <h3 class="text-white font-black text-4xl lg:text-5xl" style="letter-spacing: -0.03em;">e-Paper & Issues</h3>
+                        <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">Digital editions of your print publication, with page-by-page navigation, article linking, and archive management.</p>
+                    </div>
+                </div>
+
+                <!-- Module 3: File Manager (Image Right) -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-32">
+                    <div class="space-y-6">
+                        <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
+                            <span class="text-white text-xs font-black tracking-wider uppercase">ASSET MANAGEMENT</span>
+                        </div>
+                        <h3 class="text-white font-black text-4xl lg:text-5xl" style="letter-spacing: -0.03em;">File Manager & Assets</h3>
+                        <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">Upload, organize, and manage images, videos, and documents. AI-powered tagging makes everything searchable.</p>
+                    </div>
+                    <div class="relative">
+                        <div class="browser-frame">
+                            <div class="traffic-lights">
+                                <div class="traffic-light red"></div>
+                                <div class="traffic-light yellow"></div>
+                                <div class="traffic-light green"></div>
+                            </div>
+                        </div>
+                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/image-39.png?crop=true" alt="File Manager" class="w-full rounded-b-2xl" style="border: 1px solid rgba(0, 0, 0, 0.3); border-top: none; box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 75, 54, 0.2);">
+                    </div>
+                </div>
+
+                <!-- Module 4: User Management (Image Left) -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-32">
+                    <div class="relative order-2 lg:order-1">
+                        <div class="browser-frame">
+                            <div class="traffic-lights">
+                                <div class="traffic-light red"></div>
+                                <div class="traffic-light yellow"></div>
+                                <div class="traffic-light green"></div>
+                            </div>
+                        </div>
+                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/image-40.png?crop=true" alt="User Management" class="w-full rounded-b-2xl" style="border: 1px solid rgba(0, 0, 0, 0.3); border-top: none; box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 75, 54, 0.2);">
+                    </div>
+                    <div class="space-y-6 order-1 lg:order-2">
+                        <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
+                            <span class="text-white text-xs font-black tracking-wider uppercase">USER MANAGEMENT</span>
+                        </div>
+                        <h3 class="text-white font-black text-4xl lg:text-5xl" style="letter-spacing: -0.03em;">Subscribers & Accounts</h3>
+                        <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">Manage subscribers, track transactions, segment audiences, and control access permissions — all from one dashboard.</p>
+                    </div>
+                </div>
+
+                <!-- Module 5: Engagement (Image Right) -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-32">
+                    <div class="space-y-6">
+                        <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
+                            <span class="text-white text-xs font-black tracking-wider uppercase">ENGAGEMENT</span>
+                        </div>
+                        <h3 class="text-white font-black text-4xl lg:text-5xl" style="letter-spacing: -0.03em;">User Interaction & Engagement</h3>
+                        <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">Push notifications, polls, quizzes, comments, and moderation tools to keep your audience engaged.</p>
+                    </div>
+                    <div class="relative">
+                        <div class="browser-frame">
+                            <div class="traffic-lights">
+                                <div class="traffic-light red"></div>
+                                <div class="traffic-light yellow"></div>
+                                <div class="traffic-light green"></div>
+                            </div>
+                        </div>
+                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/image-41.png?crop=true" alt="Engagement" class="w-full rounded-b-2xl" style="border: 1px solid rgba(0, 0, 0, 0.3); border-top: none; box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 75, 54, 0.2);">
+                    </div>
+                </div>
+
+                <!-- Module 6: Gamification (Image Left) -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-32">
+                    <div class="relative order-2 lg:order-1">
+                        <div class="browser-frame">
+                            <div class="traffic-lights">
+                                <div class="traffic-light red"></div>
+                                <div class="traffic-light yellow"></div>
+                                <div class="traffic-light green"></div>
+                            </div>
+                        </div>
+                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/image-42.png?crop=true" alt="Gamification" class="w-full rounded-b-2xl" style="border: 1px solid rgba(0, 0, 0, 0.3); border-top: none; box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 75, 54, 0.2);">
+                    </div>
+                    <div class="space-y-6 order-1 lg:order-2">
+                        <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
+                            <span class="text-white text-xs font-black tracking-wider uppercase">LOYALTY</span>
+                        </div>
+                        <h3 class="text-white font-black text-4xl lg:text-5xl" style="letter-spacing: -0.03em;">Gamification & Loyalty</h3>
+                        <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">Built-in loyalty programs, rewards systems, and discounts to increase retention and encourage repeat engagement.</p>
+                    </div>
+                </div>
+
+                <!-- Module 7: Advertising (Image Right) -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="space-y-6">
+                        <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
+                            <span class="text-white text-xs font-black tracking-wider uppercase">MONETIZATION</span>
+                        </div>
+                        <h3 class="text-white font-black text-4xl lg:text-5xl" style="letter-spacing: -0.03em;">Advertising</h3>
+                        <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">Manage ad slots directly in the CMS or integrate with external ad platforms. Complete control over monetization.</p>
+                    </div>
+                    <div class="relative">
+                        <div class="browser-frame">
+                            <div class="traffic-lights">
+                                <div class="traffic-light red"></div>
+                                <div class="traffic-light yellow"></div>
+                                <div class="traffic-light green"></div>
+                            </div>
+                        </div>
+                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/image-43.png?crop=true" alt="Advertising" class="w-full rounded-b-2xl" style="border: 1px solid rgba(0, 0, 0, 0.3); border-top: none; box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 75, 54, 0.2);">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Features - Bento Grid -->
+        <section class="relative py-24" style="background: #200A24;">
+            <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+                <!-- Section Header -->
+                <div class="text-center mb-16">
+                    <h2 class="text-white font-black text-4xl lg:text-5xl mb-6" style="letter-spacing: -0.02em;">AI, Already Part of the System</h2>
+                    <div class="flex justify-center mb-6">
+                        <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px; box-shadow: 0 0 20px rgba(255, 75, 54, 0.5);"></div>
+                    </div>
+                    <p class="text-gray-300 text-xl max-w-3xl mx-auto" style="opacity: 0.85;">These features are built into mPanel and ready to use. No setup, no extra tools, no configuration needed.</p>
+                </div>
+
+                <!-- AI Features Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- AI Feature 1 -->
+                    <div class="relative rounded-2xl p-8 smooth-transition hover:-translate-y-2" style="background: rgba(139, 92, 246, 0.05); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(139, 92, 246, 0.2); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                        <i class="bi bi-translate text-6xl mb-4 block" style="color: #FF4B36; filter: drop-shadow(0 0 20px rgba(255, 75, 54, 0.4));"></i>
+                        <h4 class="text-white font-bold text-xl mb-3">Translation</h4>
+                        <p class="text-gray-300 leading-relaxed" style="opacity: 0.85;">Automatic translations of content into multiple languages with high accuracy.</p>
+                    </div>
+
+                    <!-- AI Feature 2 -->
+                    <div class="relative rounded-2xl p-8 smooth-transition hover:-translate-y-2" style="background: rgba(139, 92, 246, 0.05); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(139, 92, 246, 0.2); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                        <i class="bi bi-tags text-6xl mb-4 block" style="color: #FF4B36; filter: drop-shadow(0 0 20px rgba(255, 75, 54, 0.4));"></i>
+                        <h4 class="text-white font-bold text-xl mb-3">Keyword Generation</h4>
+                        <p class="text-gray-300 leading-relaxed" style="opacity: 0.85;">AI generates relevant keywords and tags based on your existing database.</p>
+                    </div>
+
+                    <!-- AI Feature 3 -->
+                    <div class="relative rounded-2xl p-8 smooth-transition hover:-translate-y-2" style="background: rgba(139, 92, 246, 0.05); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(139, 92, 246, 0.2); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                        <i class="bi bi-search text-6xl mb-4 block" style="color: #FF4B36; filter: drop-shadow(0 0 20px rgba(255, 75, 54, 0.4));"></i>
+                        <h4 class="text-white font-bold text-xl mb-3">SEO Suggestions</h4>
+                        <p class="text-gray-300 leading-relaxed" style="opacity: 0.85;">AI suggestions to improve your content's SEO performance.</p>
+                    </div>
+
+                    <!-- AI Feature 4 -->
+                    <div class="relative rounded-2xl p-8 smooth-transition hover:-translate-y-2" style="background: rgba(139, 92, 246, 0.05); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(139, 92, 246, 0.2); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                        <i class="bi bi-mic text-6xl mb-4 block" style="color: #FF4B36; filter: drop-shadow(0 0 20px rgba(255, 75, 54, 0.4));"></i>
+                        <h4 class="text-white font-bold text-xl mb-3">Transcription</h4>
+                        <p class="text-gray-300 leading-relaxed" style="opacity: 0.85;">Convert audio and video into text automatically.</p>
+                    </div>
+
+                    <!-- AI Feature 5 -->
+                    <div class="relative rounded-2xl p-8 smooth-transition hover:-translate-y-2" style="background: rgba(139, 92, 246, 0.05); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(139, 92, 246, 0.2); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                        <i class="bi bi-volume-up text-6xl mb-4 block" style="color: #FF4B36; filter: drop-shadow(0 0 20px rgba(255, 75, 54, 0.4));"></i>
+                        <h4 class="text-white font-bold text-xl mb-3">Text-to-Speech</h4>
+                        <p class="text-gray-300 leading-relaxed" style="opacity: 0.85;">Convert text into natural-sounding audio for accessibility.</p>
+                    </div>
+
+                    <!-- AI Feature 6 -->
+                    <div class="relative rounded-2xl p-8 smooth-transition hover:-translate-y-2" style="background: rgba(139, 92, 246, 0.05); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(139, 92, 246, 0.2); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                        <i class="bi bi-badge-cc text-6xl mb-4 block" style="color: #FF4B36; filter: drop-shadow(0 0 20px rgba(255, 75, 54, 0.4));"></i>
+                        <h4 class="text-white font-bold text-xl mb-3">Subtitle Creation</h4>
+                        <p class="text-gray-300 leading-relaxed" style="opacity: 0.85;">AI generated and translated subtitles for your video content.</p>
+                    </div>
+
+                    <!-- AI Feature 7 -->
+                    <div class="relative rounded-2xl p-8 smooth-transition hover:-translate-y-2" style="background: rgba(139, 92, 246, 0.05); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(139, 92, 246, 0.2); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                        <i class="bi bi-shield-check text-6xl mb-4 block" style="color: #FF4B36; filter: drop-shadow(0 0 20px rgba(255, 75, 54, 0.4));"></i>
+                        <h4 class="text-white font-bold text-xl mb-3">Content Moderation</h4>
+                        <p class="text-gray-300 leading-relaxed" style="opacity: 0.85;">AI moderation of user-generated content and comments.</p>
+                    </div>
+
+                    <!-- AI Feature 8 -->
+                    <div class="relative rounded-2xl p-8 smooth-transition hover:-translate-y-2" style="background: rgba(139, 92, 246, 0.05); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(139, 92, 246, 0.2); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                        <i class="bi bi-question-circle text-6xl mb-4 block" style="color: #FF4B36; filter: drop-shadow(0 0 20px rgba(255, 75, 54, 0.4));"></i>
+                        <h4 class="text-white font-bold text-xl mb-3">Poll/Quiz Generation</h4>
+                        <p class="text-gray-300 leading-relaxed" style="opacity: 0.85;">Automatic generation of polls and quizzes based on articles.</p>
+                    </div>
+
+                    <!-- AI Feature 9 -->
+                    <div class="relative rounded-2xl p-8 smooth-transition hover:-translate-y-2" style="background: rgba(139, 92, 246, 0.05); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(139, 92, 246, 0.2); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                        <i class="bi bi-search-heart text-6xl mb-4 block" style="color: #FF4B36; filter: drop-shadow(0 0 20px rgba(255, 75, 54, 0.4));"></i>
+                        <h4 class="text-white font-bold text-xl mb-3">Smart Search</h4>
+                        <p class="text-gray-300 leading-relaxed" style="opacity: 0.85;">AI-powered search that understands context and user intent.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Built For - Who It's For -->
+        <section class="relative py-24" style="background: #200A24;">
+            <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+                <!-- Section Header -->
+                <div class="text-center mb-16">
+                    <h2 class="text-white font-black text-4xl lg:text-5xl mb-6" style="letter-spacing: -0.02em;">Built for Media and Sports</h2>
+                    <div class="flex justify-center mb-6">
+                        <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px;"></div>
+                    </div>
+                    <p class="text-gray-300 text-xl max-w-3xl mx-auto" style="opacity: 0.85;">Designed specifically for the unique needs of media companies and sports organizations</p>
+                </div>
+
+                <!-- Two Columns -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <!-- Media Companies -->
+                    <a href="/media_v2.html" class="group">
+                        <div class="relative rounded-3xl p-12 smooth-transition hover:-translate-y-2 glow-orange-hover" style="background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), transparent); backdrop-filter: blur(32px); -webkit-backdrop-filter: blur(32px); border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); min-height: 480px;">
+                            <!-- Partner Logos Grid -->
+                            <div class="grid grid-cols-2 gap-8 mb-8">
+                                <div class="flex items-center justify-center">
+                                    <div data-partner="insajder" data-css="max-w-full max-h-16 object-contain"></div>
+                                </div>
+                                <div class="flex items-center justify-center">
+                                    <div data-partner="sat" data-css="max-w-full max-h-16 object-contain"></div>
+                                </div>
+                                <div class="flex items-center justify-center">
+                                    <div data-partner="media24" data-css="max-w-full max-h-16 object-contain"></div>
+                                </div>
+                                <div class="flex items-center justify-center">
+                                    <div data-partner="hanza-media" data-css="max-w-full max-h-16 object-contain"></div>
+                                </div>
+                            </div>
+                            <h3 class="text-white font-black text-3xl mb-4" style="letter-spacing: -0.02em;">Media Companies</h3>
+                            <p class="text-gray-300 text-lg leading-relaxed mb-6" style="opacity: 0.85;">Newspapers, magazines, broadcasters, and digital publishers who need to manage content, subscribers, and revenue across web and mobile.</p>
+                            <div class="flex items-center gap-2 text-orange-500 font-bold group-hover:gap-4 transition-all">
+                                <span>Learn More</span>
+                                <i class="bi bi-arrow-right"></i>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Sports Organizations -->
+                    <a href="/sport_v2.html" class="group">
+                        <div class="relative rounded-3xl p-12 smooth-transition hover:-translate-y-2 glow-orange-hover" style="background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), transparent); backdrop-filter: blur(32px); -webkit-backdrop-filter: blur(32px); border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); min-height: 480px;">
+                            <!-- Partner Logos Grid -->
+                            <div class="grid grid-cols-2 gap-8 mb-8">
+                                <div class="flex items-center justify-center">
+                                    <img src="https://appworks.mpanel.app/image/cache/original/files/images/pao.png?crop=true" alt="Panathinaikos FC" class="max-w-full max-h-16 object-contain">
+                                </div>
+                                <div class="flex items-center justify-center">
+                                    <img src="https://appworks.mpanel.app/image/cache/original/files/images/fk-partizan-logo-1767095042.png?crop=true" alt="FK Partizan" class="max-w-full max-h-16 object-contain">
+                                </div>
+                                <div class="flex items-center justify-center">
+                                    <div data-partner="esake" data-css="max-w-full max-h-16 object-contain"></div>
+                                </div>
+                                <div class="flex items-center justify-center">
+                                    <img src="https://appworks.mpanel.app/image/cache/original/files/images/cedevita.png?crop=true" alt="Cedevita Olimpija" class="max-w-full max-h-16 object-contain">
+                                </div>
+                            </div>
+                            <h3 class="text-white font-black text-3xl mb-4" style="letter-spacing: -0.02em;">Sports Organizations</h3>
+                            <p class="text-gray-300 text-lg leading-relaxed mb-6" style="opacity: 0.85;">Clubs, leagues, and federations who want to engage fans, manage memberships, and create loyalty programs that drive revenue.</p>
+                            <div class="flex items-center gap-2 text-orange-500 font-bold group-hover:gap-4 transition-all">
+                                <span>Learn More</span>
+                                <i class="bi bi-arrow-right"></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="relative py-16" style="background: rgba(0, 0, 0, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.1);">
+            <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                    <!-- Column 1: Logo & Tagline -->
+                    <div>
+                        <img src="https://app-works.app/images/appworks.png" alt="Appworks" class="h-16 w-auto mb-4">
+                        <p class="text-gray-400 text-base leading-relaxed mb-6">Creative solutions for innovative partners.</p>
+                        <div class="flex gap-4">
+                            <a href="https://www.linkedin.com/company/appworks-d-o-o/" target="_blank" class="w-10 h-10 rounded-lg flex items-center justify-center smooth-transition" style="background: rgba(255, 255, 255, 0.05);" onmouseover="this.style.background='rgba(255, 75, 54, 0.15)'; this.style.color='#FF6B50';" onmouseout="this.style.background='rgba(255, 255, 255, 0.05)'; this.style.color='rgba(255, 255, 255, 0.6);">
+                                <i class="bi bi-linkedin text-xl" style="color: rgba(255, 255, 255, 0.6);"></i>
+                            </a>
+                            <a href="https://www.instagram.com/weareappworks/" target="_blank" class="w-10 h-10 rounded-lg flex items-center justify-center smooth-transition" style="background: rgba(255, 255, 255, 0.05);" onmouseover="this.style.background='rgba(255, 75, 54, 0.15)'; this.style.color='#FF6B50';" onmouseout="this.style.background='rgba(255, 255, 255, 0.05)'; this.style.color='rgba(255, 255, 255, 0.6);">
+                                <i class="bi bi-instagram text-xl" style="color: rgba(255, 255, 255, 0.6);"></i>
+                            </a>
+                            <a href="https://www.youtube.com/channel/UCydhgWA6Kg40T9EFmRVDb9A" target="_blank" class="w-10 h-10 rounded-lg flex items-center justify-center smooth-transition" style="background: rgba(255, 255, 255, 0.05);" onmouseover="this.style.background='rgba(255, 75, 54, 0.15)'; this.style.color='#FF6B50';" onmouseout="this.style.background='rgba(255, 255, 255, 0.05)'; this.style.color='rgba(255, 255, 255, 0.6);">
+                                <i class="bi bi-youtube text-xl" style="color: rgba(255, 255, 255, 0.6);"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Company -->
+                    <div>
+                        <h4 class="text-white font-bold text-lg mb-6">Company</h4>
+                        <ul class="space-y-3">
+                            <li><a href="/about_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">About us</a></li>
+                            <li><a href="/partners_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">Partners</a></li>
+                            <li><a href="/about_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">Contact us</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 3: Solutions -->
+                    <div>
+                        <h4 class="text-white font-bold text-lg mb-6">Solutions</h4>
+                        <ul class="space-y-3">
+                            <li><a href="/cms_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">CMS</a></li>
+                            <li><a href="/media_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">Media</a></li>
+                            <li><a href="/sport_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">Sports</a></li>
+                            <li><a href="https://litteraworks.com" class="text-gray-400 hover:text-orange-500 transition-colors">Litteraworks</a></li>
+                            <li><a href="/consultation_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">Consultation</a></li>
+                            <li><a href="/projects_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">Grant Projects</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 4: Contact -->
+                    <div>
+                        <h4 class="text-white font-bold text-lg mb-6">Contact us</h4>
+                        <a href="mailto:info@app-works.app" class="text-gray-400 hover:text-orange-500 transition-colors font-semibold">info@app-works.app</a>
+                    </div>
+                </div>
+
+                <!-- Bottom Bar -->
+                <div class="pt-8 border-t border-white/10 text-center">
+                    <p class="text-gray-500 text-sm">© 2026 Appworks. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    
+    <!-- Partner Logo System -->
+    <script src="/js/partner-logos.js"></script>
+    <script src="/js/partner-loader.js"></script>
+</body>
+</html>

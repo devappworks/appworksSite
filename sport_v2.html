@@ -1,0 +1,899 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <title>Sport Solutions - Fan Engagement & Loyalty Programs | Appworks</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <meta name="description" content="Transform fan engagement with our mobile apps, loyalty programs, and digital solutions for sports clubs and leagues.">
+
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="https://app-works.app/images/appworks.png">
+        <link rel="apple-touch-icon" href="https://app-works.app/images/appworks.png">
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- Bootstrap Icons -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+        <style>
+            * {
+                font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+            }
+
+            body {
+                background: #200A24;
+                color: white;
+                overflow-x: hidden;
+            }
+
+            /* SVG Noise Texture */
+            body::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0.03;
+                z-index: 1;
+                pointer-events: none;
+                background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            }
+
+            /* Glassmorphism */
+            .glass-light {
+                background: rgba(255, 255, 255, 0.05);
+                backdrop-filter: blur(24px);
+                -webkit-backdrop-filter: blur(24px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .glass-medium {
+                background: rgba(255, 255, 255, 0.08);
+                backdrop-filter: blur(32px);
+                -webkit-backdrop-filter: blur(32px);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+            }
+
+            /* Product Mockup - Matches home_v2.html pattern */
+            .product-mockup img {
+                transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .product-mockup:hover img {
+                transform: perspective(1500px) rotateY(0deg) rotateX(0deg) scale(1.05);
+            }
+
+            /* Floating Animation */
+            @keyframes floating {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-10px); }
+            }
+
+            .animate-float {
+                animation: floating 3s ease-in-out infinite;
+            }
+
+            /* Orange Glow */
+            .glow-orange-hover:hover {
+                box-shadow: 0 0 40px rgba(255, 75, 54, 0.6) !important;
+            }
+
+            /* Purple Glow */
+            .glow-purple-hover:hover {
+                box-shadow: 0 0 40px rgba(139, 92, 246, 0.6) !important;
+            }
+
+            /* Smooth Transitions */
+            .smooth-transition {
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            /* Navigation */
+            .nav-link {
+                font-size: 1.125rem !important;
+                font-weight: 700 !important;
+                color: white !important;
+                transition: all 0.3s ease;
+            }
+
+            .nav-link:hover {
+                color: #FF6B50 !important;
+            }
+
+            /* Mega Dropdown */
+            .mega-dropdown {
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%) translateY(-10px);
+                width: 580px;
+                max-width: 90vw;
+                background: rgba(32, 10, 36, 0.98);
+                backdrop-filter: blur(32px);
+                -webkit-backdrop-filter: blur(32px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 1rem;
+                padding: 2rem;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
+            }
+
+            .nav-item:hover .mega-dropdown {
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(-50%) translateY(0);
+            }
+
+            .mega-dropdown-item {
+                padding: 1.25rem;
+                border-radius: 0.75rem;
+                transition: background 0.3s ease;
+            }
+
+            .mega-dropdown-item:hover {
+                background: rgba(255, 255, 255, 0.05);
+            }
+
+            /* Stats Card */
+            .stats-card {
+                background: rgba(255, 255, 255, 0.05);
+                backdrop-filter: blur(24px);
+                -webkit-backdrop-filter: blur(24px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 1.5rem;
+                padding: 2.5rem;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .stats-card:hover {
+                transform: translateY(-8px);
+                border-color: rgba(255, 75, 54, 0.3);
+                box-shadow: 0 20px 48px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 75, 54, 0.2);
+            }
+
+            /* Feature Card */
+            .feature-card {
+                background: rgba(255, 255, 255, 0.05);
+                backdrop-filter: blur(24px);
+                -webkit-backdrop-filter: blur(24px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 1.5rem;
+                padding: 2rem;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .feature-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 20px 48px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 75, 54, 0.2);
+            }
+        </style>
+    </head>
+
+    <body class="relative">
+        <!-- Navigation -->
+        <header class="fixed top-0 left-0 right-0 z-50" style="background: rgba(32, 10, 36, 0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+            <nav class="mx-auto px-6 py-4" style="max-width: 1600px;">
+                <div class="flex items-center justify-between h-20">
+                    <!-- Logo -->
+                    <a href="/home_v2.html" class="flex items-center">
+                        <img src="https://app-works.app/images/appworks.png" alt="Appworks" class="h-12 w-auto">
+                    </a>
+
+                    <!-- Nav Links -->
+                    <div class="hidden lg:flex items-center space-x-8">
+                        <a href="/home_v2.html" class="nav-link">Home</a>
+
+                        <!-- Solutions Dropdown -->
+                        <div class="nav-item relative group">
+                            <button class="nav-link flex items-center gap-2">
+                                Solutions
+                                <i class="bi bi-chevron-down text-xs"></i>
+                            </button>
+                            <div class="mega-dropdown">
+                                <div class="flex flex-col gap-3">
+                                    <!-- mPanel CMS -->
+                                    <a href="/cms_v2.html" class="mega-dropdown-item block group/item">
+                                        <div class="flex items-center gap-4">
+                                            <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300" style="background: rgba(255, 75, 54, 0.1);">
+                                                <i class="bi bi-display text-2xl" style="color: #FF6B50;"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="text-white font-bold text-base mb-1">mPanel CMS</div>
+                                                <div class="text-gray-400 text-sm leading-relaxed">Complete content management system for media publishers and sports organizations</div>
+                                            </div>
+                                            <i class="bi bi-arrow-right text-gray-500 text-lg transition-all duration-300 flex-shrink-0"></i>
+                                        </div>
+                                    </a>
+
+                                    <div class="h-px bg-white/10"></div>
+
+                                    <!-- Media -->
+                                    <a href="/media_v2.html" class="mega-dropdown-item block group/item">
+                                        <div class="flex items-center gap-4">
+                                            <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300" style="background: rgba(255, 75, 54, 0.1);">
+                                                <i class="bi bi-newspaper text-2xl" style="color: #FF6B50;"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="text-white font-bold text-base mb-1">Media</div>
+                                                <div class="text-gray-400 text-sm leading-relaxed">Digital publishing platforms, mobile apps, and content delivery solutions for modern newsrooms</div>
+                                            </div>
+                                            <i class="bi bi-arrow-right text-gray-500 text-lg transition-all duration-300 flex-shrink-0"></i>
+                                        </div>
+                                    </a>
+
+                                    <div class="h-px bg-white/10"></div>
+
+                                    <!-- Sport -->
+                                    <a href="/sport_v2.html" class="mega-dropdown-item block group/item" style="background: rgba(255, 75, 54, 0.05);">
+                                        <div class="flex items-center gap-4">
+                                            <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300" style="background: rgba(255, 75, 54, 0.15);">
+                                                <i class="bi bi-trophy text-2xl" style="color: #FF6B50;"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="text-white font-bold text-base mb-1">Sport</div>
+                                                <div class="text-gray-400 text-sm leading-relaxed">Fan engagement platforms, loyalty programs, and mobile apps for sports clubs and leagues</div>
+                                            </div>
+                                            <i class="bi bi-arrow-right text-gray-500 text-lg transition-all duration-300 flex-shrink-0"></i>
+                                        </div>
+                                    </a>
+
+                                    <div class="h-px bg-white/10"></div>
+
+                                    <!-- Litteraworks -->
+                                    <a href="https://litteraworks.com/" target="_blank" class="mega-dropdown-item block group/item">
+                                        <div class="flex items-center gap-4">
+                                            <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300" style="background: rgba(139, 92, 246, 0.1);">
+                                                <i class="bi bi-mic text-2xl" style="color: #A78BFA;"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="text-white font-bold text-base mb-1">Litteraworks</div>
+                                                <div class="text-gray-400 text-sm leading-relaxed">AI-powered transcription, subtitle generation, and content processing for media professionals</div>
+                                            </div>
+                                            <i class="bi bi-arrow-right text-gray-500 text-lg transition-all duration-300 flex-shrink-0"></i>
+                                        </div>
+                                    </a>
+
+                                    <div class="h-px bg-white/10"></div>
+
+                                    <!-- Pchela -->
+                                    <a href="#" class="mega-dropdown-item block group/item">
+                                        <div class="flex items-center gap-4">
+                                            <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300" style="background: rgba(139, 92, 246, 0.1);">
+                                                <i class="bi bi-collection text-2xl" style="color: #A78BFA;"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="text-white font-bold text-base mb-1">Pchela</div>
+                                                <div class="text-gray-400 text-sm leading-relaxed">Intelligent digital asset management system with AI-powered organization and search capabilities</div>
+                                            </div>
+                                            <i class="bi bi-arrow-right text-gray-500 text-lg transition-all duration-300 flex-shrink-0"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="/consultation_v2.html" class="nav-link">Consultation</a>
+                        <a href="/projects_v2.html" class="nav-link">Grant Projects</a>
+                        <a href="/partners_v2.html" class="nav-link">Partners</a>
+                        <a href="/about_v2.html" class="nav-link">About Us</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="relative pt-48 pb-32 overflow-visible" style="background: #200A24;">
+            <div class="mx-auto px-6 lg:px-8 relative z-10" style="max-width: 1600px;">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <!-- Left: Text Content -->
+                    <div class="space-y-6">
+                        <div class="inline-block px-4 py-2 rounded-lg glass-light">
+                            <span class="text-white text-xs font-black tracking-wider uppercase">SPORT SOLUTIONS</span>
+                        </div>
+                        <h1 class="text-white font-black text-5xl lg:text-7xl" style="letter-spacing: -0.03em; line-height: 1.1;">Engage Your Fans Like Never Before</h1>
+                        <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9; max-width: 600px;">Mobile apps, loyalty programs, and digital experiences designed to deepen fan connections and drive revenue for sports organizations.</p>
+                        <div class="flex gap-4 pt-4">
+                            <a href="/consultation_v2.html" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg smooth-transition glow-orange-hover" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); color: white; box-shadow: 0 4px 15px rgba(255, 75, 54, 0.3);">
+                                <span>Get Started</span>
+                                <i class="bi bi-arrow-right text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right: Mobile Screenshot -->
+                    <div class="relative product-mockup flex justify-center">
+                        <!-- Scroll-Following Glow (Orange) -->
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none"
+                             style="width: 500px; height: 500px;
+                                    background: radial-gradient(circle, rgba(255, 75, 54, 0.3) 0%, rgba(255, 107, 80, 0.15) 40%, transparent 70%);
+                                    filter: blur(60px);"></div>
+
+                        <!-- iPhone Mockup - Straight On -->
+                        <div class="relative animate-float" style="max-width: 500px;">
+                            <img src="https://appworks.mpanel.app/image/cache/original/files/images/sport-pao-pfc.png?crop=true"
+                                 alt="Sport Mobile App Platform"
+                                 class="w-full rounded-3xl shadow-2xl"
+                                 style="box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 75, 54, 0.3);">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partner Logos Carousel Section -->
+        <section class="relative py-16" style="background: #200A24;">
+            <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+                <div class="text-center mb-10">
+                    <h3 class="text-white font-bold text-2xl" style="letter-spacing: -0.02em;">Trusted by Leading Sports Organizations</h3>
+                </div>
+                <div class="logo-carousel-wrapper" style="overflow: hidden; position: relative; padding: 20px 0;">
+                    <div class="logo-carousel-track" style="display: flex; gap: 60px; animation: scroll 40s linear infinite; width: fit-content;">
+                        <img src="https://app-works.app/images/appworksPartners/Sports/Leeds.png" alt="Leeds" style="height: 62px; width: auto; max-width: 200px; object-fit: contain; transition: all 0.3s ease;">
+                        <img src="https://app-works.app/images/appworksPartners/Sports/PAO.png" alt="PAO" style="height: 62px; width: auto; max-width: 200px; object-fit: contain; transition: all 0.3s ease;">
+                        <img src="https://app-works.app/images/appworksPartners/Sports/QPR.png" alt="QPR" style="height: 62px; width: auto; max-width: 200px; object-fit: contain; transition: all 0.3s ease;">
+                        <img src="https://app-works.app/images/appworksPartners/Sports/ESAKE.png" alt="ESAKE" style="height: 62px; width: auto; max-width: 200px; object-fit: contain; transition: all 0.3s ease;">
+                        <img src="https://app-works.app/images/appworksPartners/Sports/FK Partizan.png" alt="FK Partizan" style="height: 62px; width: auto; max-width: 200px; object-fit: contain; transition: all 0.3s ease;">
+                        <img src="https://app-works.app/images/appworksPartners/Sports/Peristeri.png" alt="Peristeri" style="height: 62px; width: auto; max-width: 200px; object-fit: contain; transition: all 0.3s ease;">
+                        <img src="https://app-works.app/images/appworksPartners/Sports/HKS.png" alt="HKS" style="height: 62px; width: auto; max-width: 200px; object-fit: contain; transition: all 0.3s ease;">
+                        <img src="https://app-works.app/images/appworksPartners/Sports/HRS.png" alt="HRS" style="height: 62px; width: auto; max-width: 200px; object-fit: contain; transition: all 0.3s ease;">
+                        <img src="https://app-works.app/images/appworksPartners/Sports/Cedevita.png" alt="Cedevita" style="height: 62px; width: auto; max-width: 200px; object-fit: contain; transition: all 0.3s ease;">
+                        <img src="https://app-works.app/images/appworksPartners/Sports/KSBIH.png" alt="KSBIH" style="height: 62px; width: auto; max-width: 200px; object-fit: contain; transition: all 0.3s ease;">
+                        <img src="https://app-works.app/images/appworksPartners/Sports/Savez za skolski sport.png" alt="Savez za skolski sport" style="height: 62px; width: auto; max-width: 200px; object-fit: contain; transition: all 0.3s ease;">
+                        <img src="https://app-works.app/images/appworksPartners/Sports/futsal-partizan-logo.png" alt="Futsal Partizan" style="height: 62px; width: auto; max-width: 200px; object-fit: contain; transition: all 0.3s ease;">
+                        <!-- Duplicate for seamless loop -->
+                        <img src="https://app-works.app/images/appworksPartners/Sports/Leeds.png" alt="Leeds" style="height: 62px; width: auto; max-width: 200px; object-fit: contain; transition: all 0.3s ease;">
+                        <img src="https://app-works.app/images/appworksPartners/Sports/PAO.png" alt="PAO" style="height: 62px; width: auto; max-width: 200px; object-fit: contain; transition: all 0.3s ease;">
+                        <img src="https://app-works.app/images/appworksPartners/Sports/QPR.png" alt="QPR" style="height: 62px; width: auto; max-width: 200px; object-fit: contain; transition: all 0.3s ease;">
+                        <img src="https://app-works.app/images/appworksPartners/Sports/ESAKE.png" alt="ESAKE" style="height: 62px; width: auto; max-width: 200px; object-fit: contain; transition: all 0.3s ease;">
+                        <img src="https://app-works.app/images/appworksPartners/Sports/FK Partizan.png" alt="FK Partizan" style="height: 62px; width: auto; max-width: 200px; object-fit: contain; transition: all 0.3s ease;">
+                        <img src="https://app-works.app/images/appworksPartners/Sports/Peristeri.png" alt="Peristeri" style="height: 62px; width: auto; max-width: 200px; object-fit: contain; transition: all 0.3s ease;">
+                        <img src="https://app-works.app/images/appworksPartners/Sports/HKS.png" alt="HKS" style="height: 62px; width: auto; max-width: 200px; object-fit: contain; transition: all 0.3s ease;">
+                        <img src="https://app-works.app/images/appworksPartners/Sports/HRS.png" alt="HRS" style="height: 62px; width: auto; max-width: 200px; object-fit: contain; transition: all 0.3s ease;">
+                        <img src="https://app-works.app/images/appworksPartners/Sports/Cedevita.png" alt="Cedevita" style="height: 62px; width: auto; max-width: 200px; object-fit: contain; transition: all 0.3s ease;">
+                        <img src="https://app-works.app/images/appworksPartners/Sports/KSBIH.png" alt="KSBIH" style="height: 62px; width: auto; max-width: 200px; object-fit: contain; transition: all 0.3s ease;">
+                        <img src="https://app-works.app/images/appworksPartners/Sports/Savez za skolski sport.png" alt="Savez za skolski sport" style="height: 62px; width: auto; max-width: 200px; object-fit: contain; transition: all 0.3s ease;">
+                        <img src="https://app-works.app/images/appworksPartners/Sports/futsal-partizan-logo.png" alt="Futsal Partizan" style="height: 62px; width: auto; max-width: 200px; object-fit: contain; transition: all 0.3s ease;">
+                    </div>
+                </div>
+                <style>
+                    .logo-carousel-track:hover { animation-play-state: paused; }
+                    .logo-carousel-track img:hover { transform: scale(1.1); }
+                    @keyframes scroll {
+                        0% { transform: translateX(0); }
+                        100% { transform: translateX(-50%); }
+                    }
+                    @media (max-width: 768px) {
+                        .logo-carousel-track { gap: 40px; }
+                        .logo-carousel-track img { height: 50px; max-width: 150px; }
+                    }
+                </style>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="relative py-24" style="background: #200A24;">
+            <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+                <!-- Section Header -->
+                <div class="text-center mb-16">
+                    <h2 class="text-white font-black text-4xl lg:text-5xl mb-6" style="letter-spacing: -0.02em;">The Fan Engagement Crisis</h2>
+                    <div class="flex justify-center mb-6">
+                        <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px; box-shadow: 0 0 20px rgba(255, 75, 54, 0.5);"></div>
+                    </div>
+                    <p class="text-gray-300 text-xl max-w-3xl mx-auto" style="opacity: 0.85;">Sports organizations face declining attendance, eroding loyalty, and lost revenue opportunities.</p>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Stat 1 -->
+                    <div class="stats-card text-center">
+                        <div class="mb-4">
+                            <i class="bi bi-tv text-5xl" style="color: #FF4B36; filter: drop-shadow(0 0 20px rgba(255, 75, 54, 0.4));"></i>
+                        </div>
+                        <div class="mb-3">
+                            <span class="font-black text-5xl" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">31%</span>
+                        </div>
+                        <h4 class="text-white font-bold text-lg mb-2">Declining Live Viewership</h4>
+                        <p class="text-gray-400 text-sm">Only 31% of fans aged 18-24 watch live matches</p>
+                    </div>
+
+                    <!-- Stat 2 -->
+                    <div class="stats-card text-center">
+                        <div class="mb-4">
+                            <i class="bi bi-chat-dots text-5xl" style="color: #FF4B36; filter: drop-shadow(0 0 20px rgba(255, 75, 54, 0.4));"></i>
+                        </div>
+                        <div class="mb-3">
+                            <span class="font-black text-5xl" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">70%</span>
+                        </div>
+                        <h4 class="text-white font-bold text-lg mb-2">Social Media Distraction</h4>
+                        <p class="text-gray-400 text-sm">70% of younger fans use social media during games</p>
+                    </div>
+
+                    <!-- Stat 3 -->
+                    <div class="stats-card text-center">
+                        <div class="mb-4">
+                            <i class="bi bi-cpu text-5xl" style="color: #FF4B36; filter: drop-shadow(0 0 20px rgba(255, 75, 54, 0.4));"></i>
+                        </div>
+                        <div class="mb-3">
+                            <span class="font-black text-5xl" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">55%</span>
+                        </div>
+                        <h4 class="text-white font-bold text-lg mb-2">Tech Integration Demand</h4>
+                        <p class="text-gray-400 text-sm">55% of fans demand tech integration at live events</p>
+                    </div>
+
+                    <!-- Stat 4 -->
+                    <div class="stats-card text-center">
+                        <div class="mb-4">
+                            <i class="bi bi-phone text-5xl" style="color: #FF4B36; filter: drop-shadow(0 0 20px rgba(255, 75, 54, 0.4));"></i>
+                        </div>
+                        <div class="mb-3">
+                            <span class="font-black text-5xl" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">85%</span>
+                        </div>
+                        <h4 class="text-white font-bold text-lg mb-2">Mobile App Expectation</h4>
+                        <p class="text-gray-400 text-sm">85% expect mobile app engagement from their teams</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="relative py-24 overflow-visible" style="background: #200A24;">
+            <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+                <!-- Section Header -->
+                <div class="text-center mb-16">
+                    <h2 class="text-white font-black text-4xl lg:text-5xl mb-6" style="letter-spacing: -0.02em;">FanFuel Features</h2>
+                    <div class="flex justify-center mb-6">
+                        <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px; box-shadow: 0 0 20px rgba(255, 75, 54, 0.5);"></div>
+                    </div>
+                    <p class="text-gray-300 text-xl max-w-3xl mx-auto" style="opacity: 0.85;">Designed for fans, built for engagement, optimized for revenue.</p>
+                </div>
+
+                <!-- Feature 1: Loyalty Program -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-32">
+                    <div class="space-y-6">
+                        <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
+                            <span class="text-white text-xs font-black tracking-wider uppercase">LOYALTY</span>
+                        </div>
+                        <h3 class="text-white font-black text-4xl lg:text-5xl" style="letter-spacing: -0.03em;">Points & Rewards System</h3>
+                        <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">Drive repeat engagement with gamified loyalty programs that reward fans for attendance, purchases, and interactions.</p>
+                        <ul class="space-y-4 mt-6">
+                            <li class="flex items-start gap-4">
+                                <i class="bi bi-check-circle-fill text-2xl" style="color: #FF4B36;"></i>
+                                <div>
+                                    <span class="text-white font-bold">Point Collection</span>
+                                    <p class="text-gray-400 text-sm mt-1">Fans earn points for attendance, purchases, and engagement</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <i class="bi bi-check-circle-fill text-2xl" style="color: #FF4B36;"></i>
+                                <div>
+                                    <span class="text-white font-bold">Reward Redemption</span>
+                                    <p class="text-gray-400 text-sm mt-1">Redeem points for merchandise, tickets, and exclusive experiences</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <i class="bi bi-check-circle-fill text-2xl" style="color: #FF4B36;"></i>
+                                <div>
+                                    <span class="text-white font-bold">Tier System</span>
+                                    <p class="text-gray-400 text-sm mt-1">VIP tiers unlock exclusive benefits and recognition</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="relative product-mockup flex justify-center">
+                        <!-- Scroll-Following Glow (Orange) -->
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none"
+                             style="width: 500px; height: 500px;
+                                    background: radial-gradient(circle, rgba(255, 75, 54, 0.3) 0%, rgba(255, 107, 80, 0.15) 40%, transparent 70%);
+                                    filter: blur(60px);"></div>
+
+                        <!-- iPhone Mockup - Straight On -->
+                        <div class="relative" style="max-width: 500px;">
+                            <img src="https://appworks.mpanel.app/image/cache/original/files/images/sport-pao-pfc.png?crop=true"
+                                 alt="Loyalty Program"
+                                 class="w-full rounded-3xl shadow-2xl"
+                                 style="box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 75, 54, 0.3);">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 2: Digital Tickets -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-32">
+                    <div class="relative product-mockup order-2 lg:order-1 flex justify-center">
+                        <!-- Scroll-Following Glow (Orange) -->
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none"
+                             style="width: 500px; height: 500px;
+                                    background: radial-gradient(circle, rgba(255, 75, 54, 0.3) 0%, rgba(255, 107, 80, 0.15) 40%, transparent 70%);
+                                    filter: blur(60px);"></div>
+
+                        <!-- iPhone Mockup - Straight On -->
+                        <div class="relative" style="max-width: 500px;">
+                            <img src="https://appworks.mpanel.app/image/cache/original/files/images/sport-pao-pfc.png?crop=true"
+                                 alt="Digital Tickets"
+                                 class="w-full rounded-3xl shadow-2xl"
+                                 style="box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 75, 54, 0.3);">
+                        </div>
+                    </div>
+                    <div class="space-y-6 order-1 lg:order-2">
+                        <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
+                            <span class="text-white text-xs font-black tracking-wider uppercase">TICKETING</span>
+                        </div>
+                        <h3 class="text-white font-black text-4xl lg:text-5xl" style="letter-spacing: -0.03em;">Digital Tickets & Check-In</h3>
+                        <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">Seamless ticketing experience from purchase to entry with secure digital tickets and fast check-in.</p>
+                        <ul class="space-y-4 mt-6">
+                            <li class="flex items-start gap-4">
+                                <i class="bi bi-check-circle-fill text-2xl" style="color: #FF4B36;"></i>
+                                <div>
+                                    <span class="text-white font-bold">Mobile Tickets</span>
+                                    <p class="text-gray-400 text-sm mt-1">QR code-based digital tickets stored in the app</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <i class="bi bi-check-circle-fill text-2xl" style="color: #FF4B36;"></i>
+                                <div>
+                                    <span class="text-white font-bold">Fast Check-In</span>
+                                    <p class="text-gray-400 text-sm mt-1">Quick stadium entry with contactless scanning</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <i class="bi bi-check-circle-fill text-2xl" style="color: #FF4B36;"></i>
+                                <div>
+                                    <span class="text-white font-bold">Season Pass Management</span>
+                                    <p class="text-gray-400 text-sm mt-1">Digital season tickets with easy transfer options</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Feature 3: Fan Engagement -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="space-y-6">
+                        <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
+                            <span class="text-white text-xs font-black tracking-wider uppercase">ENGAGEMENT</span>
+                        </div>
+                        <h3 class="text-white font-black text-4xl lg:text-5xl" style="letter-spacing: -0.03em;">Interactive Fan Features</h3>
+                        <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">Keep fans engaged before, during, and after the game with interactive features and exclusive content.</p>
+                        <ul class="space-y-4 mt-6">
+                            <li class="flex items-start gap-4">
+                                <i class="bi bi-check-circle-fill text-2xl" style="color: #FF4B36;"></i>
+                                <div>
+                                    <span class="text-white font-bold">Live Match Updates</span>
+                                    <p class="text-gray-400 text-sm mt-1">Real-time scores, stats, and commentary</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <i class="bi bi-check-circle-fill text-2xl" style="color: #FF4B36;"></i>
+                                <div>
+                                    <span class="text-white font-bold">Polls & Predictions</span>
+                                    <p class="text-gray-400 text-sm mt-1">Interactive polls, match predictions, and player voting</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <i class="bi bi-check-circle-fill text-2xl" style="color: #FF4B36;"></i>
+                                <div>
+                                    <span class="text-white font-bold">Exclusive Content</span>
+                                    <p class="text-gray-400 text-sm mt-1">Behind-the-scenes videos, player interviews, and more</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="relative product-mockup flex justify-center">
+                        <!-- Scroll-Following Glow (Orange) -->
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none"
+                             style="width: 500px; height: 500px;
+                                    background: radial-gradient(circle, rgba(255, 75, 54, 0.3) 0%, rgba(255, 107, 80, 0.15) 40%, transparent 70%);
+                                    filter: blur(60px);"></div>
+
+                        <!-- iPhone Mockup - Straight On -->
+                        <div class="relative" style="max-width: 500px;">
+                            <img src="https://appworks.mpanel.app/image/cache/original/files/images/sport-pao-pfc.png?crop=true"
+                                 alt="Fan Engagement"
+                                 class="w-full rounded-3xl shadow-2xl"
+                                 style="box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 75, 54, 0.3);">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- More Capabilities Section -->
+        <section class="relative py-24" style="background: #200A24;">
+            <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+                <!-- Section Header -->
+                <div class="text-center mb-16">
+                    <h2 class="text-white font-black text-4xl lg:text-5xl mb-6" style="letter-spacing: -0.02em;">More Capabilities</h2>
+                    <div class="flex justify-center mb-6">
+                        <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px;"></div>
+                    </div>
+                </div>
+
+                <!-- Features Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Feature 1 -->
+                    <div class="feature-card smooth-transition hover:-translate-y-2 glow-orange-hover">
+                        <i class="bi bi-shop text-5xl mb-4 block" style="color: #FF4B36; filter: drop-shadow(0 0 20px rgba(255, 75, 54, 0.4));"></i>
+                        <h4 class="text-white font-bold text-xl mb-3">Merchandise Store</h4>
+                        <p class="text-gray-300 leading-relaxed" style="opacity: 0.85;">In-app shop for team merchandise with exclusive deals for app users.</p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="feature-card smooth-transition hover:-translate-y-2 glow-orange-hover">
+                        <i class="bi bi-bell text-5xl mb-4 block" style="color: #FF4B36; filter: drop-shadow(0 0 20px rgba(255, 75, 54, 0.4));"></i>
+                        <h4 class="text-white font-bold text-xl mb-3">Push Notifications</h4>
+                        <p class="text-gray-300 leading-relaxed" style="opacity: 0.85;">Real-time updates for matches, news, and exclusive offers.</p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="feature-card smooth-transition hover:-translate-y-2 glow-orange-hover">
+                        <i class="bi bi-calendar-event text-5xl mb-4 block" style="color: #FF4B36; filter: drop-shadow(0 0 20px rgba(255, 75, 54, 0.4));"></i>
+                        <h4 class="text-white font-bold text-xl mb-3">Match Calendar</h4>
+                        <p class="text-gray-300 leading-relaxed" style="opacity: 0.85;">Full fixture list with reminders and calendar integration.</p>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div class="feature-card smooth-transition hover:-translate-y-2 glow-orange-hover">
+                        <i class="bi bi-people text-5xl mb-4 block" style="color: #FF4B36; filter: drop-shadow(0 0 20px rgba(255, 75, 54, 0.4));"></i>
+                        <h4 class="text-white font-bold text-xl mb-3">Player Profiles</h4>
+                        <p class="text-gray-300 leading-relaxed" style="opacity: 0.85;">Detailed player stats, bios, and performance tracking.</p>
+                    </div>
+
+                    <!-- Feature 5 -->
+                    <div class="feature-card smooth-transition hover:-translate-y-2 glow-orange-hover">
+                        <i class="bi bi-chat-square-text text-5xl mb-4 block" style="color: #FF4B36; filter: drop-shadow(0 0 20px rgba(255, 75, 54, 0.4));"></i>
+                        <h4 class="text-white font-bold text-xl mb-3">Fan Community</h4>
+                        <p class="text-gray-300 leading-relaxed" style="opacity: 0.85;">Forums and chat features for fans to connect and discuss.</p>
+                    </div>
+
+                    <!-- Feature 6 -->
+                    <div class="feature-card smooth-transition hover:-translate-y-2 glow-orange-hover">
+                        <i class="bi bi-bar-chart text-5xl mb-4 block" style="color: #FF4B36; filter: drop-shadow(0 0 20px rgba(255, 75, 54, 0.4));"></i>
+                        <h4 class="text-white font-bold text-xl mb-3">Analytics Dashboard</h4>
+                        <p class="text-gray-300 leading-relaxed" style="opacity: 0.85;">Track engagement, loyalty metrics, and fan behavior insights.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partners Grid Section -->
+        <section class="relative py-24" style="background: #200A24;">
+            <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+                <!-- Section Header -->
+                <div class="text-center mb-16">
+                    <h2 class="text-white font-black text-4xl lg:text-5xl mb-6" style="letter-spacing: -0.02em;">Our Sports Partners</h2>
+                    <div class="flex justify-center mb-6">
+                        <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px;"></div>
+                    </div>
+                    <p class="text-gray-300 text-xl max-w-3xl mx-auto" style="opacity: 0.85;">Trusted by leading sports organizations across Europe.</p>
+                </div>
+
+                <!-- Partners Grid -->
+                <div class="partners-grid">
+                    <!-- Leeds United -->
+                    <a href="https://www.leedsunited.com/" target="_blank" class="partner-item">
+                        <div data-partner="leeds" data-css="partner-logo"></div>
+                    </a>
+
+                    <!-- PAO -->
+                    <a href="https://www.pao.gr/" target="_blank" class="partner-item">
+                        <div data-partner="pao" data-css="partner-logo"></div>
+                    </a>
+
+                    <!-- QPR -->
+                    <a href="https://www.qpr.co.uk/" target="_blank" class="partner-item">
+                        <div data-partner="qpr" data-css="partner-logo"></div>
+                    </a>
+
+                    <!-- ESAKE -->
+                    <a href="https://www.esake.gr/" target="_blank" class="partner-item">
+                        <div data-partner="esake" data-css="partner-logo"></div>
+                    </a>
+
+                    <!-- FK Partizan -->
+                    <a href="https://www.partizan.rs/" target="_blank" class="partner-item">
+                        <div data-partner="fk-partizan" data-css="partner-logo"></div>
+                    </a>
+
+                    <!-- Peristeri -->
+                    <a href="https://www.peristeribc.gr/" target="_blank" class="partner-item">
+                        <div data-partner="peristeri" data-css="partner-logo"></div>
+                    </a>
+
+                    <!-- HKS -->
+                    <a href="https://www.hks-cbf.hr/" target="_blank" class="partner-item">
+                        <div data-partner="hks" data-css="partner-logo"></div>
+                    </a>
+
+                    <!-- HRS -->
+                    <a href="https://www.hrs.hr/" target="_blank" class="partner-item">
+                        <div data-partner="hrs" data-css="partner-logo"></div>
+                    </a>
+
+                    <!-- Cedevita -->
+                    <a href="https://www.cedevita.olimpija.com/" target="_blank" class="partner-item">
+                        <div data-partner="cedevita" data-css="partner-logo"></div>
+                    </a>
+
+                    <!-- KSBIH -->
+                    <a href="https://www.basket.ba/" target="_blank" class="partner-item">
+                        <div data-partner="ksbih" data-css="partner-logo"></div>
+                    </a>
+
+                    <!-- School Sports Federation -->
+                    <a href="https://www.skolskisportsrbije.org.rs/" target="_blank" class="partner-item">
+                        <div data-partner="savez-skolski-sport" data-css="partner-logo"></div>
+                    </a>
+
+                    <!-- Futsal Partizan -->
+                    <a href="https://www.futsalklubpartizan.rs/" target="_blank" class="partner-item">
+                        <div data-partner="futsal-partizan" data-css="partner-logo"></div>
+                    </a>
+                </div>
+
+                <style>
+                    .partners-grid {
+                        display: grid;
+                        grid-template-columns: repeat(5, 1fr);
+                        gap: 30px;
+                        margin-top: 3rem;
+                    }
+
+                    .partner-item {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 25px;
+                        background: rgba(255, 255, 255, 0.03);
+                        backdrop-filter: blur(10px);
+                        -webkit-backdrop-filter: blur(10px);
+                        border: 1px solid rgba(255, 255, 255, 0.08);
+                        border-radius: 1rem;
+                        height: 120px;
+                        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                    }
+
+                    .partner-item:hover {
+                        background: rgba(255, 255, 255, 0.08);
+                        border-color: rgba(255, 75, 54, 0.3);
+                        transform: translateY(-5px);
+                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 75, 54, 0.2);
+                    }
+
+                    .partner-logo {
+                        max-width: 130px;
+                        max-height: 80px;
+                        width: auto;
+                        height: auto;
+                        object-fit: contain;
+                        opacity: 0.9;
+                        transition: all 0.3s ease;
+                    }
+
+                    .partner-item:hover .partner-logo {
+                        opacity: 1;
+                        transform: scale(1.05);
+                    }
+
+                    @media (max-width: 1199px) {
+                        .partners-grid {
+                            grid-template-columns: repeat(4, 1fr);
+                        }
+                    }
+
+                    @media (max-width: 991px) {
+                        .partners-grid {
+                            grid-template-columns: repeat(3, 1fr);
+                            gap: 20px;
+                        }
+
+                        .partner-logo {
+                            max-width: 130px;
+                            max-height: 60px;
+                        }
+                    }
+
+                    @media (max-width: 767px) {
+                        .partners-grid {
+                            grid-template-columns: repeat(2, 1fr);
+                            gap: 15px;
+                        }
+
+                        .partner-item {
+                            height: 90px;
+                            padding: 10px;
+                        }
+
+                        .partner-logo {
+                            max-width: 120px;
+                            max-height: 50px;
+                        }
+                    }
+                </style>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="relative py-24" style="background: #200A24;">
+            <div class="mx-auto px-6 lg:px-8 text-center" style="max-width: 900px;">
+                <h2 class="text-white font-black text-4xl lg:text-5xl mb-6" style="letter-spacing: -0.02em;">Ready to Transform Fan Engagement?</h2>
+                <p class="text-gray-300 text-xl mb-10" style="opacity: 0.85;">Let's discuss how we can help you build deeper connections with your fans.</p>
+                <a href="/consultation_v2.html" class="inline-flex items-center gap-3 px-10 py-5 rounded-xl font-bold text-xl smooth-transition glow-orange-hover" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); color: white; box-shadow: 0 4px 15px rgba(255, 75, 54, 0.3);">
+                    <span>Let's schedule a call</span>
+                    <i class="bi bi-arrow-right text-2xl"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="relative py-16" style="background: rgba(0, 0, 0, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.1);">
+            <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                    <!-- Column 1: Logo & Tagline -->
+                    <div>
+                        <img src="https://app-works.app/images/appworks.png" alt="Appworks" class="h-16 w-auto mb-4">
+                        <p class="text-gray-400 text-base leading-relaxed mb-6">Creative solutions for innovative partners.</p>
+                        <div class="flex gap-4">
+                            <a href="https://www.linkedin.com/company/appworks-d-o-o/" target="_blank" class="w-10 h-10 rounded-lg flex items-center justify-center smooth-transition" style="background: rgba(255, 255, 255, 0.05);" onmouseover="this.style.background='rgba(255, 75, 54, 0.15)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.05)';">
+                                <i class="bi bi-linkedin text-xl" style="color: rgba(255, 255, 255, 0.6);"></i>
+                            </a>
+                            <a href="https://www.instagram.com/weareappworks/" target="_blank" class="w-10 h-10 rounded-lg flex items-center justify-center smooth-transition" style="background: rgba(255, 255, 255, 0.05);" onmouseover="this.style.background='rgba(255, 75, 54, 0.15)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.05)';">
+                                <i class="bi bi-instagram text-xl" style="color: rgba(255, 255, 255, 0.6);"></i>
+                            </a>
+                            <a href="https://www.youtube.com/channel/UCydhgWA6Kg40T9EFmRVDb9A" target="_blank" class="w-10 h-10 rounded-lg flex items-center justify-center smooth-transition" style="background: rgba(255, 255, 255, 0.05);" onmouseover="this.style.background='rgba(255, 75, 54, 0.15)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.05)';">
+                                <i class="bi bi-youtube text-xl" style="color: rgba(255, 255, 255, 0.6);"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Company -->
+                    <div>
+                        <h4 class="text-white font-bold text-lg mb-6">Company</h4>
+                        <ul class="space-y-3">
+                            <li><a href="/about_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">About us</a></li>
+                            <li><a href="/partners_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">Partners</a></li>
+                            <li><a href="/about_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">Contact us</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 3: Solutions -->
+                    <div>
+                        <h4 class="text-white font-bold text-lg mb-6">Solutions</h4>
+                        <ul class="space-y-3">
+                            <li><a href="/cms_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">CMS</a></li>
+                            <li><a href="/media_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">Media</a></li>
+                            <li><a href="/sport_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">Sports</a></li>
+                            <li><a href="https://litteraworks.com" class="text-gray-400 hover:text-orange-500 transition-colors">Litteraworks</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-orange-500 transition-colors">Pchela</a></li>
+                            <li><a href="/consultation_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">Consultation</a></li>
+                            <li><a href="/projects_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">Grant Projects</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 4: Contact -->
+                    <div>
+                        <h4 class="text-white font-bold text-lg mb-6">Contact us</h4>
+                        <a href="mailto:info@app-works.app" class="text-gray-400 hover:text-orange-500 transition-colors font-semibold">info@app-works.app</a>
+                    </div>
+                </div>
+
+                <!-- Bottom Bar -->
+                <div class="pt-8 border-t border-white/10 text-center">
+                    <p class="text-gray-500 text-sm">&copy; 2026 Appworks. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    
+    <!-- Partner Logo System -->
+    <script src="/js/partner-logos.js"></script>
+    <script src="/js/partner-loader.js"></script>
+</body>
+</html>

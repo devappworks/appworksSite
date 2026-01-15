@@ -1,0 +1,1716 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <title>Appworks - AI, Apps & Digital Platforms for Media and Sports</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="Appworks">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0" />
+    <meta name="description" content="AI, Apps & Digital Platforms for Media and Sports.">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://app-works.app/images/appworks.png">
+    <link rel="apple-touch-icon" href="https://app-works.app/images/appworks.png">
+
+    <!-- Google Fonts: Inter Variable -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'royal-purple': {
+                            900: '#200A24',
+                            800: '#1A0624',
+                            700: '#0F0520'
+                        },
+                        'vibrant-orange': {
+                            500: '#FF4B36',
+                            600: '#FF6B50'
+                        },
+                        'accent-purple': {
+                            400: '#A78BFA',
+                            500: '#8B5CF6',
+                            600: '#7C3AED'
+                        }
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'system-ui', '-apple-system', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- Framer Motion CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/framer-motion@11/dist/framer-motion.js"></script>
+
+    <!-- SEO Meta Tags -->
+    <meta name="keywords" content="Appworks, AI, Mobile Apps, Digital Platforms, Media Technology, Sports Technology, CMS, Litteraworks, Grant Projects, Creative Europe, Innovation">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Appworks - AI, Apps & Digital Platforms for Media and Sports">
+    <meta property="og:description" content="Small team, big work. We help our partners publish, play, and stay connected.">
+    <meta property="og:image" content="https://app-works.app/images/appworks.png">
+    <meta property="og:url" content="https://app-works.app/home.html">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Appworks - AI, Apps & Digital Platforms for Media and Sports">
+    <meta name="twitter:description" content="Small team, big work. We help our partners publish, play, and stay connected.">
+    <meta name="twitter:image" content="https://app-works.app/images/appworks.png">
+
+    <link rel="canonical" href="https://app-works.app/home.html">
+
+    <style>
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: #200A24;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* SVG Noise Texture Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: 1;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Animated Gradient Mesh Background */
+        body::after {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            z-index: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255, 75, 54, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(255, 107, 80, 0.1) 0%, transparent 50%);
+            animation: gradientMesh 20s ease-in-out infinite;
+        }
+
+        @keyframes gradientMesh {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(10%, -10%) scale(1.1);
+            }
+            66% {
+                transform: translate(-10%, 10%) scale(0.9);
+            }
+        }
+
+        /* Ensure content is above background */
+        body > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Glassmorphism Base */
+        .glass-light {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-medium {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        /* Smooth Animations */
+        .smooth-transition {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Hover Lift */
+        .hover-lift:hover {
+            transform: translateY(-8px);
+        }
+
+        /* Gradient Border Effect */
+        .gradient-border {
+            position: relative;
+        }
+
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 1.5rem;
+            padding: 2px;
+            background: linear-gradient(135deg, #FF4B36 0%, #8B5CF6 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .gradient-border:hover::before {
+            opacity: 1;
+        }
+
+        /* Nano Banana Placeholders */
+        .nano-banana-placeholder {
+            position: relative;
+            width: 100%;
+            min-height: 400px;
+            border-radius: 1rem;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.5);
+            background: rgba(0, 0, 0, 0.2);
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+        }
+
+        .nano-banana-placeholder.sports-tech {
+            box-shadow: inset 0 0 80px rgba(255, 75, 54, 0.3);
+            border-color: rgba(255, 75, 54, 0.4);
+        }
+
+        .nano-banana-placeholder.ai-tech {
+            box-shadow: inset 0 0 80px rgba(139, 92, 246, 0.35);
+            border-color: rgba(139, 92, 246, 0.4);
+        }
+
+        .nano-banana-placeholder.media-tech {
+            box-shadow: inset 0 0 80px rgba(255, 75, 54, 0.2), inset 0 0 80px rgba(139, 92, 246, 0.2);
+            border-color: rgba(255, 75, 54, 0.3);
+        }
+
+        .nano-banana-placeholder.grants {
+            box-shadow: inset 0 0 80px rgba(255, 75, 54, 0.25);
+            border-color: rgba(255, 75, 54, 0.35);
+        }
+
+        /* Fixed Header */
+        .header-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(32, 10, 36, 0.85);
+            backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .header-nav.scrolled {
+            background: rgba(32, 10, 36, 0.95);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Mega Dropdown */
+        .mega-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-10px);
+            width: 900px;
+            max-width: 90vw;
+            background: rgba(32, 10, 36, 0.98);
+            backdrop-filter: blur(32px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-item:hover .mega-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .mega-dropdown-item {
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            transition: background 0.3s ease;
+        }
+
+        .mega-dropdown-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Bento Grid */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: repeat(6, 1fr);
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        /* Hover Content Expansion */
+        .hover-content {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.4s ease, opacity 0.4s ease, margin-top 0.4s ease;
+        }
+
+        .bento-card:hover .hover-content {
+            max-height: 300px;
+            opacity: 1;
+            margin-top: 1.5rem;
+        }
+
+        /* Focus Visible */
+        *:focus-visible {
+            outline: 2px solid #FF6B50;
+            outline-offset: 4px;
+            border-radius: 0.25rem;
+        }
+
+        /* Shimmer Animation for Hero Keywords */
+        .shimmer {
+            position: relative;
+            display: inline-block;
+        }
+
+        .shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shimmer 5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+            50%, 100% {
+                left: 100%;
+            }
+        }
+
+        /* Border Glow Following Cursor */
+        .bento-card {
+            --mouse-x: 50%;
+            --mouse-y: 50%;
+        }
+
+        .bento-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 1.5rem;
+            padding: 2px;
+            background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(255, 75, 54, 0.8) 0%, transparent 50%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .bento-card:hover::before {
+            opacity: 1;
+        }
+
+        /* 3D Tilt Effect */
+        .bento-card {
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+        }
+
+        /* Mask Fade for 3D Images */
+        .mask-fade-bottom {
+            -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+        }
+
+        /* Magnetic Button Effect */
+        .magnetic-button {
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Floating/Bobbing Animation for 3D Icons */
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .floating-icon {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Fixed Header Navigation -->
+<header class="header-nav">
+    <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+        <div class="flex items-center justify-between h-20">
+            <!-- Logo -->
+            <div class="flex-shrink-0">
+                <a href="/home_v2.html" class="flex items-center">
+                    <img src="https://app-works.app/images/appworks.png" alt="Appworks" class="h-12 w-auto">
+                </a>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:flex items-center space-x-8">
+                <!-- Home Link -->
+                <a href="/home_v2.html" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">Home</a>
+
+                <!-- Solutions Dropdown -->
+                <div class="nav-item relative group">
+                    <button class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300 flex items-center gap-2">
+                        Solutions
+                        <i class="bi bi-chevron-down text-xs"></i>
+                    </button>
+                    <div class="mega-dropdown" style="width: 580px; max-width: 90vw;">
+                        <div class="flex flex-col gap-3">
+                            <!-- mPanel CMS -->
+                            <a href="/cms_v2.html" class="mega-dropdown-item block group/item">
+                                <div class="flex items-center gap-4">
+                                    <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300" style="background: rgba(255, 75, 54, 0.1);">
+                                        <i class="bi bi-display text-vibrant-orange-600 text-2xl"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="text-white font-bold text-base mb-1">mPanel CMS</div>
+                                        <div class="text-gray-400 text-sm leading-relaxed">Complete content management system for media publishers with AI-powered tools and automation</div>
+                                    </div>
+                                    <i class="bi bi-arrow-right text-gray-500 text-lg transition-all duration-300 group-hover/item:text-vibrant-orange-600 group-hover/item:translate-x-1 flex-shrink-0"></i>
+                                </div>
+                            </a>
+
+                            <div class="h-px bg-white/10"></div>
+
+                            <!-- Media -->
+                            <a href="/media_v2.html" class="mega-dropdown-item block group/item">
+                                <div class="flex items-center gap-4">
+                                    <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300" style="background: rgba(255, 75, 54, 0.1);">
+                                        <i class="bi bi-newspaper text-vibrant-orange-600 text-2xl"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="text-white font-bold text-base mb-1">Media</div>
+                                        <div class="text-gray-400 text-sm leading-relaxed">Digital publishing platforms, mobile apps, and content delivery solutions for modern newsrooms</div>
+                                    </div>
+                                    <i class="bi bi-arrow-right text-gray-500 text-lg transition-all duration-300 group-hover/item:text-vibrant-orange-600 group-hover/item:translate-x-1 flex-shrink-0"></i>
+                                </div>
+                            </a>
+
+                            <div class="h-px bg-white/10"></div>
+
+                            <!-- Sport -->
+                            <a href="/sport_v2.html" class="mega-dropdown-item block group/item">
+                                <div class="flex items-center gap-4">
+                                    <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300" style="background: rgba(255, 75, 54, 0.1);">
+                                        <i class="bi bi-trophy text-vibrant-orange-600 text-2xl"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="text-white font-bold text-base mb-1">Sport</div>
+                                        <div class="text-gray-400 text-sm leading-relaxed">Fan engagement platforms, loyalty programs, and mobile apps for sports clubs and leagues</div>
+                                    </div>
+                                    <i class="bi bi-arrow-right text-gray-500 text-lg transition-all duration-300 group-hover/item:text-vibrant-orange-600 group-hover/item:translate-x-1 flex-shrink-0"></i>
+                                </div>
+                            </a>
+
+                            <div class="h-px bg-white/10"></div>
+
+                            <!-- Litteraworks -->
+                            <a href="https://litteraworks.com/" target="_blank" class="mega-dropdown-item block group/item">
+                                <div class="flex items-center gap-4">
+                                    <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300" style="background: rgba(139, 92, 246, 0.1);">
+                                        <i class="bi bi-mic text-accent-purple-400 text-2xl"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="text-white font-bold text-base mb-1">Litteraworks</div>
+                                        <div class="text-gray-400 text-sm leading-relaxed">AI-powered transcription, subtitle generation, and content processing for media professionals</div>
+                                    </div>
+                                    <i class="bi bi-arrow-right text-gray-500 text-lg transition-all duration-300 group-hover/item:text-accent-purple-400 group-hover/item:translate-x-1 flex-shrink-0"></i>
+                                </div>
+                            </a>
+
+                            <div class="h-px bg-white/10"></div>
+
+                            <!-- Pchela -->
+                            <a href="/about_v2.html" class="mega-dropdown-item block group/item">
+                                <div class="flex items-center gap-4">
+                                    <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300" style="background: rgba(255, 75, 54, 0.1);">
+                                        <i class="bi bi-camera text-vibrant-orange-600 text-2xl"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="text-white font-bold text-base mb-1">Pchela</div>
+                                        <div class="text-gray-400 text-sm leading-relaxed">Intelligent digital asset management system with AI-powered organization and search capabilities</div>
+                                    </div>
+                                    <i class="bi bi-arrow-right text-gray-500 text-lg transition-all duration-300 group-hover/item:text-vibrant-orange-600 group-hover/item:translate-x-1 flex-shrink-0"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Regular Links -->
+                <a href="/consultation_v2.html" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">Consultation</a>
+                <a href="/projects_v2.html" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300 whitespace-nowrap">Grant Projects</a>
+                <a href="/partners_v2.html" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">Partners</a>
+                <a href="/about_v2.html" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300 whitespace-nowrap">About Us</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button class="lg:hidden text-white p-2" id="mobile-menu-button">
+                <i class="bi bi-list text-2xl"></i>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden" style="padding-top: 80px; background: linear-gradient(180deg, #200A24 0%, #1A0624 50%, #0F0520 100%);">
+    <!-- Radial Gradient Overlay -->
+    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(circle at top right, rgba(255, 75, 54, 0.08) 0%, transparent 50%);"></div>
+
+    <div class="relative z-10 mx-auto px-6 lg:px-8 py-20" style="max-width: 1600px;">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <!-- Left Column: Content -->
+            <div class="text-center lg:text-left">
+                <!-- Trust Badge -->
+                <div class="inline-flex items-center gap-3 px-6 py-3 rounded-full mb-8 glass-light">
+                    <i class="bi bi-megaphone text-vibrant-orange-600 text-lg"></i>
+                    <span class="text-white text-xs font-bold tracking-wider uppercase">Trusted by 50+ Organizations Across 4 Continents</span>
+                </div>
+
+                <!-- Headline -->
+                <h1 class="text-white font-black mb-6" style="font-size: clamp(2.5rem, 5vw, 5rem); letter-spacing: -0.03em; line-height: 1.1;">
+                    <span class="shimmer">AI</span> & Apps for Media and <span class="shimmer">Sports</span>
+                </h1>
+
+                <!-- Subheadline -->
+                <p class="text-gray-300 text-lg lg:text-xl mb-10 leading-relaxed" style="opacity: 0.85; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    We don't just build apps—we become your digital transformation partner, combining mobile platforms with AI innovation.
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <a href="/about_v2.html" class="magnetic-button inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-bold text-white transition-all duration-300 hover:-translate-y-1" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); box-shadow: 0 4px 12px rgba(255, 75, 54, 0.3);">
+                        <span>Let's Talk</span>
+                        <i class="bi bi-arrow-right text-xl"></i>
+                    </a>
+                    <a href="/partners_v2.html" class="magnetic-button inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-bold text-vibrant-orange-600 transition-all duration-300 hover:-translate-y-1 hover:bg-opacity-20" style="border: 2px solid #FF4B36; background: transparent;">
+                        <span>See Our Work</span>
+                        <i class="bi bi-arrow-right text-xl"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Column: Hero Image -->
+            <div class="relative flex items-center justify-center">
+                <img src="https://appworks.mpanel.app/image/cache/original/files/images/device-mockup-15x-postspark-2025-12-29-10-38-31.png?crop=true" alt="Mobile App Mockups" class="w-full max-w-2xl transform hover:scale-105 transition-transform duration-700" style="filter: drop-shadow(0 20px 60px rgba(255, 75, 54, 0.3));">
+            </div>
+        </div>
+    </div>
+
+    <!-- Animated Wave Separator -->
+    <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="z-index: 1;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100" viewBox="0 180 2500 200" preserveAspectRatio="none" fill="#200A24">
+            <path d="M 0 250 C 1200 400 1200 50 3000 250 L 3000 550 L 0 550 L 0 250">
+                <animate attributeName="d" dur="5s" values="M 0 250 C 1200 400 1200 50 3000 250 L 3000 550 L 0 550 L 0 250; M 0 250 C 400 50 400 400 3000 250 L 3000 550 L 0 550 L 0 250; M 0 250 C 1200 400 1200 50 3000 250 L 3000 550 L 0 550 L 0 250" repeatCount="indefinite" />
+            </path>
+        </svg>
+    </div>
+</section>
+
+<!-- Three Core Value Props: High-End Polish with Advanced Glassmorphism -->
+<section class="relative pt-16 pb-12 value-props-section" style="background: linear-gradient(180deg, rgba(45, 13, 52, 1) 0%, rgba(32, 10, 36, 1) 50%, rgba(32, 10, 36, 1) 100%); position: relative;">
+    <!-- Noise Texture Overlay -->
+    <div class="absolute inset-0 opacity-5" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 400 400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E'); pointer-events: none; z-index: 1;"></div>
+
+    <div class="mx-auto px-6 lg:px-8 relative" style="max-width: 1600px; z-index: 2;">
+        <!-- Asymmetrical 3-Column Bento Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            <!-- Pillar 1: Mobile Apps (col-span-1) -->
+            <div class="value-prop-card relative rounded-3xl p-6 smooth-transition group flex flex-col"
+                 style="background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.15), transparent);
+                        backdrop-filter: blur(40px);
+                        -webkit-backdrop-filter: blur(40px);
+                        border: 1px solid rgba(255, 255, 255, 0.1);
+                        box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.3), 0 10px 30px rgba(0, 0, 0, 0.5);
+                        overflow: visible;
+                        min-height: 380px;
+                        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);">
+                <!-- 3D Asset - Above Content -->
+                <div class="floating-icon value-prop-icon mb-4 mx-auto" style="width: 240px; height: 240px; margin-top: -30px; transition: all 0.5s ease;">
+                    <img src="https://appworks.mpanel.app/image/cache/original/files/images/generated-image-january-14-2026-11-12am-removebg-preview.png?crop=true"
+                         alt="Mobile Apps 3D Icon"
+                         class="w-full h-full object-contain icon-glow"
+                         style="filter: drop-shadow(0 0 25px rgba(255, 75, 54, 0.4)); transition: all 0.5s ease;">
+                </div>
+
+                <!-- Content -->
+                <div class="relative text-center" style="z-index: 2;">
+                    <h3 class="text-white font-bold text-2xl mb-4" style="letter-spacing: -0.02em; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">Mobile Apps That Drive Engagement</h3>
+                    <p class="text-gray-300 leading-relaxed" style="opacity: 0.85; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);">We develop mobile apps for media, sports, and community-driven platforms, built for fan engagement, loyalty programs, and content delivery.</p>
+                </div>
+            </div>
+
+            <!-- Pillar 2: AI Tools (col-span-1) -->
+            <div class="value-prop-card relative rounded-3xl p-6 smooth-transition group flex flex-col"
+                 style="background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.15), transparent);
+                        backdrop-filter: blur(40px);
+                        -webkit-backdrop-filter: blur(40px);
+                        border: 1px solid rgba(255, 255, 255, 0.1);
+                        box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.3), 0 10px 30px rgba(0, 0, 0, 0.5);
+                        overflow: visible;
+                        min-height: 380px;
+                        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);">
+                <!-- 3D Asset - Above Content -->
+                <div class="floating-icon value-prop-icon mb-4 mx-auto" style="width: 240px; height: 240px; margin-top: -30px; animation-delay: 0.5s; transition: all 0.5s ease;">
+                    <img src="https://appworks.mpanel.app/image/cache/original/files/images/generated-image-january-14-2026-11-13am-removebg-preview.png?crop=true"
+                         alt="AI Tools 3D Icon"
+                         class="w-full h-full object-contain icon-glow"
+                         style="filter: drop-shadow(0 0 25px rgba(139, 92, 246, 0.4)); transition: all 0.5s ease;">
+                </div>
+
+                <!-- Content -->
+                <div class="relative text-center" style="z-index: 2;">
+                    <h3 class="text-white font-bold text-2xl mb-4" style="letter-spacing: -0.02em; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">AI That Works for You</h3>
+                    <p class="text-gray-300 leading-relaxed" style="opacity: 0.85; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);">We build AI that enhances your workflow, not replaces it. By automating repetitive tasks, our tools give you more time to focus on creativity, strategy, and growing your business.</p>
+                </div>
+            </div>
+
+            <!-- Pillar 3: Grant Projects (col-span-1) -->
+            <div class="value-prop-card relative rounded-3xl p-6 smooth-transition group flex flex-col"
+                 style="background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.15), transparent);
+                        backdrop-filter: blur(40px);
+                        -webkit-backdrop-filter: blur(40px);
+                        border: 1px solid rgba(255, 255, 255, 0.1);
+                        box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.3), 0 10px 30px rgba(0, 0, 0, 0.5);
+                        overflow: visible;
+                        min-height: 380px;
+                        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);">
+                <!-- 3D Asset - Above Content -->
+                <div class="floating-icon value-prop-icon mb-4 mx-auto" style="width: 240px; height: 240px; margin-top: -30px; animation-delay: 1s; transition: all 0.5s ease;">
+                    <img src="https://appworks.mpanel.app/image/cache/original/files/images/generated-image-january-14-2026-11-20am-removebg-preview.png?crop=true"
+                         alt="Grant Projects 3D Icon"
+                         class="w-full h-full object-contain icon-glow"
+                         style="filter: drop-shadow(0 0 25px rgba(255, 75, 54, 0.4)); transition: all 0.5s ease;">
+                </div>
+
+                <!-- Content -->
+                <div class="relative text-center" style="z-index: 2;">
+                    <h3 class="text-white font-bold text-2xl mb-4" style="letter-spacing: -0.02em; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">Digital Innovation Grant Projects</h3>
+                    <p class="text-gray-300 leading-relaxed" style="opacity: 0.85; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);">We've partnered on Erasmus+, Creative Europe, and other EU-funded projects — building AI platforms, with a team that understands both the tech and the paperwork.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- DIGITAL TRANSFORMATION: 3-STEP PROCESS -->
+<section class="relative py-24" style="background: #200A24;">
+    <div class="mx-auto px-6 lg:px-8" style="max-width: 1400px;">
+        <div class="glass-light rounded-3xl p-12 lg:p-16" style="border-top: 4px solid #FF4B36;">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <h2 class="text-white font-black text-3xl lg:text-4xl mb-6" style="letter-spacing: -0.02em;">
+                    We Don't Sell Products. We Solve Problems.
+                </h2>
+                <div class="inline-block px-8 py-3 rounded-full mb-6" style="background: rgba(255, 75, 54, 0.1); border: 1px solid rgba(255, 75, 54, 0.3);">
+                    <span class="text-vibrant-orange-600 text-sm font-black tracking-wider uppercase">Your Digital Transformation Partner</span>
+                </div>
+                <p class="text-gray-300 text-lg leading-relaxed max-w-3xl mx-auto" style="opacity: 0.85;">Most vendors pitch features. We start by listening. What's broken? What's missing? What would make your team's life easier? Then we build — together, over time, adapting as your needs change.</p>
+            </div>
+
+            <!-- 3-Step Process -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Step 1: Listen -->
+                <div class="glass-medium rounded-2xl p-8 text-center smooth-transition hover-lift">
+                    <div class="mb-6 flex items-center justify-center">
+                        <div class="flex items-center justify-center rounded-full" style="width: 80px; height: 80px; background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); box-shadow: 0 4px 15px rgba(255, 75, 54, 0.3);">
+                            <span class="text-white font-black text-3xl">01</span>
+                        </div>
+                    </div>
+                    <h3 class="text-white font-black text-2xl mb-4" style="letter-spacing: -0.01em;">Listen</h3>
+                    <p class="text-gray-300 leading-relaxed" style="opacity: 0.85;">What's broken? What's missing? What would save your team hours every week or where you could improve? We figure that out first.</p>
+                </div>
+
+                <!-- Step 2: Propose -->
+                <div class="glass-medium rounded-2xl p-8 text-center smooth-transition hover-lift">
+                    <div class="mb-6 flex items-center justify-center">
+                        <div class="flex items-center justify-center rounded-full" style="width: 80px; height: 80px; background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); box-shadow: 0 4px 15px rgba(255, 75, 54, 0.3);">
+                            <span class="text-white font-black text-3xl">02</span>
+                        </div>
+                    </div>
+                    <h3 class="text-white font-black text-2xl mb-4" style="letter-spacing: -0.01em;">Propose</h3>
+                    <p class="text-gray-300 leading-relaxed" style="opacity: 0.85;">Solutions designed around how you actually work. We come back with a plan that fits your organization, your audience, and your goals.</p>
+                </div>
+
+                <!-- Step 3: Deliver -->
+                <div class="glass-medium rounded-2xl p-8 text-center smooth-transition hover-lift">
+                    <div class="mb-6 flex items-center justify-center">
+                        <div class="flex items-center justify-center rounded-full" style="width: 80px; height: 80px; background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); box-shadow: 0 4px 15px rgba(255, 75, 54, 0.3);">
+                            <span class="text-white font-black text-3xl">03</span>
+                        </div>
+                    </div>
+                    <h3 class="text-white font-black text-2xl mb-4" style="letter-spacing: -0.01em;">Deliver</h3>
+                    <p class="text-gray-300 leading-relaxed" style="opacity: 0.85;">We don't hand over the keys and disappear. We're in it with you — your success is how we measure ours.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- OUR SOLUTIONS: PRODUCT SHOWCASES -->
+<section class="relative py-32" style="background: linear-gradient(180deg, #200A24 0%, #0F0520 100%);">
+    <div class="mx-auto px-6 lg:px-8" style="max-width: 1400px;">
+        <!-- Section Header -->
+        <div class="text-center mb-24">
+            <h2 class="text-white font-black text-5xl lg:text-6xl mb-6" style="letter-spacing: -0.02em;">Our Solutions</h2>
+            <div class="flex justify-center mb-6">
+                <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px; box-shadow: 0 0 20px rgba(255, 75, 54, 0.5);"></div>
+            </div>
+            <p class="text-gray-400 text-xl max-w-2xl mx-auto">Innovative platforms powered by AI and designed for impact</p>
+        </div>
+
+        <!-- PRODUCT SHOWCASE 1: mPanel CMS (Text Left / Image Right) -->
+        <div class="product-showcase mb-32 reveal-on-scroll" style="opacity: 0;">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Left: Text Content -->
+                <div class="space-y-6">
+                    <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
+                        <span class="text-white text-xs font-black tracking-wider uppercase">AI-Powered CMS</span>
+                    </div>
+                    <h3 class="text-white font-black text-5xl lg:text-6xl" style="letter-spacing: -0.03em;">mPanel CMS</h3>
+                    <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">Manage content for web and mobile in one place — with AI tools for translations, tagging, and content optimization built in.</p>
+                    <p class="text-gray-400 text-lg leading-relaxed">Built for newsrooms and content teams who need to publish fast across web, mobile, and social—with AI that actually helps.</p>
+                    <a href="/cms_v2.html" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg smooth-transition"
+                       style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); color: white; box-shadow: 0 4px 15px rgba(255, 75, 54, 0.3);">
+                        <span>Explore mPanel</span>
+                        <i class="bi bi-arrow-right text-xl"></i>
+                    </a>
+                </div>
+
+                <!-- Right: MacBook Pro 3D Mockup -->
+                <div class="relative product-mockup">
+                    <!-- Scroll-Following Glow (Orange) -->
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none"
+                         style="width: 600px; height: 600px;
+                                background: radial-gradient(circle, rgba(255, 75, 54, 0.3) 0%, rgba(255, 107, 80, 0.15) 40%, transparent 70%);
+                                filter: blur(60px);"></div>
+
+                    <!-- MacBook Mockup - Straight On -->
+                    <div class="relative">
+                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/image-34.png?crop=true"
+                             alt="mPanel CMS Dashboard"
+                             class="w-full rounded-2xl shadow-2xl"
+                             style="box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 75, 54, 0.2);">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRODUCT SHOWCASE 2: Litteraworks (Text Right / Image Left) -->
+        <div class="product-showcase mb-32 reveal-on-scroll" style="opacity: 0;">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Left: MacBook Pro 3D Mockup -->
+                <div class="relative product-mockup order-2 lg:order-1">
+                    <!-- Scroll-Following Glow (Purple) -->
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none"
+                         style="width: 600px; height: 600px;
+                                background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, rgba(167, 139, 250, 0.15) 40%, transparent 70%);
+                                filter: blur(60px);"></div>
+
+                    <!-- MacBook Mockup - Straight On -->
+                    <div class="relative">
+                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/group-3471-1.png?crop=true"
+                             alt="Litteraworks Transcription Platform"
+                             class="w-full rounded-2xl shadow-2xl"
+                             style="box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(139, 92, 246, 0.2);">
+                    </div>
+                </div>
+
+                <!-- Right: Text Content -->
+                <div class="space-y-6 order-1 lg:order-2">
+                    <div class="inline-block px-4 py-2 rounded-lg" style="background: rgba(139, 92, 246, 0.15); border: 1px solid rgba(139, 92, 246, 0.3);">
+                        <span class="text-accent-purple-400 text-xs font-black tracking-wider uppercase">AI Transcription</span>
+                    </div>
+                    <h3 class="text-white font-black text-5xl lg:text-6xl" style="letter-spacing: -0.03em;">Litteraworks</h3>
+                    <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">Automated transcription, subtitles, and translation - trusted by newsrooms, broadcasters, and enterprises across Europe.</p>
+                    <p class="text-gray-400 text-lg leading-relaxed">Fast, accurate transcription and translation in 40+ languages. Trusted by major broadcasters across Europe.</p>
+                    <a href="https://litteraworks.com" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg smooth-transition"
+                       style="background: rgba(139, 92, 246, 0.2); color: #A78BFA; border: 2px solid rgba(139, 92, 246, 0.4); box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);">
+                        <span>Explore Litteraworks</span>
+                        <i class="bi bi-arrow-right text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRODUCT SHOWCASE 3: Pchela (Text Left / Image Right) -->
+        <div class="product-showcase mb-32 reveal-on-scroll" style="opacity: 0;">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Left: Text Content -->
+                <div class="space-y-6">
+                    <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
+                        <span class="text-white text-xs font-black tracking-wider uppercase">Media Asset Management</span>
+                    </div>
+                    <h3 class="text-white font-black text-5xl lg:text-6xl" style="letter-spacing: -0.03em;">Pchela</h3>
+                    <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">AI-powered media asset management that makes your entire archive searchable and accessible in seconds.</p>
+                    <p class="text-gray-400 text-lg leading-relaxed">Find anything instantly. From video footage to documents - AI-powered search that actually understands what you're looking for.</p>
+                    <a href="/about_v2.html" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg smooth-transition"
+                       style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); color: white; box-shadow: 0 4px 15px rgba(255, 75, 54, 0.3);">
+                        <span>Explore Pchela</span>
+                        <i class="bi bi-arrow-right text-xl"></i>
+                    </a>
+                </div>
+
+                <!-- Right: MacBook Pro 3D Mockup -->
+                <div class="relative product-mockup">
+                    <!-- Scroll-Following Glow (Orange) -->
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none"
+                         style="width: 600px; height: 600px;
+                                background: radial-gradient(circle, rgba(255, 75, 54, 0.3) 0%, rgba(255, 107, 80, 0.15) 40%, transparent 70%);
+                                filter: blur(60px);"></div>
+
+                    <!-- MacBook Mockup - Straight On -->
+                    <div class="relative">
+                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/picture1.jpg?crop=true"
+                             alt="Pchela Media Asset Management"
+                             class="w-full rounded-2xl shadow-2xl"
+                             style="box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 75, 54, 0.2);">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRODUCT SHOWCASE 4: FanFuel (Text Right / Image Left) -->
+        <div class="product-showcase mb-32 reveal-on-scroll" style="opacity: 0;">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Left: iPhone 15 Pro 3D Mockup -->
+                <div class="relative product-mockup order-2 lg:order-1 flex justify-center">
+                    <!-- Scroll-Following Glow (Orange) -->
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none"
+                         style="width: 500px; height: 500px;
+                                background: radial-gradient(circle, rgba(255, 75, 54, 0.3) 0%, rgba(255, 107, 80, 0.15) 40%, transparent 70%);
+                                filter: blur(60px);"></div>
+
+                    <!-- iPhone Mockup - Straight On -->
+                    <div class="relative" style="max-width: 500px;">
+                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/sport-pao-pfc.png?crop=true"
+                             alt="FanFuel Mobile App"
+                             class="w-full rounded-3xl shadow-2xl"
+                             style="box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 75, 54, 0.3);">
+                    </div>
+                </div>
+
+                <!-- Right: Text Content -->
+                <div class="space-y-6 order-1 lg:order-2">
+                    <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
+                        <span class="text-white text-xs font-black tracking-wider uppercase">Sports Tech</span>
+                    </div>
+                    <h3 class="text-white font-black text-5xl lg:text-6xl" style="letter-spacing: -0.03em;">FanFuel</h3>
+                    <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">Mobile apps and loyalty platforms that help sports clubs connect with fans - before, during, and after the game.</p>
+                    <p class="text-gray-400 text-lg leading-relaxed">Turn casual fans into loyal supporters with mobile apps, gamification, and rewards that keep them engaged year-round.</p>
+                    <a href="/sport_v2.html" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg smooth-transition"
+                       style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); color: white; box-shadow: 0 4px 15px rgba(255, 75, 54, 0.3);">
+                        <span>Explore FanFuel</span>
+                        <i class="bi bi-arrow-right text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRODUCT SHOWCASE 5: VerbaVista (Text Left / Image Right) -->
+        <div class="product-showcase mb-32 reveal-on-scroll" style="opacity: 0;">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Left: Text Content -->
+                <div class="space-y-6">
+                    <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
+                        <span class="text-white text-xs font-black tracking-wider uppercase">Media Tech</span>
+                    </div>
+                    <h3 class="text-white font-black text-5xl lg:text-6xl" style="letter-spacing: -0.03em;">VerbaVista</h3>
+                    <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">Digital platforms for newspapers, broadcasters, and publishers - from mobile apps to e-Paper to subscription management.</p>
+                    <p class="text-gray-400 text-lg leading-relaxed">Everything publishers need - mobile apps, web platforms, e-Paper, paywalls, and analytics - in one integrated system.</p>
+                    <a href="/media_v2.html" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg smooth-transition"
+                       style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); color: white; box-shadow: 0 4px 15px rgba(255, 75, 54, 0.3);">
+                        <span>Explore VerbaVista</span>
+                        <i class="bi bi-arrow-right text-xl"></i>
+                    </a>
+                </div>
+
+                <!-- Right: iPhone 15 Pro 3D Mockup -->
+                <div class="relative product-mockup flex justify-center">
+                    <!-- Scroll-Following Glow (Orange) -->
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none"
+                         style="width: 500px; height: 500px;
+                                background: radial-gradient(circle, rgba(255, 75, 54, 0.3) 0%, rgba(255, 107, 80, 0.15) 40%, transparent 70%);
+                                filter: blur(60px);"></div>
+
+                    <!-- iPhone Mockup - Straight On -->
+                    <div class="relative" style="max-width: 500px;">
+                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/media-phones-dan-i-insajder.png?crop=true"
+                             alt="VerbaVista Media Platform"
+                             class="w-full rounded-3xl shadow-2xl"
+                             style="box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 75, 54, 0.3);">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- EXPERTISE BENTO GRID: 3-Column -->
+<section class="relative py-24" style="background: #200A24;">
+    <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+            <h2 class="text-white font-black text-4xl lg:text-5xl mb-6" style="letter-spacing: -0.02em;">Our Expertise</h2>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto">Beyond our products, we bring strategic expertise and technical depth</p>
+        </div>
+
+        <!-- 3-Column Bento Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Card 1: Digital Transformation Partner -->
+            <div class="relative rounded-3xl p-10 smooth-transition hover-lift group"
+                 style="background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.1), transparent);
+                        backdrop-filter: blur(40px);
+                        -webkit-backdrop-filter: blur(40px);
+                        border: 1px solid rgba(255, 75, 54, 0.3);
+                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                        min-height: 400px;
+                        overflow: visible;">
+
+                <div class="space-y-4">
+                    <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
+                        <span class="text-white text-xs font-black tracking-wider uppercase">Consulting</span>
+                    </div>
+                    <h3 class="text-white font-bold text-3xl" style="letter-spacing: -0.02em;">Digital Transformation Partner</h3>
+                    <p class="text-gray-300 text-base leading-relaxed" style="opacity: 0.85;">We don't just build platforms - we help you figure out what to build. Strategy, technology, and execution, together.</p>
+                    <a href="/consultation_v2.html" class="inline-flex items-center gap-2 text-vibrant-orange-600 font-bold text-sm mt-4 group-hover:gap-3 smooth-transition">
+                        <span>Learn More</span>
+                        <i class="bi bi-arrow-right text-lg"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 2: Grant Projects -->
+            <div class="relative rounded-3xl p-10 smooth-transition hover-lift group"
+                 style="background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.1), transparent);
+                        backdrop-filter: blur(40px);
+                        -webkit-backdrop-filter: blur(40px);
+                        border: 1px solid rgba(255, 75, 54, 0.3);
+                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                        min-height: 400px;">
+
+                <div class="space-y-4">
+                    <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
+                        <span class="text-white text-xs font-black tracking-wider uppercase">EU-Funded Innovation</span>
+                    </div>
+                    <h3 class="text-white font-bold text-3xl" style="letter-spacing: -0.02em;">Grant Projects</h3>
+                    <p class="text-gray-300 text-base leading-relaxed" style="opacity: 0.85;">Technology partner for Erasmus+, Creative Europe, and other EU-funded initiatives - we handle the tech, you focus on impact.</p>
+                    <a href="/projects_v2.html" class="inline-flex items-center gap-2 text-vibrant-orange-600 font-bold text-sm mt-4 group-hover:gap-3 smooth-transition">
+                        <span>Learn More</span>
+                        <i class="bi bi-arrow-right text-lg"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 3: AI Solutions -->
+            <div class="relative rounded-3xl p-10 smooth-transition hover-lift group"
+                 style="background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.1), transparent);
+                        backdrop-filter: blur(40px);
+                        -webkit-backdrop-filter: blur(40px);
+                        border: 1px solid rgba(139, 92, 246, 0.3);
+                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                        min-height: 400px;">
+
+                <div class="space-y-4">
+                    <div class="inline-block px-4 py-2 rounded-lg" style="background: rgba(139, 92, 246, 0.15); border: 1px solid rgba(139, 92, 246, 0.3);">
+                        <span class="text-accent-purple-400 text-xs font-black tracking-wider uppercase">Custom AI Platforms</span>
+                    </div>
+                    <h3 class="text-white font-bold text-3xl" style="letter-spacing: -0.02em;">AI Solutions</h3>
+                    <p class="text-gray-300 text-base leading-relaxed" style="opacity: 0.85;">From content automation to intelligent workflows - we build AI tools tailored to how your organization actually works.</p>
+                    <a href="/about_v2.html" class="inline-flex items-center gap-2 text-accent-purple-400 font-bold text-sm mt-4 group-hover:gap-3 smooth-transition">
+                        <span>Learn More</span>
+                        <i class="bi bi-arrow-right text-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- From Our Blog Section -->
+<section class="relative py-24" style="background: #200A24;">
+    <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+        <!-- Section Header -->
+        <div class="flex flex-col lg:flex-row items-center justify-between mb-12">
+            <div class="text-center lg:text-left mb-6 lg:mb-0">
+                <h2 class="text-white font-bold text-4xl lg:text-5xl mb-4" style="letter-spacing: -0.02em;">From Our Blog</h2>
+                <div class="flex justify-center lg:justify-start">
+                    <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px;"></div>
+                </div>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="flex flex-wrap justify-center gap-3">
+                <button class="filter-btn active px-6 py-2 rounded-lg font-semibold text-sm smooth-transition" data-filter="*" style="background: rgba(255, 75, 54, 0.15); color: #FF6B50; border: 1px solid rgba(255, 75, 54, 0.3);">All</button>
+                <button class="filter-btn px-6 py-2 rounded-lg font-semibold text-sm smooth-transition" data-filter="4" style="background: rgba(255, 255, 255, 0.05); color: rgba(255, 255, 255, 0.6); border: 1px solid rgba(255, 255, 255, 0.1);">Media</button>
+                <button class="filter-btn px-6 py-2 rounded-lg font-semibold text-sm smooth-transition" data-filter="3" style="background: rgba(255, 255, 255, 0.05); color: rgba(255, 255, 255, 0.6); border: 1px solid rgba(255, 255, 255, 0.1);">Sports</button>
+                <button class="filter-btn px-6 py-2 rounded-lg font-semibold text-sm smooth-transition" data-filter="9" style="background: rgba(255, 255, 255, 0.05); color: rgba(255, 255, 255, 0.6); border: 1px solid rgba(255, 255, 255, 0.1);">AI</button>
+                <button class="filter-btn px-6 py-2 rounded-lg font-semibold text-sm smooth-transition" data-filter="10" style="background: rgba(255, 255, 255, 0.05); color: rgba(255, 255, 255, 0.6); border: 1px solid rgba(255, 255, 255, 0.1);">Grant Projects</button>
+            </div>
+        </div>
+
+        <!-- Articles Container: 1 Large + 3 Small Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6" style="grid-template-rows: auto;">
+            <!-- Latest Article (Large - Left Side) -->
+            <div id="latestArticle" class="lg:row-span-3">
+                <!-- Latest article will be loaded here -->
+            </div>
+
+            <!-- Next 3 Articles (Small - Right Side) -->
+            <div id="smallArticles" class="grid grid-cols-1 gap-6">
+                <!-- Next 3 articles will be loaded here -->
+            </div>
+        </div>
+
+        <!-- View All Button -->
+        <div class="text-center mt-12">
+            <a href="/articles" class="inline-flex items-center justify-center gap-3 px-10 py-4 rounded-xl font-bold text-white transition-all duration-300 hover:-translate-y-1" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); box-shadow: 0 4px 12px rgba(255, 75, 54, 0.3);">
+                <span>VIEW ALL</span>
+                <i class="bi bi-arrow-right text-xl"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- What Our Partners Say (Testimonials) -->
+<section class="relative py-24" style="background: #200A24;">
+    <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+            <h2 class="text-white font-bold text-4xl lg:text-5xl mb-6" style="letter-spacing: -0.02em;">What Our Partners Say</h2>
+            <div class="flex justify-center mb-6">
+                <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px;"></div>
+            </div>
+        </div>
+
+        <!-- Testimonials Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Testimonial 1: Insajder -->
+            <div class="glass-medium rounded-2xl p-10 smooth-transition hover-lift" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); border-top: 4px solid transparent;">
+                <p class="text-base leading-relaxed mb-8 font-medium" style="color: #FFFFFF; opacity: 1;"><strong>"A reliable partner we can always count on. App Works offers the ideal combination of innovative products and dedicated support. Beyond their top-tier technical expertise, what we value most about App Works is their fantastic communication and speed of response. We feel like they're part of our team, not just external collaborators."</strong></p>
+                <div class="flex items-center gap-6 pt-6 border-t border-white/10">
+                    <div data-partner="insajder" data-css="h-14 w-auto object-contain"></div>
+                    <div>
+                        <h5 class="font-bold text-base mb-1" style="color: #FFFFFF;">Predrag Urošević</h5>
+                        <p class="text-gray-400 text-sm">Insajder</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 2: QPR -->
+            <div class="glass-medium rounded-2xl p-10 smooth-transition hover-lift" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);">
+                <p class="text-base leading-relaxed mb-8 font-medium" style="color: #FFFFFF; opacity: 1;"><strong>"I started using Litteraworks in recent weeks and, I must confess, was skeptical to begin with. How beneficial would it actually be? How much time would be spent reviewing, editing, and correcting multiple grammatical errors? I was genuinely taken aback by the accuracy and speed of the transcription. It has had a significant impact on reducing the team's workload and I cannot recommend it higher."</strong></p>
+                <div class="flex items-center gap-6 pt-6 border-t border-white/10">
+                    <div data-partner="qpr" data-css="h-14 w-auto object-contain"></div>
+                    <div>
+                        <h5 class="font-bold text-base mb-1" style="color: #FFFFFF;">Paul Morrisey</h5>
+                        <p class="text-gray-400 text-sm">QPR</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 3: Politika -->
+            <div class="glass-medium rounded-2xl p-10 smooth-transition hover-lift" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);">
+                <p class="text-base leading-relaxed mb-8 font-medium" style="color: #FFFFFF; opacity: 1;"><strong>"Working with the Appworks team has been straightforward and highly efficient from the very beginning. Our goal is to boost the number of our premium subscribers and the solutions they proposed were practical, reliable, and easy to adapt to our needs. When we ask for something, it is done without any problems, we especially value their availability and their willingness to always find the best possible solution."</strong></p>
+                <div class="flex items-center gap-6 pt-6 border-t border-white/10">
+                    <div data-partner="politika" data-css="h-14 w-auto object-contain"></div>
+                    <div>
+                        <h5 class="font-bold text-base mb-1" style="color: #FFFFFF;">Zvezdan Tošić</h5>
+                        <p class="text-gray-400 text-sm">Politika</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 4: Greek Basketball League -->
+            <div class="glass-medium rounded-2xl p-10 smooth-transition hover-lift" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);">
+                <p class="text-base leading-relaxed mb-8 font-medium" style="color: #FFFFFF; opacity: 1;"><strong>"We aim to be one of the greatest leagues in Europe with complete digital services. Appworks' offer was so attractive and it was the first time that someone understood what we wanted. Our cooperation has started well and we are very happy with it, hoping it will continue into the future. We appreciate Appworks coming to Athens and meeting us in person and we are very excited about the ideas we have talked about."</strong></p>
+                <div class="flex items-center gap-6 pt-6 border-t border-white/10">
+                    <div data-partner="esake" data-css="h-14 w-auto object-contain"></div>
+                    <div>
+                        <h5 class="font-bold text-base mb-1" style="color: #FFFFFF;">Sotiris Katoufas</h5>
+                        <p class="text-gray-400 text-sm">Greek Basketball League</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 5: KRIK -->
+            <div class="glass-medium rounded-2xl p-10 smooth-transition hover-lift" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);">
+                <p class="text-base leading-relaxed mb-8 font-medium" style="color: #FFFFFF; opacity: 1;"><strong>"By creating and developing a mobile app for KRIK, we wanted to establish more direct communication with our readers, as well as to use a platform with an innovative design and practical features. We are glad that, with the help of the AppWorks team, we will continue to develop even more interaction with our audience in the coming period."</strong></p>
+                <div class="flex items-center gap-6 pt-6 border-t border-white/10">
+                    <div data-partner="krik" data-css="h-14 w-auto object-contain"></div>
+                    <div>
+                        <h5 class="font-bold text-base mb-1" style="color: #FFFFFF;">Jelena Vasić</h5>
+                        <p class="text-gray-400 text-sm">KRIK</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 6: FK Partizan -->
+            <div class="glass-medium rounded-2xl p-10 smooth-transition hover-lift" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);">
+                <p class="text-base leading-relaxed mb-8 font-medium" style="color: #FFFFFF; opacity: 1;"><strong>"A great team of professionals, the collaboration is at a very high level. We specifically use the website, CMS, mobile app and LitteraWorks, and we are extremely satisfied with all the platforms. We look forward to continuing our cooperation."</strong></p>
+                <div class="flex items-center gap-6 pt-6 border-t border-white/10">
+                    <div data-partner="fk-partizan" data-css="h-14 w-auto object-contain"></div>
+                    <div>
+                        <h5 class="font-bold text-base mb-1" style="color: #FFFFFF;">Mirko Panajotović</h5>
+                        <p class="text-gray-400 text-sm">FK Partizan</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 7: DAN -->
+            <div class="glass-medium rounded-2xl p-10 smooth-transition hover-lift" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);">
+                <p class="text-base leading-relaxed mb-8" style="color: #FFFFFF; opacity: 1;"><strong>"We have spoken with different app providers, but Appworks' offer was the most attractive one. They are solving problems fast, even in the evenings or after regular working hours."</strong></p>
+                <div class="flex items-center gap-6 pt-6 border-t border-white/10">
+                    <div data-partner="dan" data-css="h-14 w-auto object-contain"></div>
+                    <div>
+                        <h5 class="font-bold text-base mb-1" style="color: #FFFFFF;">Ratko Ćetković</h5>
+                        <p class="text-gray-400 text-sm">DAN</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 8: Croatian Basketball Federation -->
+            <div class="glass-medium rounded-2xl p-10 smooth-transition hover-lift" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);">
+                <p class="text-base leading-relaxed mb-8" style="color: #FFFFFF; opacity: 1;"><strong>"At a time when the market is changing and most younger basketball followers are using phones, our collaboration with AppWorks has proven to be extremely important, as the app allows everyone to more easily follow all the news about Croatian basketball. The growth in followers is also evident through the prize games, where more and more people participate week after week. The team at AppWorks is available to us daily in case any issues arise or if we have ideas for changes."</strong></p>
+                <div class="flex items-center gap-6 pt-6 border-t border-white/10">
+                    <div data-partner="hks" data-css="h-14 w-auto object-contain"></div>
+                    <div>
+                        <h5 class="font-bold text-base mb-1" style="color: #FFFFFF;">Andro Anzulović</h5>
+                        <p class="text-gray-400 text-sm">Croatian Basketball Federation</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 9: Cedevita Olimpija -->
+            <div class="glass-medium rounded-2xl p-10 smooth-transition hover-lift" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);">
+                <p class="text-base leading-relaxed mb-8" style="color: #FFFFFF; opacity: 1;"><strong>"We are entering the third season of collaboration between KK Cedevita Olimpija and Appworks in the development of the 6.Zmaj loyalty app. We are extremely satisfied with this partnership because it is not just a business relationship, but also a shared passion for basketball. We are developing the app in the desired direction, constantly exchanging ideas, and striving to improve and expand its features for our members, whose numbers are growing daily. We actively listen to their feedback and suggestions, ensuring we respond as quickly as possible. The Mapworks team is always available, responding promptly to all our requests and ideas. We are truly more than satisfied with their dedication and support."</strong></p>
+                <div class="flex items-center gap-6 pt-6 border-t border-white/10">
+                    <div data-partner="cedevita" data-css="h-14 w-auto object-contain"></div>
+                    <div>
+                        <h5 class="font-bold text-base mb-1" style="color: #FFFFFF;">Igor Jagić</h5>
+                        <p class="text-gray-400 text-sm">Cedevita Olimpija</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 10: Večer -->
+            <div class="glass-medium rounded-2xl p-10 smooth-transition hover-lift" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);">
+                <p class="text-base leading-relaxed mb-8" style="color: #FFFFFF; opacity: 1;"><strong>"We had a mobile app earlier, but we were not satisfied. Appworks has offered us to pay for the app on a monthly level instead of paying in advance. Our main goal is to keep current premium users and attract new ones. We are satisfied with how both the app and e-kiosk work and look. Cooperation with Appworks is successful and we believe we can make further improvements to the users' experience."</strong></p>
+                <div class="flex items-center gap-6 pt-6 border-t border-white/10">
+                    <div data-partner="vecer" data-css="h-14 w-auto object-contain"></div>
+                    <div>
+                        <h5 class="font-bold text-base mb-1" style="color: #FFFFFF;">Miha Klančar</h5>
+                        <p class="text-gray-400 text-sm">Večer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Some of our partners -->
+<section class="relative py-24" style="background: #200A24;">
+    <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+            <h2 class="text-white font-bold text-4xl lg:text-5xl" style="letter-spacing: -0.02em;">Some of our partners</h2>
+        </div>
+
+        <!-- Partners Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12">
+            <a href="https://www.media24.si/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                <div data-partner="media24" data-css="max-h-16 w-auto object-contain"></div>
+            </a>
+            <a href="https://www.leedsunited.com/en/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                <div data-partner="leeds" data-css="max-h-16 w-auto object-contain"></div>
+            </a>
+            <a href="https://www.hrt.hr/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                <div data-partner="hrt" data-css="max-h-16 w-auto object-contain"></div>
+            </a>
+            <a href="https://www.partizan.rs/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                <div data-partner="fk-partizan" data-css="max-h-16 w-auto object-contain"></div>
+            </a>
+            <a href="https://www.rts.rs/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                <div data-partner="rts" data-css="max-h-16 w-auto object-contain"></div>
+            </a>
+            <a href="https://www.qpr.co.uk/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                <div data-partner="qpr" data-css="max-h-16 w-auto object-contain"></div>
+            </a>
+            <a href="https://www.ringier.rs/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                <div data-partner="ringier" data-css="max-h-16 w-auto object-contain"></div>
+            </a>
+            <a href="https://www.pao.gr/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                <div data-partner="pao" data-css="max-h-16 w-auto object-contain"></div>
+            </a>
+            <a href="https://www.n1info.rs/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                <div data-partner="n1" data-css="max-h-16 w-auto object-contain"></div>
+            </a>
+            <a href="https://www.cedevita.olimpija.com/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                <div data-partner="cedevita" data-css="max-h-16 w-auto object-contain"></div>
+            </a>
+            <a href="https://www.politika.rs/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                <div data-partner="politika" data-css="max-h-16 w-auto object-contain"></div>
+            </a>
+            <a href="https://www.dan.co.me/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                <div data-partner="dan" data-css="max-h-16 w-auto object-contain"></div>
+            </a>
+            <a href="https://www.dpgmediagroup.gr/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                <div data-partner="dpg" data-css="max-h-16 w-auto object-contain"></div>
+            </a>
+            <a href="https://www.euronews.rs/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                <div data-partner="euronews" data-css="max-h-16 w-auto object-contain"></div>
+            </a>
+            <a href="https://www.danas.rs/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                <div data-partner="danas" data-css="max-h-16 w-auto object-contain"></div>
+            </a>
+            <a href="https://www.hanzamedia.hr/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                <div data-partner="hanza-media" data-css="max-h-16 w-auto object-contain"></div>
+            </a>
+            <a href="https://www.insajder.net/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                <div data-partner="insajder" data-css="max-h-16 w-auto object-contain"></div>
+            </a>
+            <a href="https://novatv.rs/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                <div data-partner="nova-s" data-css="max-h-16 w-auto object-contain"></div>
+            </a>
+            <a href="https://www.esake.gr/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                <div data-partner="esake" data-css="max-h-16 w-auto object-contain"></div>
+            </a>
+            <a href="https://www.rtcg.me/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                <div data-partner="rtcg" data-css="max-h-16 w-auto object-contain"></div>
+            </a>
+            <a href="https://www.wmg.rs/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                <div data-partner="wmg" data-css="max-h-16 w-auto object-contain"></div>
+            </a>
+            <a href="https://www.vijesti.me/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                <div data-partner="vijesti" data-css="max-h-16 w-auto object-contain"></div>
+            </a>
+            <a href="https://www.tanjug.rs/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                <div data-partner="tanjug" data-css="max-h-16 w-auto object-contain"></div>
+            </a>
+            <a href="https://www.satplus.rs/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                <div data-partner="sat" data-css="max-h-16 w-auto object-contain"></div>
+            </a>
+            <a href="https://www.hks-cbf.hr/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
+                <div data-partner="hks" data-css="max-h-16 w-auto object-contain"></div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer Section -->
+<footer class="relative py-20" style="background: rgba(0, 0, 0, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.1);">
+    <div class="mx-auto px-6 lg:px-8 mb-12" style="max-width: 1600px;">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            <!-- Column 1: Logo & Social -->
+            <div>
+                <img src="https://app-works.app/images/appworks.png" alt="Appworks Logo" class="h-16 w-auto mb-4">
+                <p class="text-gray-400 text-base leading-relaxed mb-6">Creative solutions for innovative partners.</p>
+                <div class="flex gap-3">
+                    <a href="https://www.linkedin.com/company/appworks-d-o-o/" target="_blank" class="flex items-center justify-center w-10 h-10 rounded-lg smooth-transition glass-light hover:bg-vibrant-orange-600/20 text-gray-400 hover:text-vibrant-orange-600">
+                        <i class="bi bi-linkedin text-xl"></i>
+                    </a>
+                    <a href="https://www.instagram.com/weareappworks/" target="_blank" class="flex items-center justify-center w-10 h-10 rounded-lg smooth-transition glass-light hover:bg-vibrant-orange-600/20 text-gray-400 hover:text-vibrant-orange-600">
+                        <i class="bi bi-instagram text-xl"></i>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCydhgWA6Kg40T9EFmRVDb9A" target="_blank" class="flex items-center justify-center w-10 h-10 rounded-lg smooth-transition glass-light hover:bg-vibrant-orange-600/20 text-gray-400 hover:text-vibrant-orange-600">
+                        <i class="bi bi-youtube text-xl"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Column 2: Company -->
+            <div>
+                <h4 class="text-white font-bold text-base mb-6" style="letter-spacing: -0.01em;">Company</h4>
+                <ul class="space-y-3">
+                    <li><a href="/about_v2.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">About us</a></li>
+                    <li><a href="/partners_v2.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Partners</a></li>
+                    <li><a href="/about_v2.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Contact us</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Solutions -->
+            <div>
+                <h4 class="text-white font-bold text-base mb-6" style="letter-spacing: -0.01em;">Solutions</h4>
+                <ul class="space-y-3">
+                    <li><a href="/cms" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">CMS</a></li>
+                    <li><a href="/media" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Media</a></li>
+                    <li><a href="/sport" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Sports</a></li>
+                    <li><a href="https://litteraworks.com" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Litteraworks</a></li>
+                    <li><a href="/about" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Pchela</a></li>
+                    <li><a href="/consultation_v2.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Consultation</a></li>
+                    <li><a href="/projects" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Grant Projects</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 4: Contact -->
+            <div>
+                <h4 class="text-white font-bold text-base mb-6 flex items-center gap-2" style="letter-spacing: -0.01em;">
+                    Contact us
+                    <i class="bi bi-arrow-right text-vibrant-orange-600 text-sm"></i>
+                </h4>
+                <a href="mailto:info@app-works.app" class="text-white font-semibold text-sm hover:text-vibrant-orange-600 smooth-transition">info@app-works.app</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="pt-8 border-t border-white/10 text-center">
+        <p class="text-gray-500 text-sm">&copy; 2026 Appworks. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- Scroll to Top Button -->
+<button id="scroll-to-top" class="fixed bottom-8 right-8 w-12 h-12 rounded-full items-center justify-center smooth-transition opacity-0 pointer-events-none" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); box-shadow: 0 4px 12px rgba(255, 75, 54, 0.4); z-index: 999;">
+    <i class="bi bi-arrow-up text-white text-xl"></i>
+</button>
+
+<script>
+// Header scroll effect
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('.header-nav');
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
+
+// Scroll to top button
+const scrollBtn = document.getElementById('scroll-to-top');
+window.addEventListener('scroll', function() {
+    if (window.scrollY > 500) {
+        scrollBtn.style.opacity = '1';
+        scrollBtn.style.pointerEvents = 'auto';
+        scrollBtn.classList.add('flex');
+    } else {
+        scrollBtn.style.opacity = '0';
+        scrollBtn.style.pointerEvents = 'none';
+    }
+});
+
+scrollBtn.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// Mobile menu toggle
+const mobileMenuBtn = document.getElementById('mobile-menu-button');
+// Add mobile menu implementation as needed
+</script>
+
+<!-- Blog Articles Dynamic Loading Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const latestArticleContainer = document.getElementById('latestArticle');
+    const smallArticlesContainer = document.getElementById('smallArticles');
+
+    function fetchAndDisplayArticles(filter = '*') {
+        let apiUrl = 'https://appworks.mpanel.app/api/webV2/getArticles';
+
+        // Limit to 4 articles (1 large + 3 small)
+        if (filter === '*') {
+            apiUrl += '?articleLimit=4';
+        } else {
+            apiUrl += `?category[]=${encodeURIComponent(filter)}&articleLimit=4`;
+        }
+
+        fetch(apiUrl, {
+            headers: {
+                'Authorization': 'kmNTuI8dRmRX'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (!data.success || !data.result || !data.result.articles || data.result.articles.length === 0) {
+                latestArticleContainer.innerHTML = '<div class="text-center glass-medium rounded-2xl p-10"><p class="text-gray-300">No articles found</p></div>';
+                smallArticlesContainer.innerHTML = '';
+                return;
+            }
+
+            latestArticleContainer.innerHTML = ''; // Clear latest article
+            smallArticlesContainer.innerHTML = ''; // Clear small articles
+
+            data.result.articles.forEach((article, index) => {
+                const slug = article.title.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').trim('-');
+
+                if (index === 0) {
+                    // Featured article - large card (full height of right column)
+                    const articleHtml = `
+                        <a href="article.php?slug=${slug}" class="block glass-medium rounded-2xl overflow-hidden smooth-transition hover-lift group h-full" style="box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);">
+                            <div class="relative h-full overflow-hidden" style="min-height: 600px;">
+                                <img src="${article.images['medium-full'].url}?crop=true"
+                                     onerror="this.src='https://app-works.app/images/placeholder.jpg'"
+                                     alt="${article.title}"
+                                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                                <div class="absolute inset-0 bg-gradient-to-t from-royal-purple-900 via-transparent to-transparent opacity-70"></div>
+                                <div class="absolute bottom-0 left-0 right-0 p-10">
+                                    <h3 class="text-white font-bold text-3xl leading-tight mb-4" style="letter-spacing: -0.01em;">${article.title}</h3>
+                                </div>
+                                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <div class="w-20 h-20 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); box-shadow: 0 0 40px rgba(255, 75, 54, 0.6);">
+                                        <i class="bi bi-arrow-right text-white text-3xl"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    `;
+                    latestArticleContainer.innerHTML = articleHtml;
+                } else if (index <= 3) {
+                    // Smaller articles (3 stacked on right)
+                    const smallArticleHtml = `
+                        <a href="article.php?slug=${slug}" class="block glass-medium rounded-xl overflow-hidden smooth-transition hover-lift group" style="box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); height: 192px;">
+                            <div class="flex flex-row h-full">
+                                <div class="relative w-2/5 overflow-hidden">
+                                    <img src="${article.images['medium-full'].url}?crop=true"
+                                         onerror="this.src='https://app-works.app/images/placeholder.jpg'"
+                                         alt="${article.title}"
+                                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                                </div>
+                                <div class="w-3/5 p-5 flex items-center">
+                                    <h4 class="text-white font-semibold text-lg leading-snug line-clamp-3">${article.title}</h4>
+                                </div>
+                            </div>
+                        </a>
+                    `;
+                    smallArticlesContainer.insertAdjacentHTML('beforeend', smallArticleHtml);
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching articles:', error);
+            latestArticleContainer.innerHTML = '<div class="text-center glass-medium rounded-2xl p-10"><p class="text-gray-300">Error loading articles</p></div>';
+            smallArticlesContainer.innerHTML = '';
+        });
+    }
+
+    // Initial load of all articles
+    fetchAndDisplayArticles();
+
+    // Add click handlers for filter buttons
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            // Update active state
+            filterButtons.forEach(btn => {
+                btn.style.background = 'rgba(255, 255, 255, 0.05)';
+                btn.style.color = 'rgba(255, 255, 255, 0.6)';
+                btn.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                btn.classList.remove('active');
+            });
+
+            this.style.background = 'rgba(255, 75, 54, 0.15)';
+            this.style.color = '#FF6B50';
+            this.style.borderColor = 'rgba(255, 75, 54, 0.3)';
+            this.classList.add('active');
+
+            const filter = this.getAttribute('data-filter');
+            fetchAndDisplayArticles(filter);
+        });
+    });
+});
+</script>
+
+<!-- High-End Polish: Micro-Interactions Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. MAGNETIC BUTTONS
+    const magneticButtons = document.querySelectorAll('.magnetic-button');
+
+    magneticButtons.forEach(button => {
+        button.addEventListener('mousemove', function(e) {
+            const rect = button.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+
+            const distance = Math.sqrt(x * x + y * y);
+            const maxDistance = 100; // 20px magnetic pull distance
+
+            if (distance < maxDistance) {
+                const strength = (maxDistance - distance) / maxDistance;
+                const moveX = x * strength * 0.3;
+                const moveY = y * strength * 0.3;
+                button.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            }
+        });
+
+        button.addEventListener('mouseleave', function() {
+            button.style.transform = 'translate(0, 0)';
+        });
+    });
+
+    // 2. BORDER GLOW FOLLOWING CURSOR ON BENTO CARDS
+    const bentoCards = document.querySelectorAll('.bento-card');
+
+    bentoCards.forEach(card => {
+        card.addEventListener('mousemove', function(e) {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const percentX = (x / rect.width) * 100;
+            const percentY = (y / rect.height) * 100;
+
+            card.style.setProperty('--mouse-x', `${percentX}%`);
+            card.style.setProperty('--mouse-y', `${percentY}%`);
+        });
+    });
+
+    // 3. 3D TILT EFFECT ON BENTO CARDS
+    bentoCards.forEach(card => {
+        card.addEventListener('mousemove', function(e) {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = ((y - centerY) / centerY) * -5; // Tilt up/down
+            const rotateY = ((x - centerX) / centerX) * 5;  // Tilt left/right
+
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.02)`;
+        });
+
+        card.addEventListener('mouseleave', function() {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)';
+        });
+    });
+
+    // 4. STAGGERED REVEAL ANIMATION FOR BENTO GRID
+    const bentoGrid = document.getElementById('bento-grid');
+    if (bentoGrid) {
+        const cards = bentoGrid.querySelectorAll('.bento-card');
+
+        // Set initial state
+        cards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(40px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+        });
+
+        // Trigger staggered animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    cards.forEach((card, index) => {
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, index * 100); // 0.1s delay between cards
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        observer.observe(bentoGrid);
+    }
+
+    // 5. VALUE PROPS REACTIVE LIGHTING (Hover States)
+    const valueCards = document.querySelectorAll('.value-prop-card');
+
+    valueCards.forEach(card => {
+        const icon = card.querySelector('.icon-glow');
+        const iconContainer = card.querySelector('.value-prop-icon');
+
+        card.addEventListener('mouseenter', function() {
+            // Scale and brighten the icon
+            if (iconContainer) {
+                iconContainer.style.transform = 'scale(1.1)';
+            }
+            if (icon) {
+                const currentFilter = icon.style.filter;
+                icon.style.filter = currentFilter + ' brightness(1.2)';
+            }
+
+            // Change border to vibrant orange glow
+            card.style.borderColor = 'rgba(255, 75, 54, 0.8)';
+            card.style.boxShadow = 'inset 0 1px 2px rgba(255, 255, 255, 0.3), 0 15px 40px rgba(255, 75, 54, 0.4), 0 0 60px rgba(255, 75, 54, 0.2)';
+
+            // Intensify the icon neon glow
+            if (icon) {
+                const currentDropShadow = icon.style.filter.includes('drop-shadow')
+                    ? icon.style.filter.replace(/drop-shadow\([^)]+\)/, 'drop-shadow(0 0 40px rgba(255, 75, 54, 0.8))')
+                    : icon.style.filter + ' drop-shadow(0 0 40px rgba(255, 75, 54, 0.8))';
+                icon.style.filter = currentDropShadow;
+            }
+
+            // Slight lift
+            card.style.transform = 'translateY(-8px) scale(1.02)';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            // Reset icon scale and brightness
+            if (iconContainer) {
+                iconContainer.style.transform = 'scale(1)';
+            }
+            if (icon) {
+                icon.style.filter = icon.style.filter.replace(' brightness(1.2)', '');
+            }
+
+            // Reset border to subtle white
+            card.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+            card.style.boxShadow = 'inset 0 1px 2px rgba(255, 255, 255, 0.3), 0 10px 30px rgba(0, 0, 0, 0.5)';
+
+            // Reset icon shadow based on card index
+            if (icon) {
+                const imgSrc = icon.src;
+                if (imgSrc.includes('11-12am')) {
+                    // Mobile Apps - Orange glow
+                    icon.style.filter = 'drop-shadow(0 0 25px rgba(255, 75, 54, 0.4))';
+                } else if (imgSrc.includes('11-13am')) {
+                    // AI - Purple glow
+                    icon.style.filter = 'drop-shadow(0 0 25px rgba(139, 92, 246, 0.4))';
+                } else {
+                    // Grants - Orange glow
+                    icon.style.filter = 'drop-shadow(0 0 25px rgba(255, 75, 54, 0.4))';
+                }
+            }
+
+            // Reset position
+            card.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+    // 6. PRODUCT SHOWCASES: REVEAL-ON-SCROLL ANIMATION
+    const productShowcases = document.querySelectorAll('.reveal-on-scroll');
+
+    if (productShowcases.length > 0) {
+        const showcaseObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Fade in and slide up
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    showcaseObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        });
+
+        productShowcases.forEach(showcase => {
+            showcase.style.transform = 'translateY(60px)';
+            showcase.style.transition = 'opacity 0.8s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            showcaseObserver.observe(showcase);
+        });
+    }
+});
+</script>
+
+<style>
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ENERGY CORE PULSE ANIMATION */
+@keyframes energyPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+/* PRODUCT MOCKUP HOVER EFFECTS */
+.product-mockup img {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+}
+
+.product-mockup:hover img {
+    transform: perspective(1500px) rotateY(0deg) rotateX(0deg) scale(1.05) !important;
+}
+</style>
+
+
+    <!-- Partner Logo System -->
+    <script src="/js/partner-logos.js"></script>
+    <script src="/js/partner-loader.js"></script>
+</body>
+</html>
