@@ -110,7 +110,7 @@ if ($articleData) {
 
     // Create clean slug URL
     $cleanSlug = createSlug($articleData['title']);
-    $pageUrl = "https://" . $_SERVER['HTTP_HOST'] . "/article_v2.php?slug=" . $cleanSlug;
+    $pageUrl = "https://" . $_SERVER['HTTP_HOST'] . "/article.php?slug=" . $cleanSlug;
 }
 
 // Keywords
@@ -505,14 +505,14 @@ if ($articleData) {
         <div class="flex items-center justify-between h-20">
             <!-- Logo -->
             <div class="flex-shrink-0">
-                <a href="/home_v2.html" class="flex items-center">
+                <a href="/home.html" class="flex items-center">
                     <img src="https://app-works.app/images/appworks.png" alt="Appworks" class="h-12 w-auto">
                 </a>
             </div>
 
             <!-- Desktop Navigation -->
             <nav class="hidden lg:flex items-center space-x-8">
-                <a href="/home_v2.html" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">Home</a>
+                <a href="/home.html" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">Home</a>
 
                 <!-- Solutions Dropdown -->
                 <div class="nav-item relative group">
@@ -522,7 +522,7 @@ if ($articleData) {
                     </button>
                     <div class="mega-dropdown" style="width: 580px; max-width: 90vw;">
                         <div class="flex flex-col gap-3">
-                            <a href="/cms_v2.html" class="mega-dropdown-item block group/item">
+                            <a href="/cms.html" class="mega-dropdown-item block group/item">
                                 <div class="flex items-center gap-4">
                                     <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center" style="background: rgba(255, 75, 54, 0.1);">
                                         <i class="bi bi-display text-vibrant-orange-600 text-2xl"></i>
@@ -535,7 +535,7 @@ if ($articleData) {
                                 </div>
                             </a>
                             <div class="h-px bg-white/10"></div>
-                            <a href="/media_v2.html" class="mega-dropdown-item block group/item">
+                            <a href="/media.html" class="mega-dropdown-item block group/item">
                                 <div class="flex items-center gap-4">
                                     <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center" style="background: rgba(255, 75, 54, 0.1);">
                                         <i class="bi bi-newspaper text-vibrant-orange-600 text-2xl"></i>
@@ -548,7 +548,7 @@ if ($articleData) {
                                 </div>
                             </a>
                             <div class="h-px bg-white/10"></div>
-                            <a href="/sport_v2.html" class="mega-dropdown-item block group/item">
+                            <a href="/sport.html" class="mega-dropdown-item block group/item">
                                 <div class="flex items-center gap-4">
                                     <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center" style="background: rgba(255, 75, 54, 0.1);">
                                         <i class="bi bi-trophy text-vibrant-orange-600 text-2xl"></i>
@@ -577,10 +577,10 @@ if ($articleData) {
                     </div>
                 </div>
 
-                <a href="/consultation_v2.html" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">Consultation</a>
-                <a href="/projects_v2.html" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">Grant Projects</a>
-                <a href="/partners_v2.html" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">Partners</a>
-                <a href="/about_v2.html" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">About Us</a>
+                <a href="/consultation.html" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">Consultation</a>
+                <a href="/projects.html" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">Grant Projects</a>
+                <a href="/partners.html" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">Partners</a>
+                <a href="/about.html" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">About Us</a>
             </nav>
 
             <!-- Mobile Menu Button -->
@@ -595,7 +595,7 @@ if ($articleData) {
 <section class="pt-32 pb-8" style="background: #200A24;">
     <div class="mx-auto px-6 lg:px-8" style="max-width: 900px;">
         <!-- Back Button -->
-        <a href="/articles_v2.html" class="back-button mb-8 inline-flex">
+        <a href="/articles.html" class="back-button mb-8 inline-flex">
             <i class="bi bi-arrow-left"></i>
             <span>Back to Articles</span>
         </a>
@@ -677,7 +677,7 @@ if ($articleData) {
                 }
             } else {
                 echo '<p class="text-gray-400">Sorry, the article you are looking for does not exist or has been removed.</p>';
-                echo '<a href="/articles_v2.html" class="inline-flex items-center gap-2 mt-6 text-vibrant-orange-500 hover:text-vibrant-orange-600 font-semibold smooth-transition">';
+                echo '<a href="/articles.html" class="inline-flex items-center gap-2 mt-6 text-vibrant-orange-500 hover:text-vibrant-orange-600 font-semibold smooth-transition">';
                 echo '<i class="bi bi-arrow-left"></i>';
                 echo '<span>Browse all articles</span>';
                 echo '</a>';
@@ -740,9 +740,9 @@ if ($articleData) {
             <div>
                 <h4 class="text-white font-bold text-base mb-6" style="letter-spacing: -0.01em;">Company</h4>
                 <ul class="space-y-3">
-                    <li><a href="/about_v2.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">About us</a></li>
-                    <li><a href="/partners_v2.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Partners</a></li>
-                    <li><a href="/about_v2.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Contact us</a></li>
+                    <li><a href="/about.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">About us</a></li>
+                    <li><a href="/partners.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Partners</a></li>
+                    <li><a href="/about.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Contact us</a></li>
                 </ul>
             </div>
 
@@ -750,12 +750,12 @@ if ($articleData) {
             <div>
                 <h4 class="text-white font-bold text-base mb-6" style="letter-spacing: -0.01em;">Solutions</h4>
                 <ul class="space-y-3">
-                    <li><a href="/cms_v2.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">CMS</a></li>
-                    <li><a href="/media_v2.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Media</a></li>
-                    <li><a href="/sport_v2.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Sports</a></li>
+                    <li><a href="/cms.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">CMS</a></li>
+                    <li><a href="/media.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Media</a></li>
+                    <li><a href="/sport.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Sports</a></li>
                     <li><a href="https://litteraworks.com" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Litteraworks</a></li>
-                    <li><a href="/consultation_v2.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Consultation</a></li>
-                    <li><a href="/projects_v2.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Grant Projects</a></li>
+                    <li><a href="/consultation.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Consultation</a></li>
+                    <li><a href="/projects.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Grant Projects</a></li>
                 </ul>
             </div>
 
