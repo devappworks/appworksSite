@@ -200,9 +200,9 @@
             }
 
             .logo-carousel-track img {
-                height: 50px;
+                height: 80px;
                 width: auto;
-                max-width: 160px;
+                max-width: 200px;
                 object-fit: contain;
                 transition: all 0.3s ease;
             }
@@ -412,49 +412,15 @@
             </div>
         </section>
 
-        <!-- Partner Logos Section - No subtitle, no grey filter -->
+        <!-- Partner Logos Section - Carousel loaded from central database -->
         <section class="relative py-16" style="background: #200A24;">
             <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
                 <div class="text-center mb-10">
                     <h3 class="text-white font-bold text-2xl" style="letter-spacing: -0.02em;">Trusted by Leading Media Organizations</h3>
                 </div>
                 <div class="logo-carousel-wrapper">
-                    <div class="logo-carousel-track">
-                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/rts-3-logo.png?crop=true" alt="RTS">
-                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/ringier-logo-1.png?crop=true" alt="Ringier">
-                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/star-channel-greece-logosvg.png?crop=true" alt="Star GR">
-                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/hrvatska-radiotelevizija-logo.png?crop=true" alt="HRT">
-                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/danas-tamniji-logo.png?crop=true" alt="Danas">
-                        <img src="https://app-works.app/images/appworksPartners/Media/N1.png" alt="N1">
-                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/logo-dark.png?crop=true" alt="Media 24">
-                        <img src="https://app-works.app/images/appworksPartners/Featured/DAN.png" alt="DAN">
-                        <img src="https://app-works.app/images/appworksPartners/Media/Insajder.png" alt="Insajder">
-                        <img src="https://app-works.app/images/appworksPartners/Media/Hanza Media.png" alt="Hanza Media">
-                        <img src="https://app-works.app/images/appworksPartners/Media/Euronews.png" alt="Euronews">
-                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/krik-logo-serbia-removebg-preview.png?crop=true" alt="KRIK">
-                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/dnevnik-logo-min.png?crop=true" alt="Dnevnik">
-                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/rtcg-logo-1767170390.png?crop=true" alt="RTCG">
-                        <img src="https://app-works.app/images/Politika.png" alt="Politika">
-                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/nova-serbia.png?crop=true" alt="Nova S">
-                        <img src="https://app-works.app/images/appworksPartners/Featured/Tanjug.png" alt="Tanjug">
-                        <!-- Duplicate for seamless loop -->
-                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/rts-3-logo.png?crop=true" alt="RTS">
-                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/ringier-logo-1.png?crop=true" alt="Ringier">
-                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/star-channel-greece-logosvg.png?crop=true" alt="Star GR">
-                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/hrvatska-radiotelevizija-logo.png?crop=true" alt="HRT">
-                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/danas-tamniji-logo.png?crop=true" alt="Danas">
-                        <img src="https://app-works.app/images/appworksPartners/Media/N1.png" alt="N1">
-                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/logo-dark.png?crop=true" alt="Media 24">
-                        <img src="https://app-works.app/images/appworksPartners/Featured/DAN.png" alt="DAN">
-                        <img src="https://app-works.app/images/appworksPartners/Media/Insajder.png" alt="Insajder">
-                        <img src="https://app-works.app/images/appworksPartners/Media/Hanza Media.png" alt="Hanza Media">
-                        <img src="https://app-works.app/images/appworksPartners/Media/Euronews.png" alt="Euronews">
-                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/krik-logo-serbia-removebg-preview.png?crop=true" alt="KRIK">
-                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/dnevnik-logo-min.png?crop=true" alt="Dnevnik">
-                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/rtcg-logo-1767170390.png?crop=true" alt="RTCG">
-                        <img src="https://app-works.app/images/Politika.png" alt="Politika">
-                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/nova-serbia.png?crop=true" alt="Nova S">
-                        <img src="https://app-works.app/images/appworksPartners/Featured/Tanjug.png" alt="Tanjug">
+                    <div class="logo-carousel-track" id="media-carousel-track">
+                        <!-- Logos will be loaded dynamically from central database -->
                     </div>
                 </div>
             </div>
@@ -916,7 +882,7 @@
                     <p class="text-gray-300 text-xl max-w-3xl mx-auto" style="opacity: 0.85;">Trusted by leading media organizations across Europe</p>
                 </div>
 
-                <!-- Partner Logos Grid - Complete list -->
+                <!-- Partner Logos Grid - Complete list (using central database) -->
                 <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
                     <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
                         <div data-partner="rts" data-css="max-h-12 w-auto object-contain"></div>
@@ -925,7 +891,7 @@
                         <div data-partner="ringier" data-css="max-h-12 w-auto object-contain"></div>
                     </div>
                     <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
-                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/star-channel-greece-logosvg.png?crop=true" alt="Star GR" class="max-h-12 w-auto object-contain">
+                        <div data-partner="star-gr" data-css="max-h-12 w-auto object-contain"></div>
                     </div>
                     <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
                         <div data-partner="hrt" data-css="max-h-12 w-auto object-contain"></div>
@@ -955,13 +921,13 @@
                         <div data-partner="krik" data-css="max-h-12 w-auto object-contain"></div>
                     </div>
                     <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
-                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/dnevnik-logo-min.png?crop=true" alt="Dnevnik" class="max-h-12 w-auto object-contain">
+                        <div data-partner="dnevnik" data-css="max-h-12 w-auto object-contain"></div>
                     </div>
                     <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
                         <div data-partner="rtcg" data-css="max-h-12 w-auto object-contain"></div>
                     </div>
                     <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
-                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/fsk-fraktura.png?crop=true" alt="Fraktura" class="max-h-12 w-auto object-contain">
+                        <div data-partner="fraktura" data-css="max-h-12 w-auto object-contain"></div>
                     </div>
                     <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
                         <div data-partner="politika" data-css="max-h-12 w-auto object-contain"></div>
@@ -982,22 +948,22 @@
                         <div data-partner="fonet" data-css="max-h-12 w-auto object-contain"></div>
                     </div>
                     <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
-                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/channels4-profile-removebg-preview.png?crop=true" alt="RTV Budva" class="max-h-12 w-auto object-contain">
+                        <div data-partner="rtv-budva" data-css="max-h-12 w-auto object-contain"></div>
                     </div>
                     <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
-                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/5114-835-company-import-1.png?crop=true" alt="Nedeljnik" class="max-h-12 w-auto object-contain">
+                        <div data-partner="nedeljnik" data-css="max-h-12 w-auto object-contain"></div>
                     </div>
                     <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
                         <div data-partner="oslobodjenje" data-css="max-h-12 w-auto object-contain"></div>
                     </div>
                     <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
-                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/images-5-removebg-preview.png?crop=true" alt="Večer" class="max-h-12 w-auto object-contain">
+                        <div data-partner="vecer" data-css="max-h-12 w-auto object-contain"></div>
                     </div>
                     <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
                         <div data-partner="hrvatski-telekom" data-css="max-h-12 w-auto object-contain"></div>
                     </div>
                     <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
-                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/fa-2015.png?crop=true" alt="Financial Afrik" class="max-h-12 w-auto object-contain">
+                        <div data-partner="financial-afrik" data-css="max-h-12 w-auto object-contain"></div>
                     </div>
                     <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
                         <div data-partner="sat" data-css="max-h-12 w-auto object-contain"></div>
@@ -1027,19 +993,13 @@
                         <div data-partner="pc-press" data-css="max-h-12 w-auto object-contain"></div>
                     </div>
                     <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
-                        <img src="https://app-works.app/images/appworksPartners/Media/Dnevno Hr.png" alt="Dnevno Hr" class="max-h-12 w-auto object-contain">
-                    </div>
-                    <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
-                        <img src="https://app-works.app/images/appworksPartners/Media/Codigopro.png" alt="Codigopro" class="max-h-12 w-auto object-contain">
+                        <div data-partner="codigopro" data-css="max-h-12 w-auto object-contain"></div>
                     </div>
                     <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
                         <div data-partner="alo" data-css="max-h-12 w-auto object-contain"></div>
                     </div>
                     <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
-                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/1200px-telegrafrs-logo-removebg-preview.png?crop=true" alt="Telegraf" class="max-h-12 w-auto object-contain">
-                    </div>
-                    <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
-                        <img src="https://app-works.app/images/appworksPartners/Media/Ora De Sibiu.png" alt="Ora De Sibiu" class="max-h-12 w-auto object-contain">
+                        <div data-partner="telegraf" data-css="max-h-12 w-auto object-contain"></div>
                     </div>
                     <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
                         <div data-partner="tocka" data-css="max-h-12 w-auto object-contain"></div>
@@ -1048,13 +1008,31 @@
                         <div data-partner="telesport" data-css="max-h-12 w-auto object-contain"></div>
                     </div>
                     <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
-                        <img src="https://app-works.app/images/appworksPartners/Media/Zagreb Info.png" alt="Zagreb Info" class="max-h-12 w-auto object-contain">
-                    </div>
-                    <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
                         <div data-partner="ipsos" data-css="max-h-12 w-auto object-contain"></div>
                     </div>
                     <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
-                        <img src="https://appworks.mpanel.app/image/cache/original/files/images/geopoetika-logo.png?crop=true" alt="Geopoetika" class="max-h-12 w-auto object-contain">
+                        <div data-partner="geopoetika" data-css="max-h-12 w-auto object-contain"></div>
+                    </div>
+                    <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
+                        <div data-partner="italpress" data-css="max-h-12 w-auto object-contain"></div>
+                    </div>
+                    <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
+                        <div data-partner="varadzinske" data-css="max-h-12 w-auto object-contain"></div>
+                    </div>
+                    <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
+                        <div data-partner="riportal" data-css="max-h-12 w-auto object-contain"></div>
+                    </div>
+                    <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
+                        <div data-partner="infovranjske" data-css="max-h-12 w-auto object-contain"></div>
+                    </div>
+                    <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
+                        <div data-partner="radio-magnum" data-css="max-h-12 w-auto object-contain"></div>
+                    </div>
+                    <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
+                        <div data-partner="novi-tednik" data-css="max-h-12 w-auto object-contain"></div>
+                    </div>
+                    <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
+                        <div data-partner="novski" data-css="max-h-12 w-auto object-contain"></div>
                     </div>
                 </div>
             </div>
@@ -1134,5 +1112,35 @@
     <!-- Partner Logo System -->
     <script src="/js/partner-logos.js"></script>
     <script src="/js/partner-loader.js"></script>
+
+    <!-- Carousel loader for media partners -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Define which partners to show in the carousel (media partners from "Our Media Partners" section)
+        const carouselPartners = [
+            'rts', 'ringier', 'star-gr', 'hrt', 'danas', 'n1', 'media24', 'dan',
+            'insajder', 'hanza-media', 'euronews', 'krik', 'dnevnik', 'rtcg',
+            'politika', 'nova-s', 'tanjug', 'italpress', 'star', 'rtv-budva',
+            'varadzinske', 'riportal', 'infovranjske', 'radio-magnum', 'novi-tednik', 'novski'
+        ];
+
+        const carouselTrack = document.getElementById('media-carousel-track');
+        if (!carouselTrack || typeof PARTNERS === 'undefined') return;
+
+        // Build carousel images from central database
+        let imagesHtml = '';
+        carouselPartners.forEach(key => {
+            const partner = PARTNERS[key];
+            if (partner) {
+                imagesHtml += `<img src="${partner.logo}" alt="${partner.name}">`;
+            }
+        });
+
+        // Duplicate for seamless loop
+        imagesHtml += imagesHtml;
+
+        carouselTrack.innerHTML = imagesHtml;
+    });
+    </script>
 </body>
 </html>

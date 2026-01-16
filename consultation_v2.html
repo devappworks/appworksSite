@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Transformation Partnership | Appworks</title>
+    <meta name="description" content="Transform your organization with AI-powered solutions. Digital transformation partnership for media and sports organizations.">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://app-works.app/images/appworks.png">
+    <link rel="apple-touch-icon" href="https://app-works.app/images/appworks.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #200A24;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Background noise texture */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.5;
+        }
+
+        /* Navigation Styles */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(32, 10, 36, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(32, 10, 36, 0.95);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #FF4B36;
+            background: rgba(255, 75, 54, 0.05);
+        }
+
+        .logo {
+            height: 40px;
+            width: auto;
+        }
+
+        /* Navigation */
+        .nav-link {
+            font-size: 1.125rem !important;
+            font-weight: 700 !important;
+            color: white !important;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #FF6B50 !important;
+        }
+
+        /* Glassmorphism */
+        .glass-light {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Mega Dropdown */
+        .mega-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-10px);
+            width: 580px;
+            max-width: 90vw;
+            background: rgba(32, 10, 36, 0.98);
+            backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-item:hover .mega-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .mega-dropdown-item {
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            transition: background 0.3s ease;
+        }
+
+        .mega-dropdown-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Glass Medium - Floating Panes */
+        .glass-medium {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 24px;
+            padding: 48px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-medium::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top right, rgba(255, 75, 54, 0.15), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .glass-medium:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 75, 54, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 75, 54, 0.25);
+        }
+
+        .glass-medium:hover::before {
+            opacity: 1;
+        }
+
+        /* Circuit Board Flow */
+        .circuit-step {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 32px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .circuit-step:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 75, 54, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 75, 54, 0.2);
+        }
+
+        .step-mega-number {
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            font-size: 120px;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.05);
+            line-height: 1;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Bento Card */
+        .bento-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+        }
+
+        .bento-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 75, 54, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 75, 54, 0.2);
+        }
+
+        .bento-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .bento-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);
+            color: white;
+            padding: 18px 48px;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 75, 54, 0.3), 0 0 60px rgba(255, 75, 54, 0.2);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 75, 54, 0.4), 0 0 80px rgba(255, 75, 54, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        footer a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #FF4B36;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .glass-medium {
+                padding: 32px;
+            }
+
+            .circuit-step {
+                padding: 24px;
+            }
+
+            .step-mega-number {
+                font-size: 80px;
+                top: -10px;
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header style="position: relative; z-index: 1000;">
+        <nav class="glass-light" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1rem 0;">
+            <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+                <div class="flex items-center justify-between">
+                    <!-- Logo -->
+                    <a href="/home_v2.html" class="flex items-center">
+                        <img src="https://app-works.app/images/appworks.png" alt="Appworks" class="h-10">
+                    </a>
+
+                    <!-- Desktop Navigation -->
+                    <div class="hidden lg:flex items-center gap-8">
+                        <a href="/home_v2.html" class="nav-link">Home</a>
+
+                        <!-- Solutions Dropdown -->
+                        <div class="nav-item relative">
+                            <button class="nav-link flex items-center gap-2">
+                                Solutions
+                                <i class="bi bi-chevron-down text-xs"></i>
+                            </button>
+                            <div class="mega-dropdown">
+                                <div class="space-y-1">
+                                    <!-- mPanel CMS -->
+                                    <a href="/cms_v2.html" class="mega-dropdown-item block group/item">
+                                        <div class="flex items-center gap-4">
+                                            <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300" style="background: rgba(255, 75, 54, 0.1);">
+                                                <i class="bi bi-display text-2xl" style="color: #FF6B50;"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="text-white font-bold text-base mb-1">mPanel CMS</div>
+                                                <div class="text-gray-400 text-sm leading-relaxed">Complete content management system for media publishers with AI-powered tools and automation</div>
+                                            </div>
+                                            <i class="bi bi-arrow-right text-gray-500 text-lg transition-all duration-300 flex-shrink-0"></i>
+                                        </div>
+                                    </a>
+
+                                    <div class="h-px bg-white/10"></div>
+
+                                    <!-- Media -->
+                                    <a href="/media_v2.html" class="mega-dropdown-item block group/item">
+                                        <div class="flex items-center gap-4">
+                                            <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300" style="background: rgba(255, 75, 54, 0.1);">
+                                                <i class="bi bi-newspaper text-2xl" style="color: #FF6B50;"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="text-white font-bold text-base mb-1">Media</div>
+                                                <div class="text-gray-400 text-sm leading-relaxed">Digital publishing platforms, mobile apps, and content delivery solutions for modern newsrooms</div>
+                                            </div>
+                                            <i class="bi bi-arrow-right text-gray-500 text-lg transition-all duration-300 flex-shrink-0"></i>
+                                        </div>
+                                    </a>
+
+                                    <div class="h-px bg-white/10"></div>
+
+                                    <!-- Sport -->
+                                    <a href="/sport_v2.html" class="mega-dropdown-item block group/item">
+                                        <div class="flex items-center gap-4">
+                                            <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300" style="background: rgba(255, 75, 54, 0.1);">
+                                                <i class="bi bi-trophy text-2xl" style="color: #FF6B50;"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="text-white font-bold text-base mb-1">Sport</div>
+                                                <div class="text-gray-400 text-sm leading-relaxed">Fan engagement platforms, loyalty programs, and mobile apps for sports clubs and leagues</div>
+                                            </div>
+                                            <i class="bi bi-arrow-right text-gray-500 text-lg transition-all duration-300 flex-shrink-0"></i>
+                                        </div>
+                                    </a>
+
+                                    <div class="h-px bg-white/10"></div>
+
+                                    <!-- Litteraworks -->
+                                    <a href="https://litteraworks.com/" target="_blank" class="mega-dropdown-item block group/item">
+                                        <div class="flex items-center gap-4">
+                                            <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300" style="background: rgba(139, 92, 246, 0.1);">
+                                                <i class="bi bi-mic text-2xl" style="color: #A78BFA;"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="text-white font-bold text-base mb-1">Litteraworks</div>
+                                                <div class="text-gray-400 text-sm leading-relaxed">AI-powered transcription, subtitle generation, and content processing for media professionals</div>
+                                            </div>
+                                            <i class="bi bi-arrow-right text-gray-500 text-lg transition-all duration-300 flex-shrink-0"></i>
+                                        </div>
+                                    </a>
+
+                                    <div class="h-px bg-white/10"></div>
+
+                                    <!-- Pchela -->
+                                    <a href="/about_v2.html" class="mega-dropdown-item block group/item">
+                                        <div class="flex items-center gap-4">
+                                            <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300" style="background: rgba(255, 75, 54, 0.1);">
+                                                <i class="bi bi-camera text-2xl" style="color: #FF6B50;"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="text-white font-bold text-base mb-1">Pchela</div>
+                                                <div class="text-gray-400 text-sm leading-relaxed">Intelligent digital asset management system with AI-powered organization and search capabilities</div>
+                                            </div>
+                                            <i class="bi bi-arrow-right text-gray-500 text-lg transition-all duration-300 flex-shrink-0"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="/consultation_v2.html" class="nav-link">Consultation</a>
+                        <a href="/projects_v2.html" class="nav-link">Grant Projects</a>
+                        <a href="/partners_v2.html" class="nav-link">Partners</a>
+                        <a href="/about_v2.html" class="nav-link">About Us</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section - Strategic Constellation (50/50 Split) -->
+    <section class="relative pt-48 pb-32 overflow-visible" style="background: #200A24;">
+        <div class="mx-auto px-6 lg:px-8 relative z-10" style="max-width: 1600px;">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Left: Content -->
+                <div>
+                    <h1 class="text-white font-black text-5xl lg:text-7xl mb-8 leading-tight">
+                        Transform Your Organization with AI-Powered Solutions
+                    </h1>
+                    <p class="text-white text-xl lg:text-2xl leading-relaxed" style="opacity: 0.9;">
+                        We don't just consult—we become your digital transformation partner. Through discovery workshops, technical audits, and hands-on implementation, we help media and sports organizations build connected digital ecosystems that drive real business results.
+                    </p>
+                </div>
+
+                <!-- Right: Floating Image with Glow -->
+                <div class="relative flex justify-center">
+                    <!-- Large Purple/Orange Radial Backglow -->
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none"
+                         style="width: 700px; height: 700px;
+                                background: radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, rgba(255, 75, 54, 0.3) 40%, transparent 70%);
+                                filter: blur(80px);"></div>
+
+                    <!-- Floating Image -->
+                    <img src="https://appworks.mpanel.app/image/cache/original/files/images/generated-image-january-15-2026-11-32am-removebg-preview.png?crop=true"
+                         alt="Strategic Constellation"
+                         class="w-full max-w-xl animate-float"
+                         style="mix-blend-mode: screen;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Two Paths Section - The Service Split (Floating Glass Panes) -->
+    <section class="py-24 px-6 lg:px-8">
+        <div class="mx-auto" style="max-width: 1600px;">
+            <div class="text-center mb-16">
+                <h2 class="text-white font-black text-4xl lg:text-6xl mb-6">How We Can Work Together</h2>
+                <p class="text-white text-xl" style="opacity: 0.7;">Choose the path that fits your needs</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Path 1 -->
+                <div class="glass-medium">
+                    <div class="relative z-10">
+                        <div class="mb-6">
+                            <div style="width: 72px; height: 72px; background: rgba(255, 75, 54, 0.15); border-radius: 16px; display: flex; align-items: center; justify-content: center;">
+                                <i class="bi bi-box text-5xl" style="color: #FF4B36;"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-white font-black text-3xl mb-6">Path 1: Platform Implementation</h3>
+                        <ul class="space-y-3 text-white text-lg" style="opacity: 0.85;">
+                            <li class="flex items-start gap-3">
+                                <i class="bi bi-arrow-right text-2xl flex-shrink-0" style="color: #FF4B36;"></i>
+                                <span>You need a mobile app, CMS, or specific tool</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="bi bi-arrow-right text-2xl flex-shrink-0" style="color: #FF4B36;"></i>
+                                <span>Clear requirements, defined scope</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="bi bi-arrow-right text-2xl flex-shrink-0" style="color: #FF4B36;"></i>
+                                <span>Traditional vendor relationship</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Path 2 - Featured -->
+                <div class="glass-medium">
+                    <div class="relative z-10">
+                        <div class="mb-6">
+                            <div style="width: 72px; height: 72px; background: rgba(255, 75, 54, 0.2); border-radius: 16px; display: flex; align-items: center; justify-content: center;">
+                                <i class="bi bi-diagram-3 text-5xl" style="color: #FF4B36;"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-white font-black text-3xl mb-6">Path 2: Digital Transformation Partnership</h3>
+                        <ul class="space-y-3 text-white text-lg" style="opacity: 0.85;">
+                            <li class="flex items-start gap-3">
+                                <i class="bi bi-arrow-right text-2xl flex-shrink-0" style="color: #FF4B36;"></i>
+                                <span>You know you need to modernize, but not sure how</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="bi bi-arrow-right text-2xl flex-shrink-0" style="color: #FF4B36;"></i>
+                                <span>Complex workflows, disconnected systems</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="bi bi-arrow-right text-2xl flex-shrink-0" style="color: #FF4B36;"></i>
+                                <span>Multiple stakeholders, strategic priorities</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="bi bi-arrow-right text-2xl flex-shrink-0" style="color: #FF4B36;"></i>
+                                <span>Long-term partnership with shared goals</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transformation Process Section - Circuit Board Flow (Horizontal 3-Step) -->
+    <section class="py-24 px-6 lg:px-8">
+        <div class="mx-auto" style="max-width: 1600px;">
+            <div class="text-center mb-16">
+                <h2 class="text-white font-black text-4xl lg:text-6xl mb-6">Our Transformation Approach</h2>
+                <p class="text-white text-xl" style="opacity: 0.7;">A step-by-step journey from discovery to implementation</p>
+            </div>
+
+            <!-- Horizontal Circuit Board Flow -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
+                <!-- Step 1: Discovery -->
+                <div class="circuit-step">
+                    <div class="step-mega-number">01</div>
+                    <div class="relative z-10">
+                        <div class="mb-4">
+                            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(255, 75, 54, 0.4);">
+                                <i class="bi bi-search text-3xl text-white"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-white font-black text-2xl mb-3">Discovery Workshop</h3>
+                        <p class="text-white text-base mb-4" style="opacity: 0.85;">
+                            We'll dig into your systems to find where data gets stuck, where workflows break down, and where AI can save your team hours every week.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="text-sm">
+                                <span class="text-white font-bold">Who:</span>
+                                <span class="text-white" style="opacity: 0.7;"> Leadership, operations, IT, marketing</span>
+                            </div>
+                            <div class="text-sm">
+                                <span class="text-white font-bold">Outcome:</span>
+                                <span class="text-white" style="opacity: 0.7;"> Complete understanding of your organization</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connecting Line (Hidden on mobile) -->
+                <div class="hidden lg:flex items-center justify-center absolute top-1/2 left-1/3 right-1/3 transform -translate-y-1/2 pointer-events-none" style="z-index: -1;">
+                    <div style="width: 100%; height: 2px; background: linear-gradient(90deg, transparent, rgba(255, 75, 54, 0.5), transparent); border-top: 2px dashed rgba(255, 75, 54, 0.5);"></div>
+                </div>
+
+                <!-- Step 2: Technical Audit -->
+                <div class="circuit-step">
+                    <div class="step-mega-number">02</div>
+                    <div class="relative z-10">
+                        <div class="mb-4">
+                            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(255, 75, 54, 0.4);">
+                                <i class="bi bi-gear text-3xl text-white"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-white font-black text-2xl mb-3">Technical & Data Audit</h3>
+                        <p class="text-white text-base mb-4" style="opacity: 0.85;">
+                            Analyze your existing systems and data flows, identify where information gets stuck, and assess integration opportunities.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="text-sm">
+                                <span class="text-white font-bold">Duration:</span>
+                                <span class="text-white" style="opacity: 0.7;"> 1-2 weeks (remote)</span>
+                            </div>
+                            <div class="text-sm">
+                                <span class="text-white font-bold">Outcome:</span>
+                                <span class="text-white" style="opacity: 0.7;"> Detailed audit report with findings</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Strategic Roadmap -->
+                <div class="circuit-step">
+                    <div class="step-mega-number">03</div>
+                    <div class="relative z-10">
+                        <div class="mb-4">
+                            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(255, 75, 54, 0.4);">
+                                <i class="bi bi-map text-3xl text-white"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-white font-black text-2xl mb-3">Strategic Roadmap</h3>
+                        <p class="text-white text-base mb-4" style="opacity: 0.85;">
+                            You'll get a clear 12-18 month plan with priorities, budgets, and quick wins you can start seeing results from in weeks.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="text-sm">
+                                <span class="text-white font-bold">Includes:</span>
+                                <span class="text-white" style="opacity: 0.7;"> Phased plan, budgets, risks</span>
+                            </div>
+                            <div class="text-sm">
+                                <span class="text-white font-bold">Focus:</span>
+                                <span class="text-white" style="opacity: 0.7;"> Quick wins + long-term goals</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tangible Outcomes Section -->
+    <section class="py-24 px-6 lg:px-8">
+        <div class="mx-auto" style="max-width: 1600px;">
+            <div class="text-center mb-16">
+                <h2 class="text-white font-black text-4xl lg:text-6xl mb-6">Tangible Outcomes from Our Partnership</h2>
+                <p class="text-white text-xl" style="opacity: 0.7;">Real results you can measure and see</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Outcome 1 -->
+                <div class="circuit-step">
+                    <i class="bi bi-diagram-3 text-6xl mb-6" style="color: #FF4B36;"></i>
+                    <h4 class="text-white font-black text-2xl mb-4">Connected Digital Ecosystem</h4>
+                    <p class="text-white text-lg leading-relaxed" style="opacity: 0.8;">
+                        Your content management, distribution channels, CRM, and audience engagement systems work together seamlessly—no more data silos or manual data transfers.
+                    </p>
+                </div>
+
+                <!-- Outcome 2 -->
+                <div class="circuit-step">
+                    <i class="bi bi-robot text-6xl mb-6" style="color: #FF4B36;"></i>
+                    <h4 class="text-white font-black text-2xl mb-4">AI-Powered Automation</h4>
+                    <p class="text-white text-lg leading-relaxed" style="opacity: 0.8;">
+                        Repetitive tasks that consumed hours now happen automatically—from article summaries to match reports, video tagging to social media posts, transcription to translation.
+                    </p>
+                </div>
+
+                <!-- Outcome 3 -->
+                <div class="circuit-step">
+                    <i class="bi bi-bar-chart-line text-6xl mb-6" style="color: #FF4B36;"></i>
+                    <h4 class="text-white font-black text-2xl mb-4">Data-Driven Decisions</h4>
+                    <p class="text-white text-lg leading-relaxed" style="opacity: 0.8;">
+                        Real-time dashboards show what's working—audience behavior, content performance, revenue opportunities, partnership value.
+                    </p>
+                </div>
+
+                <!-- Outcome 4 -->
+                <div class="circuit-step">
+                    <i class="bi bi-speedometer2 text-6xl mb-6" style="color: #FF4B36;"></i>
+                    <h4 class="text-white font-black text-2xl mb-4">Operational Efficiency</h4>
+                    <p class="text-white text-lg leading-relaxed" style="opacity: 0.8;">
+                        Your team spends less time on manual processes and more time on strategic initiatives—journalism, fan engagement, business development.
+                    </p>
+                </div>
+
+                <!-- Outcome 5 -->
+                <div class="circuit-step">
+                    <i class="bi bi-trophy text-6xl mb-6" style="color: #FF4B36;"></i>
+                    <h4 class="text-white font-black text-2xl mb-4">Competitive Advantage</h4>
+                    <p class="text-white text-lg leading-relaxed" style="opacity: 0.8;">
+                        Technology becomes your differentiator, not just your cost center. Deliver better content faster, engage audiences more effectively, operate more efficiently than competitors.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Solutions Section - The Spotlight Polish (with Backglow) -->
+    <section class="relative py-24 px-6 lg:px-8">
+        <!-- Spotlight Backglow -->
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none"
+             style="width: 1200px; height: 1200px;
+                    background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, rgba(255, 75, 54, 0.15) 40%, transparent 70%);
+                    filter: blur(100px);"></div>
+
+        <div class="mx-auto relative z-10" style="max-width: 1600px;">
+            <div class="text-center mb-16">
+                <h2 class="text-white font-black text-4xl lg:text-6xl mb-6">AI Solutions We've Implemented</h2>
+                <p class="text-white text-xl" style="opacity: 0.7;">Real-world AI applications delivering measurable results</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- AI Solution 1 -->
+                <div class="bento-card">
+                    <img src="https://appworks.mpanel.app/image/cache/original/files/images/sales-platform.png?crop=true"
+                         alt="Sales Automation Platform"
+                         loading="lazy">
+                    <div class="p-8">
+                        <h4 class="text-white font-bold text-xl mb-3">AI-Powered Sales Automation Platform</h4>
+                        <p class="text-white leading-relaxed" style="opacity: 0.8;">
+                            Intelligent automation that reduces sales preparation time from 3 hours to just 15 minutes.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- AI Solution 2 -->
+                <div class="bento-card">
+                    <img src="https://appworks.mpanel.app/image/cache/original/files/images/pchela-search-and-discoverey.jpg?crop=true"
+                         alt="Intelligent Search & Discovery"
+                         loading="lazy">
+                    <div class="p-8">
+                        <h4 class="text-white font-bold text-xl mb-3">Intelligent Search & Discovery</h4>
+                        <p class="text-white leading-relaxed" style="opacity: 0.8;">
+                            Advanced semantic search across your entire media archive including photos, videos, and audio files.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- AI Solution 3 -->
+                <div class="bento-card">
+                    <img src="https://appworks.mpanel.app/image/cache/original/files/images/grantforge.png?crop=true"
+                         alt="Grant Writing Platform"
+                         loading="lazy">
+                    <div class="p-8">
+                        <h4 class="text-white font-bold text-xl mb-3">AI Platform for Grant Project Writing</h4>
+                        <p class="text-white leading-relaxed" style="opacity: 0.8;">
+                            Comprehensive platform for grant writing, team communication, and project management all in one place.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- AI Solution 4 -->
+                <div class="bento-card">
+                    <img src="https://appworks.mpanel.app/image/cache/original/files/images/nimbus.png?crop=true"
+                         alt="Nimbus Project Management"
+                         loading="lazy">
+                    <div class="p-8">
+                        <h4 class="text-white font-bold text-xl mb-3">Nimbus – AI Project Management Platform</h4>
+                        <p class="text-white leading-relaxed" style="opacity: 0.8;">
+                            Intelligent project management that streamlines workflows and enhances team collaboration with AI assistance.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- AI Solution 5 -->
+                <div class="bento-card">
+                    <img src="https://appworks.mpanel.app/image/cache/original/files/images/social-media-clip-creator.png?crop=true"
+                         alt="Social Media Clip Creator"
+                         loading="lazy">
+                    <div class="p-8">
+                        <h4 class="text-white font-bold text-xl mb-3">Social Media Clip Creator</h4>
+                        <p class="text-white leading-relaxed" style="opacity: 0.8;">
+                            Transform long-form content into social media-ready clips in minutes with AI-powered video editing.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- AI Solution 6 -->
+                <div class="bento-card">
+                    <img src="https://appworks.mpanel.app/image/cache/original/files/images/chatbot.png?crop=true"
+                         alt="AI Chatbot"
+                         loading="lazy">
+                    <div class="p-8">
+                        <h4 class="text-white font-bold text-xl mb-3">Chatbots</h4>
+                        <p class="text-white leading-relaxed" style="opacity: 0.8;">
+                            Custom AI chatbots made easy – like the one we built for CRTA to answer voter election questions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 px-6 lg:px-8">
+        <div class="mx-auto text-center" style="max-width: 1600px;">
+            <h2 class="text-white font-black text-4xl lg:text-6xl mb-6">Ready to Transform Your Organization?</h2>
+            <p class="text-white text-xl mb-10" style="opacity: 0.85;">Let's discuss how we can help you modernize and compete more effectively.</p>
+            <a href="/about_v2.html" class="cta-button">
+                GET IN TOUCH
+                <i class="bi bi-arrow-right text-xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative py-16" style="background: rgba(0, 0, 0, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.1);">
+        <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Column 1: Logo & Tagline -->
+                <div>
+                    <img src="https://app-works.app/images/appworks.png" alt="Appworks" class="h-16 w-auto mb-4">
+                    <p class="text-gray-400 text-base leading-relaxed mb-6">Creative solutions for innovative partners.</p>
+                    <div class="flex gap-4">
+                        <a href="https://www.linkedin.com/company/appworks-d-o-o/" target="_blank" class="w-10 h-10 rounded-lg flex items-center justify-center smooth-transition" style="background: rgba(255, 255, 255, 0.05);" onmouseover="this.style.background='rgba(255, 75, 54, 0.15)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.05)';">
+                            <i class="bi bi-linkedin text-xl" style="color: rgba(255, 255, 255, 0.6);"></i>
+                        </a>
+                        <a href="https://www.instagram.com/weareappworks/" target="_blank" class="w-10 h-10 rounded-lg flex items-center justify-center smooth-transition" style="background: rgba(255, 255, 255, 0.05);" onmouseover="this.style.background='rgba(255, 75, 54, 0.15)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.05)';">
+                            <i class="bi bi-instagram text-xl" style="color: rgba(255, 255, 255, 0.6);"></i>
+                        </a>
+                        <a href="https://www.youtube.com/channel/UCydhgWA6Kg40T9EFmRVDb9A" target="_blank" class="w-10 h-10 rounded-lg flex items-center justify-center smooth-transition" style="background: rgba(255, 255, 255, 0.05);" onmouseover="this.style.background='rgba(255, 75, 54, 0.15)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.05)';">
+                            <i class="bi bi-youtube text-xl" style="color: rgba(255, 255, 255, 0.6);"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Company -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6">Company</h4>
+                    <ul class="space-y-3">
+                        <li><a href="/about_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">About us</a></li>
+                        <li><a href="/partners_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">Partners</a></li>
+                        <li><a href="/about_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">Contact us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Solutions -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6">Solutions</h4>
+                    <ul class="space-y-3">
+                        <li><a href="/cms_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">CMS</a></li>
+                        <li><a href="/media_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">Media</a></li>
+                        <li><a href="/sport_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">Sports</a></li>
+                        <li><a href="https://litteraworks.com" class="text-gray-400 hover:text-orange-500 transition-colors">Litteraworks</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-orange-500 transition-colors">Pchela</a></li>
+                        <li><a href="/consultation_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">Consultation</a></li>
+                        <li><a href="/projects_v2.html" class="text-gray-400 hover:text-orange-500 transition-colors">Grant Projects</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Contact -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6">Contact us</h4>
+                    <a href="mailto:info@app-works.app" class="text-gray-400 hover:text-orange-500 transition-colors font-semibold">info@app-works.app</a>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="pt-8 border-t border-white/10 text-center">
+                <p class="text-gray-500 text-sm">&copy; 2026 Appworks. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

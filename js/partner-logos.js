@@ -18,7 +18,7 @@ const PARTNERS = {
     // ==========================================
     'insajder': {
         name: 'Insajder',
-        logo: 'https://app-works.app/images/appworksPartners/Featured/Insajder.png',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/insajder-logo-generic-removebg-preview.png?crop=true',
         url: '#',
         category: 'media',
         featured: true // Shows on homepage
@@ -39,14 +39,14 @@ const PARTNERS = {
     },
     'vecer': {
         name: 'Večer',
-        logo: 'https://app-works.app/images/Večer.png',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/images-13-removebg-preview.png?crop=true',
         url: '#',
         category: 'media',
         featured: true
     },
     'media24': {
         name: 'Media 24',
-        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/logo-dark.png?crop=true',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/logo-white.png?crop=true',
         url: '#',
         category: 'media',
         featured: true
@@ -60,7 +60,7 @@ const PARTNERS = {
     },
     'rts': {
         name: 'RTS',
-        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/rts-3-logo.png?crop=true',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/radio-televizija-srbije-logo.png?crop=true',
         url: '#',
         category: 'media',
         featured: true
@@ -81,49 +81,49 @@ const PARTNERS = {
     },
     'dpg': {
         name: 'DPG Media',
-        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/324194622-572648424721395-1863643511798102048-n.jpg?crop=true',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/dpgmediaog-removebg-preview-1768490527.png?crop=true',
         url: '#',
         category: 'media',
         featured: true
     },
     'euronews': {
         name: 'Euronews',
-        logo: 'https://app-works.app/images/appworksPartners/Featured/Euronews.png',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/images-14-removebg-preview.png?crop=true',
         url: '#',
         category: 'media',
         featured: true
     },
     'danas': {
         name: 'Danas',
-        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/danas-tamniji-logo.png?crop=true',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/donacije-removebg-preview.png?crop=true',
         url: '#',
         category: 'media',
         featured: true
     },
     'hanza-media': {
         name: 'Hanza Media',
-        logo: 'https://app-works.app/images/appworksPartners/Featured/Hanza Media.png',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/1707230054179-removebg-preview.png?crop=true',
         url: '#',
         category: 'media',
         featured: true
     },
     'nova-s': {
         name: 'Nova S',
-        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/nova-serbia.png?crop=true',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/logo-nova-rs-2-725x408-removebg-preview.png?crop=true',
         url: '#',
         category: 'media',
         featured: true
     },
     'rtcg': {
         name: 'RTCG',
-        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/rtcg-logo-1767170390.png?crop=true',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/channels4-profile-2-removebg-preview-1768488596.png?crop=true',
         url: '#',
         category: 'media',
         featured: true
     },
     'wmg': {
         name: 'WMG',
-        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/wmg-logo-pozitiv-1-2-1.png?crop=true',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/images-16-removebg-preview.png?crop=true',
         url: '#',
         category: 'media',
         featured: true
@@ -137,35 +137,35 @@ const PARTNERS = {
     },
     'tanjug': {
         name: 'Tanjug',
-        logo: 'https://app-works.app/images/appworksPartners/Featured/Tanjug.png',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/header-logo.png?crop=true',
         url: '#',
         category: 'media',
         featured: true
     },
     'sat': {
         name: 'SAT Media',
-        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/images-4-removebg-preview-1.png?crop=true',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/unnamed-4-1-removebg-preview.png?crop=true',
         url: '#',
         category: 'media',
         featured: true
     },
     'krik': {
         name: 'KRIK',
-        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/krik-logo-serbia-removebg-preview.png?crop=true',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/krik-logo-white.png?crop=true',
         url: '#',
         category: 'media',
         featured: true
     },
     'dnevnik': {
         name: 'Dnevnik',
-        logo: 'https://app-works.app/images/appworksPartners/Media/Dnevnik.jpg',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/images-15-removebg-preview.png?crop=true',
         url: '#',
         category: 'media',
         featured: false
     },
     'mozzart': {
         name: 'Mozzart',
-        logo: 'https://app-works.app/images/appworksPartners/Media/Mozzart.png',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/unnamed-7-removebg-preview-1768490353.png?crop=true',
         url: '#',
         category: 'media',
         featured: false
@@ -179,7 +179,7 @@ const PARTNERS = {
     },
     'fraktura': {
         name: 'Fraktura',
-        logo: 'https://app-works.app/images/appworksPartners/All/Fraktura.jpg',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/fraktura-logo-crni-525-x120.png?crop=true',
         url: '#',
         category: 'media',
         featured: false
@@ -193,7 +193,7 @@ const PARTNERS = {
     },
     'fonet': {
         name: 'FONET',
-        logo: 'https://app-works.app/images/appworksPartners/Media/FONET.png',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/fonet-logo-removebg-preview.png?crop=true',
         url: '#',
         category: 'media',
         featured: false
@@ -207,7 +207,7 @@ const PARTNERS = {
     },
     'financial-afrik': {
         name: 'Financial Afrik',
-        logo: 'https://app-works.app/images/appworksPartners/Media/Financial Afrik.jpg',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/financialafrik-logo.png?crop=true',
         url: '#',
         category: 'media',
         featured: false
@@ -221,35 +221,35 @@ const PARTNERS = {
     },
     'geopoetika': {
         name: 'Geopoetika',
-        logo: 'https://app-works.app/images/appworksPartners/All/Geopoetika.png',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/geopoetika-logo-footer.png?crop=true',
         url: '#',
         category: 'media',
         featured: false
     },
     'motus-media': {
         name: 'Motus Media',
-        logo: 'https://app-works.app/images/appworksPartners/Media/Motus Media.png',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/motus-media-grupa-logo-removebg-preview.png?crop=true',
         url: '#',
         category: 'media',
         featured: false
     },
     'fena': {
         name: 'FENA',
-        logo: 'https://app-works.app/images/appworksPartners/Media/FENA.png',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/no-image-removebg-preview.png?crop=true',
         url: '#',
         category: 'media',
         featured: false
     },
     'boom93': {
         name: 'Boom 93',
-        logo: 'https://app-works.app/images/appworksPartners/Media/boom 93.png',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/boom93-social-removebg-preview.png?crop=true',
         url: '#',
         category: 'media',
         featured: false
     },
     'anem': {
         name: 'ANEM',
-        logo: 'https://app-works.app/images/appworksPartners/Media/ANEM.jpg',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/anem-logo-12-removebg-preview.png?crop=true',
         url: '#',
         category: 'media',
         featured: false
@@ -277,14 +277,14 @@ const PARTNERS = {
     },
     'tocka': {
         name: 'Točka',
-        logo: 'https://app-works.app/images/appworksPartners/Media/Tocka.png',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/images-20-removebg-preview.png?crop=true',
         url: '#',
         category: 'media',
         featured: false
     },
     'telesport': {
         name: 'Telesport',
-        logo: 'https://app-works.app/images/appworksPartners/Media/Telesport.png',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/logotelesoprtwhite-382x235-1trans.png?crop=true',
         url: '#',
         category: 'media',
         featured: false
@@ -316,7 +316,7 @@ const PARTNERS = {
     },
     'esake': {
         name: 'ESAKE',
-        logo: 'https://app-works.app/images/appworksPartners/Featured/ESAKE.png',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/stoiximan-gbl-logo-extreme-vertical-white-rgb2.png?crop=true',
         url: '#',
         category: 'sports',
         featured: true
@@ -365,7 +365,7 @@ const PARTNERS = {
     },
     'peristeri': {
         name: 'Peristeri',
-        logo: 'https://app-works.app/images/appworksPartners/Sports/Peristeri.png',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/8akygu1764154144.png?crop=true',
         url: '#',
         category: 'sports',
         featured: false
@@ -389,6 +389,108 @@ const PARTNERS = {
         logo: 'https://app-works.app/images/appworksPartners/Sports/futsal-partizan-logo.png',
         url: '#',
         category: 'sports',
+        featured: false
+    },
+
+    // ==========================================
+    // NEW MEDIA PARTNERS (January 2026)
+    // ==========================================
+    'italpress': {
+        name: 'Italpress',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/italpress-logo-vector-removebg-preview-1768552125.png?crop=true',
+        url: '#',
+        category: 'media',
+        featured: true
+    },
+    'star': {
+        name: 'Star',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/images-20-removebg-preview-1.png?crop=true',
+        url: '#',
+        category: 'media',
+        featured: true
+    },
+    'rtv-budva': {
+        name: 'RTV Budva',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/channels4-profile-1-removebg-preview.png?crop=true',
+        url: '#',
+        category: 'media',
+        featured: false
+    },
+    'varadzinske': {
+        name: 'Varaždinske',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/logo-invert.png?crop=true',
+        url: '#',
+        category: 'media',
+        featured: false
+    },
+    'riportal': {
+        name: 'Riportal',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/unnamed-7-removebg-preview-1.png?crop=true',
+        url: '#',
+        category: 'media',
+        featured: false
+    },
+    'infovranjske': {
+        name: 'InfoVranjske',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/logo-infovranjske-xx-x-153.png?crop=true',
+        url: '#',
+        category: 'media',
+        featured: false
+    },
+    'radio-magnum': {
+        name: 'Radio Magnum',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/magnum-logo-7.png?crop=true',
+        url: '#',
+        category: 'media',
+        featured: false
+    },
+    'novi-tednik': {
+        name: 'Novi Tednik',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/novi-tednik.png?crop=true',
+        url: '#',
+        category: 'media',
+        featured: false
+    },
+    'novski': {
+        name: 'Novski',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/novski-vrh-logo.png?crop=true',
+        url: '#',
+        category: 'media',
+        featured: false
+    },
+    'star-gr': {
+        name: 'Star Channel Greece',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/star-channel-greece-logosvg.png?crop=true',
+        url: '#',
+        category: 'media',
+        featured: false
+    },
+    'codigopro': {
+        name: 'Codigopro',
+        logo: 'https://app-works.app/images/appworksPartners/Media/Codigopro.png',
+        url: '#',
+        category: 'media',
+        featured: false
+    },
+    'dnevno-hr': {
+        name: 'Dnevno HR',
+        logo: 'https://app-works.app/images/appworksPartners/Media/Dnevno Hr.png',
+        url: '#',
+        category: 'media',
+        featured: false
+    },
+    'ora-de-sibiu': {
+        name: 'Ora De Sibiu',
+        logo: 'https://app-works.app/images/appworksPartners/Media/Ora De Sibiu.png',
+        url: '#',
+        category: 'media',
+        featured: false
+    },
+    'zagreb-info': {
+        name: 'Zagreb Info',
+        logo: 'https://app-works.app/images/appworksPartners/Media/Zagreb Info.png',
+        url: '#',
+        category: 'media',
         featured: false
     },
 };

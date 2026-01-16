@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git checkout:*)",
+      "Bash(python -m http.server:*)",
+      "Bash(ls:*)",
+      "Skill(frontend-design)",
+      "Bash(php:*)",
+      "Bash(curl:*)",
+      "Bash(python update_nav_css.py:*)",
+      "Bash(python:*)",
+      "Bash(cat:*)",
+      "Bash(dir:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(taskkill:*)",
+      "Bash(where:*)",
+      "Bash(node --version:*)",
+      "Bash(npx http-server:*)",
+      "Bash(timeout:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nUpdate sport.html and consultation.html with new content and screenshots\n\n- sport.html: Removed partner logos \\(EHCB, Cork City, Žilina\\), added desktop screenshot, reduced phone mockup sizes by 20%, reorganized sections to side-by-side layouts, moved screenshots between sections\n- consultation.html: Updated AI Solutions section with 6 new solutions including screenshots and refined descriptions\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push:*)",
+      "Bash(ping:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nUpdate partner logos: Remove 9 partners and create centralized logo system\n\n- Removed partner logos: Delo, EHCB, HINA, Cork City, Meridianbet, Dnevno Hr, Zagreb Info, Ora De Sibiu, Žilina\n- Added Nova S logo in place of Delo\n- Created centralized partner logos system in js/partner-logos.js\n- Added comprehensive partner logos usage guide\n- Updated projects_v2.html with enhanced design \\(bento grid, glass dashboard, ledger cards\\)\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git commit:*)"
+    ]
+  }
+}
