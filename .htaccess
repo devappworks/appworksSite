@@ -1,0 +1,18 @@
+# Enable URL rewriting
+RewriteEngine On
+RewriteBase /
+
+# Remove trailing slash from URLs (optional but recommended)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} (.+)/$
+RewriteRule ^ %1 [R=301,L]
+
+# Rewrite clean article URLs to article.php with slug parameter
+# Example: /article/my-article-slug -> /article.php?slug=my-article-slug
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^article/([a-z0-9-]+)/?$ article.php?slug=$1 [L,QSA]
+
+# Force HTTPS (optional - uncomment if you want to enforce HTTPS)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

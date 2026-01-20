@@ -110,7 +110,7 @@ if ($articleData) {
 
     // Create clean slug URL
     $cleanSlug = createSlug($articleData['title']);
-    $pageUrl = "https://" . $_SERVER['HTTP_HOST'] . "/article.php?slug=" . $cleanSlug;
+    $pageUrl = "https://" . $_SERVER['HTTP_HOST'] . "/article/" . $cleanSlug;
 }
 
 // Keywords
@@ -711,7 +711,7 @@ if ($articleData) {
 <section class="py-8" style="background: #200A24;">
     <div class="mx-auto px-6 lg:px-8" style="max-width: 1100px;">
         <div class="featured-image">
-            <img src="<?php echo $pageImage; ?>?crop=true"
+            <img src="<?php echo $pageImage; ?>"
                  alt="<?php echo htmlspecialchars($articleData['title']); ?>"
                  onerror="this.style.display='none'">
         </div>
@@ -733,9 +733,6 @@ if ($articleData) {
 
                     // Fix image paths
                     $content = str_replace('/storage', 'https://appworks.mpanel.app/image/cache/extra-large', $content);
-
-                    // Add crop=true parameter to images
-                    $content = preg_replace('/(src="https:\/\/appworks\.mpanel\.app\/image\/cache\/extra-large[^"]*\.(jpg|jpeg|png|gif|bmp|svg|webp))(?!\?crop=true)"/i', '$1?crop=true"', $content);
 
                     echo $content;
                 } else {

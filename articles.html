@@ -619,9 +619,9 @@ function createArticleCard(article) {
     const imageUrl = article.images?.['medium-full']?.url || 'https://app-works.app/images/placeholder.jpg';
 
     return `
-        <a href="article.php?slug=${slug}" class="article-card block group">
+        <a href="article/${slug}" class="article-card block group">
             <div class="article-image">
-                <img src="${imageUrl}?crop=true"
+                <img src="${imageUrl}"
                      onerror="this.src='https://app-works.app/images/placeholder.jpg'"
                      alt="${article.title}">
             </div>
