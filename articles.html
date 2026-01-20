@@ -314,6 +314,29 @@
             color: #FF6B50;
         }
 
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .article-image {
+                height: 180px;
+            }
+
+            .filter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.75rem;
+            }
+
+            .category-badge {
+                padding: 0.25rem 0.5rem;
+                font-size: 0.65rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .article-image {
+                height: 150px;
+            }
+        }
+
         /* Reduced Motion */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
