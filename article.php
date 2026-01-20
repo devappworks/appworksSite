@@ -448,13 +448,21 @@ if ($articleData) {
             color: #FF4B36;
         }
 
-        .article-content ul, .article-content ol {
+        .article-content ul {
             margin: 1.5rem 0;
             padding-left: 1.5rem;
+            list-style-type: disc;
+        }
+
+        .article-content ol {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+            list-style-type: decimal;
         }
 
         .article-content li {
             margin-bottom: 0.75rem;
+            display: list-item;
         }
 
         .article-content blockquote {
