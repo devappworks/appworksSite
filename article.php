@@ -665,6 +665,9 @@ if ($articleData) {
                 $content = $articleData['body'] ?? $articleData['text'] ?? $articleData['contents'] ?? '';
 
                 if ($content) {
+                    // Decode HTML entities (mPanel stores content as HTML-encoded text)
+                    $content = html_entity_decode($content, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+
                     // Fix image paths
                     $content = str_replace('/storage', 'https://appworks.mpanel.app/image/cache/extra-large', $content);
 
