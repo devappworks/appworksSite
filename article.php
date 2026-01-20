@@ -449,20 +449,23 @@ if ($articleData) {
         }
 
         .article-content ul {
-            margin: 1.5rem 0;
-            padding-left: 1.5rem;
-            list-style-type: disc;
+            margin: 1.5rem 0 !important;
+            padding-left: 2rem !important;
+            list-style-type: disc !important;
+            list-style-position: outside !important;
         }
 
         .article-content ol {
-            margin: 1.5rem 0;
-            padding-left: 1.5rem;
-            list-style-type: decimal;
+            margin: 1.5rem 0 !important;
+            padding-left: 2rem !important;
+            list-style-type: decimal !important;
+            list-style-position: outside !important;
         }
 
         .article-content li {
-            margin-bottom: 0.75rem;
-            display: list-item;
+            margin-bottom: 0.75rem !important;
+            display: list-item !important;
+            list-style: inherit !important;
         }
 
         .article-content blockquote {
