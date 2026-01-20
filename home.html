@@ -76,12 +76,13 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
         }
 
-        body {
+        html, body {
             background: #200A24;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
             position: relative;
+            max-width: 100vw;
         }
 
         /* SVG Noise Texture Overlay */
@@ -234,6 +235,77 @@
         .header-nav.scrolled {
             background: rgba(32, 10, 36, 0.95);
             box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 320px;
+            height: 100vh;
+            background: rgba(32, 10, 36, 0.98);
+            backdrop-filter: blur(24px);
+            z-index: 1001;
+            transition: right 0.3s ease;
+            padding: 80px 24px 24px;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 16px 0;
+            color: white;
+            font-weight: 600;
+            font-size: 1.125rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            color: #FF6B50;
+        }
+
+        .mobile-menu .sub-menu {
+            padding-left: 16px;
+        }
+
+        .mobile-menu .sub-menu a {
+            font-size: 1rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
         }
 
         /* Mega Dropdown */
@@ -527,6 +599,30 @@
         </div>
     </div>
 </header>
+
+<!-- Mobile Menu Overlay -->
+<div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+
+<!-- Mobile Menu -->
+<nav class="mobile-menu" id="mobile-menu">
+    <button class="mobile-menu-close" id="mobile-menu-close">
+        <i class="bi bi-x-lg"></i>
+    </button>
+    <a href="/home.html">Home</a>
+    <div>
+        <span style="display: block; padding: 16px 0; color: rgba(255,255,255,0.5); font-weight: 600; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em;">Solutions</span>
+        <div class="sub-menu">
+            <a href="/cms.html">mPanel CMS</a>
+            <a href="/media.html">Media</a>
+            <a href="/sport.html">Sport</a>
+            <a href="https://litteraworks.com/" target="_blank">Litteraworks</a>
+        </div>
+    </div>
+    <a href="/consultation.html">Consultation</a>
+    <a href="/projects.html">Grant Projects</a>
+    <a href="/partners.html">Partners</a>
+    <a href="/about.html">About Us</a>
+</nav>
 
 <!-- Hero Section -->
 <section class="relative min-h-screen flex items-center justify-center overflow-hidden" style="padding-top: 80px; background: linear-gradient(180deg, #200A24 0%, #1A0624 50%, #0F0520 100%);">
@@ -1378,7 +1474,39 @@ scrollBtn.addEventListener('click', function() {
 
 // Mobile menu toggle
 const mobileMenuBtn = document.getElementById('mobile-menu-button');
-// Add mobile menu implementation as needed
+const mobileMenu = document.getElementById('mobile-menu');
+const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+const mobileMenuClose = document.getElementById('mobile-menu-close');
+
+function openMobileMenu() {
+    mobileMenu.classList.add('active');
+    mobileMenuOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeMobileMenu() {
+    mobileMenu.classList.remove('active');
+    mobileMenuOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener('click', openMobileMenu);
+}
+
+if (mobileMenuClose) {
+    mobileMenuClose.addEventListener('click', closeMobileMenu);
+}
+
+if (mobileMenuOverlay) {
+    mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+}
+
+// Close menu when clicking a link
+const mobileMenuLinks = mobileMenu?.querySelectorAll('a');
+mobileMenuLinks?.forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+});
 </script>
 
 <!-- Blog Articles Dynamic Loading Script -->
