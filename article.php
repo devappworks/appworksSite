@@ -14,7 +14,7 @@ if ($debug) {
 // Default meta values
 $pageTitle = "Article - Appworks";
 $pageDescription = "Appworks article view";
-$pageImage = "https://app-works.app/images/appworks.png";
+$pageImage = "https://appworks.mpanel.app/image/cache/original/files/images/appworks-logo.png";
 $pageUrl = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 $articleData = null;
 
@@ -147,7 +147,7 @@ if ($articleData) {
     <meta property="og:url" content="<?php echo $pageUrl; ?>">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Appworks">
-    <meta property="og:logo" content="https://app-works.app/images/appworks.png">
+    <meta property="og:logo" content="https://appworks.mpanel.app/image/cache/original/files/images/appworks-logo.png">
 
     <!-- Twitter Card meta tags -->
     <meta name="twitter:card" content="summary_large_image">
@@ -159,8 +159,8 @@ if ($articleData) {
     <link rel="canonical" href="<?php echo $pageUrl; ?>">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="https://app-works.app/images/appworks.png">
-    <link rel="apple-touch-icon" href="https://app-works.app/images/appworks.png">
+    <link rel="shortcut icon" href="https://appworks.mpanel.app/image/cache/original/files/images/appworks-logo.png">
+    <link rel="apple-touch-icon" href="https://appworks.mpanel.app/image/cache/original/files/images/appworks-logo.png">
 
     <!-- Google Fonts: Inter Variable -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -220,7 +220,7 @@ if ($articleData) {
             "name": "Appworks",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://app-works.app/images/appworks.png"
+                "url": "https://appworks.mpanel.app/image/cache/original/files/images/appworks-logo.png"
             }
         },
         "mainEntityOfPage": {
@@ -569,7 +569,7 @@ if ($articleData) {
             <!-- Logo -->
             <div class="flex-shrink-0">
                 <a href="/home.html" class="flex items-center">
-                    <img src="https://app-works.app/images/appworks.png" alt="Appworks" class="h-12 w-auto">
+                    <img src="https://appworks.mpanel.app/image/cache/original/files/images/appworks-logo.png" alt="Appworks" class="h-12 w-auto">
                 </a>
             </div>
 
@@ -707,7 +707,7 @@ if ($articleData) {
 </section>
 
 <!-- Featured Image -->
-<?php if ($articleData && $pageImage !== 'https://app-works.app/images/appworks.png'): ?>
+<?php if ($articleData && $pageImage !== 'https://appworks.mpanel.app/image/cache/original/files/images/appworks-logo.png'): ?>
 <section class="py-8" style="background: #200A24;">
     <div class="mx-auto px-6 lg:px-8" style="max-width: 1100px;">
         <div class="featured-image">
@@ -784,7 +784,7 @@ if ($articleData) {
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             <!-- Column 1: Logo & Social -->
             <div>
-                <img src="https://app-works.app/images/appworks.png" alt="Appworks Logo" class="h-16 w-auto mb-4">
+                <img src="https://appworks.mpanel.app/image/cache/original/files/images/appworks-logo.png" alt="Appworks Logo" class="h-16 w-auto mb-4">
                 <p class="text-gray-400 text-base leading-relaxed mb-6">Creative solutions for innovative partners.</p>
                 <div class="flex gap-3">
                     <a href="https://www.linkedin.com/company/appworks-d-o-o/" target="_blank" class="flex items-center justify-center w-10 h-10 rounded-lg smooth-transition glass-light hover:bg-vibrant-orange-600/20 text-gray-400 hover:text-vibrant-orange-600">

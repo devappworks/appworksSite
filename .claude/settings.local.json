@@ -23,7 +23,15 @@
       "Bash(git push:*)",
       "Bash(ping:*)",
       "Bash(git commit -m \"$\\(cat <<''EOF''\nUpdate partner logos: Remove 9 partners and create centralized logo system\n\n- Removed partner logos: Delo, EHCB, HINA, Cork City, Meridianbet, Dnevno Hr, Zagreb Info, Ora De Sibiu, Žilina\n- Added Nova S logo in place of Delo\n- Created centralized partner logos system in js/partner-logos.js\n- Added comprehensive partner logos usage guide\n- Updated projects_v2.html with enhanced design \\(bento grid, glass dashboard, ledger cards\\)\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(git -C \"c:\\\\Users\\\\janko\\\\appworksSite\" log --all --oneline --grep=\"team\\\\|competition\\\\|match\\\\|admin\\\\|upload\\\\|download\")",
+      "Bash(git -C \"c:\\\\Users\\\\janko\\\\appworksSite\" log --all --oneline)",
+      "Bash(git fetch:*)",
+      "Bash(git merge:*)",
+      "Bash(gh pr create:*)",
+      "Bash(git rebase:*)",
+      "Bash(git stash:*)",
+      "Bash(grep:*)"
     ]
   }
 }
